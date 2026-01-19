@@ -3,7 +3,7 @@ header {
     align-items: center;
     justify-content: space-between;
     position: relative;
-    height: 80px;
+    height: 70px;
     background: var(--main-color);
     width: 100%;
 }
@@ -46,11 +46,15 @@ header {
     font-size: 37px !important;
 }
 
-@media (max-width: 768px) {
-    header {
-        height: 70px;
-    }
+.header__nav-icon--light {
+    color: var(--light-icon-color);
+}
 
+.header__nav-icon--dark {
+    color: var(--dark-icon-color);
+}
+
+@media (max-width: 768px) {
     .header__content {
         padding: 0 25px;
     }
@@ -60,7 +64,7 @@ header {
     }
 
     .header__nav {
-        gap: 25px;
+        gap: 20px;
     }
 
     .header__nav-icon {
@@ -91,7 +95,7 @@ header {
     }
 
     .header__nav {
-        gap: 20px;
+        gap: 15px;
     }
 
     .header__nav-icon {

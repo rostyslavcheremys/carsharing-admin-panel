@@ -1,7 +1,13 @@
 :root {
     --font-family: "Google Sans", sans-serif;
+    --second-family: "Poppins", sans-serif;
     --main-color: #4086f4;
     --white-color: #FFFFFF;
+    --light-icon-color: #fbbc05;
+    --dark-icon-color: #ea4335;
+
+
+
     --grey-light-color: #b7b6b6;
     --grey-dark-color: #838181;
     --error-color: #FF4C4C;

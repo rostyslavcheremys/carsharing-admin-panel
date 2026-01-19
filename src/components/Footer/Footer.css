@@ -1,0 +1,14 @@
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--main-color);
+    height: 40px;
+    width: 100%;
+}
+
+.footer__copyright {
+    font-family: var(--second-family);
+    color: var(--white-color);
+    font-size: 13px;
+}

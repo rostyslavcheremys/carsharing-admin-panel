@@ -1,15 +1,17 @@
 import { Outlet } from "react-router-dom";
 
-import { Header } from "../components";
+import { Header, Footer } from "../components";
 
-export const Layout = () => {
+export const Layout = ({ darkMode, setDarkMode }) => {
     return (
         <div className="layout">
-            <Header/>
+            <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
+
             <main>
                 <Outlet/>
             </main>
-            {/*<Footer/>*/}
+
+            <Footer/>
         </div>
     );
 }

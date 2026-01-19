@@ -1,15 +1,20 @@
 /*import { useNavigate } from "react-router-dom";*/
 
 import {
-    PersonIcon,
     MapIcon,
     DirectionsCarIcon,
     PeopleIcon,
+    LightModeIcon,
+    DarkModeIcon,
     LogoutIcon,
 } from "../../libs/mui-icons.js";
 
-export const Header = () => {
+export const Header = ({ darkMode, setDarkMode }) => {
     /*const navigate = useNavigate();*/
+
+    const handleToggleTheme = () => {
+        setDarkMode(prev => !prev);
+    };
 
     return(
         <header className="header">
@@ -26,6 +31,19 @@ export const Header = () => {
                     <PeopleIcon
                         className="header__nav-icon header__nav-icon--users"
                     />
+
+                    {darkMode ? (
+                        <DarkModeIcon
+                            className="header__nav-icon header__nav-icon--dark"
+                            onClick={handleToggleTheme}
+                        />
+                    ) : (
+                        <LightModeIcon
+                            className="header__nav-icon header__nav-icon--light"
+                            onClick={handleToggleTheme}
+                        />
+                    )}
+
                     <LogoutIcon
                         className="header__nav-icon header__nav-icon--logout"
                     />
