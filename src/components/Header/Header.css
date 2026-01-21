@@ -1,4 +1,4 @@
-header {
+.header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -18,7 +18,7 @@ header {
 }
 
 .header__logo {
-    font-family: var(--font-family);
+    font-family: var(--font-family), sans-serif;
     color: var(--white-color);
     font-weight: 400;
     font-size: 32px;
@@ -48,10 +48,6 @@ header {
 
 .header__nav-icon--light {
     color: var(--light-icon-color);
-}
-
-.header__nav-icon--dark {
-    color: var(--dark-icon-color);
 }
 
 @media (max-width: 768px) {

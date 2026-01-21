@@ -9,41 +9,30 @@ main {
     flex: 1;
 }
 
-
-
-
-
-
-
-
 .page {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 190px);
     width: 100%;
 }
 
 .page__title {
     text-align: center;
-    font-family: var(--font-family);
-    color: var(--grey-dark-color);
-    font-weight: 700;
-    font-size: 32px;
-    margin-bottom: 10px;
-}
-
-.page__title-welcome {
-    text-align: center;
-    font-family: var(--font-family);
-    color: var(--grey-dark-color);
+    font-family: var(--font-family), sans-serif;
     font-weight: 600;
     font-size: 28px;
     margin-bottom: 10px;
 }
 
-.page__forms {
+
+
+
+
+
+
+.page__form {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -73,7 +62,7 @@ main {
     padding: 7px 0;
 }
 
-.page__forms.edit {
+.page__form.edit {
     margin-bottom: 30px;
 }
 
@@ -86,10 +75,6 @@ main {
 
 @media (max-width: 768px) {
     .page__title {
-        font-size: 26px;
-    }
-
-    .page__title-welcome {
         font-size: 24px;
     }
 
@@ -103,12 +88,12 @@ main {
         margin: 30px 20px;
     }
 
-    .page__separator {
-        font-size: 14px;
+    .page__title {
+        font-size: 22px;
     }
 
-    .page__title-welcome {
-        font-size: 20px;
+    .page__separator {
+        font-size: 14px;
     }
 
     .page__error {

@@ -1,0 +1,100 @@
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__label {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 15px 0 5px 14px;
+}
+
+.form__label.app-table__edit-field,
+.form__label.app-table__add-field {
+    margin: 1px 0 0 0;
+}
+
+.form__field {
+    width: 400px;
+}
+
+.form__field .MuiOutlinedInput-root {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 400;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.form__field .MuiOutlinedInput-notchedOutline {
+    border: 1px solid var(--grey-light-color) !important;
+    border-radius: 5px;
+}
+
+.form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: var(--grey-light-color) !important;
+}
+
+.form__field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--grey-light-color) !important;
+}
+
+.form__field .MuiIconButton-root,
+.form__field .MuiInputAdornment-root {
+    margin: 0;
+}
+
+.form__field .MuiSelect-select {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-family), sans-serif;
+    font-weight: 600;
+    color: var(--grey-dark-color);
+}
+
+.form__select {
+    border-radius: 20px !important;
+    padding: 0;
+    background: #fff;
+}
+
+.form__menu {
+    font-family: var(--second-family), sans-serif !important;
+    font-weight: 600 !important;
+    color: var(--grey-dark-color) !important;
+    padding: 12px 20px !important;
+    background-color: #ffffff !important;
+}
+
+.form__menu:hover {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+}
+
+.form-field .Mui-selected {
+    background-color: var(--main-color) !important;
+    color: #fff !important;
+}
+
+.MuiList-root {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    outline: none !important;
+}
+
+@media (max-width: 768px) {
+    .form__label, .form__field .MuiOutlinedInput-root {
+        font-size: 14px;
+    }
+
+    .form__field {
+        width: 350px;
+    }
+}
+
+@media (max-width: 390px) {
+    .form__field {
+        width: 300px;
+    }
+}

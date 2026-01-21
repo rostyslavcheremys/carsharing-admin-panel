@@ -1,0 +1,8 @@
+.form-controller__error {
+    display: flex;
+    font-family: var(--second-family), sans-serif;
+    color: var(--error-color);
+    font-weight: 400 !important;
+    font-size: 14px;
+    margin: 5px 0 0 14px;
+}

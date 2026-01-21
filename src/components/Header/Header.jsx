@@ -1,4 +1,4 @@
-/*import { useNavigate } from "react-router-dom";*/
+import { useNavigate } from "react-router-dom";
 
 import {
     MapIcon,
@@ -7,14 +7,19 @@ import {
     LightModeIcon,
     DarkModeIcon,
     LogoutIcon,
-} from "../../libs/mui-icons.js";
+} from "../../libs/mui-icons";
 
-export const Header = ({ darkMode, setDarkMode }) => {
-    /*const navigate = useNavigate();*/
+import {
+    useAuth,
+    useTheme
+} from "../../hooks";
 
-    const handleToggleTheme = () => {
-        setDarkMode(prev => !prev);
-    };
+export const Header = () => {
+    const navigate = useNavigate();
+
+    const { darkMode, toggleTheme } = useTheme();
+
+    const { user, logout } = useAuth();
 
     return(
         <header className="header">
@@ -22,31 +27,44 @@ export const Header = ({ darkMode, setDarkMode }) => {
                 <span className="header__logo">Carsharing</span>
 
                 <nav className="header__nav">
-                    <MapIcon
-                        className="header__nav-icon header__nav-icon--map"
-                    />
-                    <DirectionsCarIcon
-                        className="header__nav-icon header__nav-icon--cars"
-                    />
-                    <PeopleIcon
-                        className="header__nav-icon header__nav-icon--users"
-                    />
+
+                    {user && (
+                        <>
+                            <MapIcon
+                                className="header__nav-icon header__nav-icon--map"
+                                /*onClick={() => navigate("/map")}*/
+                            />
+                            <DirectionsCarIcon
+                                className="header__nav-icon header__nav-icon--cars"
+                                onClick={() => navigate("/cars")}
+                            />
+                            <PeopleIcon
+                                className="header__nav-icon header__nav-icon--users"
+                                /*onClick={() => navigate("/users")}*/
+                            />
+                        </>
+                    )}
 
                     {darkMode ? (
                         <DarkModeIcon
                             className="header__nav-icon header__nav-icon--dark"
-                            onClick={handleToggleTheme}
+                            onClick={toggleTheme}
                         />
                     ) : (
                         <LightModeIcon
                             className="header__nav-icon header__nav-icon--light"
-                            onClick={handleToggleTheme}
+                            onClick={toggleTheme}
                         />
                     )}
 
-                    <LogoutIcon
-                        className="header__nav-icon header__nav-icon--logout"
-                    />
+                    {user && (
+                        <>
+                            <LogoutIcon
+                                className="header__nav-icon header__nav-icon--logout"
+                                onClick={logout}
+                            />
+                        </>
+                    )}
                 </nav>
             </div>
         </header>
