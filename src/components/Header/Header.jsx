@@ -7,7 +7,7 @@ import {
     LightModeIcon,
     DarkModeIcon,
     LogoutIcon,
-} from "../../libs/mui-icons";
+} from "../../libs/mui-icons.js";
 
 import {
     useAuth,
@@ -32,7 +32,7 @@ export const Header = () => {
                         <>
                             <MapIcon
                                 className="header__nav-icon header__nav-icon--map"
-                                /*onClick={() => navigate("/map")}*/
+                                onClick={() => navigate("/map")}
                             />
                             <DirectionsCarIcon
                                 className="header__nav-icon header__nav-icon--cars"
@@ -40,7 +40,7 @@ export const Header = () => {
                             />
                             <PeopleIcon
                                 className="header__nav-icon header__nav-icon--users"
-                                /*onClick={() => navigate("/users")}*/
+                                onClick={() => navigate("/users")}
                             />
                         </>
                     )}

@@ -27,16 +27,16 @@
 }
 
 .form__field .MuiOutlinedInput-notchedOutline {
-    border: 1px solid var(--grey-light-color) !important;
+    border: 1px solid var(--grey-color) !important;
     border-radius: 5px;
 }
 
 .form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: var(--grey-light-color) !important;
+    border-color: var(--main-color) !important;
 }
 
 .form__field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: var(--grey-light-color) !important;
+    border-color: var(--main-color) !important;
 }
 
 .form__field .MuiIconButton-root,

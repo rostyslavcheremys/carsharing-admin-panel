@@ -1,6 +1,7 @@
 export {
     Button,
-    Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip,
+    Paper,
+    Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, TablePagination,
     IconButton,
     TextField, InputAdornment,
     Tabs, Tab,

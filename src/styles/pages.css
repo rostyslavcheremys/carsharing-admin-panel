@@ -18,6 +18,11 @@ main {
     width: 100%;
 }
 
+.map-page {
+    width: 100%;
+    height: 100vh;
+}
+
 .page__title {
     text-align: center;
     font-family: var(--font-family), sans-serif;
@@ -25,12 +30,6 @@ main {
     font-size: 28px;
     margin-bottom: 10px;
 }
-
-
-
-
-
-
 
 .page__form {
     display: flex;
@@ -55,52 +54,16 @@ main {
     margin-top: 30px;
 }
 
-.page__separator {
-    font-family: var(--font-family);
-    color: var(--grey-dark-color);
-    font-size: 15px;
-    padding: 7px 0;
-}
-
 .page__form.edit {
     margin-bottom: 30px;
 }
 
-.page__sparks {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    margin: 80px 0 60px 0;
-}
-
 @media (max-width: 768px) {
-    .page__title {
-        font-size: 24px;
-    }
-
-    .page__sparks {
-        margin: 70px 0 50px 0;
-    }
-}
-
-@media (max-width: 600px) {
     main {
         margin: 30px 20px;
     }
 
     .page__title {
         font-size: 22px;
-    }
-
-    .page__separator {
-        font-size: 14px;
-    }
-
-    .page__error {
-        font-size: 20px;
-    }
-
-    .page__sparks {
-        margin: 60px 0 40px 0;
     }
 }

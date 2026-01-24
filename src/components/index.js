@@ -7,3 +7,5 @@ export * from "./Forms/FormSelect.jsx";
 export * from "./Header/Header.jsx";
 export * from "./Loader/Loader.jsx";
 export * from "./MessageDialog/MessageDialog.jsx";
+export * from "./MonitoringMap/MonitoringMap.jsx";
+export * from "./Tables/DataTable.jsx";

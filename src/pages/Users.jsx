@@ -2,19 +2,19 @@ import { DataTable, Loader } from "../components";
 
 import { useCollection } from "../hooks";
 
-import { CARS_TABLE_COLUMNS } from "../constants";
+import { USERS_TABLE_COLUMNS } from "../constants";
 
-export const Cars = () => {
+export const Users = () => {
     const {
-        data: cars,
+        data: users,
         isLoading,
         error,
-    } = useCollection("cars");
+    } = useCollection("users");
 
     return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page">
-                <DataTable rows={cars} columns={CARS_TABLE_COLUMNS} />
+                <DataTable rows={users} columns={USERS_TABLE_COLUMNS}/>
             </div>
         </Loader>
     );

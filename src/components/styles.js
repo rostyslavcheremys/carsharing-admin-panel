@@ -5,3 +5,5 @@ import "./Forms/Forms.css";
 import "./Header/Header.css";
 import "./Loader/Loader.css";
 import "./MessageDialog/MessageDialog.css";
+import "./MonitoringMap/MonitoringMap.css";
+import "./Tables/Tables.css";

@@ -1,5 +1,5 @@
 .message-dialog .MuiPaper-root {
-    border-radius: 12px !important;
+    border-radius: 7px !important;
 }
 
 .message-dialog__content {
@@ -8,7 +8,6 @@
 
 .message-dialog__message {
     font-family: var(--font-family), sans-serif;
-    color: var(--grey-dark-color);
     font-weight: 600;
     font-size: 18px;
 }

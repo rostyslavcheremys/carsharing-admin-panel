@@ -5,7 +5,8 @@ import {
     Home,
     Cars,
     Login,
-
+    Map,
+    Users,
    /* Menu,
     Signup,
     Profile,
@@ -36,9 +37,21 @@ export const App = () => {
                     </ProtectedRoute>
                 }/>
 
+                <Route path="/map" element={
+                    <ProtectedRoute adminOnly>
+                        <Map />
+                    </ProtectedRoute>
+                }/>
+
                 <Route path="/cars" element={
                     <ProtectedRoute adminOnly>
                         <Cars />
+                    </ProtectedRoute>
+                }/>
+
+                <Route path="/users" element={
+                    <ProtectedRoute adminOnly>
+                        <Users />
                     </ProtectedRoute>
                 }/>
 
