@@ -1,2 +1,5 @@
-export * from './CARS_TABLE_COLUMNS.jsx';
-export * from './USERS_TABLE_COLUMNS.jsx';
+export * from "./cars/defaults.js";
+export * from "./cars/options.js";
+export * from "./cars/table.jsx";
+
+export * from "./users/table.jsx";

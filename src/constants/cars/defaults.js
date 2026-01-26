@@ -1,0 +1,22 @@
+export const CAR_FORM_DEFAULT_VALUES = {
+    images: [],
+    status: "",
+    brand: "",
+    model: "",
+    year: "",
+    carNumber: "",
+    transmissionType: "",
+    mileage: "",
+    pricePerDay: "",
+    powertrainType: "",
+    displacement: "",
+    fuelType: "",
+    capacity: "",
+    range: "",
+    bodyType: "",
+    driveType: "",
+    color: "",
+    seats: "",
+    latitude: "",
+    longitude: ""
+};

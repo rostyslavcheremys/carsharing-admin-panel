@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db } from "../firebase";
 
 export const useCollection = (collectionName, { live = true } = {}) => {
     const [data, setData] = useState([]);

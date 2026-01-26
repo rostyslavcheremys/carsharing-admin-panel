@@ -1,6 +1,5 @@
 /*import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
@@ -16,6 +15,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export {
     MapIcon,
@@ -26,6 +29,10 @@ export {
     LogoutIcon,
     Visibility,
     VisibilityOff,
+    FileUploadIcon,
+    DeleteIcon,
+    ArrowBackIcon,
+    ArrowForwardIcon,
     /*AddIcon,
     RemoveIcon,
     DeleteIcon,

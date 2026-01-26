@@ -17,7 +17,7 @@ import {
     getAuthErrorMessage,
 } from "../utils";
 
-import { login } from "../services/authService";
+import { login } from "../services";
 
 export const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -46,8 +46,8 @@ export const Login = () => {
             await login(data.email, data.password);
 
             navigate("/cars", { replace: true });
-        } catch (err) {
-            showMessage(getAuthErrorMessage(err));
+        } catch (error) {
+            showMessage(getAuthErrorMessage(error));
         } finally {
             setIsLoading(false);
         }

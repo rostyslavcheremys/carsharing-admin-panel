@@ -5,7 +5,7 @@ import {
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../../firebase/firebase";
+import { auth, db } from "../../firebase";
 
 import { AuthContext } from "../../context";
 

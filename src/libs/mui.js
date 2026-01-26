@@ -5,6 +5,7 @@ export {
     IconButton,
     TextField, InputAdornment,
     Tabs, Tab,
+    Grid, Card, CardMedia, CardActions,
     FormControl, Select, MenuItem,
     Dialog, DialogTitle, DialogContent, DialogActions,
     CircularProgress
