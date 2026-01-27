@@ -37,7 +37,7 @@ export const CARS_TABLE_COLUMNS = [
         id: "mileage", label: "Пробіг",
         render: (car) => getStringOrEmpty(car?.mileage, "км")
     },
-    { id: "carNumber", label: "Номер" },
+    { id: "licensePlate", label: "Номерний знак" },
     {
         id: "bodyType", label: "Тип кузова",
         render: (car) => getLabel(car?.bodyType, BODY_TYPES)

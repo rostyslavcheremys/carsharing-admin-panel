@@ -4,7 +4,7 @@ export const CAR_FORM_DEFAULT_VALUES = {
     brand: "",
     model: "",
     year: "",
-    carNumber: "",
+    licensePlate: "",
     transmissionType: "",
     mileage: "",
     pricePerDay: "",

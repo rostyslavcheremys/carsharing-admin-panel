@@ -37,7 +37,7 @@ export const createCar = async (data) => {
         id: newCarId,
         brand: getStringOrEmpty(data.brand),
         model: getStringOrEmpty(data.model),
-        carNumber: getStringOrEmpty(data.carNumber),
+        licensePlate: getStringOrEmpty(data.licensePlate),
         status: getStringOrEmpty(data.status),
         transmissionType: getStringOrEmpty(data.transmissionType),
         powertrainType: getStringOrEmpty(data.powertrainType),

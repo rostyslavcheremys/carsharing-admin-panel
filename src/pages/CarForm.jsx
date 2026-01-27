@@ -109,8 +109,8 @@ export const CarForm = () => {
 
                     <InputController
                         control={control}
-                        name="carNumber"
-                        label="Номер автомобіля*"
+                        name="licensePlate"
+                        label="Номерний знак*"
                         /*rules={}*/
                     />
 
