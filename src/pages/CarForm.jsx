@@ -67,13 +67,13 @@ export const CarForm = () => {
     return (
         <Loader isLoading={isLoading}>
             <div className="page">
-                <span className="page__title">CAR</span>
+                <span className="page__title">Додавання автомобіля</span>
 
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <FileUploadController
                         control={control}
                         name="images"
-                        label="Фотографії"
+                        label="Фотографії*"
                     />
 
                     <SelectController
@@ -103,28 +103,22 @@ export const CarForm = () => {
 
                     <InputController
                         control={control}
-                        name="carNumber"
-                        label="Номер авто*"
-                        /*rules={}*/
-                    />
-
-                    <SelectController
-                        control={control}
-                        name="transmissionType"
-                        label="Коробка передач*"
-                        options={TRANSMISSION_TYPES}
-                    />
-
-                    <InputController
-                        control={control}
                         name="mileage"
                         label="Пробіг (км)*"
                     />
 
                     <InputController
                         control={control}
-                        name="pricePerDay"
-                        label="Вартість за добу (грн)*"
+                        name="carNumber"
+                        label="Номер автомобіля*"
+                        /*rules={}*/
+                    />
+
+                    <SelectController
+                        control={control}
+                        name="bodyType"
+                        label="Тип кузова*"
+                        options={BODY_TYPES}
                     />
 
                     <SelectController
@@ -170,9 +164,9 @@ export const CarForm = () => {
 
                     <SelectController
                         control={control}
-                        name="bodyType"
-                        label="Тип кузова*"
-                        options={BODY_TYPES}
+                        name="transmissionType"
+                        label="Коробка передач*"
+                        options={TRANSMISSION_TYPES}
                     />
 
                     <SelectController
@@ -198,13 +192,19 @@ export const CarForm = () => {
                     <InputController
                         control={control}
                         name="latitude"
-                        label="Широта (lat)"
+                        label="Широта (lat)*"
                     />
 
                     <InputController
                         control={control}
                         name="longitude"
-                        label="Довгота (lng)"
+                        label="Довгота (lng)*"
+                    />
+
+                    <InputController
+                        control={control}
+                        name="pricePerDay"
+                        label="Вартість за добу (грн)*"
                     />
 
                     <div className="page__buttons">

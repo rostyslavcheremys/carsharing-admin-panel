@@ -17,7 +17,6 @@
     align-items: center;
     min-height: calc(100vh - 190px);
     font-family: var(--font-family), sans-serif;
-    color: var(--grey-dark-color);
     font-weight: 600;
     font-size: 24px;
 }

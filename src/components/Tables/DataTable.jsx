@@ -11,6 +11,8 @@ import {
     TablePagination,
 } from "../../libs/mui.js";
 
+import { getStringOrEmpty } from "../../utils";
+
 export const DataTable = ({
                               rows = [],
                               columns = [],
@@ -59,11 +61,13 @@ export const DataTable = ({
                                 {columns.map((column) => {
                                     return (
                                         <TableCell
+                                            className="table__data"
                                             key={`${row.id}-${column.id}`}
-                                            className="table__data">
+                                        >
                                             {column.render
-                                                ? column.render(row[column.id], row)
-                                                : row[column.id] ?? "—"}
+                                                ? column.render(row)
+                                                : getStringOrEmpty(row[column.id])
+                                            }
                                         </TableCell>
                                     );
                                 })}

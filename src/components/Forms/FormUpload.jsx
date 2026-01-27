@@ -10,7 +10,6 @@ import {
 } from "../../libs/mui.js";
 
 import {
-    FileUploadIcon,
     DeleteIcon,
     ArrowBackIcon,
     ArrowForwardIcon
@@ -88,9 +87,8 @@ export const FormUpload = forwardRef(({ label, value, onChange, className = "", 
             <Button
                 component="label"
                 variant="outlined"
-                startIcon={<FileUploadIcon />}
                 disabled={disabled}
-                className={`form__upload ${className}`}
+                className="form__upload"
             >
                 {value?.length > 0
                     ? `Додати ще (вибрано: ${value.length})`

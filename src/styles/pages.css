@@ -28,7 +28,7 @@ main {
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
     font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .page__form {
@@ -65,5 +65,11 @@ main {
 
     .page__title {
         font-size: 22px;
+    }
+}
+
+@media (max-width: 500px) {
+    .page__title {
+        font-size: 20px;
     }
 }

@@ -6,7 +6,7 @@ import { useTheme } from "../../hooks";
 
 import { darkMap, lightMap } from "../../styles";
 
-export const MonitoringMap = ({ center }) => {
+export const MonitoringMap = ({ location }) => {
     const { darkMode } = useTheme();
 
     const { isLoaded } = useJsApiLoader({
@@ -17,7 +17,7 @@ export const MonitoringMap = ({ center }) => {
         <Loader isLoading={!isLoaded}>
             <GoogleMap
                 key={darkMode ? "map-dark" : "map-light"}
-                center={center}
+                center={location}
                 zoom={14}
                 mapContainerStyle={{ width: "100%", height: "100%" }}
                 options={{
@@ -28,7 +28,7 @@ export const MonitoringMap = ({ center }) => {
                     fullscreenControl: true,
                 }}
             >
-                <Marker position={center} />
+                <Marker position={location} />
             </GoogleMap>
         </Loader>
     );

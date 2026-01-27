@@ -3,22 +3,34 @@
     overflow: hidden;
 }
 
-
 .table__label {
     font-family: var(--font-family), sans-serif !important;
     font-weight: 900 !important;
+    font-size: 16px !important;
     background: var(--grey-color) !important;
     color: var(--white-color) !important;
+    text-align: center !important;
     white-space: nowrap;
 }
 
 .table__data {
     font-family: var(--font-family), sans-serif !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    text-align: center !important;
     white-space: nowrap;
 }
 
 .table__pagination * {
     font-family: var(--font-family), sans-serif !important;
     font-weight: 900 !important;
+    font-size: 16px !important;
+}
+
+@media (max-width: 768px) {
+    .table__label,
+    .table__data,
+    .table__pagination * {
+        font-size: 14px !important;
+    }
 }

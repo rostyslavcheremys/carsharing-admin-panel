@@ -8,5 +8,5 @@ export {
     Grid, Card, CardMedia, CardActions,
     FormControl, Select, MenuItem,
     Dialog, DialogTitle, DialogContent, DialogActions,
-    CircularProgress
+    CircularProgress, ImageList, ImageListItem
 } from "@mui/material";

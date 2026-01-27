@@ -15,24 +15,24 @@ export const USERS_TABLE_COLUMNS = [
                     Документ
                 </a>
             ) : (
-                "—"
+                "-"
             ),
     },
     {
         id: "drivingLicenseStatus",
         label: "Статус",
-        render: (_, row) =>
-            row?.drivingLicense?.verified ? "Підтверджено" : "Не підтверджено",
+        render: (_, user) =>
+            user?.drivingLicense?.verified ? "Підтверджено" : "Не підтверджено",
     },
     { id: "email", label: "Електронна адреса" },
     { id: "phone", label: "Номер телефону" },
     { id: "birthDate", label: "Дата народження",
-        render: (v) =>
-            v ? v.toDate().toLocaleDateString() : "—",
+        render: (user) =>
+            user ? user.toDate().toLocaleDateString() : "—",
     },
     { id: "role", label: "Роль" },
     { id: "createdAt", label: "Дата створення",
-        render: (v) =>
-            v ? v.toDate().toLocaleDateString() : "—",
+        render: (user) =>
+            user ? user.toDate().toLocaleDateString() : "—",
     },
 ];
