@@ -1,7 +1,6 @@
 /*import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import ImageIcon from "@mui/icons-material/Image";
 import LocalMallIcon from "@mui/icons-material/LocalMall";*/
@@ -14,6 +13,7 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -30,6 +30,7 @@ export {
     LogoutIcon,
     Visibility,
     VisibilityOff,
+    EditIcon,
     DeleteIcon,
     ArrowBackIcon,
     ArrowForwardIcon,

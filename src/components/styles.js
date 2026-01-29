@@ -6,5 +6,4 @@ import "./ImageItem/ImageItem.css";
 import "./Header/Header.css";
 import "./Loader/Loader.css";
 import "./Dialogs/Dialogs.css";
-import "./MonitoringMap/MonitoringMap.css";
 import "./Tables/Tables.css";

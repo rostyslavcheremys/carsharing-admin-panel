@@ -9,7 +9,7 @@ import {
     TableRow,
     TableContainer,
     TablePagination,
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 import { getStringOrEmpty } from "../../utils";
 

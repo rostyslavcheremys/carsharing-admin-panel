@@ -1,9 +1,9 @@
-import { Button } from "../../libs/mui.js";
+import { Button } from "../../libs/mui";
 
-export const AppButton = ({ label, type, onClick, disabled }) => {
+export const AppButton = ({ className, label, type, onClick, disabled }) => {
     return (
         <Button
-            className="app-button"
+            className={`app-button ${className || ''}`}
             variant="contained"
             type={type}
             onClick={onClick}

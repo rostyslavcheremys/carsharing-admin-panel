@@ -1,10 +1,10 @@
 .app-button.MuiButton-root {
     font-family: var(--font-family), sans-serif;
     font-weight: 700;
-    width: 140px;
-    height: 40px;
-    font-size: 18px;
-    border-radius: 40px;
+    width: 130px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 7px;
     text-transform: none;
     background: var(--main-color);
     color: var(--white-color);
@@ -15,9 +15,12 @@
     box-shadow: none;
 }
 
-@media (max-width: 768px) {
-    .app-button.MuiButton-root {
-        font-size: 16px;
-        width: 120px;
-    }
+.dialog__app-button {
+    width: 90px !important;
+    height: 40px !important;
+}
+
+.cars__app-button {
+    width: 200px !important;
+    height: 50px !important;
 }

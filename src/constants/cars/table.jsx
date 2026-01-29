@@ -1,4 +1,4 @@
-import { MapDialog, ImageDialog } from "../../components";
+import { DialogCell, MapDialog, ImageDialog } from "../../components";
 
 import { getLabel, getStringOrEmpty } from "../../utils";
 
@@ -20,15 +20,34 @@ export const CARS_TABLE_COLUMNS = [
     },
     {
         id: "location", label: "Місцезнаходження",
-        render: (car) =>
-            <MapDialog
-                latitude={car?.location?.latitude}
-                longitude={car?.location?.longitude}
-            />
+        render: (car) => (
+            <DialogCell>
+                {({ open, onOpen, onClose }) => (
+                    <MapDialog
+                        open={open}
+                        onOpen={onOpen}
+                        onClose={onClose}
+                        latitude={car?.location?.latitude}
+                        longitude={car?.location?.longitude}
+                    />
+                )}
+            </DialogCell>
+        )
     },
     {
         id: "images", label: "Фотографії",
-        render: (car) => <ImageDialog images={car?.images} />
+        render: (car) => (
+            <DialogCell>
+                {({ open, onOpen, onClose }) => (
+                    <ImageDialog
+                        open={open}
+                        onOpen={onOpen}
+                        onClose={onClose}
+                        images={car?.images}
+                    />
+                )}
+            </DialogCell>
+        )
     },
     { id: "brand", label: "Марка" },
     { id: "model", label: "Модель" },

@@ -1,55 +1,51 @@
-import { useState } from "react";
+
 
 import {
     Dialog,
     IconButton,
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 import {
     MyLocationIcon,
     CloseIcon,
-} from "../../libs/mui-icons.js";
+} from "../../libs/mui-icons";
 
-import { MonitoringMap } from "../../components";
+import { MapItem } from "../../components";
 
-export const MapDialog = ({ latitude, longitude }) => {
-    const [open, setOpen] = useState(false);
-
+export const MapDialog = ({
+                              open,
+                              onOpen,
+                              onClose,
+                              latitude,
+                              longitude}) => {
     if (!latitude || !longitude) {
         return "—";
     }
+
     const location = {
         lat: Number(latitude),
         lng: Number(longitude)
     };
 
-    const handleOpen = (e) => {
-        e.stopPropagation();
-        setOpen(true);
-    };
-
-    const handleClose = (e) => {
-        e.stopPropagation();
-        setOpen(false);
-    };
-
     return (
         <>
-            <div className="dialog__icon" onClick={handleOpen}>
-                <MyLocationIcon className="dialog__icon--location" />
+            <div className="dialog__icon" onClick={onOpen}>
+                <IconButton>
+                    <MyLocationIcon className="dialog__icon--location" />
+                </IconButton>
             </div>
 
-            <Dialog className="dialog" open={open} onClose={handleClose}>
+            <Dialog className="dialog" open={open} onClose={onClose}>
                 <div className="dialog__header">
                     <span className="dialog__title">Місцезнаходження автомобіля</span>
 
-                    <IconButton onClick={handleClose}>
+                    <IconButton onClick={onClose}>
                         <CloseIcon className="dialog__icon--close" />
                     </IconButton>
                 </div>
 
                 <div className="dialog__map">
-                    <MonitoringMap location={location} />
+                    <MapItem location={location} />
                 </div>
             </Dialog>
         </>

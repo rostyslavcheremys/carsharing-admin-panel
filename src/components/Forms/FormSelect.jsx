@@ -2,7 +2,7 @@ import {
     FormControl,
     Select,
     MenuItem
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
     return (

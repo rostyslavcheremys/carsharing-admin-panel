@@ -218,7 +218,7 @@ export const CarForm = () => {
 
                 <MessageDialog
                     open={messageOpen}
-                    handleClose={handleMessageClose}
+                    onClose={handleMessageClose}
                     message={message}
                 />
             </div>

@@ -7,12 +7,13 @@ import {
     LightModeIcon,
     DarkModeIcon,
     LogoutIcon,
-} from "../../libs/mui-icons.js";
+} from "../../libs/mui-icons";
 
 import {
     useAuth,
     useTheme
 } from "../../hooks";
+import {IconButton} from "@mui/material";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -30,40 +31,34 @@ export const Header = () => {
 
                     {user && (
                         <>
-                            <MapIcon
-                                className="header__nav-icon header__nav-icon--map"
-                                onClick={() => navigate("/map")}
-                            />
-                            <DirectionsCarIcon
-                                className="header__nav-icon header__nav-icon--cars"
-                                onClick={() => navigate("/cars")}
-                            />
-                            <PeopleIcon
-                                className="header__nav-icon header__nav-icon--users"
-                                onClick={() => navigate("/users")}
-                            />
+                            <IconButton onClick={() => navigate("/map")}>
+                                <MapIcon className="header__nav-icon header__nav-icon--map"/>
+                            </IconButton>
+
+                            <IconButton onClick={() => navigate("/cars")}>
+                                <DirectionsCarIcon className="header__nav-icon header__nav-icon--cars"/>
+                            </IconButton>
+
+                            <IconButton onClick={() => navigate("/users")}>
+                                <PeopleIcon className="header__nav-icon header__nav-icon--users"/>
+                            </IconButton>
                         </>
                     )}
 
                     {darkMode ? (
-                        <DarkModeIcon
-                            className="header__nav-icon header__nav-icon--dark"
-                            onClick={toggleTheme}
-                        />
+                        <IconButton onClick={toggleTheme}>
+                            <DarkModeIcon className="header__nav-icon header__nav-icon--dark"/>
+                        </IconButton>
                     ) : (
-                        <LightModeIcon
-                            className="header__nav-icon header__nav-icon--light"
-                            onClick={toggleTheme}
-                        />
+                        <IconButton onClick={toggleTheme}>
+                            <LightModeIcon className="header__nav-icon header__nav-icon--light"/>
+                        </IconButton>
                     )}
 
                     {user && (
-                        <>
-                            <LogoutIcon
-                                className="header__nav-icon header__nav-icon--logout"
-                                onClick={logout}
-                            />
-                        </>
+                        <IconButton  onClick={logout}>
+                            <LogoutIcon className="header__nav-icon header__nav-icon--logout"/>
+                        </IconButton>
                     )}
                 </nav>
             </div>

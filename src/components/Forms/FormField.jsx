@@ -4,12 +4,12 @@ import {
     TextField,
     IconButton,
     InputAdornment
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 import {
     Visibility,
     VisibilityOff
-} from "../../libs/mui-icons.js";
+} from "../../libs/mui-icons";
 
 export const FormField = forwardRef(({ label, type, name, value, onChange, onBlur, className, disabled }, ref) => {
     const [showPassword, setShowPassword] = useState(false);

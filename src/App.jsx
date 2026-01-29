@@ -40,11 +40,13 @@ export const App = () => {
                     </ProtectedRoute>
                 }/>
 
-                <Route path="/car" element={
+                <Route path="/cars/new" element={
                     <ProtectedRoute adminOnly>
                         <CarForm />
                     </ProtectedRoute>
                 }/>
+
+                {/*/cars/:id/edit*/}
 
                 <Route path="/users" element={
                     <ProtectedRoute adminOnly>

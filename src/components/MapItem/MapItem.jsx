@@ -6,7 +6,7 @@ import { useTheme } from "../../hooks";
 
 import { darkMap, lightMap } from "../../styles";
 
-export const MonitoringMap = ({ location }) => {
+export const MapItem = ({ location }) => {
     const { darkMode } = useTheme();
 
     const { isLoaded } = useJsApiLoader({

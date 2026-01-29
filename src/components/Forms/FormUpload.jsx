@@ -7,13 +7,13 @@ import {
     CardMedia,
     CardActions,
     IconButton,
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 import {
     DeleteIcon,
     ArrowBackIcon,
     ArrowForwardIcon
-} from "../../libs/mui-icons.js";
+} from "../../libs/mui-icons";
 
 export const FormUpload = forwardRef(({ label, value, onChange, className = "", disabled, name }, ref) => {
     const handleFileChange = (e) => {

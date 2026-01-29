@@ -5,45 +5,39 @@ import {
     ImageList,
     IconButton,
     ImageListItem
-} from "../../libs/mui.js";
+} from "../../libs/mui";
 
 import {
     PhotoLibraryIcon,
-    CloseIcon,
-} from "../../libs/mui-icons.js";
+    CloseIcon, MyLocationIcon,
+} from "../../libs/mui-icons";
 
 import { ImageItem } from "../../components";
 
-export const ImageDialog = ({ images }) => {
-    const [open, setOpen] = useState(false);
-
+export const ImageDialog = ({
+                                open,
+                                onOpen,
+                                onClose,
+                                images }) => {
     if (!images || (Array.isArray(images) && images.length === 0)) {
         return "—";
     }
 
     const imageList = Array.isArray(images) ? images : [images];
 
-    const handleOpen = (e) => {
-        e.stopPropagation();
-        setOpen(true);
-    };
-
-    const handleClose = (e) => {
-        e.stopPropagation();
-        setOpen(false);
-    };
-
     return (
         <>
-            <div className="dialog__icon" onClick={handleOpen}>
-                <PhotoLibraryIcon className="dialog__icon--photos" />
+            <div className="dialog__icon" onClick={onOpen}>
+                <IconButton>
+                    <PhotoLibraryIcon className="dialog__icon--photos" />
+                </IconButton>
             </div>
 
-            <Dialog className="dialog" open={open} onClose={handleClose}>
+            <Dialog className="dialog" open={open} onClose={onClose}>
                 <div className="dialog__header">
                     <span className="dialog__title">Перегляд фотографій</span>
 
-                    <IconButton onClick={handleClose}>
+                    <IconButton onClick={onClose}>
                         <CloseIcon className="dialog__icon--close" />
                     </IconButton>
                 </div>

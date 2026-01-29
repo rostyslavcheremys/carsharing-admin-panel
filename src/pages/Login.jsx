@@ -86,7 +86,7 @@ export const Login = () => {
 
                 <MessageDialog
                     open={messageOpen}
-                    handleClose={handleMessageClose}
+                    onClose={handleMessageClose}
                     message={message}
                 />
             </div>
