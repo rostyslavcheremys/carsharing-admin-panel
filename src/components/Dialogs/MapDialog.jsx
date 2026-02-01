@@ -50,7 +50,10 @@ export const MapDialog = ({
                 </div>
 
                 <div className="dialog__map">
-                    <MapItem location={location} />
+                    <MapItem
+                        location={location}
+                        className="map-item dialog"
+                    />
                 </div>
             </Dialog>
         </>

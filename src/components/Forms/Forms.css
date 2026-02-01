@@ -22,8 +22,9 @@
 }
 
 .form__field .MuiOutlinedInput-notchedOutline {
-    border: 2px solid var(--grey-color) !important;
     border-radius: 7px;
+    border: 2px solid var(--grey-color) !important;
+    transition: border 0.2s ease-in-out !important;
 }
 
 .form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
@@ -86,6 +87,7 @@
     font-weight: 600 !important;
     font-size: 14px !important;
     border-radius: 7px !important;
+    transition: border 0.2s ease-in-out !important;
 }
 
 .form__upload:hover {

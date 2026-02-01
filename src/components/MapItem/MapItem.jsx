@@ -6,7 +6,7 @@ import { useTheme } from "../../hooks";
 
 import { darkMap, lightMap } from "../../styles";
 
-export const MapItem = ({ location }) => {
+export const MapItem = ({ location, className }) => {
     const { darkMode } = useTheme();
 
     const { isLoaded } = useJsApiLoader({
@@ -16,10 +16,10 @@ export const MapItem = ({ location }) => {
     return (
         <Loader isLoading={!isLoaded}>
             <GoogleMap
+                mapContainerClassName={className}
                 key={darkMode ? "map-dark" : "map-light"}
                 center={location}
                 zoom={14}
-                mapContainerStyle={{ width: "100%", height: "100%" }}
                 options={{
                     styles: darkMode ? darkMap : lightMap,
                     disableDefaultUI: true,
@@ -32,4 +32,4 @@ export const MapItem = ({ location }) => {
             </GoogleMap>
         </Loader>
     );
-};
+}
