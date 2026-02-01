@@ -55,7 +55,7 @@ export const Login = () => {
     return (
         <Loader isLoading={isLoading}>
             <div className="page">
-                <span className="page__title">Адміністративна панель</span>
+                <span className="page__title form">Адміністративна панель</span>
 
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <InputController

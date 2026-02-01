@@ -28,6 +28,10 @@ main {
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
     font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.page__title.form {
     margin-bottom: 15px;
 }
 

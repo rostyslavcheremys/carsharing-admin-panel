@@ -34,7 +34,7 @@ export const CarForm = ({
 
     return (
         <div className="page">
-            <span className="page__title">{title}</span>
+            <span className="page__title form">{title}</span>
 
             <form className="page__form" onSubmit={onSubmit}>
                 <FileUploadController
