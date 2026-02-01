@@ -11,7 +11,7 @@ import {
     TablePagination,
 } from "../../libs/mui";
 
-import { getStringOrEmpty } from "../../utils";
+import { getString } from "../../utils";
 
 export const DataTable = ({
                               rows = [],
@@ -50,7 +50,7 @@ export const DataTable = ({
                     <TableBody>
                         {paginated.length === 0 && (
                             <TableRow>
-                                <TableCell colSpan={columns.length} align="center">
+                                <TableCell className="table__data" colSpan={columns.length}>
                                     Немає даних
                                 </TableCell>
                             </TableRow>
@@ -65,8 +65,8 @@ export const DataTable = ({
                                             key={`${row.id}-${column.id}`}
                                         >
                                             {column.render
-                                                ? column.render(row)
-                                                : getStringOrEmpty(row[column.id])
+                                                ? column.render(row) || "—"
+                                                : getString(row[column.id])
                                             }
                                         </TableCell>
                                     );
@@ -93,4 +93,4 @@ export const DataTable = ({
             />
         </Paper>
     );
-};
+}

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import {
     Dialog,
     ImageList,
@@ -9,7 +7,7 @@ import {
 
 import {
     PhotoLibraryIcon,
-    CloseIcon, MyLocationIcon,
+    CloseIcon,
 } from "../../libs/mui-icons";
 
 import { ImageItem } from "../../components";
@@ -27,13 +25,18 @@ export const ImageDialog = ({
 
     return (
         <>
-            <div className="dialog__icon" onClick={onOpen}>
-                <IconButton>
+            <div className="dialog__icon">
+                <IconButton onClick={onOpen}>
                     <PhotoLibraryIcon className="dialog__icon--photos" />
                 </IconButton>
             </div>
 
-            <Dialog className="dialog" open={open} onClose={onClose}>
+            <Dialog
+                className="dialog"
+                open={open}
+                onClose={onClose}
+                disableRestoreFocus={true}
+            >
                 <div className="dialog__header">
                     <span className="dialog__title">Перегляд фотографій</span>
 
@@ -54,4 +57,4 @@ export const ImageDialog = ({
             </Dialog>
         </>
     );
-};
+}

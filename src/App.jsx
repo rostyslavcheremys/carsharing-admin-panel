@@ -7,7 +7,8 @@ import {
     Login,
     Map,
     Users,
-    CarForm,
+    CarCreate,
+    CarEdit
 } from "./pages";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
@@ -40,31 +41,23 @@ export const App = () => {
                     </ProtectedRoute>
                 }/>
 
-                <Route path="/cars/new" element={
+                <Route path="/cars/add" element={
                     <ProtectedRoute adminOnly>
-                        <CarForm />
+                        <CarCreate />
                     </ProtectedRoute>
                 }/>
 
-                {/*/cars/:id/edit*/}
+                <Route path="/cars/:id/edit" element={
+                    <ProtectedRoute adminOnly>
+                        <CarEdit />
+                    </ProtectedRoute>
+                }/>
 
                 <Route path="/users" element={
                     <ProtectedRoute adminOnly>
                         <Users />
                     </ProtectedRoute>
                 }/>
-
-                {/* <Route path="/menu" element={<Menu />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/checkout" element={<Checkout />} />
-                        <Route path="/orders" element={<Orders />} />
-                        <Route path="/order/:id" element={<OrderDetails />} />
-                        <Route path="/edit" element={<Edit />} />
-                        <Route path="/account" element={<Account />} />
-                        <Route path="/auth/callback" element={<AuthCallback />} />*/}
             </Route>
         </Routes>
     );

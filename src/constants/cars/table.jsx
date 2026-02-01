@@ -1,6 +1,10 @@
-import { DialogCell, MapDialog, ImageDialog } from "../../components";
+import {
+    DialogCell,
+    MapDialog,
+    ImageDialog,
+} from "../../components";
 
-import { getLabel, getStringOrEmpty } from "../../utils";
+import { getLabel, getString } from "../../utils";
 
 import {
     BODY_TYPES,
@@ -13,6 +17,7 @@ import {
 } from "./options.js";
 
 export const CARS_TABLE_COLUMNS = [
+    { id: "actions", label: "Дії" },
     { id: "id", label: "ID" },
     {
         id: "status", label: "Статус",
@@ -54,7 +59,7 @@ export const CARS_TABLE_COLUMNS = [
     { id: "year", label: "Рік випуску" },
     {
         id: "mileage", label: "Пробіг",
-        render: (car) => getStringOrEmpty(car?.mileage, "км")
+        render: (car) => getString(car?.mileage, "км")
     },
     { id: "licensePlate", label: "Номерний знак" },
     {
@@ -66,20 +71,20 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getLabel(car?.powertrainType, POWERTRAIN_TYPES)
     },
     {
-        id: "displacement", label: "Об'єм двигуна",
-        render: (car) => getStringOrEmpty(car?.engine?.displacement, "л")
+        id: "fuelType", label: "Тип палива",
+        render: (car) => getLabel(getString(car?.engine?.fuelType), FUEL_TYPES)
     },
     {
-        id: "fuelType", label: "Тип палива",
-        render: (car) => getLabel(getStringOrEmpty(car?.engine?.fuelType), FUEL_TYPES)
+        id: "displacement", label: "Об'єм двигуна",
+        render: (car) => getString(car?.engine?.displacement, "л")
     },
     {
         id: "capacity", label: "Ємність батареї",
-        render: (car) => getStringOrEmpty(car?.battery?.capacity, "кВт·год")
+        render: (car) => getString(car?.battery?.capacity, "кВт·год")
     },
     {
         id: "range", label: "Запас ходу",
-        render: (car) => getStringOrEmpty(car?.battery?.range, "км")
+        render: (car) => getString(car?.battery?.range, "км")
     },
     {
         id: "transmissionType", label: "Коробка передач",
@@ -96,7 +101,7 @@ export const CARS_TABLE_COLUMNS = [
     { id: "seats", label: "Кількість місць" },
     {
         id: "pricePerDay", label: "Вартість за добу",
-        render: (car) => getStringOrEmpty(car?.pricePerDay, "грн")
+        render: (car) => getString(car?.pricePerDay, "грн")
     },
     { id: "rating", label: "Рейтинг" },
 ];

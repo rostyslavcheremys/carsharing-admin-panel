@@ -19,4 +19,4 @@ export const CAR_FORM_DEFAULT_VALUES = {
     seats: "",
     latitude: "",
     longitude: ""
-};
+}

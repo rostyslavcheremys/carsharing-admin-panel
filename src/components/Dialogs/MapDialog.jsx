@@ -29,13 +29,18 @@ export const MapDialog = ({
 
     return (
         <>
-            <div className="dialog__icon" onClick={onOpen}>
-                <IconButton>
+            <div className="dialog__icon">
+                <IconButton onClick={onOpen}>
                     <MyLocationIcon className="dialog__icon--location" />
                 </IconButton>
             </div>
 
-            <Dialog className="dialog" open={open} onClose={onClose}>
+            <Dialog
+                className="dialog"
+                open={open}
+                onClose={onClose}
+                disableRestoreFocus={true}
+            >
                 <div className="dialog__header">
                     <span className="dialog__title">Місцезнаходження автомобіля</span>
 

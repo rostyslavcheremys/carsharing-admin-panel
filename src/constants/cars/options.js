@@ -12,8 +12,7 @@ export const TRANSMISSION_TYPES = [
 ];
 
 export const POWERTRAIN_TYPES = [
-    { value: "petrol", label: "Бензин" },
-    { value: "diesel", label: "Дизель" },
+    { value: "ice", label: "Паливний" },
     { value: "electric", label: "Електро" },
     { value: "hybrid", label: "Гібрид" },
 ];
@@ -21,6 +20,7 @@ export const POWERTRAIN_TYPES = [
 export const FUEL_TYPES = [
     { value: "petrol", label: "Бензин" },
     { value: "diesel", label: "Дизель" },
+    { value: "gas", label: "Газ/Бензин" }
 ];
 
 export const BODY_TYPES = [

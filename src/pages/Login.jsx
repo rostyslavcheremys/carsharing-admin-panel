@@ -12,9 +12,9 @@ import {
 import { useMessageDialog } from "../hooks";
 
 import {
+    getErrorMessage,
     getEmailValidation,
     getPasswordValidation,
-    getAuthErrorMessage,
 } from "../utils";
 
 import { login } from "../services";
@@ -39,15 +39,14 @@ export const Login = () => {
         mode: "onChange",
     });
 
-    const onSubmitLogin = async (data) => {
+    const onSubmit = async (data) => {
         try {
             setIsLoading(true);
-
             await login(data.email, data.password);
 
             navigate("/cars", { replace: true });
         } catch (error) {
-            showMessage(getAuthErrorMessage(error));
+            showMessage(getErrorMessage(error));
         } finally {
             setIsLoading(false);
         }
@@ -58,7 +57,7 @@ export const Login = () => {
             <div className="page">
                 <span className="page__title">Адміністративна панель</span>
 
-                <form className="page__form" onSubmit={handleSubmit(onSubmitLogin)}>
+                <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <InputController
                         control={control}
                         name="email"
@@ -75,7 +74,7 @@ export const Login = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <div className="page__buttons">
+                    <div className="page__button">
                         <AppButton
                             type="submit"
                             label="Вхід"

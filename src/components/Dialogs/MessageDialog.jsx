@@ -4,7 +4,12 @@ import { AppButton } from "../../components";
 
 export const MessageDialog = ({ open, onClose, message }) => {
     return (
-        <Dialog className="dialog" open={open} onClose={onClose}>
+        <Dialog
+            className="dialog"
+            open={open}
+            onClose={onClose}
+            disableRestoreFocus={true}
+        >
             <div className="dialog__content">
                 <span className="dialog__message">{message}</span>
             </div>

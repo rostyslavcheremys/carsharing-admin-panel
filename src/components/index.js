@@ -1,4 +1,6 @@
 export * from "./AppButton/AppButton.jsx";
+export * from "./CarActions/CarActions.jsx";
+export * from "./CarForm/CarForm.jsx";
 export * from "./Footer/Footer.jsx";
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";
@@ -10,6 +12,7 @@ export * from "./ImageItem/ImageItem.jsx";
 export * from "./Header/Header.jsx";
 export * from "./Loader/Loader.jsx";
 export * from "./Dialogs/DialogCell.jsx";
+export * from "./Dialogs/ConfirmDialog.jsx";
 export * from "./Dialogs/MessageDialog.jsx";
 export * from "./Dialogs/ImageDialog.jsx";
 export * from "./Dialogs/MapDialog.jsx";

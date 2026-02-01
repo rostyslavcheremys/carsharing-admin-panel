@@ -56,7 +56,7 @@
     }
 
     .header__logo {
-        font-size: 26px;
+        font-size: 24px;
     }
 
     .header__nav {
@@ -64,15 +64,15 @@
     }
 
     .header__nav-icon {
-        font-size: 24px !important;
+        font-size: 22px !important;
     }
 
     .header__nav-icon--cars {
-        font-size: 28px !important;
+        font-size: 26px !important;
     }
 
     .header__nav-icon--users {
-        font-size: 31px !important;
+        font-size: 29px !important;
     }
 }
 

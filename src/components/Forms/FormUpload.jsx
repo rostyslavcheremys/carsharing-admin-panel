@@ -1,4 +1,8 @@
-import { forwardRef } from "react";
+import {
+    forwardRef,
+    useEffect,
+    useMemo
+} from "react";
 
 import {
     Button,
@@ -15,94 +19,111 @@ import {
     ArrowForwardIcon
 } from "../../libs/mui-icons";
 
-export const FormUpload = forwardRef(({ label, value, onChange, className = "", disabled, name }, ref) => {
-    const handleFileChange = (e) => {
-        const newFiles = Array.from(e.target.files);
-        const updatedFiles = [...(value || []), ...newFiles];
+export const FormUpload = forwardRef(
+    ({ label, value = [], onChange, className = "", disabled, name }, ref) => {
 
-        onChange(updatedFiles);
-        e.target.value = "";
-    };
+        const previews = useMemo(
+            () =>
+                value.map(item =>
+                    item instanceof File
+                        ? URL.createObjectURL(item)
+                        : item
+                ),
+            [value]
+        );
 
-    const handleRemove = (index) => {
-        const newFiles = value.filter((_, i) => i !== index);
-        onChange(newFiles);
-    };
+        useEffect(() => {
+            return () => {
+                previews.forEach(url => {
+                    if (url.startsWith("blob:")) {
+                        URL.revokeObjectURL(url);
+                    }
+                });
+            };
+        }, [previews]);
 
-    const handleMove = (index, direction) => {
-        const newFiles = [...value];
-        const targetIndex = index + direction;
-
-        if (targetIndex >= 0 && targetIndex < newFiles.length) {
-            [newFiles[index], newFiles[targetIndex]] = [newFiles[targetIndex], newFiles[index]];
-            onChange(newFiles);
+        const handleFileChange = (e) => {
+            const newFiles = Array.from(e.target.files);
+            onChange([...value, ...newFiles]);
+            e.target.value = "";
         }
-    };
 
-    return (
-        <div className="form">
-            {value?.length > 0 && (
-                <Grid className="form__gallery">
-                    {value.map((file, index) => (
-                        <Grid className="form__grid" key={index}>
-                            <Card className="form__card" variant="outlined">
-                                <CardMedia
-                                    className="form__image"
-                                    image={URL.createObjectURL(file)}
-                                    component="img"
-                                    alt={`image-${index}`}
-                                />
+        const handleRemove = (index) => {
+            onChange(value.filter((_, i) => i !== index));
+        }
 
-                                <CardActions className="form__actions">
-                                    <IconButton
-                                        onClick={() => handleMove(index, -1)}
-                                        disabled={index === 0}
-                                    >
-                                        <ArrowBackIcon className="form__icon" />
-                                    </IconButton>
+        const handleMove = (index, direction) => {
+            const newArr = [...value];
+            const target = index + direction;
 
-                                    <IconButton
-                                        onClick={() => handleRemove(index)}
-                                    >
-                                        <DeleteIcon className="form__icon" />
-                                    </IconButton>
+            if (target >= 0 && target < newArr.length) {
+                [newArr[index], newArr[target]] = [newArr[target], newArr[index]];
+                onChange(newArr);
+            }
+        }
 
-                                    <IconButton
-                                        onClick={() => handleMove(index, 1)}
-                                        disabled={index === value.length - 1}
-                                    >
-                                        <ArrowForwardIcon className="form__icon" />
-                                    </IconButton>
-                                </CardActions>
+        return (
+            <div className="form">
+                {value.length > 0 && (
+                    <Grid className="form__gallery">
+                        {value.map((item, index) => (
+                            <Grid className="form__grid" key={index}>
+                                <Card className="form__card" variant="outlined">
+                                    <CardMedia
+                                        className="form__image"
+                                        image={previews[index]}
+                                        component="img"
+                                        alt={`image-${index}`}
+                                    />
 
-                                <div className="form__badge">{index + 1}</div>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            )}
+                                    <CardActions className="form__actions">
+                                        <IconButton
+                                            onClick={() => handleMove(index, -1)}
+                                            disabled={index === 0}
+                                        >
+                                            <ArrowBackIcon />
+                                        </IconButton>
 
-            <span className={`form__label ${className}`}>{label}</span>
+                                        <IconButton onClick={() => handleRemove(index)}>
+                                            <DeleteIcon />
+                                        </IconButton>
 
-            <Button
-                component="label"
-                variant="outlined"
-                disabled={disabled}
-                className="form__upload"
-            >
-                {value?.length > 0
-                    ? `Додати ще (вибрано: ${value.length})`
-                    : "Натисніть для завантаження"}
-                <input
-                    ref={ref}
-                    name={name}
-                    type="file"
-                    hidden
-                    multiple
-                    accept="image/*"
-                    onChange={handleFileChange}
-                />
-            </Button>
-        </div>
-    );
-});
+                                        <IconButton
+                                            onClick={() => handleMove(index, 1)}
+                                            disabled={index === value.length - 1}
+                                        >
+                                            <ArrowForwardIcon />
+                                        </IconButton>
+                                    </CardActions>
+
+                                    <div className="form__badge">{index + 1}</div>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+                )}
+
+                <span className={`form__label ${className}`}>{label}</span>
+
+                <Button
+                    component="label"
+                    variant="outlined"
+                    disabled={disabled}
+                    className="form__upload"
+                >
+                    {value.length
+                        ? `Додати ще (вибрано: ${value.length})`
+                        : "Натисніть для завантаження"}
+                    <input
+                        ref={ref}
+                        name={name}
+                        type="file"
+                        hidden
+                        multiple
+                        accept="image/*"
+                        onChange={handleFileChange}
+                    />
+                </Button>
+            </div>
+        );
+    });
