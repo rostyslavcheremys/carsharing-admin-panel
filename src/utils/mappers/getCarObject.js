@@ -2,14 +2,13 @@ import { GeoPoint } from "firebase/firestore";
 
 import { getNumber, getString } from "../../utils";
 
-export const formToCar = (data, id, imageUrls = []) => {
+export const getCarObject = (data, id, imageUrls = []) => {
     const hasEngine = ["ice", "hybrid"].includes(data.powertrainType);
     const hasBattery = ["electric", "hybrid"].includes(data.powertrainType);
 
     return {
         ...(id && { id }),
         images: imageUrls,
-
         brand: getString(data.brand),
         model: getString(data.model),
         licensePlate: getString(data.licensePlate),
@@ -34,6 +33,7 @@ export const formToCar = (data, id, imageUrls = []) => {
         location: new GeoPoint(
             getNumber(data.latitude),
             getNumber(data.longitude)
-        )
+        ),
+        rating: data.rating ?? 0
     }
 }

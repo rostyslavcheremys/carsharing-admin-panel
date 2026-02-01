@@ -24,4 +24,4 @@ export const login = async (email, password) => {
         email: firebaseUser.email,
         ...userSnap.data(),
     };
-};
+}

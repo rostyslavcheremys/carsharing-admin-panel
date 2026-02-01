@@ -7,10 +7,10 @@ export * from "./formatters/getNumber.js";
 export * from "./formatters/getString.js";
 export * from "./formatters/getLabel.js";
 
-export * from "./mappers/formToCar.js";
-export * from "./mappers/carToForm.js";
+export * from "./mappers/getCarObject.js";
+export * from "./mappers/getCarValues.js";
 
-export * from "./theme/theme.js";
+export * from "./theme/getTheme.js";
 
 export * from "./validations/address.js";
 export * from "./validations/city.js";

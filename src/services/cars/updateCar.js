@@ -4,7 +4,7 @@ import { db } from "../../firebase";
 import {
     uploadImages,
     deleteImages,
-    formToCar
+    getCarObject
 } from "../../utils";
 
 export const updateCar = async (carId, data, originalImages = []) => {
@@ -24,7 +24,7 @@ export const updateCar = async (carId, data, originalImages = []) => {
         finalImages = [...finalImages, ...uploadResult.urls];
     }
 
-    const carData = formToCar(data, carId, finalImages);
+    const carData = getCarObject(data, carId, finalImages);
 
     Object.keys(carData).forEach(key => carData[key] === undefined && delete carData[key]);
 

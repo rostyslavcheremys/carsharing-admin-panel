@@ -9,7 +9,7 @@ import { useMessageDialog } from "../hooks";
 
 import { updateCar, getCarById } from "../services";
 
-import { getErrorMessage, carToForm } from "../utils";
+import { getErrorMessage, getCarValues } from "../utils";
 
 import { CAR_FORM_DEFAULT_VALUES } from "../constants";
 
@@ -50,9 +50,7 @@ export const CarEdit = () => {
 
                 setImages(car.images || []);
 
-                const formData = carToForm(car);
-
-                reset(formData);
+                reset(getCarValues(car));
             } catch (error) {
                 showMessage(
                     getErrorMessage(error),

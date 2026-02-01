@@ -3,7 +3,7 @@ import { db } from "../../firebase";
 
 import {
     uploadImages,
-    formToCar
+    getCarObject
 } from "../../utils";
 
 export const createCar = async (data) => {
@@ -17,7 +17,7 @@ export const createCar = async (data) => {
         imageUrls = uploadResult.urls;
     }
 
-    const carData = formToCar(data, newCarId, imageUrls);
+    const carData = getCarObject(data, newCarId, imageUrls);
 
     await setDoc(newCarRef, carData);
     return carData;
