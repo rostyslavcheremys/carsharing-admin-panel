@@ -81,18 +81,18 @@ export const FormUpload = forwardRef(
                                             onClick={() => handleMove(index, -1)}
                                             disabled={index === 0}
                                         >
-                                            <ArrowBackIcon />
+                                            <ArrowBackIcon className="form__icon"/>
                                         </IconButton>
 
                                         <IconButton onClick={() => handleRemove(index)}>
-                                            <DeleteIcon />
+                                            <DeleteIcon className="form__icon"/>
                                         </IconButton>
 
                                         <IconButton
                                             onClick={() => handleMove(index, 1)}
                                             disabled={index === value.length - 1}
                                         >
-                                            <ArrowForwardIcon />
+                                            <ArrowForwardIcon className="form__icon"/>
                                         </IconButton>
                                     </CardActions>
 

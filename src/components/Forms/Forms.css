@@ -134,11 +134,11 @@
 }
 
 .form__icon {
-    font-size: 20px !important;
+    font-size: 25px !important;
     transition: color 0.2s ease-in-out !important;
 }
 
-.form__actions button:hover .form__icon {
+.form__icon:hover {
     color: var(--main-color) !important;
 }
 
