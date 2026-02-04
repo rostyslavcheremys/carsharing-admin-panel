@@ -1,10 +1,3 @@
-/*import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import SaveIcon from "@mui/icons-material/Save";
-import ImageIcon from "@mui/icons-material/Image";
-import LocalMallIcon from "@mui/icons-material/LocalMall";*/
-
 import MapIcon from '@mui/icons-material/Map';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import PeopleIcon from '@mui/icons-material/People';
@@ -20,6 +13,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import CloseIcon from "@mui/icons-material/Close";
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import RoomIcon from '@mui/icons-material/Room';
+import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 
 export {
     MapIcon,
@@ -37,13 +35,9 @@ export {
     PhotoLibraryIcon,
     CloseIcon,
     MyLocationIcon,
-    /*AddIcon,
+    AddIcon,
     RemoveIcon,
-    DeleteIcon,
-    VisibilityIcon,
-    EditIcon,
-    SaveIcon,
-    ImageIcon,
-    LocalMallIcon,
-    CloseIcon,*/
+    FullscreenIcon,
+    RoomIcon,
+    SatelliteAltIcon,
 };

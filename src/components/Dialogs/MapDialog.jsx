@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import {
-    Button,
     Dialog,
     IconButton,
 } from "../../libs/mui";
@@ -13,7 +12,7 @@ import {
 
 import { MapItem, AppButton } from "../../components";
 
-const DEFAULT_LOCATION = { lat: 49.4444, lng: 32.0598 };
+import { DEFAULT_LOCATION } from "../../constants";
 
 export const MapDialog = ({
                               open,
@@ -89,7 +88,7 @@ export const MapDialog = ({
 
                 <div className="dialog__map">
                     <MapItem
-                        location={tempLocation ?? DEFAULT_LOCATION}
+                        location={tempLocation}
                         className="map-item"
                         selectable={selectable}
                         onSelect={handleMapClick}

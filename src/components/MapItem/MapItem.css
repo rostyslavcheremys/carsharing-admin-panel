@@ -6,3 +6,24 @@
 .map-item.page {
     border-radius: 10px;
 }
+
+.map-item__wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.map-item__controls {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 20px;
+    bottom: 34px;
+    z-index: 10;
+    gap: 10px;
+}
+
+.map-item__icon {
+    background: var(--main-color) !important;
+    color: var(--white-color) !important;
+}
