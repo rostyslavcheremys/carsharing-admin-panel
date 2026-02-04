@@ -5,7 +5,6 @@ import {
 } from "react";
 
 import {
-    Button,
     Grid,
     Card,
     CardMedia,
@@ -114,7 +113,7 @@ export const FormUpload = forwardRef(
                         <>
                             {value.length
                                 ? `Додати ще (вибрано: ${value.length})`
-                                : "Натисніть для завантаження"}
+                                : "Завантажити"}
                             <input
                                 ref={ref}
                                 name={name}

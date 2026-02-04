@@ -7,6 +7,7 @@ export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";
 export * from "./FormControllers/SelectController.jsx";
 export * from "./Forms/FormField.jsx";
+export * from "./Forms/FormLocation.jsx";
 export * from "./Forms/FormSelect.jsx";
 export * from "./Forms/FormUpload.jsx";
 export * from "./ImageItem/ImageItem.jsx";

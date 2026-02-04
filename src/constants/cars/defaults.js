@@ -17,6 +17,5 @@ export const CAR_FORM_DEFAULT_VALUES = {
     driveType: "",
     color: "",
     seats: "",
-    latitude: "",
-    longitude: ""
+    location: ""
 }

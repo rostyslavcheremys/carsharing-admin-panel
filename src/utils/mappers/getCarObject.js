@@ -30,10 +30,11 @@ export const getCarObject = (data, id, imageUrls = []) => {
             capacity: hasBattery ? getNumber(data.capacity) : "",
             range: hasBattery ? getNumber(data.range) : ""
         },
-        location: new GeoPoint(
-            getNumber(data.latitude),
-            getNumber(data.longitude)
-        ),
+        location:
+            new GeoPoint(
+                getNumber(data.location?.lat) || "",
+                getNumber(data.location?.lng) || ""
+            ),
         rating: data.rating ?? 0
     }
 }

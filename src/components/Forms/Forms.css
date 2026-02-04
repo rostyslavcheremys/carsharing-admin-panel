@@ -78,7 +78,8 @@
     outline: none !important;
 }
 
-.form__upload {
+.form__upload,
+.form__location {
     width: 400px;
     height: 52px;
     font-family: var(--font-family), sans-serif !important;
@@ -90,7 +91,8 @@
     transition: border 0.2s ease-in-out !important;
 }
 
-.form__upload:hover {
+.form__upload:hover,
+.form__location:hover {
     border-color: var(--main-color) !important;
     background-color: transparent;
 }
@@ -170,12 +172,9 @@
         font-size: 14px !important;
     }
 
-    .form__upload {
-        font-size: 13px !important;
-    }
-
     .form__field,
-    .form__upload {
+    .form__upload,
+    .form__location {
         width: 350px;
     }
 
@@ -194,7 +193,8 @@
 
 @media (max-width: 390px) {
     .form__field,
-    .form__upload {
+    .form__upload,
+    .form__location {
         width: 300px;
     }
 

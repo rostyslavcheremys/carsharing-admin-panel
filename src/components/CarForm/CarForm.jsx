@@ -1,6 +1,5 @@
 import {
     AppButton,
-    FormButton,
     FileUploadController,
     InputController,
     SelectController,
@@ -15,6 +14,7 @@ import {
     STATUS,
     TRANSMISSION_TYPES,
 } from "../../constants";
+import {LocationController} from "../FormControllers/LocationController.jsx";
 
 export const CarForm = ({
                             title,
@@ -153,22 +153,16 @@ export const CarForm = ({
                     label="Кількість місць*"
                 />
 
-               {/* <InputController
-                    control={control}
-                    name="latitude"
-                    label="Широта (lat)*"
-                />
-
-                <InputController
-                    control={control}
-                    name="longitude"
-                    label="Довгота (lng)*"
-                />*/}
-
                 <InputController
                     control={control}
                     name="pricePerDay"
                     label="Вартість за добу (грн)*"
+                />
+
+                <LocationController
+                    control={control}
+                    name="location"
+                    label="Місцезнаходження*"
                 />
 
                 <div className="page__buttons">

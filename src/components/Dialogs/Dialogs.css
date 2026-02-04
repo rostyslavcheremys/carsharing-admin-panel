@@ -46,6 +46,12 @@
     height: 600px;
 }
 
+.dialog__map--button {
+    display: flex;
+    justify-content: center !important;
+    padding: 15px 25px !important;
+}
+
 .dialog__images {
     display: flex !important;
     flex-direction: column !important;
@@ -102,6 +108,10 @@
     .dialog__content--images,
     .dialog__button {
         padding: 0 20px 20px !important;
+    }
+
+    .dialog__map--button {
+        padding: 15px 20px !important;
     }
 
     .dialog__icon--location,

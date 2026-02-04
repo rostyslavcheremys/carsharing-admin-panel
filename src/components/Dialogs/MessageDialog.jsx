@@ -13,8 +13,13 @@ export const MessageDialog = ({ open, onClose, message }) => {
             <div className="dialog__content">
                 <span className="dialog__message">{message}</span>
             </div>
+
             <div className="dialog__button">
-                <AppButton className="dialog__app-button" label="OK" onClick={onClose}/>
+                <AppButton
+                    className="dialog__app-button"
+                    label="OK"
+                    onClick={onClose}
+                />
             </div>
         </Dialog>
     );

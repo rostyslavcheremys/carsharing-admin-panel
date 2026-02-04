@@ -20,8 +20,10 @@ export const getCarValues = (car) => {
         displacement: getNumber(car.engine?.displacement),
         capacity: getNumber(car.battery?.capacity),
         range: getNumber(car.battery?.range),
-        latitude: getNumber(car.location?._lat || car.location?.latitude),
-        longitude: getNumber(car.location?._long || car.location?.longitude),
+        location: {
+            lat: getNumber(car.location?._lat),
+            lng: getNumber(car.location?._long)
+        },
         rating: car.rating ?? 0
     }
 }

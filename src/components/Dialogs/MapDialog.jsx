@@ -1,6 +1,7 @@
-
+import { useState } from "react";
 
 import {
+    Button,
     Dialog,
     IconButton,
 } from "../../libs/mui";
@@ -10,51 +11,101 @@ import {
     CloseIcon,
 } from "../../libs/mui-icons";
 
-import { MapItem } from "../../components";
+import { MapItem, AppButton } from "../../components";
+
+const DEFAULT_LOCATION = { lat: 49.4444, lng: 32.0598 };
 
 export const MapDialog = ({
                               open,
                               onOpen,
                               onClose,
                               latitude,
-                              longitude}) => {
-    if (!latitude || !longitude) {
-        return "—";
+                              longitude,
+                              onSelect,
+                              selectable = false,
+                              isDialogIcon = false,
+                          }) => {
+    const [tempLocation, setTempLocation] = useState(
+        latitude && longitude
+            ? { lat: latitude, lng: longitude }
+            : DEFAULT_LOCATION
+    );
+
+    const handleOpen = () => {
+        setTempLocation(
+            latitude && longitude
+                ? { lat: latitude, lng: longitude }
+                : DEFAULT_LOCATION
+        );
+        onOpen?.();
     }
 
-    const location = {
-        lat: Number(latitude),
-        lng: Number(longitude)
-    };
+    const handleMapClick = (loc) => {
+        if (!selectable) return;
+        setTempLocation(loc);
+    }
+
+    const handleConfirm = () => {
+        if (tempLocation && onSelect) {
+            onSelect(tempLocation);
+        }
+        onClose?.();
+    }
+
+    const handleClose = () => {
+        setTempLocation(
+            latitude && longitude
+                ? { lat: latitude, lng: longitude }
+                : DEFAULT_LOCATION
+        );
+        onClose?.();
+    }
 
     return (
         <>
-            <div className="dialog__icon">
-                <IconButton onClick={onOpen}>
-                    <MyLocationIcon className="dialog__icon--location" />
-                </IconButton>
-            </div>
+            {isDialogIcon && (
+                <div className="dialog__icon">
+                    <IconButton onClick={handleOpen}>
+                        <MyLocationIcon className="dialog__icon--location" />
+                    </IconButton>
+                </div>
+            )}
 
             <Dialog
                 className="dialog"
                 open={open}
-                onClose={onClose}
-                disableRestoreFocus={true}
+                onClose={handleClose}
+                disableRestoreFocus
             >
                 <div className="dialog__header">
-                    <span className="dialog__title">Місцезнаходження автомобіля</span>
+                    <span className="dialog__title">
+                        Місцезнаходження автомобіля
+                    </span>
 
-                    <IconButton onClick={onClose}>
+                    <IconButton onClick={handleClose}>
                         <CloseIcon className="dialog__icon--close" />
                     </IconButton>
                 </div>
 
                 <div className="dialog__map">
                     <MapItem
-                        location={location}
-                        className="map-item dialog"
+                        location={tempLocation ?? DEFAULT_LOCATION}
+                        className="map-item"
+                        selectable={selectable}
+                        onSelect={handleMapClick}
                     />
                 </div>
+
+                {selectable && (
+                    <div className="dialog__map--button">
+                        <AppButton
+                            type="button"
+                            label="Підтвердити"
+                            onClick={handleConfirm}
+                            disabled={!tempLocation}
+                        />
+                    </div>
+                )}
             </Dialog>
         </>
     );

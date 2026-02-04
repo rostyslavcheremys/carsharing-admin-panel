@@ -2,7 +2,13 @@ import { Controller } from "react-hook-form";
 
 import { FormSelect } from "../../components";
 
-export const SelectController = ({ control, name, label, rules = {}, options = [] }) => {
+export const SelectController = ({
+                                     control,
+                                     name,
+                                     label,
+                                     rules = {},
+                                     options = []
+                                }) => {
     return (
         <Controller
             name={name}

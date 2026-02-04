@@ -2,7 +2,14 @@ import { Controller } from "react-hook-form";
 
 import { FormUpload } from "../../components";
 
-export const FileUploadController = ({ control, name, label, className = "", rules, disabled }) => {
+export const FileUploadController = ({
+                                         control,
+                                         name,
+                                         label,
+                                         className = "",
+                                         rules,
+                                         disabled
+                                    }) => {
     return (
         <Controller
             name={name}
@@ -27,4 +34,4 @@ export const FileUploadController = ({ control, name, label, className = "", rul
             )}
         />
     );
-};
+}
