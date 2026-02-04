@@ -19,6 +19,8 @@ import {
     ArrowForwardIcon
 } from "../../libs/mui-icons";
 
+import { FormButton } from "../../components";
+
 export const FormUpload = forwardRef(
     ({ label, value = [], onChange, className = "", disabled, name }, ref) => {
 
@@ -105,25 +107,26 @@ export const FormUpload = forwardRef(
 
                 <span className={`form__label ${className}`}>{label}</span>
 
-                <Button
-                    component="label"
-                    variant="outlined"
-                    disabled={disabled}
+                <FormButton
                     className="form__upload"
-                >
-                    {value.length
-                        ? `Додати ще (вибрано: ${value.length})`
-                        : "Натисніть для завантаження"}
-                    <input
-                        ref={ref}
-                        name={name}
-                        type="file"
-                        hidden
-                        multiple
-                        accept="image/*"
-                        onChange={handleFileChange}
-                    />
-                </Button>
+                    disabled={disabled}
+                    children={
+                        <>
+                            {value.length
+                                ? `Додати ще (вибрано: ${value.length})`
+                                : "Натисніть для завантаження"}
+                            <input
+                                ref={ref}
+                                name={name}
+                                type="file"
+                                hidden
+                                multiple
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                        </>
+                    }
+                />
             </div>
         );
     });

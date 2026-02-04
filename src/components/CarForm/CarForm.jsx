@@ -1,5 +1,6 @@
 import {
     AppButton,
+    FormButton,
     FileUploadController,
     InputController,
     SelectController,
@@ -152,7 +153,7 @@ export const CarForm = ({
                     label="Кількість місць*"
                 />
 
-                <InputController
+               {/* <InputController
                     control={control}
                     name="latitude"
                     label="Широта (lat)*"
@@ -162,7 +163,7 @@ export const CarForm = ({
                     control={control}
                     name="longitude"
                     label="Довгота (lng)*"
-                />
+                />*/}
 
                 <InputController
                     control={control}
@@ -180,9 +181,9 @@ export const CarForm = ({
                     {showBack && (
                         <AppButton
                             type="button"
-                            variant="outlined"
                             label="Назад"
                             onClick={onBack}
+                            disabled={isSubmitting}
                         />
                     )}
                 </div>

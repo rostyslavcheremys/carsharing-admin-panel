@@ -11,8 +11,17 @@ export const InputController = ({ control, name, label, type, className="",  def
             defaultValue={defaultValue}
             render={({ field, fieldState }) => (
                 <>
-                    <FormField label={label} type={type} className={className} value={field.value ?? ""} {...field} disabled={disabled} />
-                    {fieldState.error && <p className="form-controller__error">{fieldState.error.message}</p>}
+                    <FormField
+                        label={label}
+                        type={type}
+                        className={className}
+                        value={field.value ?? ""}
+                        disabled={disabled}
+                        {...field}
+                    />
+                    {fieldState.error &&
+                        <p className="form-controller__error">{fieldState.error.message}</p>
+                    }
                 </>
             )}
         />
