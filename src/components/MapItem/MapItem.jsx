@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-
+import { useState, useEffect, useRef, useMemo } from "react";
+``
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 
 import { IconButton } from "../../libs/mui";
@@ -8,33 +7,43 @@ import { IconButton } from "../../libs/mui";
 import {
     AddIcon,
     RemoveIcon,
-    FullscreenIcon,
     MapIcon,
-    SatelliteAltIcon,
     RoomIcon,
+    SatelliteAltIcon,
+    FullscreenIcon,
+    FullscreenExitIcon
 } from "../../libs/mui-icons";
 
 import { Loader } from "../../components";
 
 import { useTheme } from "../../hooks";
 
-import { DEFAULT_LOCATION } from "../../constants";
+import {
+    DEFAULT_LOCATION,
+    WORLD_BOUNDS,
+    MIN_ZOOM,
+    MAX_ZOOM
+} from "../../constants";
 
 import { darkMap, lightMap } from "../../styles";
-import {colors} from "@mui/material";
 
 export const MapItem = ({
-                            location,
+                            locations = [],
                             className,
                             selectable = false,
                             onSelect
                         }) => {
     const { darkMode } = useTheme();
     const mapRef = useRef(null);
+    const wrapperRef = useRef(null);
 
-    const [marker, setMarker] = useState(location ?? DEFAULT_LOCATION);
     const [zoom, setZoom] = useState(14);
     const [mapType, setMapType] = useState("roadmap");
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    const markers = useMemo(() => {
+        return locations?.length ? locations : [DEFAULT_LOCATION];
+    }, [locations]);
 
     const mapTypes = ["roadmap", "hybrid"];
 
@@ -50,59 +59,77 @@ export const MapItem = ({
         const newLocation = {
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
-        }
+        };
 
-        setMarker(newLocation);
         onSelect?.(newLocation);
     }
 
     const handleMapType = () => {
-        const currentIndex = mapTypes.indexOf(mapType);
-        const nextIndex = (currentIndex + 1) % mapTypes.length;
+        const nextIndex = (mapTypes.indexOf(mapType) + 1) % mapTypes.length;
         setMapType(mapTypes[nextIndex]);
-    };
+    }
 
     const handleCenterMarker = () => {
-        mapRef.current?.panTo(marker);
+        if (!markers.length) return;
+        mapRef.current?.panTo(markers[0]);
     }
 
     const handleFullscreen = () => {
-        if (mapRef.current) {
-            const mapContainer = mapRef.current.getDiv();
+        const el = wrapperRef.current;
+        if (!el) return;
 
-            if (mapContainer.requestFullscreen) {
-                mapContainer.requestFullscreen();
-            } else if (mapContainer.webkitRequestFullscreen) {
-                mapContainer.webkitRequestFullscreen();
-            }
+        if (document.fullscreenElement) {
+            document.exitFullscreen();
+        } else {
+            el.requestFullscreen?.() || el.webkitRequestFullscreen?.();
         }
     }
 
     useEffect(() => {
-        setMarker(location);
-    }, [location]);
+        const onFullscreenChange = () => {
+            setIsFullscreen(Boolean(document.fullscreenElement));
+        };
+
+        document.addEventListener("fullscreenchange", onFullscreenChange);
+        document.addEventListener("webkitfullscreenchange", onFullscreenChange);
+
+        return () => {
+            document.removeEventListener("fullscreenchange", onFullscreenChange);
+            document.removeEventListener("webkitfullscreenchange", onFullscreenChange);
+        };
+    }, []);
 
     return (
         <Loader isLoading={!isLoaded}>
-            <div className="map-item__wrapper">
+            <div className="map-item__wrapper" ref={wrapperRef}>
                 <GoogleMap
                     mapContainerClassName={className}
-                    center={marker}
+                    center={markers[0]}
                     zoom={zoom}
                     mapTypeId={mapType}
                     onClick={handleMapClick}
                     options={{
                         styles: darkMode ? darkMap : lightMap,
                         disableDefaultUI: true,
+                        restriction: {
+                            latLngBounds: WORLD_BOUNDS,
+                            strictBounds: true,
+                        },
                     }}
                     onLoad={(map) => (mapRef.current = map)}
                 >
-                    {marker &&
+                    {isLoaded &&
+                        markers.map((marker, index) => (
                         <Marker
+                            key={`${marker.lat}-${marker.lng}-${index}`}
                             position={marker}
-                            className="marker"
+                            icon={{
+                                url: "/src/assets/car-gray.svg",
+                                scaledSize: new window.google.maps.Size(48, 48),
+                                anchor: new window.google.maps.Point(24, 48),
+                            }}
                         />
-                    }
+                    ))}
                 </GoogleMap>
 
                 <div className="map-item__controls">
@@ -115,14 +142,18 @@ export const MapItem = ({
 
                     <IconButton
                         className="map-item__icon"
-                        onClick={() => setZoom(z => z + 1)}
+                        onClick={() =>
+                            setZoom(z => Math.min(z + 1, MAX_ZOOM))
+                        }
                     >
                         <AddIcon />
                     </IconButton>
 
                     <IconButton
                         className="map-item__icon"
-                        onClick={() => setZoom(z => z - 1)}
+                        onClick={() =>
+                            setZoom(z => Math.max(z - 1, MIN_ZOOM))
+                        }
                     >
                         <RemoveIcon />
                     </IconButton>
@@ -138,7 +169,7 @@ export const MapItem = ({
                         className="map-item__icon"
                         onClick={handleFullscreen}
                     >
-                        <FullscreenIcon />
+                        {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
                     </IconButton>
                 </div>
             </div>

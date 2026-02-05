@@ -2,6 +2,7 @@ export const STATUS = [
     { value: "available", label: "Доступне" },
     { value: "maintenance", label: "На ремонті" },
     { value: "unavailable", label: "Неактивне" },
+    { value: "rented", label: "Орендоване" },
 ];
 
 export const TRANSMISSION_TYPES = [

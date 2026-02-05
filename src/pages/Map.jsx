@@ -1,7 +1,12 @@
 import { MapItem } from "../components";
 
 export const Map = () => {
-    const location = { lat: 49.4444, lng: 32.0598 };
+    const locations = [
+        { lat: 49.4444, lng: 32.0598 },
+        { lat: 49.45, lng: 32.06 },
+        { lat: 49.44, lng: 32.05 },
+    ];
+
 
     return (
         <div className="page">
@@ -9,7 +14,7 @@ export const Map = () => {
 
             <div className="page__map">
                 <MapItem
-                    location={location}
+                    locations={locations}
                     className="map-item page"
                 />
             </div>

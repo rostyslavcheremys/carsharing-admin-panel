@@ -16,6 +16,7 @@ import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import RoomIcon from '@mui/icons-material/Room';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 
@@ -38,6 +39,7 @@ export {
     AddIcon,
     RemoveIcon,
     FullscreenIcon,
+    FullscreenExitIcon,
     RoomIcon,
     SatelliteAltIcon,
 };

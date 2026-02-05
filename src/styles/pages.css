@@ -14,7 +14,7 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: calc(100vh - 190px);
+    min-height: calc(100vh - 256px);
     width: 100%;
 }
 
@@ -77,6 +77,10 @@ main {
         margin: 30px 20px;
     }
 
+    .page {
+        min-height: calc(100vh - 233px);
+    }
+
     .page__title {
         font-size: 22px;
     }
@@ -89,6 +93,10 @@ main {
 @media (max-width: 500px) {
     .page__title {
         font-size: 20px;
+    }
+
+    .page {
+        min-height: calc(100vh - 230px);
     }
 
     .page__header {

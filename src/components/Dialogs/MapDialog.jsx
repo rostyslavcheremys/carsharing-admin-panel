@@ -88,7 +88,7 @@ export const MapDialog = ({
 
                 <div className="dialog__map">
                     <MapItem
-                        location={tempLocation}
+                        locations={tempLocation ? [tempLocation] : []}
                         className="map-item"
                         selectable={selectable}
                         onSelect={handleMapClick}
