@@ -31,7 +31,8 @@ export const MapItem = ({
                             locations = [],
                             className,
                             selectable = false,
-                            onSelect
+                            onSelect,
+                            shouldCenter = false
                         }) => {
     const { darkMode } = useTheme();
     const mapRef = useRef(null);
@@ -126,19 +127,21 @@ export const MapItem = ({
                             icon={{
                                 url: "/src/assets/car-gray.svg",
                                 scaledSize: new window.google.maps.Size(48, 48),
-                                anchor: new window.google.maps.Point(24, 48),
+                                anchor: new window.google.maps.Point(24, 24),
                             }}
                         />
                     ))}
                 </GoogleMap>
 
                 <div className="map-item__controls">
-                    <IconButton
-                        className="map-item__icon"
-                        onClick={handleCenterMarker}
-                    >
-                        <RoomIcon />
-                    </IconButton>
+                    {shouldCenter && (
+                        <IconButton
+                            className="map-item__icon"
+                            onClick={handleCenterMarker}
+                        >
+                            <RoomIcon />
+                        </IconButton>
+                    )}
 
                     <IconButton
                         className="map-item__icon"

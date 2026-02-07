@@ -92,6 +92,7 @@ export const MapDialog = ({
                         className="map-item"
                         selectable={selectable}
                         onSelect={handleMapClick}
+                        shouldCenter={true}
                     />
                 </div>
 
