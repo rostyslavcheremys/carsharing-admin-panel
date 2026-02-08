@@ -1,6 +1,6 @@
 import { GeoPoint } from "firebase/firestore";
 
-import { getNumber, getString } from "../../utils";
+import { getNumber, getString } from "../index.js";
 
 export const getCarObject = (data, id, imageUrls = []) => {
     const hasEngine = ["ice", "hybrid"].includes(data.powertrainType);

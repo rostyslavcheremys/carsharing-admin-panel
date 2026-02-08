@@ -10,7 +10,7 @@ import {
     CloseIcon,
 } from "../../libs/mui-icons";
 
-import { MapItem, AppButton } from "../../components";
+import { MapContainer, AppButton } from "../../components";
 
 import { DEFAULT_LOCATION } from "../../constants";
 
@@ -45,9 +45,7 @@ export const MapDialog = ({
     }
 
     const handleConfirm = () => {
-        if (tempLocation && onSelect) {
-            onSelect(tempLocation);
-        }
+        if (tempLocation && onSelect) onSelect(tempLocation);
         onClose?.();
     }
 
@@ -87,9 +85,9 @@ export const MapDialog = ({
                 </div>
 
                 <div className="dialog__map">
-                    <MapItem
+                    <MapContainer
                         locations={tempLocation ? [tempLocation] : []}
-                        className="map-item"
+                        className="map"
                         selectable={selectable}
                         onSelect={handleMapClick}
                         shouldCenter={true}

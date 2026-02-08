@@ -1,14 +1,17 @@
-export * from "./errors/getErrorMessage.js";
+export * from "./cars/getCarObject.js";
+export * from "./cars/getCarValues.js";
 
-export * from "./files/uploadImages.js";
-export * from "./files/deleteImages.js";
+export * from "./errors/getErrorMessage.js";
 
 export * from "./formatters/getNumber.js";
 export * from "./formatters/getString.js";
 export * from "./formatters/getLabel.js";
 
-export * from "./mappers/getCarObject.js";
-export * from "./mappers/getCarValues.js";
+export * from "./images/uploadImages.js";
+export * from "./images/deleteImages.js";
+
+export * from "./map/getMarkerIcon.js";
+export * from "./map/normalizeLocation.js";
 
 export * from "./theme/getTheme.js";
 

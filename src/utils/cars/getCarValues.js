@@ -1,4 +1,4 @@
-import { getString, getNumber } from "../../utils";
+import { getString, getNumber } from "../index.js";
 
 export const getCarValues = (car) => {
     return {

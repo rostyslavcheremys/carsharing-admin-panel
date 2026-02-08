@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
+
 import { db } from "../firebase";
 
 export const useCollection = (collectionName, { live = true } = {}) => {
@@ -11,10 +12,14 @@ export const useCollection = (collectionName, { live = true } = {}) => {
     const fetch = useCallback(async () => {
         setIsLoading(true);
         try {
-            const snapshot = await getDocs(collection(db, collectionName));
-            setData(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-        } catch (e) {
-            setError(e);
+            const snapshot =
+                await getDocs(collection(db, collectionName));
+
+            setData(snapshot.docs.map(doc => ({
+                id: doc.id, ...doc.data()
+            })));
+        } catch (error) {
+            setError(error);
         } finally {
             setIsLoading(false);
         }
@@ -42,4 +47,4 @@ export const useCollection = (collectionName, { live = true } = {}) => {
     }, [collectionName, live, fetch]);
 
     return { data, isLoading, error, refetch: fetch };
-};
+}

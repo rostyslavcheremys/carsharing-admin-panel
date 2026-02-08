@@ -12,4 +12,4 @@ export const Loader = ({ isLoading, error, errorText, children }) => {
     if (error) return <div className="loader__error">{errorText}</div>
 
     return <>{children}</>;
-};
+}

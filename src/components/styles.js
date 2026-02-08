@@ -6,6 +6,6 @@ import "./Forms/Forms.css";
 import "./ImageItem/ImageItem.css";
 import "./Header/Header.css";
 import "./Loader/Loader.css";
-import "./MapItem/MapItem.css";
+import "./Map/Map.css";
 import "./Dialogs/Dialogs.css";
 import "./Tables/Tables.css";
