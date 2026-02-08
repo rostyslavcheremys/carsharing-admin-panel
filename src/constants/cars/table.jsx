@@ -34,6 +34,7 @@ export const CARS_TABLE_COLUMNS = [
                         onClose={onClose}
                         latitude={car?.location?.latitude}
                         longitude={car?.location?.longitude}
+                        status={car?.status}
                         isDialogIcon={true}
                     />
                 )}

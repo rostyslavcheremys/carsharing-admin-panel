@@ -1,14 +1,8 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import {
-    Dialog,
-    IconButton,
-} from "../../libs/mui";
+import { Dialog, IconButton } from "../../libs/mui";
 
-import {
-    MyLocationIcon,
-    CloseIcon,
-} from "../../libs/mui-icons";
+import { MyLocationIcon, CloseIcon } from "../../libs/mui-icons";
 
 import { MapContainer, AppButton } from "../../components";
 
@@ -20,43 +14,40 @@ export const MapDialog = ({
                               onClose,
                               latitude,
                               longitude,
+                              status,
                               onSelect,
                               selectable = false,
                               isDialogIcon = false,
                           }) => {
-    const [tempLocation, setTempLocation] = useState(
-        latitude && longitude
-            ? { lat: latitude, lng: longitude }
-            : DEFAULT_LOCATION
-    );
+    const initialLocation = useMemo(() => ({
+        lat: latitude ?? DEFAULT_LOCATION.lat,
+        lng: longitude ?? DEFAULT_LOCATION.lng,
+    }), [latitude, longitude]);
+
+    const [tempLocation, setTempLocation] = useState(initialLocation);
 
     const handleOpen = () => {
-        setTempLocation(
-            latitude && longitude
-                ? { lat: latitude, lng: longitude }
-                : DEFAULT_LOCATION
-        );
+        setTempLocation(initialLocation);
         onOpen?.();
     }
 
     const handleMapClick = (loc) => {
         if (!selectable) return;
-        setTempLocation(loc);
+        setTempLocation({ ...loc });
     }
 
     const handleConfirm = () => {
-        if (tempLocation && onSelect) onSelect(tempLocation);
+        onSelect?.(tempLocation);
         onClose?.();
     }
 
-    const handleClose = () => {
-        setTempLocation(
-            latitude && longitude
-                ? { lat: latitude, lng: longitude }
-                : DEFAULT_LOCATION
-        );
-        onClose?.();
-    }
+    const handleClose = () => onClose?.();
+
+    const locationWithStatus = useMemo(() => {
+        return selectable
+            ? [{ ...tempLocation }]
+            : [{ ...initialLocation, status }]
+    }, [selectable, tempLocation, initialLocation, status]);
 
     return (
         <>
@@ -68,16 +59,9 @@ export const MapDialog = ({
                 </div>
             )}
 
-            <Dialog
-                className="dialog"
-                open={open}
-                onClose={handleClose}
-                disableRestoreFocus
-            >
+            <Dialog open={open} onClose={handleClose} disableRestoreFocus>
                 <div className="dialog__header">
-                    <span className="dialog__title">
-                        Місцезнаходження автомобіля
-                    </span>
+                    <span className="dialog__title">Місцезнаходження автомобіля</span>
 
                     <IconButton onClick={handleClose}>
                         <CloseIcon className="dialog__icon--close" />
@@ -86,11 +70,11 @@ export const MapDialog = ({
 
                 <div className="dialog__map">
                     <MapContainer
-                        locations={tempLocation ? [tempLocation] : []}
+                        locations={locationWithStatus}
                         className="map"
                         selectable={selectable}
                         onSelect={handleMapClick}
-                        shouldCenter={true}
+                        shouldCenter
                     />
                 </div>
 

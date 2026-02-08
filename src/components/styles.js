@@ -1,5 +1,5 @@
 import "./Buttons/Buttons.css";
-import "./CarActions/CarActions.css";
+import "./Car/Car.css";
 import "./Footer/Footer.css";
 import "./FormControllers/FormControllers.css";
 import "./Forms/Forms.css";

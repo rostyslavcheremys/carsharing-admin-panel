@@ -35,6 +35,7 @@ export const LocationController = ({
                         onClose={() => setOpen(false)}
                         latitude={value?.lat}
                         longitude={value?.lng}
+                        status={value?.status}
                         selectable
                         onSelect={(location) => {
                             onChange(location);

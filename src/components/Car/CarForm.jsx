@@ -3,7 +3,8 @@ import {
     FileUploadController,
     InputController,
     SelectController,
-} from "../../components";
+    LocationController
+} from "../index.js";
 
 import {
     BODY_TYPES,
@@ -14,7 +15,6 @@ import {
     STATUS,
     TRANSMISSION_TYPES,
 } from "../../constants";
-import {LocationController} from "../FormControllers/LocationController.jsx";
 
 export const CarForm = ({
                             title,

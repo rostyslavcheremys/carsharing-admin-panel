@@ -3,12 +3,12 @@
     gap: 10px;
 }
 
-.car-actions--icon {
+.car-actions__icon {
     font-size: 25px !important;
     transition: color 0.2s ease-in-out !important;
     cursor: pointer;
 }
 
-.car-actions--icon:hover {
+.car-actions__icon:hover {
     color: var(--main-color) !important;
 }

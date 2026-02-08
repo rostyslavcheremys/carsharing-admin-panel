@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconButton } from "../../libs/mui";
-import { EditIcon, DeleteIcon } from "../../libs/mui-icons";
+import { IconButton } from "../../libs/mui.js";
+import { EditIcon, DeleteIcon } from "../../libs/mui-icons.js";
 
-import { DialogCell, ConfirmDialog,} from "../../components";
+import { DialogCell, ConfirmDialog,} from "../index.js";
 
 export const CarActions = ({ carId, onDelete }) => {
     const navigate = useNavigate();
@@ -16,14 +16,14 @@ export const CarActions = ({ carId, onDelete }) => {
     return (
         <div className="car-actions">
             <IconButton onClick={handleEdit}>
-                <EditIcon className="car-actions--icon"/>
+                <EditIcon className="car-actions__icon"/>
             </IconButton>
 
             <DialogCell>
                 {({ open, onOpen, onClose }) => (
                     <>
                         <IconButton onClick={onOpen}>
-                            <DeleteIcon className="car-actions--icon"/>
+                            <DeleteIcon className="car-actions__icon"/>
                         </IconButton>
 
                         <ConfirmDialog
