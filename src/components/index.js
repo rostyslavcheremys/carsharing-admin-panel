@@ -26,6 +26,7 @@ export * from "./Dialogs/MessageDialog.jsx";
 export * from "./Dialogs/ImageDialog.jsx";
 export * from "./Dialogs/MapDialog.jsx";
 
+export * from "./Map/MapCard.jsx";
 export * from "./Map/MapContainer.jsx";
 export * from "./Map/MapControls.jsx";
 export * from "./Map/MapItem.jsx";

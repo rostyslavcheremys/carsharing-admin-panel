@@ -27,3 +27,65 @@
     background: var(--main-color) !important;
     color: var(--white-color) !important;
 }
+
+.map-card {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    height: 170px;
+    width: 250px;
+    padding: 10px;
+    border-radius: 10px !important;
+}
+
+.map-card__icon {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+}
+
+.map-card__icon--close {
+    font-size: 25px !important;
+    transition: color 0.2s ease-in-out !important;
+    cursor: pointer;
+}
+
+.map-card__icon--close:hover {
+    color: var(--main-color) !important;
+}
+
+.map-card__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.map-card__text {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 0 5px 8px;
+}
+
+.map-card__text.bold {
+    font-size: 16px;
+    font-weight: 900;
+}
+
+.map-card__text--status {
+    font-weight: 600;
+}
+
+.status--available {
+    color: var(--main-color);
+}
+
+.status--rented {
+    color: var(--red-color);
+}
+
+.status--unavailable {
+    color: var(--grey-color);
+}

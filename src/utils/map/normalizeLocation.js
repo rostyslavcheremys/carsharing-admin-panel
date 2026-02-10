@@ -9,5 +9,8 @@ export const normalizeLocation = (loc, index) => {
         lat,
         lng,
         status: loc.status ?? "available",
+        brand: loc.brand ?? "",
+        model: loc.model ?? "",
+        licensePlate: loc.licensePlate ?? ""
     };
-};
+}

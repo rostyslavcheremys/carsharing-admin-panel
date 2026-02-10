@@ -27,6 +27,9 @@ export const Map = () => {
             ).map(car => ({
                 id: car.id,
                 status: car.status,
+                brand: car.brand,
+                model: car.model,
+                licensePlate: car.licensePlate,
                 lat: getNumber(car.location._lat),
                 lng: getNumber(car.location._long)
             })).filter(car =>
@@ -53,6 +56,7 @@ export const Map = () => {
                     <MapContainer
                         locations={mapCars}
                         className="map page"
+                        mapCard={true}
                     />
                 </div>
             </div>

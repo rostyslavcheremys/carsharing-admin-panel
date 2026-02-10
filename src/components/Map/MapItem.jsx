@@ -1,10 +1,12 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 import { GoogleMap, Marker } from "@react-google-maps/api";
 
+import { MapCard } from "../../components";
+
 import { useMapOptions } from "../../hooks";
 
-import { getCarMarkerIcon, getPickerMarkerIcon} from "../../utils";
+import { getCarMarkerIcon, getPickerMarkerIcon } from "../../utils";
 
 export const MapItem = ({
                             locations,
@@ -15,23 +17,26 @@ export const MapItem = ({
                             mapType,
                             mapCenter,
                             mapRef,
-                            isLoaded
+                            isLoaded,
+                            mapCard
                         }) => {
     const mapOptions = useMapOptions();
+    const [markerCard, setMarkerCard] = useState(null);
 
     const handleMapClick = (e) => {
         if (!selectable) return;
 
-        const newLocation = {
-            lat: e.latLng.lat(), lng: e.latLng.lng()
-        }
+        setMarkerCard(null);
+        onSelect?.({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+        });
+    };
 
-        onSelect?.(newLocation);
-    }
-
-    const locationIcon = useMemo(() => {
-        return selectable ? getPickerMarkerIcon() : null;
-    }, [selectable]);
+    const locationIcon = useMemo(
+        () => (selectable ? getPickerMarkerIcon() : null),
+        [selectable]
+    );
 
     return (
         <GoogleMap
@@ -49,8 +54,16 @@ export const MapItem = ({
                         key={marker.id}
                         position={{ lat: marker.lat, lng: marker.lng }}
                         icon={selectable ? locationIcon : getCarMarkerIcon(marker.status)}
+                        onClick={() => mapCard && setMarkerCard(marker)}
                     />
                 ))}
+
+            {mapCard && (
+                <MapCard
+                    car={markerCard}
+                    onClose={() => setMarkerCard(null)}
+                />
+            )}
         </GoogleMap>
     );
-}
+};

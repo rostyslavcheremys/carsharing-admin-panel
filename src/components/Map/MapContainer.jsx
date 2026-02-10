@@ -13,7 +13,8 @@ export const MapContainer = ({
                                  shouldCenter= false,
                                  selectable = false,
                                  onSelect,
-                                 className
+                                 className,
+                                 mapCard
                              }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
@@ -54,6 +55,7 @@ export const MapContainer = ({
                     mapCenter={mapCenter}
                     mapRef={mapRef}
                     isLoaded={isLoaded}
+                    mapCard={mapCard}
                 />
 
                 <MapControls

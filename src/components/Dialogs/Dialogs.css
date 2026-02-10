@@ -67,19 +67,17 @@
 }
 
 .dialog__icon--location,
-.dialog__icon--photos {
+.dialog__icon--photos,
+.dialog__icon--close {
     font-size: 25px !important;
     transition: color 0.2s ease-in-out !important;
     cursor: pointer;
 }
 
 .dialog__icon--location:hover,
-.dialog__icon--photos:hover {
+.dialog__icon--photos:hover,
+.dialog__icon--close:hover {
     color: var(--main-color) !important;
-}
-
-.dialog__icon--close {
-    font-size: 25px !important;
 }
 
 @media (max-width: 768px) {

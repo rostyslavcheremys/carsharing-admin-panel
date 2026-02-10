@@ -18,6 +18,7 @@ export const MapDialog = ({
                               onSelect,
                               selectable = false,
                               isDialogIcon = false,
+                              mapDialog,
                           }) => {
     const initialLocation = useMemo(() => ({
         lat: latitude ?? DEFAULT_LOCATION.lat,
