@@ -10,7 +10,8 @@ export * from "./formatters/getLabel.js";
 export * from "./images/uploadImages.js";
 export * from "./images/deleteImages.js";
 
-export * from "./map/getMarkerIcon.js";
+export * from "./map/getCarMarkerIcon.js";
+export * from "./map/getPickerMarkerIcon.js";
 export * from "./map/normalizeLocation.js";
 
 export * from "./theme/getTheme.js";

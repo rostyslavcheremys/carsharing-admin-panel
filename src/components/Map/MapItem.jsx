@@ -1,8 +1,10 @@
+import { useMemo } from "react";
+
 import { GoogleMap, Marker } from "@react-google-maps/api";
 
 import { useMapOptions } from "../../hooks";
 
-import { getMarkerIcon } from "../../utils";
+import { getCarMarkerIcon, getPickerMarkerIcon} from "../../utils";
 
 export const MapItem = ({
                             locations,
@@ -27,6 +29,10 @@ export const MapItem = ({
         onSelect?.(newLocation);
     }
 
+    const locationIcon = useMemo(() => {
+        return selectable ? getPickerMarkerIcon() : null;
+    }, [selectable]);
+
     return (
         <GoogleMap
             mapContainerClassName={className}
@@ -42,7 +48,7 @@ export const MapItem = ({
                     <Marker
                         key={marker.id}
                         position={{ lat: marker.lat, lng: marker.lng }}
-                        icon={getMarkerIcon(marker.status)}
+                        icon={selectable ? locationIcon : getCarMarkerIcon(marker.status)}
                     />
                 ))}
         </GoogleMap>

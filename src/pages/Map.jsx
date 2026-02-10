@@ -18,7 +18,6 @@ export const Map = () => {
 
         return cars
             .filter(car =>
-                car.status !== "unavailable" &&
                 car.location?._lat != null &&
                 car.location?._long != null
             ).map(car => ({
