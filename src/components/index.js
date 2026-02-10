@@ -1,4 +1,5 @@
 export * from "./Buttons/AppButton.jsx";
+export * from "./Buttons/AppButtonGroup.jsx";
 export * from "./Buttons/FormButton.jsx";
 
 export * from "./Car/CarActions.jsx";

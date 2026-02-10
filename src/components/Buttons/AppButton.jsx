@@ -4,7 +4,6 @@ export const AppButton = ({ className, label, type, onClick, disabled }) => {
     return (
         <Button
             className={`app-button ${className || ''}`}
-            variant="contained"
             type={type}
             onClick={onClick}
             disabled={disabled}

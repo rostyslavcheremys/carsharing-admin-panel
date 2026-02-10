@@ -1,6 +1,7 @@
 .table__paper {
     width: 100%;
     overflow: hidden;
+    border-radius: 10px !important;
 }
 
 .table__label {
@@ -11,6 +12,8 @@
     color: var(--white-color) !important;
     text-align: center !important;
     white-space: nowrap;
+    text-transform: uppercase;
+    padding: 15px !important;
 }
 
 .table__data {
@@ -19,6 +22,7 @@
     font-size: 16px !important;
     text-align: center !important;
     white-space: nowrap;
+    padding: 15px !important;
 }
 
 .table__pagination * {

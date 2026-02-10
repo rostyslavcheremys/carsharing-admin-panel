@@ -14,7 +14,7 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: calc(100vh - 256px);
+    min-height: calc(100vh - 298px);
     width: 100%;
 }
 
@@ -26,8 +26,9 @@ main {
 .page__title {
     text-align: center;
     font-family: var(--font-family), sans-serif;
-    font-weight: 600;
-    font-size: 24px;
+    font-weight: 900;
+    font-size: 22px;
+    text-transform: uppercase;
     margin-bottom: 30px;
 }
 
@@ -48,6 +49,13 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: start;
+}
+
+.page__filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .page__button {
@@ -72,37 +80,35 @@ main {
     margin-bottom: 30px;
 }
 
+@media (max-width: 992px) {
+    .page__header {
+        justify-content: center;
+        position: relative;
+        padding: 0 0 15px 0;
+        top: 0;
+    }
+}
+
 @media (max-width: 768px) {
     main {
         margin: 30px 20px;
     }
 
     .page {
-        min-height: calc(100vh - 233px);
+        min-height: calc(100vh - 275px);
     }
 
     .page__title {
-        font-size: 22px;
-    }
-
-    .page__header {
-        padding: 30px 20px 0 0;
+        font-size: 20px;
     }
 }
 
 @media (max-width: 500px) {
-    .page__title {
-        font-size: 20px;
-    }
-
     .page {
-        min-height: calc(100vh - 230px);
+        min-height: calc(100vh - 362px);
     }
 
-    .page__header {
-        justify-content: center;
-        position: relative;
-        padding: 15px 0;
-        top: 0;
+    .page__title {
+        font-size: 18px;
     }
 }

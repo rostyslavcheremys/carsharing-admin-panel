@@ -3,9 +3,9 @@
     font-weight: 700;
     width: 130px;
     height: 50px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 7px;
-    text-transform: none;
+    text-transform: uppercase;
     background: var(--main-color);
     color: var(--white-color);
     box-shadow: none;
@@ -13,6 +13,45 @@
 
 .app-button.MuiButton-root:hover {
     box-shadow: none;
+}
+
+.app-button-group {
+    display: flex !important;
+    justify-content: center !important;
+    flex-direction: row !important;
+    width: 100% !important;
+}
+
+.app-button-group__button {
+    font-family: var(--font-family), sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    width: 100%;
+    height: 45px;
+    color: var(--white-color) !important;
+    background: var(--grey-color) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    transition: background 0.2s ease-in-out !important;
+}
+
+.app-button-group__button:hover,
+.app-button-group__button.active {
+    color: var(--white-color) !important;
+    background: var(--main-color) !important;
+}
+
+.app-button-group__button:first-child {
+    border-top-left-radius: 8px !important;
+}
+
+.app-button-group__button:last-child {
+    border-top-right-radius: 8px !important;
+}
+
+.app-button-group__button + .app-button-group__button {
+    margin-left: -2px !important;
+    margin-top: 0 !important;
 }
 
 .dialog__app-button {
@@ -23,4 +62,30 @@
 .cars__app-button {
     width: 200px !important;
     height: 50px !important;
+}
+
+@media (max-width: 768px) {
+    .app-button-group__button {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .app-button-group {
+        flex-direction: column !important;
+    }
+
+    .app-button-group__button + .app-button-group__button {
+        margin-left: 0 !important;
+        margin-top: -2px !important;
+    }
+
+    .app-button-group__button:first-child {
+        border-top-left-radius: 8px !important;
+        border-top-right-radius: 8px !important;
+    }
+
+    .app-button-group__button:last-child {
+        border-top-right-radius: 0 !important;
+    }
 }

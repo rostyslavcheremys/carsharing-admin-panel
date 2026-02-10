@@ -1,5 +1,5 @@
 export {
-    Button,
+    Button, ButtonGroup,
     Paper,
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Tooltip, TablePagination,
     IconButton,

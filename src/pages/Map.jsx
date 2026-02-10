@@ -1,10 +1,12 @@
-import { useMemo } from "react";
+import {useMemo, useState} from "react";
 
-import { Loader, MapContainer } from "../components";
+import { Loader, AppButtonGroup, MapContainer } from "../components";
 
 import { useCollection } from "../hooks";
 
 import { getNumber } from "../utils";
+
+import { CAR_STATUS_FILTER } from "../constants";
 
 export const Map = () => {
     const {
@@ -12,6 +14,8 @@ export const Map = () => {
         isLoading,
         /*error,*/
     } = useCollection("cars");
+
+    const [statusFilter, setStatusFilter] = useState([]);
 
     const mapCars = useMemo(() => {
         if (!cars) return [];
@@ -27,14 +31,23 @@ export const Map = () => {
                 lng: getNumber(car.location._long)
             })).filter(car =>
                 Number.isFinite(car.lat) &&
-                Number.isFinite(car.lng)
+                Number.isFinite(car.lng) &&
+                (statusFilter.length === 0 || statusFilter.includes(car.status))
             );
-    }, [cars]);
+    }, [cars, statusFilter]);
 
     return (
         <Loader isLoading={isLoading}>
             <div className="page">
                 <span className="page__title">Моніторинг автомобілів</span>
+
+                <div className="page__filters">
+                    <AppButtonGroup
+                        buttons={CAR_STATUS_FILTER}
+                        selected={statusFilter}
+                        onClick={setStatusFilter}
+                    />
+                </div>
 
                 <div className="page__map">
                     <MapContainer

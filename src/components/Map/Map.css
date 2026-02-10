@@ -4,7 +4,7 @@
 }
 
 .map.page {
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 }
 
 .map-container {

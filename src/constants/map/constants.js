@@ -10,3 +10,9 @@ export const WORLD_BOUNDS = {
     west: -180,
     east: 180,
 }
+
+export const CAR_STATUS_FILTER = [
+    { value: "available", label: "Доступні" },
+    { value: "rented", label: "Орендовані" },
+    { value: "unavailable", label: "Неактивні" },
+];
