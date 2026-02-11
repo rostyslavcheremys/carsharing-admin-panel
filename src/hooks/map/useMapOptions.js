@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 
-import { useTheme } from "../hooks";
+import { useTheme } from "../index.js";
 
-import { WORLD_BOUNDS } from "../constants";
+import { WORLD_BOUNDS } from "../../constants/index.js";
 
-import { darkMap, lightMap } from "../styles";
+import { darkMap, lightMap } from "../../styles/index.js";
 
 export const useMapOptions = () => {
     const { darkMode } = useTheme();

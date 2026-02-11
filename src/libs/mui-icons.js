@@ -19,6 +19,7 @@ import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import RoomIcon from '@mui/icons-material/Room';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export {
     MapIcon,
@@ -42,4 +43,5 @@ export {
     FullscreenExitIcon,
     RoomIcon,
     SatelliteAltIcon,
+    FilterListIcon,
 };

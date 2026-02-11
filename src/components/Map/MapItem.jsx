@@ -1,12 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { GoogleMap, Marker } from "@react-google-maps/api";
 
 import { MapCard } from "../../components";
 
-import { useMapOptions } from "../../hooks";
+import { useAutoPanToMarker, useMapOptions} from "../../hooks";
 
-import { getCarMarkerIcon, getPickerMarkerIcon } from "../../utils";
+import { getPickerMarkerIcon, getCarMarkerIcon, } from "../../utils";
 
 export const MapItem = ({
                             locations,
@@ -18,25 +18,32 @@ export const MapItem = ({
                             mapCenter,
                             mapRef,
                             isLoaded,
-                            mapCard
+                            mapCard,
+                            activeIndex
                         }) => {
-    const mapOptions = useMapOptions();
     const [markerCard, setMarkerCard] = useState(null);
 
-    const handleMapClick = (e) => {
+    const mapOptions = useMapOptions();
+
+    const handleMapClick = useCallback((e) => {
         if (!selectable) return;
 
         setMarkerCard(null);
-        onSelect?.({
-            lat: e.latLng.lat(),
-            lng: e.latLng.lng(),
-        });
-    };
 
-    const locationIcon = useMemo(
-        () => (selectable ? getPickerMarkerIcon() : null),
-        [selectable]
-    );
+        onSelect?.({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+    }, [selectable, onSelect]);
+
+    const handleMapLoad = useCallback((map) => {
+        mapRef.current = map;
+    }, [mapRef]);
+
+    const locationIcon = selectable ? getPickerMarkerIcon() : null;
+
+    useEffect(() => {
+        mapRef.current?.panTo(mapCenter);
+    }, [mapCenter, mapRef]);
+
+    useAutoPanToMarker(mapRef, locations, activeIndex);
 
     return (
         <GoogleMap
@@ -45,7 +52,7 @@ export const MapItem = ({
             zoom={zoom}
             mapTypeId={mapType}
             onClick={handleMapClick}
-            onLoad={(map) => (mapRef.current = map)}
+            onLoad={handleMapLoad}
             options={mapOptions}
         >
             {isLoaded &&
@@ -56,7 +63,8 @@ export const MapItem = ({
                         icon={selectable ? locationIcon : getCarMarkerIcon(marker.status)}
                         onClick={() => mapCard && setMarkerCard(marker)}
                     />
-                ))}
+                ))
+            }
 
             {mapCard && (
                 <MapCard
@@ -66,4 +74,4 @@ export const MapItem = ({
             )}
         </GoogleMap>
     );
-};
+}

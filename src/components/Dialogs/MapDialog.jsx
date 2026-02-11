@@ -4,7 +4,7 @@ import { Dialog, IconButton } from "../../libs/mui";
 
 import { MyLocationIcon, CloseIcon } from "../../libs/mui-icons";
 
-import { MapContainer, AppButton } from "../../components";
+import { AppButton, MapPicker } from "../../components";
 
 import { DEFAULT_LOCATION } from "../../constants";
 
@@ -18,7 +18,6 @@ export const MapDialog = ({
                               onSelect,
                               selectable = false,
                               isDialogIcon = false,
-                              mapDialog,
                           }) => {
     const initialLocation = useMemo(() => ({
         lat: latitude ?? DEFAULT_LOCATION.lat,
@@ -42,14 +41,6 @@ export const MapDialog = ({
         onClose?.();
     }
 
-    const handleClose = () => onClose?.();
-
-    const locationWithStatus = useMemo(() => {
-        return selectable
-            ? [{ ...tempLocation }]
-            : [{ ...initialLocation, status }]
-    }, [selectable, tempLocation, initialLocation, status]);
-
     return (
         <>
             {isDialogIcon && (
@@ -60,22 +51,26 @@ export const MapDialog = ({
                 </div>
             )}
 
-            <Dialog open={open} onClose={handleClose} disableRestoreFocus>
+            <Dialog
+                className="dialog"
+                open={open}
+                onClose={onClose}
+                disableRestoreFocus
+            >
                 <div className="dialog__header">
                     <span className="dialog__title">Місцезнаходження автомобіля</span>
 
-                    <IconButton onClick={handleClose}>
+                    <IconButton onClick={onClose}>
                         <CloseIcon className="dialog__icon--close" />
                     </IconButton>
                 </div>
 
                 <div className="dialog__map">
-                    <MapContainer
-                        locations={locationWithStatus}
-                        className="map"
+                    <MapPicker
+                        location={selectable ? tempLocation : initialLocation}
+                        status={status}
                         selectable={selectable}
                         onSelect={handleMapClick}
-                        shouldCenter
                     />
                 </div>
 

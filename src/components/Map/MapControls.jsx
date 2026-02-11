@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import { IconButton } from "../../libs/mui";
 
 import {
@@ -25,20 +27,14 @@ export const MapControls = ({
                                 setMapType,
                                 canCenter,
                                 mapCenter,
-                                shouldCenter,
                                 mapRef,
                                 wrapperRef,
                             }) => {
     const { isFullscreen, toggle } = useFullscreen(wrapperRef);
 
-    const handleZoomChange = (value) => {
-        setZoom(z =>
-            Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z + value))
-        );
-    }
-
-    const handleZoomIn = () => handleZoomChange(1);
-    const handleZoomOut = () => handleZoomChange(-1);
+    const handleZoomChange = useCallback((delta) => {
+        setZoom(z => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z + delta)));
+    }, [setZoom]);
 
     const handleMapType = () => {
         setMapType(prev => {
@@ -49,46 +45,43 @@ export const MapControls = ({
 
     const handleCenterMarker = () => {
         if (!canCenter || !mapRef.current) return;
-
         mapRef.current.panTo(mapCenter);
     };
 
     return(
         <div className="map-controls">
-            {shouldCenter && (
-                <IconButton
-                    className="map-controls__icon"
-                    onClick={handleCenterMarker}
-                >
-                    <RoomIcon />
-                </IconButton>
-            )}
+            <IconButton
+                className="map__icon"
+                onClick={handleCenterMarker}
+            >
+                <RoomIcon />
+            </IconButton>
 
             <IconButton
-                className="map-controls__icon"
+                className="map__icon"
                 disabled={zoom >= MAX_ZOOM}
-                onClick={handleZoomIn}
+                onClick={() => handleZoomChange(1)}
             >
                 <AddIcon />
             </IconButton>
 
             <IconButton
-                className="map-controls__icon"
+                className="map__icon"
                 disabled={zoom <= MIN_ZOOM}
-                onClick={handleZoomOut}
+                onClick={() => handleZoomChange(-1)}
             >
                 <RemoveIcon />
             </IconButton>
 
             <IconButton
-                className="map-controls__icon"
+                className="map__icon"
                 onClick={handleMapType}
             >
                 {mapType === "roadmap" ? <MapIcon /> : <SatelliteAltIcon />}
             </IconButton>
 
             <IconButton
-                className="map-controls__icon"
+                className="map__icon"
                 onClick={toggle}
             >
                 {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
