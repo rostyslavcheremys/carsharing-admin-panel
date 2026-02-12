@@ -9,7 +9,7 @@ export const MapStepper = ({
                                onNext
                            }) => {
     return (
-        <nav className="map-stepper">
+        <div className="map-stepper">
             <IconButton
                 className="map__icon"
                 onClick={onPrev}
@@ -29,6 +29,6 @@ export const MapStepper = ({
             >
                 <ArrowForwardIcon />
             </IconButton>
-        </nav>
+        </div>
     );
 }
