@@ -3,6 +3,7 @@ export * from "./cars/getCarValues.js";
 
 export * from "./errors/getErrorMessage.js";
 
+export * from "./formatters/getFormattedTimestamp.js";
 export * from "./formatters/getNumber.js";
 export * from "./formatters/getString.js";
 export * from "./formatters/getLabel.js";
