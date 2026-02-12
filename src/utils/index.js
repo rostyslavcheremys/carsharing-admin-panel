@@ -17,17 +17,23 @@ export * from "./map/normalizeLocation.js";
 
 export * from "./theme/getTheme.js";
 
-export * from "./validations/address.js";
-export * from "./validations/city.js";
-export * from "./validations/confirmPassword.js";
-export * from "./validations/editMenu.js";
-export * from "./validations/delivery.js";
-export * from "./validations/email.js";
-export * from "./validations/name.js";
-export * from "./validations/notes.js";
-export * from "./validations/optionalConfirmPassword.js";
-export * from "./validations/optionalPassword.js";
-export * from "./validations/password.js";
-export * from "./validations/payment.js";
-export * from "./validations/phoneNumber.js";
-export * from "./validations/pickupTime.js";
+export * from "./validations/getEmailValidation.js";
+export * from "./validations/getPasswordValidation.js";
+export * from "./validations/getRequiredFieldValidation.js";
+export * from "./validations/getRequiredAnyValidation.js";
+export * from "./validations/getBrandValidation.js";
+export * from "./validations/getModelValidation.js";
+export * from "./validations/getYearValidation.js";
+export * from "./validations/getMileageValidation.js";
+export * from "./validations/getLicensePlateValidation.js";
+export * from "./validations/getDisplacementValidation.js";
+export * from "./validations/getCapacityValidation.js";
+export * from "./validations/getRangeValidation.js";
+export * from "./validations/getSeatsValidation.js";
+export * from "./validations/getPricePerDayValidation.js";
+
+
+
+
+export * from "./validations/requiredField.js";
+export * from "./validations/requiredAny.js";

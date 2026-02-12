@@ -2,7 +2,13 @@
     display: flex;
     font-family: var(--second-family), sans-serif;
     color: var(--red-color);
-    font-weight: 400 !important;
+    font-weight: 600 !important;
     font-size: 14px;
-    margin: 5px 0 0 14px;
+    margin: 5px 0 0 15px;
+}
+
+@media (max-width: 768px) {
+    .form-controller__error {
+        font-size: 13px;
+    }
 }

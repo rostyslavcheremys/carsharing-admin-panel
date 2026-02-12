@@ -16,6 +16,21 @@ import {
     TRANSMISSION_TYPES,
 } from "../../constants";
 
+import {
+    getRequiredAnyValidation,
+    getRequiredFieldValidation,
+    getBrandValidation,
+    getModelValidation,
+    getYearValidation,
+    getMileageValidation,
+    getLicensePlateValidation,
+    getDisplacementValidation,
+    getCapacityValidation,
+    getRangeValidation,
+    getSeatsValidation,
+    getPricePerDayValidation,
+} from "../../utils";
+
 export const CarForm = ({
                             title,
                             control,
@@ -42,6 +57,7 @@ export const CarForm = ({
                     control={control}
                     name="images"
                     label="Фотографії*"
+                    rules={getRequiredAnyValidation("Фотографії")}
                 />
 
                 <SelectController
@@ -49,36 +65,42 @@ export const CarForm = ({
                     name="status"
                     label="Статус*"
                     options={STATUS}
+                    rules={getRequiredFieldValidation("Статус")}
                 />
 
                 <InputController
                     control={control}
                     name="brand"
                     label="Марка*"
+                    rules={getBrandValidation()}
                 />
 
                 <InputController
                     control={control}
                     name="model"
                     label="Модель*"
+                    rules={getModelValidation()}
                 />
 
                 <InputController
                     control={control}
                     name="year"
                     label="Рік випуску*"
+                    rules={getYearValidation()}
                 />
 
                 <InputController
                     control={control}
                     name="mileage"
                     label="Пробіг (км)*"
+                    rules={getMileageValidation()}
                 />
 
                 <InputController
                     control={control}
                     name="licensePlate"
                     label="Номерний знак*"
+                    rules={getLicensePlateValidation()}
                 />
 
                 <SelectController
@@ -86,6 +108,7 @@ export const CarForm = ({
                     name="bodyType"
                     label="Тип кузова*"
                     options={BODY_TYPES}
+                    rules={getRequiredFieldValidation("Тип кузова")}
                 />
 
                 <SelectController
@@ -93,6 +116,7 @@ export const CarForm = ({
                     name="powertrainType"
                     label="Тип двигуна*"
                     options={POWERTRAIN_TYPES}
+                    rules={getRequiredFieldValidation("Тип двигуна")}
                 />
 
                 {showEngineFields && (
@@ -102,11 +126,13 @@ export const CarForm = ({
                             name="fuelType"
                             label="Тип палива*"
                             options={FUEL_TYPES}
+                            rules={getRequiredFieldValidation("Тип палива")}
                         />
                         <InputController
                             control={control}
                             name="displacement"
                             label="Об'єм двигуна (л)*"
+                            rules={getDisplacementValidation()}
                         />
                     </>
                 )}
@@ -117,11 +143,13 @@ export const CarForm = ({
                             control={control}
                             name="capacity"
                             label="Ємність батареї (кВт·год)*"
+                            rules={getCapacityValidation()}
                         />
                         <InputController
                             control={control}
                             name="range"
                             label="Запас ходу (км)*"
+                            rules={getRangeValidation()}
                         />
                     </>
                 )}
@@ -131,6 +159,7 @@ export const CarForm = ({
                     name="transmissionType"
                     label="Коробка передач*"
                     options={TRANSMISSION_TYPES}
+                    rules={getRequiredFieldValidation("Коробка передач")}
                 />
 
                 <SelectController
@@ -138,6 +167,7 @@ export const CarForm = ({
                     name="driveType"
                     label="Привід*"
                     options={DRIVE_TYPES}
+                    rules={getRequiredFieldValidation("Привід")}
                 />
 
                 <SelectController
@@ -145,24 +175,28 @@ export const CarForm = ({
                     name="color"
                     label="Колір*"
                     options={COLORS}
+                    rules={getRequiredFieldValidation("Колір")}
                 />
 
                 <InputController
                     control={control}
                     name="seats"
                     label="Кількість місць*"
+                    rules={getSeatsValidation()}
                 />
 
                 <InputController
                     control={control}
                     name="pricePerDay"
                     label="Вартість за добу (грн)*"
+                    rules={getPricePerDayValidation()}
                 />
 
                 <LocationController
                     control={control}
                     name="location"
                     label="Місцезнаходження*"
+                    rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
                 <div className="page__buttons">

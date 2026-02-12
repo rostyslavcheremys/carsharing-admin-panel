@@ -45,7 +45,7 @@ export const Cars = () => {
 
     const handleAdd = () => {
         navigate("/cars/add");
-    };
+    }
 
     const handleDelete = useCallback(async (id) => {
         try {
