@@ -1,4 +1,4 @@
-import { getFormattedTimestamp, getLabel } from "../../utils";
+import {getFormattedTimestamp, getLabel, getString} from "../../utils";
 
 import {
     DRIVING_LICENCE_STATUS,
@@ -6,9 +6,18 @@ import {
 } from "./options.js";
 
 export const USERS_TABLE_COLUMNS = [
-    { id: "id", label: "ID" },
-    { id: "firstName", label: "Ім'я" },
-    { id: "lastName", label: "Прізвище" },
+    {
+        id: "id", label: "ID",
+        render: (user) => getString(user?.id)
+    },
+    {
+        id: "firstName", label: "Ім'я",
+        render: (user) => getString(user?.firstName)
+    },
+    {
+        id: "lastName", label: "Прізвище",
+        render: (user) => getString(user?.lastName)
+    },
     {
         id: "drivingLicenseDocument",
         label: "Посвідчення",
@@ -29,8 +38,14 @@ export const USERS_TABLE_COLUMNS = [
         id: "drivingLicenseStatus", label: "Статус",
         render: (user) => getLabel(user?.drivingLicense?.verified, DRIVING_LICENCE_STATUS)
     },
-    { id: "email", label: "Електронна адреса" },
-    { id: "phone", label: "Номер телефону" },
+    {
+        id: "email", label: "Електронна адреса",
+        render: (user) => getString(user?.email)
+    },
+    {
+        id: "phone", label: "Номер телефону",
+        render: (user) => getString(user?.phone)
+    },
     {
         id: "birthDate", label: "Дата народження",
         render: (user) => getFormattedTimestamp(user?.birthDate)

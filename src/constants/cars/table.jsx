@@ -18,7 +18,10 @@ import {
 
 export const CARS_TABLE_COLUMNS = [
     { id: "actions", label: "Дії" },
-    { id: "id", label: "ID" },
+    {
+        id: "id", label: "ID",
+        render: (car) => getString(car?.id)
+    },
     {
         id: "status", label: "Статус",
         render: (car) => getLabel(car?.status, STATUS)
@@ -56,14 +59,26 @@ export const CARS_TABLE_COLUMNS = [
             </DialogCell>
         )
     },
-    { id: "brand", label: "Марка" },
-    { id: "model", label: "Модель" },
-    { id: "year", label: "Рік випуску" },
+    {
+        id: "brand", label: "Марка",
+        render: (car) => getString(car?.brand)
+    },
+    {
+        id: "model", label: "Модель",
+        render: (car) => getString(car?.model)
+    },
+    {
+        id: "year", label: "Рік випуску",
+        render: (car) => getString(car?.year)
+    },
     {
         id: "mileage", label: "Пробіг",
         render: (car) => getString(car?.mileage, "км")
     },
-    { id: "licensePlate", label: "Номерний знак" },
+    {
+        id: "licensePlate", label: "Номерний знак",
+        render: (car) => getString(car?.licensePlate)
+    },
     {
         id: "bodyType", label: "Тип кузова",
         render: (car) => getLabel(car?.bodyType, BODY_TYPES)
@@ -100,10 +115,16 @@ export const CARS_TABLE_COLUMNS = [
         id: "color", label: "Колір",
         render: (car) => getLabel(car?.color, COLORS)
     },
-    { id: "seats", label: "Кількість місць" },
+    {
+        id: "seats", label: "Кількість місць",
+        render: (car) => getString(car?.seats)
+    },
     {
         id: "pricePerDay", label: "Вартість за добу",
         render: (car) => getString(car?.pricePerDay, "грн")
     },
-    { id: "rating", label: "Рейтинг" },
+    {
+        id: "rating", label: "Рейтинг",
+        render: (car) => getString(car?.rating)
+    },
 ];
