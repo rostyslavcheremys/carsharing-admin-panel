@@ -6,7 +6,7 @@ import {
 } from "../../libs/mui";
 
 import {
-    PhotoLibraryIcon,
+    ImageIcon,
     CloseIcon,
 } from "../../libs/mui-icons";
 
@@ -27,7 +27,7 @@ export const ImageDialog = ({
         <>
             <div className="dialog__icon">
                 <IconButton onClick={onOpen}>
-                    <PhotoLibraryIcon className="dialog__icon--photos" />
+                    <ImageIcon className="dialog__icon--photos" />
                 </IconButton>
             </div>
 

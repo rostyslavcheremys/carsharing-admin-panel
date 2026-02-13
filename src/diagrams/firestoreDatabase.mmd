@@ -1,0 +1,97 @@
+---
+config:
+  theme: dark
+---
+erDiagram
+    CARS {
+        string id "ID"
+        string brand "Марка"
+        string model "Модель"
+        string licensePlate "Номерний знак"
+        string status "Статус"
+        string transmissionType "Коробка передач"
+        string powertrainType "Тип двигуна"
+        string bodyType "Тип кузова"
+        string driveType "Тип приводу"
+        string color "Колір"
+        number year "Рік випуску"
+        number mileage "Пробіг"
+        number pricePerDay "Вартість за добу"
+        number seats "Кількість місць"
+        number rating "Рейтинг"
+        array images "Фотографії"
+        map battery "Батарея"
+        map engine "Двигун"
+        geopoint location "Місцезнаходження"
+    }
+
+    ENGINE {
+        string fuelType "Тип палива"
+        number displacement "Об'єм двигуна"
+    }
+
+    BATTERY {
+        number capacity "Ємність батареї"
+        number range "Запас ходу"
+    }
+
+    LOCATION {
+        number latitude "Широта"
+        number longitude "Довгота"
+    }
+
+    USERS {
+        string id "ID"
+        string firstName "Ім'я"
+        string lastName "Прізвище"
+        string email "Електронна адреса"
+        string phone "Номер телефону"
+        string role "Роль"
+        timestamp birthDate "Дата народження"
+        timestamp createdAt "Дата створення"
+        string drivingLicense "Посвідчення водія"
+    }
+
+    BOOKINGS {
+        string id "ID"
+        string carId "ID автомобіля"
+        string userId "ID користувача"
+        timestamp startDate "Початок оренди"
+        timestamp endDate "Кінець оренди"
+        string status "Статус оренди"
+        number totalPrice "Загальна вартість"
+        timestamp createdAt "Дата створення"
+        geopoint startLocation "Початкове місцезнаходження"
+        geopoint endLocation "Кінцеве місцезнаходження"
+        string stateBeforeId "ID стану перед орендою"
+        string stateAfterId "ID стану після оренди"
+    }
+
+    CAR_STATE {
+        string id "ID стану автомобіля"
+        string bookingId "ID бронювання"
+        string description "Опис стану автомобіля"
+        number mileage "Пробіг автомобіля"
+        array images "Фотографії стану автомобіля"
+        map energyLevel "Рівень пального / заряду батареї"
+    }
+
+    ENERGY_LEVEL {
+        number batteryPercent "Рівень заряду батареї"
+        number fuelPercent "Рівень пального"
+    }
+
+    CARS ||--|| ENGINE: engine
+    CARS ||--|| BATTERY: battery
+    CARS ||--|| LOCATION: location
+
+    USERS ||--o| BOOKINGS : user
+    CARS ||--o| BOOKINGS : car
+
+    BOOKINGS ||--|| CAR_STATE : stateBefore
+    BOOKINGS ||--|| CAR_STATE : stateAfter
+    BOOKINGS ||--|| LOCATION : startLocation
+    BOOKINGS ||--|| LOCATION : endLocation
+
+    CAR_STATE ||--|| BOOKINGS : booking
+    CAR_STATE ||--|| ENERGY_LEVEL : energyLevel

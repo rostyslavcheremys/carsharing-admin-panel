@@ -6,7 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 25px !important;
+    padding: 15px 17px 15px 25px !important;
     background: inherit;
     position: sticky;
     top: 0;
@@ -24,7 +24,7 @@
 .dialog__title {
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .dialog__message {
@@ -82,11 +82,11 @@
 
 @media (max-width: 768px) {
     .dialog__header {
-        padding: 15px 20px !important;
+        padding: 15px 12px 15px 20px !important;
     }
 
     .dialog__title {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .dialog__images {
@@ -111,18 +111,12 @@
     .dialog__map--button {
         padding: 15px 20px !important;
     }
-
-    .dialog__icon--location,
-    .dialog__icon--photos,
-    .dialog__icon--close {
-        font-size: 20px !important;
-    }
 }
 
 @media (max-width: 600px) {
     .dialog__title,
     .dialog__message {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .dialog__images {

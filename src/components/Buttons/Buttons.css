@@ -4,7 +4,7 @@
     width: 130px;
     height: 50px;
     font-size: 14px;
-    border-radius: 7px;
+    border-radius: 10px;
     text-transform: uppercase;
     background: var(--main-color);
     color: var(--white-color);

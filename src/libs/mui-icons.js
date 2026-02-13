@@ -10,7 +10,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
+import ImageIcon from '@mui/icons-material/Image';
 import CloseIcon from "@mui/icons-material/Close";
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddIcon from '@mui/icons-material/Add';
@@ -20,6 +20,9 @@ import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import RoomIcon from '@mui/icons-material/Room';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
+import GarageIcon from '@mui/icons-material/Garage';
 
 export {
     MapIcon,
@@ -34,7 +37,7 @@ export {
     DeleteIcon,
     ArrowBackIcon,
     ArrowForwardIcon,
-    PhotoLibraryIcon,
+    ImageIcon,
     CloseIcon,
     MyLocationIcon,
     AddIcon,
@@ -44,4 +47,7 @@ export {
     RoomIcon,
     SatelliteAltIcon,
     FilterListIcon,
+    LibraryBooksIcon,
+    SwitchAccountIcon,
+    GarageIcon
 };

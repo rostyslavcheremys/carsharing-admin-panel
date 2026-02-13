@@ -165,9 +165,9 @@ export const CarForm = ({
                 <SelectController
                     control={control}
                     name="driveType"
-                    label="Привід*"
+                    label="Тип приводу*"
                     options={DRIVE_TYPES}
-                    rules={getRequiredFieldValidation("Привід")}
+                    rules={getRequiredFieldValidation("Тип приводу")}
                 />
 
                 <SelectController

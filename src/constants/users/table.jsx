@@ -1,9 +1,6 @@
-import {getFormattedTimestamp, getLabel, getString} from "../../utils";
+import { getLabel, getString, getFormattedTimestamp } from "../../utils";
 
-import {
-    DRIVING_LICENCE_STATUS,
-    ROLE,
-} from "./options.js";
+import { ROLE } from "./options.js";
 
 export const USERS_TABLE_COLUMNS = [
     {
@@ -19,12 +16,12 @@ export const USERS_TABLE_COLUMNS = [
         render: (user) => getString(user?.lastName)
     },
     {
-        id: "drivingLicenseDocument",
-        label: "Посвідчення",
+        id: "drivingLicense",
+        label: "Посвідчення водія",
         render: (user) =>
-            user?.drivingLicense?.document ? (
+            user?.drivingLicense ? (
                 <a
-                    href={user.drivingLicense.document}
+                    href={user.drivingLicense}
                     target="_blank"
                     rel="noreferrer"
                 >
@@ -33,10 +30,6 @@ export const USERS_TABLE_COLUMNS = [
             ) : (
                 "—"
             ),
-    },
-    {
-        id: "drivingLicenseStatus", label: "Статус",
-        render: (user) => getLabel(user?.drivingLicense?.verified, DRIVING_LICENCE_STATUS)
     },
     {
         id: "email", label: "Електронна адреса",

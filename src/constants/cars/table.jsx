@@ -108,7 +108,7 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getLabel(car?.transmissionType, TRANSMISSION_TYPES)
     },
     {
-        id: "driveType", label: "Привід",
+        id: "driveType", label: "Тип приводу",
         render: (car) => getLabel(car?.driveType, DRIVE_TYPES)
     },
     {
