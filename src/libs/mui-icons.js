@@ -20,9 +20,8 @@ import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import RoomIcon from '@mui/icons-material/Room';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import SwitchAccountIcon from '@mui/icons-material/SwitchAccount';
-import GarageIcon from '@mui/icons-material/Garage';
+import NearMeIcon from '@mui/icons-material/NearMe';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export {
     MapIcon,
@@ -47,7 +46,6 @@ export {
     RoomIcon,
     SatelliteAltIcon,
     FilterListIcon,
-    LibraryBooksIcon,
-    SwitchAccountIcon,
-    GarageIcon
-};
+    NearMeIcon,
+    DescriptionIcon
+}

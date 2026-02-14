@@ -1,8 +1,8 @@
-import { Loader , MonitoringMap } from "../components";
+import { Loader , Map } from "../components";
 
 import {useCollection} from "../hooks";
 
-export const Map = () => {
+export const Monitoring = () => {
     const {
         data: cars,
         isLoading,
@@ -14,7 +14,7 @@ export const Map = () => {
             <div className="page">
                 <span className="page__title">Моніторинг автомобілів</span>
 
-                <MonitoringMap cars={cars}/>
+                <Map cars={cars}/>
             </div>
         </Loader>
     );

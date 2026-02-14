@@ -1,19 +1,21 @@
 import { useNavigate } from "react-router-dom";
 
+import { IconButton } from "@mui/material";
+
 import {
-    MapIcon,
+    NearMeIcon,
     DirectionsCarIcon,
     PeopleIcon,
     LightModeIcon,
     DarkModeIcon,
     LogoutIcon,
+    DescriptionIcon
 } from "../../libs/mui-icons";
 
 import {
     useAuth,
     useTheme
 } from "../../hooks";
-import {IconButton} from "@mui/material";
 
 export const Header = () => {
     const navigate = useNavigate();
@@ -31,8 +33,8 @@ export const Header = () => {
 
                     {user && (
                         <>
-                            <IconButton onClick={() => navigate("/map")}>
-                                <MapIcon className="header__nav-icon header__nav-icon--map"/>
+                            <IconButton onClick={() => navigate("/monitoring")}>
+                                <NearMeIcon className="header__nav-icon"/>
                             </IconButton>
 
                             <IconButton onClick={() => navigate("/cars")}>
@@ -42,22 +44,26 @@ export const Header = () => {
                             <IconButton onClick={() => navigate("/users")}>
                                 <PeopleIcon className="header__nav-icon header__nav-icon--users"/>
                             </IconButton>
+
+                            <IconButton onClick={() => navigate("/bookings")}>
+                                <DescriptionIcon className="header__nav-icon"/>
+                            </IconButton>
                         </>
                     )}
 
                     {darkMode ? (
                         <IconButton onClick={toggleTheme}>
-                            <DarkModeIcon className="header__nav-icon header__nav-icon--dark"/>
+                            <DarkModeIcon className="header__nav-icon"/>
                         </IconButton>
                     ) : (
                         <IconButton onClick={toggleTheme}>
-                            <LightModeIcon className="header__nav-icon header__nav-icon--light"/>
+                            <LightModeIcon className="header__nav-icon"/>
                         </IconButton>
                     )}
 
                     {user && (
                         <IconButton  onClick={logout}>
-                            <LogoutIcon className="header__nav-icon header__nav-icon--logout"/>
+                            <LogoutIcon className="header__nav-icon"/>
                         </IconButton>
                     )}
                 </nav>

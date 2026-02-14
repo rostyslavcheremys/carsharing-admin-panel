@@ -5,7 +5,7 @@ import {
     Home,
     Cars,
     Login,
-    Map,
+    Monitoring,
     Users,
     CarCreate,
     CarEdit
@@ -29,9 +29,9 @@ export const App = () => {
                     </ProtectedRoute>
                 }/>
 
-                <Route path="/map" element={
+                <Route path="/monitoring" element={
                     <ProtectedRoute adminOnly>
-                        <Map />
+                        <Monitoring />
                     </ProtectedRoute>
                 }/>
 

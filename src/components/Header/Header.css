@@ -46,10 +46,6 @@
     font-size: 37px !important;
 }
 
-.header__nav-icon--light {
-    color: var(--yellow-color);
-}
-
 @media (max-width: 768px) {
     .header__content {
         padding: 0 20px;

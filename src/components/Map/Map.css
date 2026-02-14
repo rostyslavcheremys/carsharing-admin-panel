@@ -121,8 +121,8 @@
     border-radius: 10px 0 10px 0;
 }
 
-.map-filters__menu {
-    border-radius: 30px !important;
+.map-filters__menu * {
+    border-radius: 10px !important;
 }
 
 .map-filters__menu-item,

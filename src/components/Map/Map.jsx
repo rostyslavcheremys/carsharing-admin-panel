@@ -18,7 +18,7 @@ import {
 
 import { CAR_STATUS_FILTER } from "../../constants";
 
-export const MonitoringMap = ({ cars = [] }) => {
+export const Map = ({ cars = [] }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 

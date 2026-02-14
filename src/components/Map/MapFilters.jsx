@@ -48,6 +48,7 @@ export const MapFilters = ({ selectedStatus, onChange }) => {
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
+                disablePortal
             >
                 {CAR_STATUS_FILTER.map((status) => (
                     <MenuItem
