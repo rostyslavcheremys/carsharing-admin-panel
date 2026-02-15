@@ -66,7 +66,7 @@ export const Map = ({ cars = [] }) => {
 
                 <MapItem
                     locations={filteredCars}
-                    className="map page"
+                    className="page"
                     zoom={zoom}
                     mapType={mapType}
                     mapCenter={mapCenter}

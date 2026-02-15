@@ -15,7 +15,7 @@ export const Users = () => {
 
     return (
         <Loader isLoading={isLoading} error={error}>
-            <div className="page">
+            <div className="page table">
                 <span className="page__title">Керування користувачами</span>
 
                 <DataTable

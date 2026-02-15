@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { IconButton } from "@mui/material";
+import { Tooltip, IconButton } from "@mui/material";
 
 import {
     NearMeIcon,
@@ -27,44 +27,56 @@ export const Header = () => {
     return(
         <header className="header">
             <div className="header__content">
-                <span className="header__logo">Carsharing</span>
+                <div className="header__logo">
+                    <DirectionsCarIcon className="header__logo-icon"/>
+                </div>
 
                 <nav className="header__nav">
 
                     {user && (
                         <>
-                            <IconButton onClick={() => navigate("/monitoring")}>
-                                <NearMeIcon className="header__nav-icon"/>
-                            </IconButton>
+                            <Tooltip title="Моніторинг автомобілів" placement="right">
+                                <IconButton onClick={() => navigate("/monitoring")}>
+                                    <NearMeIcon className="header__nav-icon"/>
+                                </IconButton>
+                            </Tooltip>
 
-                            <IconButton onClick={() => navigate("/cars")}>
-                                <DirectionsCarIcon className="header__nav-icon header__nav-icon--cars"/>
-                            </IconButton>
+                            <Tooltip title="Керування автомобілями" placement="right">
+                                <IconButton onClick={() => navigate("/cars")}>
+                                    <DirectionsCarIcon className="header__nav-icon header__nav-icon--cars"/>
+                                </IconButton>
+                            </Tooltip>
 
-                            <IconButton onClick={() => navigate("/users")}>
-                                <PeopleIcon className="header__nav-icon header__nav-icon--users"/>
-                            </IconButton>
+                            <Tooltip title="Керування користувачами" placement="right">
+                                <IconButton onClick={() => navigate("/users")}>
+                                    <PeopleIcon className="header__nav-icon header__nav-icon--users"/>
+                                </IconButton>
+                            </Tooltip>
 
-                            <IconButton onClick={() => navigate("/bookings")}>
-                                <DescriptionIcon className="header__nav-icon"/>
-                            </IconButton>
+                            <Tooltip title="Перегляд бронювань" placement="right">
+                                <IconButton onClick={() => navigate("/bookings")}>
+                                    <DescriptionIcon className="header__nav-icon"/>
+                                </IconButton>
+                            </Tooltip>
                         </>
                     )}
 
-                    {darkMode ? (
+                    <Tooltip title={darkMode ? "Темна тема" : "Світла тема"} placement="right">
                         <IconButton onClick={toggleTheme}>
-                            <DarkModeIcon className="header__nav-icon"/>
+                            {darkMode ? (
+                                <DarkModeIcon className="header__nav-icon" />
+                            ) : (
+                                <LightModeIcon className="header__nav-icon" />
+                            )}
                         </IconButton>
-                    ) : (
-                        <IconButton onClick={toggleTheme}>
-                            <LightModeIcon className="header__nav-icon"/>
-                        </IconButton>
-                    )}
+                    </Tooltip>
 
                     {user && (
-                        <IconButton  onClick={logout}>
-                            <LogoutIcon className="header__nav-icon"/>
-                        </IconButton>
+                        <Tooltip title="Вихід" placement="right">
+                            <IconButton  onClick={logout}>
+                                <LogoutIcon className="header__nav-icon"/>
+                            </IconButton>
+                        </Tooltip>
                     )}
                 </nav>
             </div>

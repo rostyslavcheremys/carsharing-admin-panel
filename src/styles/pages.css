@@ -1,21 +1,32 @@
 .layout {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-height: 100vh;
+    height: 100%;
+    width: 100%;
+}
+
+.main__container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 70px;
+    width: calc(100% - 70px);
 }
 
 main {
-    margin: 40px 30px;
     flex: 1;
 }
 
 .page {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    min-height: calc(100vh - 253px);
+    height: 100%;
     width: 100%;
+}
+
+.page.table {
+    padding: 30px;
 }
 
 .page__title {
@@ -24,7 +35,7 @@ main {
     font-weight: 900;
     font-size: 22px;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .page__title.form {
@@ -34,10 +45,8 @@ main {
 .page__header {
     display: flex;
     justify-content: end;
+    padding: 0 0 20px 0;
     width: 100%;
-    position: absolute;
-    padding: 40px 30px 0 0;
-    top: 70px;
 }
 
 .page__form {
@@ -71,19 +80,13 @@ main {
 @media (max-width: 992px) {
     .page__header {
         justify-content: center;
-        position: relative;
-        padding: 0 0 15px 0;
-        top: 0;
     }
 }
 
 @media (max-width: 768px) {
-    main {
-        margin: 30px 20px;
-    }
-
-    .page {
-        min-height: calc(100vh - 230px);
+    .main__container {
+        margin-left: 60px;
+        width: calc(100% - 60px);
     }
 
     .page__title {
@@ -92,11 +95,13 @@ main {
 }
 
 @media (max-width: 500px) {
-    .page {
-        min-height: calc(100vh - 227px);
+    .main__container {
+        margin-left: 50px;
+        width: calc(100% - 50px);
     }
 
     .page__title {
         font-size: 18px;
     }
 }
+

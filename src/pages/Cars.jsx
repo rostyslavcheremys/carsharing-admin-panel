@@ -80,7 +80,7 @@ export const Cars = () => {
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
-            <div className="page">
+            <div className="page table">
                 <span className="page__title">Керування автомобілями</span>
 
                 <header className="page__header">

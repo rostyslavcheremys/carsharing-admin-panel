@@ -1,34 +1,41 @@
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    position: relative;
-    height: 70px;
+    justify-content: center;
+    height: 100vh;
+    width: 70px;
     background: var(--main-color);
-    width: 100%;
+    position: fixed;
 }
 
 .header__content {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0 30px;
+    height: 100%;
+    padding: 15px 0 10px;
 }
 
 .header__logo {
-    font-family: var(--font-family), sans-serif;
-    color: var(--white-color);
-    font-weight: 400;
-    font-size: 32px;
-    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background: var(--white-color);
+}
+
+.header__logo-icon {
+    position: relative;
+    bottom: 2px !important;
+    font-size: 50px !important;
+    color: var(--main-color);
 }
 
 .header__nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     gap: 20px;
 }
 
@@ -46,13 +53,61 @@
     font-size: 37px !important;
 }
 
+.MuiTooltip-tooltip {
+    font-family: var(--font-family), sans-serif !important;
+    background: var(--grey-color) !important;
+    color: var(--white-color) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 5px !important;
+}
+
 @media (max-width: 768px) {
-    .header__content {
-        padding: 0 20px;
+    .header {
+        width: 60px;
     }
 
     .header__logo {
-        font-size: 24px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .header__logo-icon {
+        bottom: 2px !important;
+        font-size: 40px !important;
+    }
+
+    .header__nav {
+        gap: 15px;
+    }
+
+    .header__nav-icon {
+        font-size: 28px !important;
+    }
+
+    .header__nav-icon--cars {
+        font-size: 32px !important;
+    }
+
+    .header__nav-icon--users {
+        font-size: 35px !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .header {
+        width: 50px;
+    }
+
+    .header__logo {
+        height: 30px;
+        width: 30px;
+        border-radius: 7px;
+    }
+
+    .header__logo-icon {
+        bottom: 1px !important;
+        font-size: 30px !important;
     }
 
     .header__nav {
@@ -69,11 +124,5 @@
 
     .header__nav-icon--users {
         font-size: 31px !important;
-    }
-}
-
-@media (max-width: 500px) {
-    .header__nav {
-        gap: 0;
     }
 }

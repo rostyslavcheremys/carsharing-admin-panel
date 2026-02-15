@@ -1,6 +1,6 @@
 import { Loader , Map } from "../components";
 
-import {useCollection} from "../hooks";
+import { useCollection} from "../hooks";
 
 export const Monitoring = () => {
     const {
@@ -12,8 +12,6 @@ export const Monitoring = () => {
     return (
         <Loader isLoading={isLoading}>
             <div className="page">
-                <span className="page__title">Моніторинг автомобілів</span>
-
                 <Map cars={cars}/>
             </div>
         </Loader>
