@@ -59,7 +59,7 @@ export const CarEdit = () => {
             } finally {
                 setIsFetching(false);
             }
-        };
+        }
 
         loadCar();
     }, []);

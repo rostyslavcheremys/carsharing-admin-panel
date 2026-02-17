@@ -1,53 +1,55 @@
+import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
-import { IconButton } from "../../libs/mui.js";
-import { Visibility, EditIcon, DeleteIcon } from "../../libs/mui-icons.js";
+import { IconButton } from "../../libs/mui";
 
-import { DialogCell, ConfirmDialog,} from "../index.js";
+import { Visibility, EditIcon, DeleteIcon } from "../../libs/mui-icons";
+
+import { ConfirmDialog } from "../../components";
+
+import { getCarActionsMessage } from "../../utils";
 
 export const CarActions = ({ carId, onDelete }) => {
     const navigate = useNavigate();
 
-    const handleEditCar = (e) => {
+    const [action, setAction] = useState(null);
+
+    const openDialog = (type) => (e) => {
         e.stopPropagation();
-        navigate(`/cars/${carId}/edit`);
+        setAction(type);
     }
 
-    const handleViewCar = (e) => {
-        e.stopPropagation();
-        navigate(`/cars/${carId}`);
+    const closeDialog = () => setAction(null);
+
+    const handleConfirm = () => {
+        if (action === "view") navigate(`/cars/${carId}`);
+        if (action === "edit") navigate(`/cars/${carId}/edit`);
+        if (action === "delete") onDelete(carId);
+
+        closeDialog();
     }
 
     return (
         <div className="car-actions">
-            <IconButton onClick={handleViewCar}>
-                <Visibility className="car-actions__icon"/>
+            <IconButton onClick={openDialog("view")}>
+                <Visibility className="car-actions__icon" />
             </IconButton>
 
-            <IconButton onClick={handleEditCar}>
-                <EditIcon className="car-actions__icon"/>
+            <IconButton onClick={openDialog("edit")}>
+                <EditIcon className="car-actions__icon" />
             </IconButton>
 
-            <DialogCell>
-                {({ open, onOpen, onClose }) => (
-                    <>
-                        <IconButton onClick={onOpen}>
-                            <DeleteIcon className="car-actions__icon"/>
-                        </IconButton>
+            <IconButton onClick={openDialog("delete")}>
+                <DeleteIcon className="car-actions__icon" />
+            </IconButton>
 
-                        <ConfirmDialog
-                            open={open}
-                            message={`Видалити автомобіль з ID: ${carId}?`}
-                            onCancel={onClose}
-                            onConfirm={() => {
-                                onClose();
-                                onDelete(carId);
-                            }}
-                        />
-
-                    </>
-                )}
-            </DialogCell>
+            <ConfirmDialog
+                open={Boolean(action)}
+                message={getCarActionsMessage(action, carId)}
+                onCancel={closeDialog}
+                onConfirm={handleConfirm}
+            />
         </div>
     );
 }

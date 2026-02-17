@@ -23,15 +23,14 @@ export const MapDetailsDialog = ({ car, onClose }) => {
             open={open}
             onClose={onClose}
             disableRestoreFocus
+            disablePortal
         >
             <div className="dialog__header">
-                <div className="dialog__header--content">
-                    <span className="dialog__title">{car.brand} {car.model}</span>
+                <span className="dialog__title">{car.brand} {car.model}</span>
 
-                    <IconButton onClick={onClose}>
-                        <CloseIcon className="dialog__icon--close" />
-                    </IconButton>
-                </div>
+                <IconButton onClick={onClose}>
+                    <CloseIcon className="dialog__icon--close" />
+                </IconButton>
             </div>
 
             <div className="dialog__text--container">

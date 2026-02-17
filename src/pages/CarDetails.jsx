@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import {
-    AppButton,
     Loader,
     CarImages,
     CarSpecs,
-    MessageDialog, MapPicker
+    MapPicker,
+    AppButton,
+    MessageDialog
 } from "../components/index.js";
 
 import { useMessageDialog } from "../hooks";
@@ -42,8 +43,6 @@ export const CarDetails = () => {
                 const car = await getCarById(id);
 
                 setCar(car);
-
-                console.log(car);
             } catch (error) {
                 showMessage(
                     getErrorMessage(error),
@@ -52,7 +51,7 @@ export const CarDetails = () => {
             } finally {
                 setIsFetching(false);
             }
-        };
+        }
 
         loadCar();
     }, []);
@@ -80,6 +79,15 @@ export const CarDetails = () => {
                                 : null
                         }
                         status={car.status}
+                    />
+                </div>
+
+                <div className="page__button">
+                    <AppButton
+                        type="button"
+                        label="Назад"
+                        onClick={() => navigate(-1)}
+                        disabled={isFetching}
                     />
                 </div>
 

@@ -36,6 +36,7 @@ export const ImageDialog = ({
                 open={open}
                 onClose={onClose}
                 disableRestoreFocus
+                disablePortal
             >
                 <div className="dialog__header">
                     <span className="dialog__title">Перегляд фотографій</span>

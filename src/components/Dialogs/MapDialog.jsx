@@ -56,6 +56,7 @@ export const MapDialog = ({
                 open={open}
                 onClose={onClose}
                 disableRestoreFocus
+                disablePortal
             >
                 <div className="dialog__header">
                     <span className="dialog__title">Місцезнаходження автомобіля</span>

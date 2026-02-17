@@ -8,7 +8,8 @@ export const MessageDialog = ({ open, onClose, message }) => {
             className="dialog"
             open={open}
             onClose={onClose}
-            disableRestoreFocus={true}
+            disableRestoreFocus
+            disablePortal
         >
             <div className="dialog__content">
                 <span className="dialog__message">{message}</span>
