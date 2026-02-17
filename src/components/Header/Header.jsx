@@ -27,9 +27,9 @@ export const Header = () => {
     return(
         <header className="header">
             <div className="header__content">
-                <div className="header__logo">
+                <IconButton className="header__logo" onClick={() => navigate("/")}>
                     <DirectionsCarIcon className="header__logo-icon"/>
-                </div>
+                </IconButton>
 
                 <nav className="header__nav">
 
