@@ -45,3 +45,10 @@
         width: 300px !important;
     }
 }
+
+@media (max-width: 500px) {
+    .image-item__image {
+        height: 250px !important;
+        width: 250px !important;
+    }
+}

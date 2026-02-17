@@ -49,7 +49,7 @@ export const CarForm = ({
     const showBatteryFields = isElectric || isHybrid;
 
     return (
-        <div className="page table">
+        <div className="page page__content">
             <span className="page__title form">{title}</span>
 
             <form className="page__form" onSubmit={onSubmit}>

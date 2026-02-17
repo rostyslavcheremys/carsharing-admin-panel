@@ -1,11 +1,13 @@
 .dialog .MuiPaper-root {
     border-radius: 10px !important;
+    min-width: 250px;
 }
 
 .dialog__header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
+    flex-direction: column;
     padding: 15px 17px 15px 25px !important;
     background: inherit;
     position: sticky;
@@ -13,7 +15,20 @@
     z-index: 10;
 }
 
+.dialog__header--content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.dialog__delails {
+    display: flex;
+    flex-direction: column;
+}
+
 .dialog__content {
+    text-align: center;
     padding: 25px !important;
 }
 
@@ -25,6 +40,31 @@
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
     font-size: 18px;
+}
+
+.dialog__text--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 25px 10px 25px;
+    gap: 5px;
+}
+
+.dialog__text {
+    font-family: var(--font-family), sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.status--available {
+    color: var(--main-color);
+}
+
+.status--rented {
+    color: var(--red-color);
 }
 
 .dialog__message {
@@ -115,7 +155,8 @@
 
 @media (max-width: 600px) {
     .dialog__title,
-    .dialog__message {
+    .dialog__message,
+    .dialog__text {
         font-size: 14px;
     }
 

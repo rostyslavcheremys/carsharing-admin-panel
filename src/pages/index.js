@@ -1,5 +1,6 @@
 export * from "./Bookings.jsx";
 export * from "./CarCreate.jsx";
+export * from "./CarDetails.jsx";
 export * from "./CarEdit.jsx";
 export * from "./Cars.jsx";
 export * from "./Home.jsx";

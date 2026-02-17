@@ -11,6 +11,7 @@ export const MapPicker = ({
                               status,
                               onSelect,
                               selectable = false,
+                              className= "map"
                           }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
@@ -35,7 +36,7 @@ export const MapPicker = ({
                     mapType={mapType}
                     mapRef={mapRef}
                     isLoaded={isLoaded}
-                    className="map"
+                    className={className}
                     selectable={selectable}
                     onSelect={onSelect}
                     mapCard

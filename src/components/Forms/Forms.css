@@ -194,7 +194,8 @@
 @media (max-width: 500px) {
     .form__field,
     .form__upload,
-    .form__location {
+    .form__location,
+    .form__grid {
         width: 300px;
     }
 
@@ -203,15 +204,28 @@
         gap: 10px;
     }
 
-    .form__grid {
-        width: 300px;
-    }
-
     .form__image {
         height: 300px;
     }
 
     .form__badge {
         font-size: 16px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .form__field,
+    .form__upload,
+    .form__location,
+    .form__grid {
+        width: 250px;
+    }
+
+    .form__gallery {
+        max-width: 250px;
+    }
+
+    .form__image {
+        height: 250px;
     }
 }

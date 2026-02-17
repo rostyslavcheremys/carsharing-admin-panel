@@ -8,6 +8,7 @@ import {
     Monitoring,
     Users,
     CarCreate,
+    CarDetails,
     CarEdit,
     Bookings
 } from "./pages";
@@ -36,23 +37,32 @@ export const App = () => {
                     </ProtectedRoute>
                 }/>
 
-                <Route path="/cars" element={
-                    <ProtectedRoute adminOnly>
-                        <Cars />
-                    </ProtectedRoute>
-                }/>
 
-                <Route path="/cars/add" element={
-                    <ProtectedRoute adminOnly>
-                        <CarCreate />
-                    </ProtectedRoute>
-                }/>
+                <Route path="cars">
+                    <Route index element={
+                        <ProtectedRoute adminOnly>
+                            <Cars />
+                        </ProtectedRoute>
+                    }/>
 
-                <Route path="/cars/:id/edit" element={
-                    <ProtectedRoute adminOnly>
-                        <CarEdit />
-                    </ProtectedRoute>
-                }/>
+                    <Route path="add" element={
+                        <ProtectedRoute adminOnly>
+                            <CarCreate />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path=":id" element={
+                        <ProtectedRoute adminOnly>
+                            <CarDetails />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path=":id/edit" element={
+                        <ProtectedRoute adminOnly>
+                            <CarEdit />
+                        </ProtectedRoute>
+                    }/>
+                </Route>
 
                 <Route path="/users" element={
                     <ProtectedRoute adminOnly>

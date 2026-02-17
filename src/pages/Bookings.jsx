@@ -15,7 +15,7 @@ export const Bookings = () => {
 
     return (
         <Loader isLoading={isLoading} error={error}>
-            <div className="page table">
+            <div className="page page__content">
                 <span className="page__title">Перегляд бронювань</span>
 
                 <DataTable

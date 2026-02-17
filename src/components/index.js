@@ -3,6 +3,9 @@ export * from "./Buttons/FormButton.jsx";
 
 export * from "./Car/CarActions.jsx";
 export * from "./Car/CarForm.jsx";
+export * from "./Car/CarImages.jsx";
+export * from "./Car/CarItem.jsx";
+export * from "./Car/CarSpecs.jsx";
 
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";
@@ -24,8 +27,8 @@ export * from "./Dialogs/ConfirmDialog.jsx";
 export * from "./Dialogs/MessageDialog.jsx";
 export * from "./Dialogs/ImageDialog.jsx";
 export * from "./Dialogs/MapDialog.jsx";
+export * from "./Dialogs/MapDetailsDialog.jsx";
 
-export * from "./Map/MapCard.jsx";
 export * from "./Map/Map.jsx";
 export * from "./Map/MapControls.jsx";
 export * from "./Map/MapItem.jsx";

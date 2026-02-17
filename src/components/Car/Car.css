@@ -12,3 +12,149 @@
 .car-actions__icon:hover {
     color: var(--main-color) !important;
 }
+
+.car-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.car-images__container {
+    width: 500px;
+}
+
+.car-images__slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+}
+
+.car-images__slider > * {
+    width: 500px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.car-images__buttons {
+    display: none !important;
+    gap: 20px;
+}
+
+.car-images__button {
+    background: var(--main-color) !important;
+    color: var(--white-color) !important;
+}
+
+.car-images__button.Mui-disabled {
+    background: var(--grey-color) !important;
+}
+
+.car-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 0;
+    width: 500px;
+}
+
+.car-item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 15px;
+    font-family: var(--font-family), sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    background: var(--grey-color);
+    color: var(--white-color);
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.car-item__label {
+    text-transform: uppercase;
+}
+
+.car-details__map {
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+
+.car-details__map-picker {
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .car-images__container {
+        width: 400px;
+    }
+
+    .car-images {
+        gap: 20px;
+    }
+
+    .car-specs {
+        width: 400px;
+    }
+
+    .car-details__map {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .car-images__container {
+        width: 300px;
+    }
+
+    .car-specs {
+        width: 300px;
+    }
+
+    .car-images {
+        gap: 15px;
+    }
+
+    .car-item {
+        font-size: 14px;
+    }
+
+    .car-details__map {
+        width: 300px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 500px) {
+    .car-images {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .car-images__container {
+        width: 250px;
+    }
+
+    .car-images__button--side {
+        display: none !important;
+    }
+
+    .car-images__buttons {
+        display: flex !important;
+    }
+
+    .car-specs {
+        width: 250px;
+    }
+
+    .car-details__map {
+        width: 250px;
+        height: 400px;
+    }
+}
