@@ -56,20 +56,30 @@ erDiagram
         string id "ID"
         string carId "ID автомобіля"
         string userId "ID користувача"
-        timestamp startDate "Початок оренди"
-        timestamp endDate "Кінець оренди"
-        string status "Статус оренди"
-        number totalPrice "Загальна вартість"
+        timestamp plannedStart "Запланований початок оренди"
+        timestamp plannedEnd "Заплановане завершення оренди"
+        string status "Статус бронювання"
         timestamp createdAt "Дата створення"
+    }
+
+    TRIPS {
+        string id "ID"
+        string bookingId "ID бронювання"
+        string carId "ID автомобіля"
+        string userId "ID користувача"
+        timestamp actualStart "Фактичний початок поїздки"
+        timestamp actualEnd "Фактичне завершення поїздки"
+        string status "Статус поїздки"
+        number totalPrice "Загальна вартість"
         geopoint startLocation "Початкове місцезнаходження"
         geopoint endLocation "Кінцеве місцезнаходження"
-        string stateBeforeId "ID стану перед орендою"
-        string stateAfterId "ID стану після оренди"
+        string stateBeforeId "ID стану авто до поїздки"
+        string stateAfterId "ID стану авто після поїздки"
     }
 
     CAR_STATE {
-        string id "ID стану автомобіля"
-        string bookingId "ID бронювання"
+        string id "ID"
+        string tripId "ID поїздки"
         string description "Опис стану автомобіля"
         number mileage "Пробіг автомобіля"
         array images "Фотографії стану автомобіля"
@@ -84,14 +94,17 @@ erDiagram
     CARS ||--|| ENGINE: engine
     CARS ||--|| BATTERY: battery
     CARS ||--|| LOCATION: location
+    CARS ||--o| BOOKINGS : car
+    CARS ||--o| TRIPS : car
 
     USERS ||--o| BOOKINGS : user
-    CARS ||--o| BOOKINGS : car
+    USERS ||--o| TRIPS : user
 
-    BOOKINGS ||--|| CAR_STATE : stateBefore
-    BOOKINGS ||--|| CAR_STATE : stateAfter
-    BOOKINGS ||--|| LOCATION : startLocation
-    BOOKINGS ||--|| LOCATION : endLocation
+    BOOKINGS ||--o| TRIPS : generates
 
-    CAR_STATE ||--|| BOOKINGS : booking
+    TRIPS ||--|| CAR_STATE : stateBefore
+    TRIPS ||--|| CAR_STATE : stateAfter
+    TRIPS ||--|| LOCATION : startLocation
+    TRIPS ||--|| LOCATION : endLocation
+
     CAR_STATE ||--|| ENERGY_LEVEL : energyLevel
