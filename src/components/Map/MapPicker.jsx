@@ -39,7 +39,6 @@ export const MapPicker = ({
                     className={className}
                     selectable={selectable}
                     onSelect={onSelect}
-                    mapCard
                 />
                 <MapControls
                     zoom={zoom}
