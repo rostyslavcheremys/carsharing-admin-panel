@@ -1,6 +1,7 @@
 ---
 config:
-  theme: dark
+  theme: default
+  look: classic
 ---
 erDiagram
     CARS {
@@ -9,8 +10,8 @@ erDiagram
         string model "Модель"
         string licensePlate "Номерний знак"
         string status "Статус"
-        string transmissionType "Коробка передач"
-        string powertrainType "Тип двигуна"
+        string transmissionType "Тип трансмісії"
+        string powertrainType "Тип силової уставноки"
         string bodyType "Тип кузова"
         string driveType "Тип приводу"
         string color "Колір"
@@ -19,9 +20,9 @@ erDiagram
         number pricePerDay "Вартість за добу"
         number seats "Кількість місць"
         number rating "Рейтинг"
-        array images "Фотографії"
         map battery "Батарея"
         map engine "Двигун"
+        array images "Фотографії"
         geopoint location "Місцезнаходження"
     }
 
@@ -47,43 +48,42 @@ erDiagram
         string email "Електронна адреса"
         string phone "Номер телефону"
         string role "Роль"
+        string drivingLicense "Посвідчення водія"
         timestamp birthDate "Дата народження"
         timestamp createdAt "Дата створення"
-        string drivingLicense "Посвідчення водія"
     }
 
     BOOKINGS {
         string id "ID"
         string carId "ID автомобіля"
         string userId "ID користувача"
-        timestamp plannedStart "Запланований початок оренди"
-        timestamp plannedEnd "Заплановане завершення оренди"
-        string status "Статус бронювання"
+        string status "Статус"
+        timestamp plannedStart "Запланований початок"
+        timestamp plannedEnd "Заплановане завершення"
         timestamp createdAt "Дата створення"
     }
 
     TRIPS {
-        string id "ID"
-        string bookingId "ID бронювання"
+        string id "ID поїздки"
         string carId "ID автомобіля"
         string userId "ID користувача"
-        timestamp actualStart "Фактичний початок поїздки"
-        timestamp actualEnd "Фактичне завершення поїздки"
-        string status "Статус поїздки"
+        string bookingId "ID бронювання"
+        string stateBeforeId "ID стану до поїздки"
+        string stateAfterId "ID стану після поїздки"
+        string status "Статус"
         number totalPrice "Загальна вартість"
+        timestamp actualStart "Фактичний початок"
+        timestamp actualEnd "Фактичне завершення"
         geopoint startLocation "Початкове місцезнаходження"
         geopoint endLocation "Кінцеве місцезнаходження"
-        string stateBeforeId "ID стану авто до поїздки"
-        string stateAfterId "ID стану авто після поїздки"
     }
 
     CAR_STATE {
         string id "ID"
-        string tripId "ID поїздки"
-        string description "Опис стану автомобіля"
-        number mileage "Пробіг автомобіля"
-        array images "Фотографії стану автомобіля"
-        map energyLevel "Рівень пального / заряду батареї"
+        string description "Опис"
+        number mileage "Пробіг"
+        array images "Фотографії"
+        map energyLevel "Енергетичний рівень"
     }
 
     ENERGY_LEVEL {
@@ -91,20 +91,21 @@ erDiagram
         number fuelPercent "Рівень пального"
     }
 
-    CARS ||--|| ENGINE: engine
-    CARS ||--|| BATTERY: battery
-    CARS ||--|| LOCATION: location
-    CARS ||--o| BOOKINGS : car
-    CARS ||--o| TRIPS : car
+    CARS ||--|| ENGINE : "оснащений двигуном"
+    CARS ||--|| BATTERY : "оснащений батареєю"
+    CARS ||--|| LOCATION : "розташований у"
 
-    USERS ||--o| BOOKINGS : user
-    USERS ||--o| TRIPS : user
+    CARS ||--o| BOOKINGS : "може бути заброньований"
+    CARS ||--o| TRIPS : "використовується у поїздці"
 
-    BOOKINGS ||--o| TRIPS : generates
+    USERS ||--o| BOOKINGS : "створює бронювання"
+    USERS ||--o| TRIPS : "здійснює поїздку"
 
-    TRIPS ||--|| CAR_STATE : stateBefore
-    TRIPS ||--|| CAR_STATE : stateAfter
-    TRIPS ||--|| LOCATION : startLocation
-    TRIPS ||--|| LOCATION : endLocation
+    BOOKINGS ||--o| TRIPS : "є підставою для поїздки"
 
-    CAR_STATE ||--|| ENERGY_LEVEL : energyLevel
+    TRIPS ||--|| CAR_STATE : "фіксує стан до початку"
+    TRIPS ||--|| CAR_STATE : "фіксує стан після завершення"
+    TRIPS ||--|| LOCATION : "починається в"
+    TRIPS ||--|| LOCATION : "завершується в"
+
+    CAR_STATE ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
