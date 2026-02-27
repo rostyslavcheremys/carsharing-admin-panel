@@ -21,7 +21,7 @@ export const CarSpecs = ({ car }) => {
             <CarItem label="Пробіг:" value={`${car.mileage} км`}/>
             <CarItem label="Номерний знак:" value={car.licensePlate}/>
             <CarItem label="Тип кузова:" value={getLabel(car.bodyType, BODY_TYPES)}/>
-            <CarItem label="Тип двигуна:" value={getLabel(car.powertrainType, POWERTRAIN_TYPES)}/>
+            <CarItem label="Тип силової установки:" value={getLabel(car.powertrainType, POWERTRAIN_TYPES)}/>
 
             {car.engine.fuelType && (
                 <CarItem label="Тип палива:" value={getLabel(car.engine.fuelType, FUEL_TYPES)}/>
@@ -39,7 +39,7 @@ export const CarSpecs = ({ car }) => {
                 <CarItem label="Запас ходу:" value={`${car.battery.range} км`}/>
             )}
 
-            <CarItem label="Коробка передач:" value={getLabel(car.transmissionType, TRANSMISSION_TYPES)}/>
+            <CarItem label="Тип трансмісії:" value={getLabel(car.transmissionType, TRANSMISSION_TYPES)}/>
             <CarItem label="Тип приводу:" value={getLabel(car.driveType, DRIVE_TYPES)}/>
             <CarItem label="Колір:" value={getLabel(car.color, COLORS)}/>
             <CarItem label="Кількість місць:" value={car.seats}/>

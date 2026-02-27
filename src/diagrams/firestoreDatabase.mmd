@@ -11,7 +11,7 @@ erDiagram
         string licensePlate "Номерний знак"
         string status "Статус"
         string transmissionType "Тип трансмісії"
-        string powertrainType "Тип силової уставноки"
+        string powertrainType "Тип силової установки"
         string bodyType "Тип кузова"
         string driveType "Тип приводу"
         string color "Колір"
@@ -101,7 +101,7 @@ erDiagram
     USERS ||--o| BOOKINGS : "створює бронювання"
     USERS ||--o| TRIPS : "здійснює поїздку"
 
-    BOOKINGS ||--o| TRIPS : "є підставою для поїздки"
+    BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
 
     TRIPS ||--|| CAR_STATE : "фіксує стан до початку"
     TRIPS ||--|| CAR_STATE : "фіксує стан після завершення"

@@ -114,9 +114,9 @@ export const CarForm = ({
                 <SelectController
                     control={control}
                     name="powertrainType"
-                    label="Тип двигуна*"
+                    label="Тип силової установки*"
                     options={POWERTRAIN_TYPES}
-                    rules={getRequiredFieldValidation("Тип двигуна")}
+                    rules={getRequiredFieldValidation("Тип силової установки")}
                 />
 
                 {showEngineFields && (
@@ -157,9 +157,9 @@ export const CarForm = ({
                 <SelectController
                     control={control}
                     name="transmissionType"
-                    label="Коробка передач*"
+                    label="Тип трансмісії*"
                     options={TRANSMISSION_TYPES}
-                    rules={getRequiredFieldValidation("Коробка передач")}
+                    rules={getRequiredFieldValidation("Тип трансмісії")}
                 />
 
                 <SelectController

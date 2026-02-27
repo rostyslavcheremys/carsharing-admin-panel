@@ -84,7 +84,7 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getLabel(car?.bodyType, BODY_TYPES)
     },
     {
-        id: "powertrainType", label: "Тип двигуна",
+        id: "powertrainType", label: "Тип силової установки",
         render: (car) => getLabel(car?.powertrainType, POWERTRAIN_TYPES)
     },
     {
@@ -104,7 +104,7 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getString(car?.battery?.range, "км")
     },
     {
-        id: "transmissionType", label: "Коробка передач",
+        id: "transmissionType", label: "Тип трансмісії",
         render: (car) => getLabel(car?.transmissionType, TRANSMISSION_TYPES)
     },
     {
