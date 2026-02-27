@@ -110,3 +110,10 @@ main {
         font-size: 18px;
     }
 }
+
+@media (max-width: 400px) {
+    .page__buttons{
+        flex-direction: column;
+        gap: 20px;
+    }
+}

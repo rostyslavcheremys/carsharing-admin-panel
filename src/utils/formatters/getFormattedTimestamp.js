@@ -1,15 +1,26 @@
-export const getFormattedTimestamp = (value) => {
+export const getFormattedTimestamp = (value, withTime = false) => {
     if (!value) return "—";
 
-    if (typeof value.toDate === "function") {
-        return value.toDate().toLocaleDateString("uk-UA");
+    let date;
+
+    if (typeof value?.toDate === "function") {
+        date = value.toDate();
+    } else if (value?.seconds !== undefined) {
+        date = new Date(value.seconds * 1000);
+    } else {
+        date = new Date(value);
     }
 
-    if (value.seconds !== undefined) {
-        return new Date(
-            value.seconds * 1000 + (value.nanoseconds ?? 0) / 1_000_000
-        ).toLocaleDateString("uk-UA");
-    }
-    const date = new Date(value);
-    return isNaN(date) ? "—" : date.toLocaleDateString("uk-UA");
+    if (isNaN(date)) return "—";
+
+    const datePart = date.toLocaleDateString("uk-UA");
+
+    if (!withTime) return datePart;
+
+    const timePart = date.toLocaleTimeString("uk-UA", {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    return `${datePart}, ${timePart}`;
 };

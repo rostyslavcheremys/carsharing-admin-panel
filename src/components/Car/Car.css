@@ -77,6 +77,10 @@
 
 .car-item__label {
     text-transform: uppercase;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 250px;
 }
 
 .car-details__map {
@@ -151,6 +155,10 @@
 
     .car-specs {
         width: 250px;
+    }
+
+    .car-item {
+        font-size: 13px;
     }
 
     .car-details__map {

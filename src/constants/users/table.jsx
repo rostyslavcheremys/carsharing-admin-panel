@@ -49,6 +49,6 @@ export const USERS_TABLE_COLUMNS = [
     },
     {
         id: "createdAt", label: "Дата створення",
-        render: (user) => getFormattedTimestamp(user?.createdAt)
+        render: (user) => getFormattedTimestamp(user?.createdAt, true)
     },
 ];
