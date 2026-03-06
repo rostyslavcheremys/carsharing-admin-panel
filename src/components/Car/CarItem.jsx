@@ -1,7 +1,8 @@
 export const CarItem = ({ label, value }) => {
-    return(
+    return (
         <div className="car-item">
-            <div className="car-item__label">{label} </div> {value}
+            <span className="car-item__label">{label}</span>
+            <span className="car-item__value">{value}</span>
         </div>
     );
 }

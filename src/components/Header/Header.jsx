@@ -53,7 +53,7 @@ export const Header = () => {
                                 </IconButton>
                             </Tooltip>
 
-                            <Tooltip title="Перегляд бронювань" placement="right">
+                            <Tooltip title="Керування бронюваннями" placement="right">
                                 <IconButton onClick={() => navigate("/bookings")}>
                                     <DescriptionIcon className="header__nav-icon"/>
                                 </IconButton>

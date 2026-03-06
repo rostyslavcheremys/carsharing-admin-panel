@@ -35,7 +35,7 @@ main {
     font-weight: 900;
     font-size: 22px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .page__title.form {

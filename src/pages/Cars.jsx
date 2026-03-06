@@ -78,6 +78,7 @@ export const Cars = () => {
         });
     }, [handleDelete]);
 
+
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
             <div className="page page__content">

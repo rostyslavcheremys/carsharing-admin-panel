@@ -15,6 +15,7 @@ import {
 export const CarSpecs = ({ car }) => {
     return(
         <div className="car-specs">
+            <CarItem label="ID:" value={car.id}/>
             <CarItem label="Марка:" value={car.brand}/>
             <CarItem label="Модель:" value={car.model}/>
             <CarItem label="Рік:" value={car.year}/>
