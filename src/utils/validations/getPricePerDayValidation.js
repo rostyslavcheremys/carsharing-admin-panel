@@ -12,6 +12,6 @@ export const getPricePerDayValidation = () => ({
     },
     max: {
         value: 100000,
-        message: "Вартість за добу занадто велика."
+        message: "Вартість за добу занадто велика!"
     }
 });

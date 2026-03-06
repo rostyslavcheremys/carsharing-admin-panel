@@ -12,6 +12,6 @@ export const getSeatsValidation = () => ({
     },
     max: {
         value: 9,
-        message: "Кількість місць занадто велика."
+        message: "Кількість місць занадто велика!"
     }
 });
