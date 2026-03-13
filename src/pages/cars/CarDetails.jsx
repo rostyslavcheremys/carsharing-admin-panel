@@ -8,11 +8,11 @@ import {
     MapPicker,
     AppButton,
     MessageDialog
-} from "../components";
+} from "../../components/index.js";
 
-import { useMessageDialog, useDocument } from "../hooks";
+import { useMessageDialog, useDocument } from "../../hooks/index.js";
 
-import { CAR_DETAILS } from "../constants";
+import { CAR_DETAILS } from "../../constants/index.js";
 
 export const CarDetails = () => {
     const { id } = useParams();

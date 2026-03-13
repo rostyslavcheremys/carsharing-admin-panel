@@ -1,6 +1,7 @@
 import { IconButton } from "../../libs/mui";
 
 import { ArrowBackIcon, ArrowForwardIcon } from "../../libs/mui-icons";
+import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
 
 export const MapStepper = ({
                                current,
@@ -10,25 +11,23 @@ export const MapStepper = ({
                            }) => {
     return (
         <div className="map-stepper">
-            <IconButton
+            <ActionIconButton
+                Icon={ArrowBackIcon}
                 className="map__icon"
                 onClick={onPrev}
                 disabled={total <= 1}
-            >
-                <ArrowBackIcon />
-            </IconButton>
+            />
 
             <span className="map-stepper__counter">
                 {total > 0 ? `${current} / ${total}` : "0 / 0"}
             </span>
 
-            <IconButton
+            <ActionIconButton
+                Icon={ArrowForwardIcon}
                 className="map__icon"
                 onClick={onNext}
                 disabled={total <= 1}
-            >
-                <ArrowForwardIcon />
-            </IconButton>
+            />
         </div>
     );
 }

@@ -2,16 +2,17 @@ import { Routes, Route } from "react-router-dom";
 
 import {
     Layout,
-    Home,
-    Cars,
+    Dashboard,
+    CarsManagement,
     Login,
     Monitoring,
-    Users,
+    UsersManagement,
     UserDetails,
     CarCreate,
     CarDetails,
     CarEdit,
-    Bookings,
+    BookingsManagement,
+    BookingDetails
 } from "./pages";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
@@ -28,7 +29,7 @@ export const App = () => {
 
                 <Route path="/" element={
                     <ProtectedRoute adminOnly>
-                        <Home />
+                        <Dashboard />
                     </ProtectedRoute>
                 }/>
 
@@ -42,7 +43,7 @@ export const App = () => {
                 <Route path="cars">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <Cars />
+                            <CarsManagement />
                         </ProtectedRoute>
                     }/>
 
@@ -68,7 +69,7 @@ export const App = () => {
                 <Route path="users">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <Users />
+                            <UsersManagement />
                         </ProtectedRoute>
                     }/>
 
@@ -79,11 +80,19 @@ export const App = () => {
                     }/>
                 </Route>
 
-                <Route path="/bookings" element={
-                    <ProtectedRoute adminOnly>
-                        <Bookings />
-                    </ProtectedRoute>
-                }/>
+                <Route path="bookings">
+                    <Route index element={
+                        <ProtectedRoute adminOnly>
+                            <BookingsManagement />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path=":id" element={
+                        <ProtectedRoute adminOnly>
+                            <BookingDetails />
+                        </ProtectedRoute>
+                    }/>
+                </Route>
             </Route>
         </Routes>
     );

@@ -6,21 +6,20 @@ import {
     DataTable,
     Loader,
     MessageDialog, Actions
-} from "../components";
+} from "../../components/index.js";
 
 import {
     useCollection,
     useMessageDialog
-} from "../hooks";
+} from "../../hooks/index.js";
 
-import { getCarActionsMessage } from "../utils/";
+import { getActionMessage } from "../../utils/index.js";
 
-import { deleteCar } from "../services";
+import { deleteCar } from "../../services/index.js";
 
-import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../constants";
+import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
 
-
-export const Cars = () => {
+export const CarsManagement = () => {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const {
@@ -66,7 +65,8 @@ export const Cars = () => {
                         <Actions
                             id={car.id}
                             actions={CAR_ACTIONS(handleDelete)}
-                            getMessage={getCarActionsMessage}
+                            getMessage={getActionMessage}
+                            entity="car"
                         />
                     )
                 }

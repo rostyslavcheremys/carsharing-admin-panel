@@ -9,7 +9,6 @@ import {
     Card,
     CardMedia,
     CardActions,
-    IconButton,
 } from "../../libs/mui";
 
 import {
@@ -18,7 +17,7 @@ import {
     ArrowForwardIcon
 } from "../../libs/mui-icons";
 
-import { FormButton } from "../../components";
+import { ActionIconButton, FormButton} from "../../components";
 
 export const FormUpload = forwardRef(
     ({ label, value = [], onChange, className = "", disabled, name }, ref) => {
@@ -78,23 +77,25 @@ export const FormUpload = forwardRef(
                                     />
 
                                     <CardActions className="form__actions">
-                                        <IconButton
+                                        <ActionIconButton
+                                            Icon={ArrowBackIcon}
                                             onClick={() => handleMove(index, -1)}
                                             disabled={index === 0}
-                                        >
-                                            <ArrowBackIcon className="form__icon"/>
-                                        </IconButton>
+                                            iconClassName="form__icon"
+                                        />
 
-                                        <IconButton onClick={() => handleRemove(index)}>
-                                            <DeleteIcon className="form__icon"/>
-                                        </IconButton>
+                                        <ActionIconButton
+                                            Icon={DeleteIcon}
+                                            onClick={() => handleRemove(index)}
+                                            iconClassName="form__icon"
+                                        />
 
-                                        <IconButton
+                                        <ActionIconButton
+                                            Icon={ArrowForwardIcon}
                                             onClick={() => handleMove(index, 1)}
                                             disabled={index === value.length - 1}
-                                        >
-                                            <ArrowForwardIcon className="form__icon"/>
-                                        </IconButton>
+                                            iconClassName="form__icon"
+                                        />
                                     </CardActions>
 
                                     <div className="form__badge">{index + 1}</div>

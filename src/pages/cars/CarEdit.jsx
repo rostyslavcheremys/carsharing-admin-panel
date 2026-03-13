@@ -1,22 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { Loader, CarForm, MessageDialog } from "../components";
+import { Loader, CarForm, MessageDialog } from "../../components/index.js";
 
-import { useMessageDialog } from "../hooks";
+import {useMessageDialog, useDocument } from "../../hooks/index.js";
 
-import { createCar } from "../services";
+import { updateCar } from "../../services/index.js";
 
-import { getErrorMessage } from "../utils";
+import { getErrorMessage, getCarValues } from "../../utils/index.js";
 
-import { CAR_FORM_DEFAULT_VALUES } from "../constants";
+import { CAR_FORM_DEFAULT_VALUES } from "../../constants/index.js";
 
-export const CarCreate = () => {
+export const CarEdit = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [images, setImages] = useState([]);
 
     const {
         messageOpen,
@@ -24,6 +26,10 @@ export const CarCreate = () => {
         showMessage,
         handleMessageClose
     } = useMessageDialog();
+
+    const {
+        document: car, isLoading, error
+    } = useDocument("cars", id, showMessage, navigate);
 
     const {
         control,
@@ -36,34 +42,39 @@ export const CarCreate = () => {
 
     const powertrainType = watch("powertrainType");
 
+    useEffect(() => {
+        if (!car) return;
+
+        setImages(car.images || []);
+        reset(getCarValues(car));
+    }, [car, reset]);
+
     const onSubmit = async (data) => {
         try {
             setIsSubmitting(true);
 
-            await createCar(data);
+            await updateCar(id, data, images);
 
             showMessage(
-                "Автомобіль додано!",
+                "Автомобіль оновлено!",
                 () => navigate("/cars")
             );
-
-            reset(CAR_FORM_DEFAULT_VALUES);
         } catch (error) {
             showMessage(getErrorMessage(error));
         } finally {
             setIsSubmitting(false);
         }
-    }
+    };
 
     return (
-        <Loader isLoading={isSubmitting}>
+        <Loader isLoading={isLoading || isSubmitting} error={error}>
             <CarForm
-                title="Додавання автомобіля"
+                title="Редагування автомобіля"
                 control={control}
                 powertrainType={powertrainType}
                 onSubmit={handleSubmit(onSubmit)}
                 isSubmitting={isSubmitting}
-                submitLabel="Додати"
+                submitLabel="Зберегти"
                 showBack={true}
                 onBack={() => navigate("/cars")}
             />

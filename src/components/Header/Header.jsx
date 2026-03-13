@@ -1,25 +1,19 @@
-import { useNavigate } from "react-router-dom";
-
 import { Tooltip, IconButton } from "@mui/material";
 
 import {
-    NearMeIcon,
     DirectionsCarIcon,
-    PeopleIcon,
-    LightModeIcon,
     DarkModeIcon,
-    LogoutIcon,
-    EventNoteIcon
+    LightModeIcon,
+    LogoutIcon
 } from "../../libs/mui-icons";
 
-import {
-    useAuth,
-    useTheme
-} from "../../hooks";
+import {ActionIconButton, NavigateIconButton} from "../../components";
+
+import { useAuth, useTheme } from "../../hooks";
+
+import { HEADER__BUTTONS } from "../../constants";
 
 export const Header = () => {
-    const navigate = useNavigate();
-
     const { darkMode, toggleTheme } = useTheme();
 
     const { user, logout } = useAuth();
@@ -27,39 +21,25 @@ export const Header = () => {
     return(
         <header className="header">
             <div className="header__content">
-                <IconButton className="header__logo" onClick={() => navigate("/")}>
-                    <DirectionsCarIcon className="header__logo-icon"/>
-                </IconButton>
+                <NavigateIconButton
+                    to="/"
+                    Icon={DirectionsCarIcon}
+                    className="header__logo"
+                    iconClassName="header__logo-icon"
+                />
 
                 <nav className="header__nav">
-
-                    {user && (
-                        <>
-                            <Tooltip title="Моніторинг автомобілів" placement="right">
-                                <IconButton onClick={() => navigate("/monitoring")}>
-                                    <NearMeIcon className="header__nav-icon"/>
-                                </IconButton>
+                    {user &&
+                        HEADER__BUTTONS.map(({ to, Icon, tooltip, iconClassName }) => (
+                            <Tooltip key={to} title={tooltip} placement="right">
+                                <NavigateIconButton
+                                    to={to}
+                                    Icon={Icon}
+                                    iconClassName={iconClassName}
+                                />
                             </Tooltip>
-
-                            <Tooltip title="Керування автомобілями" placement="right">
-                                <IconButton onClick={() => navigate("/cars")}>
-                                    <DirectionsCarIcon className="header__nav-icon header__nav-icon--cars"/>
-                                </IconButton>
-                            </Tooltip>
-
-                            <Tooltip title="Керування користувачами" placement="right">
-                                <IconButton onClick={() => navigate("/users")}>
-                                    <PeopleIcon className="header__nav-icon header__nav-icon--users"/>
-                                </IconButton>
-                            </Tooltip>
-
-                            <Tooltip title="Керування бронюваннями" placement="right">
-                                <IconButton onClick={() => navigate("/bookings")}>
-                                    <EventNoteIcon className="header__nav-icon"/>
-                                </IconButton>
-                            </Tooltip>
-                        </>
-                    )}
+                        ))
+                    }
 
                     <Tooltip title={darkMode ? "Темна тема" : "Світла тема"} placement="right">
                         <IconButton onClick={toggleTheme}>
@@ -73,9 +53,11 @@ export const Header = () => {
 
                     {user && (
                         <Tooltip title="Вихід" placement="right">
-                            <IconButton  onClick={logout}>
-                                <LogoutIcon className="header__nav-icon"/>
-                            </IconButton>
+                            <ActionIconButton
+                                Icon={LogoutIcon}
+                                onClick={logout}
+                                iconClassName="header__nav-icon"
+                            />
                         </Tooltip>
                     )}
                 </nav>

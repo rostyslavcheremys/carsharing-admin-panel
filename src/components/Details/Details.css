@@ -21,6 +21,17 @@
     text-transform: uppercase;
 }
 
+.details-link {
+    color: unset;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out !important;
+}
+
+.details-link:hover {
+    color: var(--main-color);
+}
+
 @media (max-width: 768px) {
     .details {
         width: 400px;

@@ -1,11 +1,13 @@
+import { DirectionsCarIcon, PersonIcon } from "../../libs/mui-icons";
+
+import { NavigateIconButton } from "../../components";
+
 import { getString, getFormattedTimestamp, getLabel } from "../../utils";
 
 import { BOOKING_STATUS } from "./options.js";
 
-import { IconButton } from "../../libs/mui.js";
-import { DirectionsCarIcon, PersonIcon } from "../../libs/mui-icons.js";
-
-export const BOOKINGS_TABLE_COLUMNS = (navigate) => [
+export const BOOKINGS_TABLE_COLUMNS = [
+    { id: "actions", label: "Дії" },
     {
         id: "id", label: "ID",
         render: (booking) => getString(booking?.id)
@@ -13,17 +15,21 @@ export const BOOKINGS_TABLE_COLUMNS = (navigate) => [
     {
         id: "carId", label: "Автомобіль",
         render: (booking) => (
-            <IconButton onClick={() =>  navigate("/cars/" + booking?.carId)}>
-                <DirectionsCarIcon className="car-actions__icon" />
-            </IconButton>
+            <NavigateIconButton
+                to={`/cars/${booking?.carId}`}
+                Icon={DirectionsCarIcon}
+                iconClassName="icon-button"
+            />
         )
     },
     {
         id: "userId", label: "Користувач",
         render: (booking) => (
-            <IconButton onClick={() =>  navigate("/users/" + booking?.userId)}>
-                <PersonIcon className="car-actions__icon" />
-            </IconButton>
+            <NavigateIconButton
+                to={`/users/${booking?.userId}`}
+                Icon={PersonIcon}
+                iconClassName="icon-button"
+            />
         )
     },
     {

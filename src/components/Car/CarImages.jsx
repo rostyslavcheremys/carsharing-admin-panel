@@ -3,6 +3,7 @@ import { ImageItem } from "../ImageItem/ImageItem.jsx";
 
 import { IconButton } from "../../libs/mui";
 import { ArrowBackIcon, ArrowForwardIcon } from "../../libs/mui-icons";
+import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
 
 export const CarImages = ({ images }) => {
     const sliderRef = useRef(null);
@@ -46,13 +47,12 @@ export const CarImages = ({ images }) => {
 
     return(
         <div className="car-images">
-            <IconButton
+            <ActionIconButton
+                Icon={ArrowBackIcon}
                 className="car-images__button car-images__button--side"
                 disabled={!canScrollLeft}
                 onClick={scrollLeft}
-            >
-                <ArrowBackIcon />
-            </IconButton>
+            />
 
             <div className="car-images__container">
                 <div className="car-images__slider" onScroll={checkScroll} ref={sliderRef}>
@@ -67,30 +67,27 @@ export const CarImages = ({ images }) => {
             </div>
 
             <div className="car-images__buttons">
-                <IconButton
+                <ActionIconButton
+                    Icon={ArrowBackIcon}
                     className="car-images__button"
                     disabled={!canScrollLeft}
                     onClick={scrollLeft}
-                >
-                    <ArrowBackIcon />
-                </IconButton>
+                />
 
-                <IconButton
+                <ActionIconButton
+                    Icon={ArrowForwardIcon}
                     className="car-images__button"
                     disabled={!canScrollRight}
                     onClick={scrollRight}
-                >
-                    <ArrowForwardIcon />
-                </IconButton>
+                />
             </div>
 
-            <IconButton
+            <ActionIconButton
+                Icon={ArrowForwardIcon}
                 className="car-images__button car-images__button--side"
                 disabled={!canScrollRight}
                 onClick={scrollRight}
-            >
-                <ArrowForwardIcon />
-            </IconButton>
+            />
         </div>
     );
 }

@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 
 import { Dialog, IconButton } from "../../libs/mui";
 
-import { CloseIcon } from "../../libs/mui-icons";
+import {ArrowBackIcon, CloseIcon} from "../../libs/mui-icons";
 
-import { AppButton } from "../index.js";
+import {ActionIconButton, AppButton} from "../index.js";
 
 import { getLabel } from "../../utils";
 
@@ -28,9 +28,11 @@ export const MapDetailsDialog = ({ car, onClose }) => {
             <div className="dialog__header">
                 <span className="dialog__title">{car.brand} {car.model}</span>
 
-                <IconButton onClick={onClose}>
-                    <CloseIcon className="dialog__icon--close" />
-                </IconButton>
+                <ActionIconButton
+                    Icon={CloseIcon}
+                    className="dialog__icon--close"
+                    onClick={onClose}
+                />
             </div>
 
             <div className="dialog__text--container">

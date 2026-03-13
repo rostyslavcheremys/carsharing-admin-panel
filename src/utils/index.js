@@ -1,8 +1,8 @@
-export * from "./cars/getCarActionsMessage.js";
+export * from "./messages/getActionsMessage.js";
 export * from "./cars/getCarObject.js";
 export * from "./cars/getCarValues.js";
 
-export * from "./errors/getErrorMessage.js";
+export * from "./messages/getErrorMessage.js";
 
 export * from "./formatters/getFormattedTimestamp.js";
 export * from "./formatters/getNumber.js";

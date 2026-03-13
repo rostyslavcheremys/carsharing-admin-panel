@@ -39,6 +39,10 @@ main {
     margin-top: 10px;
 }
 
+.page__title.form {
+    margin-bottom: 10px;
+}
+
 .page__header {
     display: flex;
     justify-content: center;
@@ -50,6 +54,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
     width: 100%;
 }
 

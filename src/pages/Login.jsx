@@ -55,9 +55,9 @@ export const Login = () => {
     return (
         <Loader isLoading={isLoading}>
             <div className="page">
-                <span className="page__title form">Адміністративна панель</span>
-
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
+                    <span className="page__title form">Адміністративна панель</span>
+
                     <InputController
                         control={control}
                         name="email"
@@ -74,7 +74,7 @@ export const Login = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <div className="page__button">
+                    <div className="page__buttons">
                         <AppButton
                             type="submit"
                             label="Вхід"

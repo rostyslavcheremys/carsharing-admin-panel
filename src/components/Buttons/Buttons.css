@@ -24,3 +24,13 @@
     width: 200px !important;
     height: 50px !important;
 }
+
+.icon-button {
+    font-size: 25px !important;
+    transition: color 0.2s ease-in-out !important;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    color: var(--main-color) !important;
+}

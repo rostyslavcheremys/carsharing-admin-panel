@@ -50,7 +50,7 @@ export const CarForm = ({
 
     return (
         <div className="page page__content">
-            <span className="page__title form">{title}</span>
+            <span className="page__title">{title}</span>
 
             <form className="page__form" onSubmit={onSubmit}>
                 <FileUploadController

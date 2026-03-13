@@ -1,12 +1,16 @@
 export * from "./Actions/Actions.jsx";
 
+export * from "./Buttons/ActionIconButton.jsx";
 export * from "./Buttons/AppButton.jsx";
 export * from "./Buttons/FormButton.jsx";
+export * from "./Buttons/NavigateIconButton.jsx";
 
 export * from "./Car/CarForm.jsx";
 export * from "./Car/CarImages.jsx";
-export * from "./Details/DetailsItem.jsx";
+
 export * from "./Details/Details.jsx";
+export * from "./Details/DetailsItem.jsx";
+export * from "./Details/DetailsLink.jsx";
 
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";

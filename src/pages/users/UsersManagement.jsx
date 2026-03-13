@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 
-import { DataTable, Loader, Actions } from "../components";
+import { DataTable, Loader, Actions } from "../../components/index.js";
 
-import { useCollection } from "../hooks";
+import { useCollection } from "../../hooks/index.js";
 
-import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../constants";
+import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../constants/index.js";
 
-import { getCarActionsMessage } from "../utils";
+import { getActionMessage } from "../../utils/index.js";
 
-export const Users = () => {
+export const UsersManagement = () => {
     const {
         data: users,
         isLoading,
@@ -26,7 +26,8 @@ export const Users = () => {
                         <Actions
                             id={user.id}
                             actions={USER_ACTIONS}
-                            getMessage={getCarActionsMessage}
+                            getMessage={getActionMessage}
+                            entity="user"
                         />
                 };
             }
@@ -39,10 +40,7 @@ export const Users = () => {
             <div className="page page__content">
                 <span className="page__title">Керування користувачами</span>
 
-                <DataTable
-                    rows={users}
-                    columns={columns}
-                />
+                <DataTable rows={users} columns={columns} />
             </div>
         </Loader>
     );

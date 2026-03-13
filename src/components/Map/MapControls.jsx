@@ -1,7 +1,5 @@
 import { useCallback } from "react";
 
-import { IconButton } from "../../libs/mui";
-
 import {
     AddIcon,
     RemoveIcon,
@@ -11,6 +9,8 @@ import {
     FullscreenIcon,
     FullscreenExitIcon
 } from "../../libs/mui-icons";
+
+import { ActionIconButton } from "../../components";
 
 import { useFullscreen } from "../../hooks";
 
@@ -50,42 +50,37 @@ export const MapControls = ({
 
     return(
         <div className="map-controls">
-            <IconButton
-                className="map__icon"
+            <ActionIconButton
+                Icon={RoomIcon}
                 onClick={handleCenterMarker}
-            >
-                <RoomIcon />
-            </IconButton>
+                className="map__icon"
+            />
 
-            <IconButton
+            <ActionIconButton
+                Icon={AddIcon}
+                onClick={() => handleZoomChange(1)}
                 className="map__icon"
                 disabled={zoom >= MAX_ZOOM}
-                onClick={() => handleZoomChange(1)}
-            >
-                <AddIcon />
-            </IconButton>
+            />
 
-            <IconButton
+            <ActionIconButton
+                Icon={RemoveIcon}
+                onClick={() => handleZoomChange(-1)}
                 className="map__icon"
                 disabled={zoom <= MIN_ZOOM}
-                onClick={() => handleZoomChange(-1)}
-            >
-                <RemoveIcon />
-            </IconButton>
+            />
 
-            <IconButton
-                className="map__icon"
+            <ActionIconButton
+                Icon={mapType === "roadmap" ? MapIcon : SatelliteAltIcon}
                 onClick={handleMapType}
-            >
-                {mapType === "roadmap" ? <MapIcon /> : <SatelliteAltIcon />}
-            </IconButton>
-
-            <IconButton
                 className="map__icon"
+            />
+
+            <ActionIconButton
+                Icon={isFullscreen ? FullscreenExitIcon : FullscreenIcon}
                 onClick={toggle}
-            >
-                {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
-            </IconButton>
+                className="map__icon"
+            />
         </div>
     );
 }
