@@ -7,10 +7,11 @@ import {
     Login,
     Monitoring,
     Users,
+    UserDetails,
     CarCreate,
     CarDetails,
     CarEdit,
-    Bookings
+    Bookings,
 } from "./pages";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
@@ -64,11 +65,19 @@ export const App = () => {
                     }/>
                 </Route>
 
-                <Route path="/users" element={
-                    <ProtectedRoute adminOnly>
-                        <Users />
-                    </ProtectedRoute>
-                }/>
+                <Route path="users">
+                    <Route index element={
+                        <ProtectedRoute adminOnly>
+                            <Users />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path=":id" element={
+                        <ProtectedRoute adminOnly>
+                            <UserDetails />
+                        </ProtectedRoute>
+                    }/>
+                </Route>
 
                 <Route path="/bookings" element={
                     <ProtectedRoute adminOnly>

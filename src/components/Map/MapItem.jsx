@@ -45,6 +45,8 @@ export const MapItem = ({
 
     useAutoPanToMarker(mapRef, locations, activeIndex);
 
+
+
     return (
         <GoogleMap
             mapContainerClassName={className}

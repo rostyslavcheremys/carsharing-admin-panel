@@ -5,7 +5,7 @@ import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 export const useCollection = (collectionName, { live = true } = {}) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 

@@ -12,7 +12,7 @@ import {
     DRIVE_TYPES,
     FUEL_TYPES,
     POWERTRAIN_TYPES,
-    STATUS,
+    CAR_STATUS,
     TRANSMISSION_TYPES,
 } from "../../constants";
 
@@ -64,7 +64,7 @@ export const CarForm = ({
                     control={control}
                     name="status"
                     label="Статус*"
-                    options={STATUS}
+                    options={CAR_STATUS}
                     rules={getRequiredFieldValidation("Статус")}
                 />
 

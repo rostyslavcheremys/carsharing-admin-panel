@@ -1,0 +1,31 @@
+import {
+    BODY_TYPES,
+    COLORS,
+    DRIVE_TYPES,
+    FUEL_TYPES,
+    POWERTRAIN_TYPES,
+    CAR_STATUS,
+    TRANSMISSION_TYPES,
+} from "./options.js";
+
+export const CAR_DETAILS = [
+    { label: "ID:", key: "id" },
+    { label: "Марка:", key: "brand" },
+    { label: "Модель:", key: "model" },
+    { label: "Рік:", key: "year" },
+    { label: "Пробіг:", key: "mileage", suffix: "км" },
+    { label: "Номерний знак:", key: "licensePlate" },
+    { label: "Тип кузова:", key: "bodyType", map: BODY_TYPES },
+    { label: "Тип силової установки:", key: "powertrainType", map: POWERTRAIN_TYPES },
+    { label: "Тип палива:", key: "engine.fuelType", map: FUEL_TYPES },
+    { label: "Об'єм двигуна:", key: "engine.displacement", suffix: "л" },
+    { label: "Ємність батареї:", key: "battery.capacity", suffix: "кВт·год" },
+    { label: "Запас ходу:", key: "battery.range", suffix: "км" },
+    { label: "Тип трансмісії:", key: "transmissionType", map: TRANSMISSION_TYPES },
+    { label: "Тип приводу:", key: "driveType", map: DRIVE_TYPES },
+    { label: "Колір:", key: "color", map: COLORS },
+    { label: "Кількість місць:", key: "seats" },
+    { label: "Рейтинг:", key: "rating" },
+    { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
+    { label: "Статус:", key: "status", map: CAR_STATUS },
+];

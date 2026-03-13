@@ -27,6 +27,7 @@ main {
 
 .page__content {
     padding: 30px;
+    gap: 30px;
 }
 
 .page__title {
@@ -35,17 +36,12 @@ main {
     font-weight: 900;
     font-size: 22px;
     text-transform: uppercase;
-    margin: 20px 0;
-}
-
-.page__title.form {
-    margin-bottom: 15px;
+    margin-top: 10px;
 }
 
 .page__header {
     display: flex;
     justify-content: center;
-    padding: 0 0 20px 0;
     width: 100%;
 }
 
@@ -62,17 +58,16 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 30px;
 }
 
-.page__buttons{
+.page__buttons {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
     width: 100%;
-    margin-top: 30px;
     gap: 40px;
+    margin-top: 30px;
 }
 
 .page__form.edit {

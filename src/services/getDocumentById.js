@@ -1,8 +1,8 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db } from "../firebase/index.js";
 
-export const getCarById = async (carId) => {
-    const carRef = doc(db, "cars", carId);
+export const getDocumentById = async (collectionName, docId) => {
+    const carRef = doc(db, collectionName, docId);
     const snapshot = await getDoc(carRef);
 
     if (!snapshot.exists()) {

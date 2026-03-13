@@ -1,4 +1,4 @@
-export const STATUS = [
+export const CAR_STATUS = [
     { value: "available", label: "Доступний" },
     { value: "rented", label: "Орендований" },
     { value: "unavailable", label: "Неактивний" },

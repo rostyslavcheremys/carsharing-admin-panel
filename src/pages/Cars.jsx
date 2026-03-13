@@ -1,17 +1,11 @@
-import {
-    useCallback,
-    useMemo,
-    useState
-} from "react";
-
+import { useCallback, useMemo, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
     AppButton,
     DataTable,
     Loader,
-    CarActions,
-    MessageDialog
+    MessageDialog, Actions
 } from "../components";
 
 import {
@@ -19,9 +13,12 @@ import {
     useMessageDialog
 } from "../hooks";
 
+import { getCarActionsMessage } from "../utils/";
+
 import { deleteCar } from "../services";
 
-import { CARS_TABLE_COLUMNS } from "../constants";
+import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../constants";
+
 
 export const Cars = () => {
     const [isDeleting, setIsDeleting] = useState(false);
@@ -65,11 +62,11 @@ export const Cars = () => {
             if (column.id === "actions") {
                 return {
                     ...column,
-
                     render: (car) => (
-                        <CarActions
-                            carId={car.id}
-                            onDelete={handleDelete}
+                        <Actions
+                            id={car.id}
+                            actions={CAR_ACTIONS(handleDelete)}
+                            getMessage={getCarActionsMessage}
                         />
                     )
                 }
@@ -77,7 +74,6 @@ export const Cars = () => {
             return column;
         });
     }, [handleDelete]);
-
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>

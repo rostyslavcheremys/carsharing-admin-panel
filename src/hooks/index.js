@@ -1,4 +1,5 @@
 export * from "./useAuth.js";
+export * from "./useDocument.js";
 export * from "./useCollection.js";
 export * from "./useFullscreen.js";
 export * from "./useMessageDialog.js";

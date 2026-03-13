@@ -7,6 +7,7 @@ export const useGoogleMapsLoader = () => {
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         language: "uk",
         region: "UA",
+        libraries: ["marker"],
     }), []);
 
     return useJsApiLoader(loaderOptions);

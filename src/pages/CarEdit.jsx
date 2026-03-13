@@ -5,9 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { Loader, CarForm, MessageDialog } from "../components";
 
-import { useMessageDialog } from "../hooks";
+import {useMessageDialog, useDocument } from "../hooks";
 
-import { updateCar, getCarById } from "../services";
+import { updateCar } from "../services";
 
 import { getErrorMessage, getCarValues } from "../utils";
 
@@ -17,7 +17,6 @@ export const CarEdit = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [isFetching, setIsFetching] = useState(true);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [images, setImages] = useState([]);
 
@@ -27,6 +26,10 @@ export const CarEdit = () => {
         showMessage,
         handleMessageClose
     } = useMessageDialog();
+
+    const {
+        document: car, isLoading, error
+    } = useDocument("cars", id, showMessage, navigate);
 
     const {
         control,
@@ -40,29 +43,11 @@ export const CarEdit = () => {
     const powertrainType = watch("powertrainType");
 
     useEffect(() => {
-        const loadCar = async () => {
-            if (!id) return;
+        if (!car) return;
 
-            try {
-                setIsFetching(true);
-
-                const car = await getCarById(id);
-
-                setImages(car.images || []);
-
-                reset(getCarValues(car));
-            } catch (error) {
-                showMessage(
-                    getErrorMessage(error),
-                    () => navigate("/cars")
-                );
-            } finally {
-                setIsFetching(false);
-            }
-        }
-
-        loadCar();
-    }, []);
+        setImages(car.images || []);
+        reset(getCarValues(car));
+    }, [car, reset]);
 
     const onSubmit = async (data) => {
         try {
@@ -79,10 +64,10 @@ export const CarEdit = () => {
         } finally {
             setIsSubmitting(false);
         }
-    }
+    };
 
     return (
-        <Loader isLoading={isFetching || isSubmitting}>
+        <Loader isLoading={isLoading || isSubmitting} error={error}>
             <CarForm
                 title="Редагування автомобіля"
                 control={control}

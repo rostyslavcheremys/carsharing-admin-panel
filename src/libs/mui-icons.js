@@ -21,7 +21,8 @@ import RoomIcon from '@mui/icons-material/Room';
 import SatelliteAltIcon from '@mui/icons-material/SatelliteAlt';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import NearMeIcon from '@mui/icons-material/NearMe';
-import DescriptionIcon from '@mui/icons-material/Description';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import PersonIcon from '@mui/icons-material/Person';
 
 export {
     MapIcon,
@@ -47,5 +48,6 @@ export {
     SatelliteAltIcon,
     FilterListIcon,
     NearMeIcon,
-    DescriptionIcon
+    EventNoteIcon,
+    PersonIcon
 }

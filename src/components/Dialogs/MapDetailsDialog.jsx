@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 
-import { Dialog, IconButton } from "../../libs/mui.js";
+import { Dialog, IconButton } from "../../libs/mui";
 
-import { CloseIcon } from "../../libs/mui-icons.js";
+import { CloseIcon } from "../../libs/mui-icons";
 
 import { AppButton } from "../index.js";
 
-import { getLabel } from "../../utils/index.js";
+import { getLabel } from "../../utils";
 
-import { STATUS } from "../../constants/index.js";
+import { CAR_STATUS } from "../../constants";
 
 export const MapDetailsDialog = ({ car, onClose }) => {
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ export const MapDetailsDialog = ({ car, onClose }) => {
 
             <div className="dialog__text--container">
                 <span className="dialog__text">
-                    Статус: <span className={`status--${car.status}`}>{getLabel(car.status, STATUS)}</span>
+                    Статус: <span className={`status--${car.status}`}>{getLabel(car.status, CAR_STATUS)}</span>
                 </span>
 
                 <span className="dialog__text">{`Номерний знак: ${car.licensePlate}`}</span>

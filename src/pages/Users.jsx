@@ -1,8 +1,12 @@
-import { DataTable, Loader } from "../components";
+import { useMemo } from "react";
+
+import { DataTable, Loader, Actions } from "../components";
 
 import { useCollection } from "../hooks";
 
-import { USERS_TABLE_COLUMNS } from "../constants";
+import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../constants";
+
+import { getCarActionsMessage } from "../utils";
 
 export const Users = () => {
     const {
@@ -13,6 +17,23 @@ export const Users = () => {
 
     console.log(users);
 
+    const columns = useMemo(() => {
+        return USERS_TABLE_COLUMNS.map((column) => {
+            if (column.id === "actions") {
+                return {
+                    ...column,
+                    render: (user) =>
+                        <Actions
+                            id={user.id}
+                            actions={USER_ACTIONS}
+                            getMessage={getCarActionsMessage}
+                        />
+                };
+            }
+            return column;
+        });
+    }, []);
+
     return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
@@ -20,7 +41,7 @@ export const Users = () => {
 
                 <DataTable
                     rows={users}
-                    columns={USERS_TABLE_COLUMNS}
+                    columns={columns}
                 />
             </div>
         </Loader>

@@ -9,7 +9,7 @@ import {
     LightModeIcon,
     DarkModeIcon,
     LogoutIcon,
-    DescriptionIcon
+    EventNoteIcon
 } from "../../libs/mui-icons";
 
 import {
@@ -55,7 +55,7 @@ export const Header = () => {
 
                             <Tooltip title="Керування бронюваннями" placement="right">
                                 <IconButton onClick={() => navigate("/bookings")}>
-                                    <DescriptionIcon className="header__nav-icon"/>
+                                    <EventNoteIcon className="header__nav-icon"/>
                                 </IconButton>
                             </Tooltip>
                         </>

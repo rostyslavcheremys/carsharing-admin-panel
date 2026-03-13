@@ -1,17 +1,21 @@
+import { useNavigate } from "react-router-dom";
+
 import { DataTable, Loader } from "../components";
 
 import { useCollection } from "../hooks";
 
-import { USERS_TABLE_COLUMNS } from "../constants";
+import { BOOKINGS_TABLE_COLUMNS } from "../constants";
 
 export const Bookings = () => {
+    const navigate = useNavigate();
+
     const {
-        data: users,
+        data: bookings,
         isLoading,
         error,
-    } = useCollection("users");
+    } = useCollection("bookings");
 
-    console.log(users);
+    console.log(bookings);
 
     return (
         <Loader isLoading={isLoading} error={error}>
@@ -19,8 +23,8 @@ export const Bookings = () => {
                 <span className="page__title">Керування бронюваннями</span>
 
                 <DataTable
-                    rows={users}
-                    columns={USERS_TABLE_COLUMNS}
+                    rows={bookings}
+                    columns={BOOKINGS_TABLE_COLUMNS(navigate)}
                 />
             </div>
         </Loader>

@@ -1,3 +1,4 @@
+import "./Actions/Actions.css";
 import "./Buttons/Buttons.css";
 import "./Car/Car.css";
 import "./Footer/Footer.css";
@@ -7,5 +8,6 @@ import "./ImageItem/ImageItem.css";
 import "./Header/Header.css";
 import "./Loader/Loader.css";
 import "./Map/Map.css";
+import "./Details/Details.css";
 import "./Dialogs/Dialogs.css";
 import "./Tables/Tables.css";

@@ -8,6 +8,7 @@ export * from "./formatters/getFormattedTimestamp.js";
 export * from "./formatters/getNumber.js";
 export * from "./formatters/getString.js";
 export * from "./formatters/getLabel.js";
+export * from "./formatters/getNestedValue.js";
 
 export * from "./images/uploadImages.js";
 export * from "./images/deleteImages.js";

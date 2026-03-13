@@ -1,30 +1,22 @@
-import { useState, useEffect } from "react";
-
+import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import {
     Loader,
     CarImages,
-    CarSpecs,
+    Details,
     MapPicker,
     AppButton,
     MessageDialog
-} from "../components/index.js";
+} from "../components";
 
-import { useMessageDialog } from "../hooks";
+import { useMessageDialog, useDocument } from "../hooks";
 
-import { getErrorMessage } from "../utils";
-
-import { getCarById } from "../services";
+import { CAR_DETAILS } from "../constants";
 
 export const CarDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const [isFetching, setIsFetching] = useState(true);
-    const [car, setCar] = useState([]);
-
-    const images = Array.isArray(car.images) ? car.images : [car.images];
 
     const {
         messageOpen,
@@ -33,39 +25,25 @@ export const CarDetails = () => {
         handleMessageClose
     } = useMessageDialog();
 
-    useEffect(() => {
-        const loadCar = async () => {
-            if (!id) return;
+    const {
+        document: car, isLoading, error
+    } = useDocument("cars", id, showMessage, navigate);
 
-            try {
-                setIsFetching(true);
+    const images = useMemo(() => {
+        if (!car?.images) return [];
+        return Array.isArray(car.images) ? car.images : [car.images];
+    }, [car]);
 
-                const car = await getCarById(id);
-
-                setCar(car);
-            } catch (error) {
-                showMessage(
-                    getErrorMessage(error),
-                    () => navigate("/cars")
-                );
-            } finally {
-                setIsFetching(false);
-            }
-        }
-
-        loadCar();
-    }, []);
+    if (!car) return null;
 
     return(
-        <Loader isLoading={isFetching} /*error={error}*/>
+        <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
                 <span className="page__title">Автомобіль</span>
 
-                {images.length > 0 &&
-                    <CarImages images={images}/>
-                }
+                {images.length > 0 && <CarImages images={images} />}
 
-                <CarSpecs car={car}/>
+                <Details data={car} details={CAR_DETAILS} />
 
                 <div className="car-details__map">
                     <MapPicker
@@ -87,7 +65,7 @@ export const CarDetails = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isFetching}
+                        disabled={isLoading}
                     />
                 </div>
 

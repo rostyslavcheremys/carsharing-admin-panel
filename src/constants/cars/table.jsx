@@ -12,7 +12,7 @@ import {
     DRIVE_TYPES,
     FUEL_TYPES,
     POWERTRAIN_TYPES,
-    STATUS,
+    CAR_STATUS,
     TRANSMISSION_TYPES,
 } from "./options.js";
 
@@ -24,7 +24,7 @@ export const CARS_TABLE_COLUMNS = [
     },
     {
         id: "status", label: "Статус",
-        render: (car) => getLabel(car?.status, STATUS)
+        render: (car) => getLabel(car?.status, CAR_STATUS)
     },
     {
         id: "location", label: "Місцезнаходження",

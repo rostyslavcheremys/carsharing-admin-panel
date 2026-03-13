@@ -7,4 +7,5 @@ export * from "./Home.jsx";
 export * from "./Layout.jsx";
 export * from "./Login.jsx";
 export * from "./Monitoring.jsx";
+export * from "./UserDetails.jsx";
 export * from "./Users.jsx";
