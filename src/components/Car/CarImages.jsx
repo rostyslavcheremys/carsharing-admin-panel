@@ -1,9 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { ImageItem } from "../ImageItem/ImageItem.jsx";
 
-import { IconButton } from "../../libs/mui";
-import { ArrowBackIcon, ArrowForwardIcon } from "../../libs/mui-icons";
-import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
+import { ActionIconButton, ImageItem } from "../../components";
 
 export const CarImages = ({ images }) => {
     const sliderRef = useRef(null);

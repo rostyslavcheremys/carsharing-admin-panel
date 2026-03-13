@@ -1,7 +1,6 @@
-import { IconButton } from "../../libs/mui";
-
 import { ArrowBackIcon, ArrowForwardIcon } from "../../libs/mui-icons";
-import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
+
+import { ActionIconButton } from "../../components";
 
 export const MapStepper = ({
                                current,

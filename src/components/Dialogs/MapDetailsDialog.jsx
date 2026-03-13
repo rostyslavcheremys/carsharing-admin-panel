@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { Dialog, IconButton } from "../../libs/mui";
+import { Dialog } from "../../libs/mui";
 
-import {ArrowBackIcon, CloseIcon} from "../../libs/mui-icons";
+import { CloseIcon} from "../../libs/mui-icons";
 
-import {ActionIconButton, AppButton} from "../index.js";
+import { ActionIconButton, AppButton } from "../../components";
 
 import { getLabel } from "../../utils";
 
