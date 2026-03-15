@@ -5,11 +5,11 @@ import {
     Details,
     AppButton,
     MessageDialog,
-} from "../../components/index.js";
+} from "../../components";
 
-import { useMessageDialog, useDocument } from "../../hooks/index.js";
+import { useMessageDialog, useDocument } from "../../hooks";
 
-import { USER_DETAILS } from "../../constants/index.js";
+import { USER_DETAILS } from "../../constants";
 
 export const UserDetails = () => {
     const { id } = useParams();

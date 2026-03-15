@@ -1,7 +1,7 @@
 import imageCompression from "browser-image-compression";
 
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
-import { storage } from "../../firebase/index.js";
+import { storage } from "../../firebase";
 
 export const uploadImages = async (files, folder, id) => {
     const uploadedRefs = [];

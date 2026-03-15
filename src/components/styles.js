@@ -1,7 +1,6 @@
 import "./Actions/Actions.css";
 import "./Buttons/Buttons.css";
 import "./Car/Car.css";
-import "./Footer/Footer.css";
 import "./FormControllers/FormControllers.css";
 import "./Forms/Forms.css";
 import "./ImageItem/ImageItem.css";

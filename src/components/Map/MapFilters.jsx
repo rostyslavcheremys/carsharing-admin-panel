@@ -1,17 +1,17 @@
 import { useState } from "react";
 
 import {
-    IconButton,
     Menu,
     MenuItem,
     Checkbox,
     FormControlLabel
 } from "../../libs/mui";
 
-import {FilterListIcon, RoomIcon} from "../../libs/mui-icons";
+import { FilterListIcon } from "../../libs/mui-icons";
+
+import { ActionIconButton } from "../../components";
 
 import { CAR_STATUS_FILTER } from "../../constants";
-import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
 
 export const MapFilters = ({ selectedStatus, onChange }) => {
     const [anchorEl, setAnchorEl] = useState(null);

@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { Loader, CarForm, MessageDialog } from "../../components/index.js";
+import { Loader, CarForm, MessageDialog } from "../../components";
 
-import {useMessageDialog, useDocument } from "../../hooks/index.js";
+import {useMessageDialog, useDocument } from "../../hooks";
 
-import { updateCar } from "../../services/index.js";
+import { updateCar } from "../../services";
 
-import { getErrorMessage, getCarValues } from "../../utils/index.js";
+import { getErrorMessage, getCarValues } from "../../utils";
 
-import { CAR_FORM_DEFAULT_VALUES } from "../../constants/index.js";
+import { CAR_FORM_DEFAULT_VALUES } from "../../constants";
 
 export const CarEdit = () => {
     const { id } = useParams();

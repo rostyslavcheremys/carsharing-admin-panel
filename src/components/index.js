@@ -25,7 +25,6 @@ export * from "./Forms/FormUpload.jsx";
 export * from "./ImageItem/ImageItem.jsx";
 export * from "./Header/Header.jsx";
 export * from "./Loader/Loader.jsx";
-export * from "./Footer/Footer.jsx";
 
 export * from "./Dialogs/DialogCell.jsx";
 export * from "./Dialogs/ConfirmDialog.jsx";

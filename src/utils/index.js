@@ -1,7 +1,7 @@
-export * from "./messages/getActionsMessage.js";
 export * from "./cars/getCarObject.js";
 export * from "./cars/getCarValues.js";
 
+export * from "./messages/getActionsMessage.js";
 export * from "./messages/getErrorMessage.js";
 
 export * from "./formatters/getFormattedTimestamp.js";
@@ -15,7 +15,6 @@ export * from "./images/deleteImages.js";
 
 export * from "./map/getCarMarkerIcon.js";
 export * from "./map/getPickerMarkerIcon.js";
-export * from "./map/normalizeLocation.js";
 
 export * from "./theme/getTheme.js";
 
@@ -33,9 +32,5 @@ export * from "./validations/getCapacityValidation.js";
 export * from "./validations/getRangeValidation.js";
 export * from "./validations/getSeatsValidation.js";
 export * from "./validations/getPricePerDayValidation.js";
-
-
-
-
 export * from "./validations/requiredField.js";
 export * from "./validations/requiredAny.js";

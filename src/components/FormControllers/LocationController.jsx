@@ -2,9 +2,7 @@ import { useState } from "react";
 
 import { Controller } from "react-hook-form";
 
-import { FormLocation } from "../../components";
-
-import { MapDialog } from "../../components";
+import { FormLocation, MapDialog } from "../../components";
 
 export const LocationController = ({
                                        control,

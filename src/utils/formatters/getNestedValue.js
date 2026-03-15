@@ -1,2 +1,3 @@
-export const getNestedValue = (obj, path) =>
-    path?.split(".").reduce((acc, part) => acc?.[part], obj);
+export const getNestedValue = (obj, path) => {
+    return path?.split(".").reduce((acc, part) => acc?.[part], obj);
+}
