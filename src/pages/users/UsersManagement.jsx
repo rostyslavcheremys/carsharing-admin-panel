@@ -1,12 +1,10 @@
-import { useMemo } from "react";
+import { DataTable, Loader, Actions } from "../../components";
 
-import { DataTable, Loader, Actions } from "../../components/index.js";
+import { useCollection, useTableColumns } from "../../hooks";
 
-import { useCollection } from "../../hooks/index.js";
+import { getActionMessage } from "../../utils";
 
-import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../constants/index.js";
-
-import { getActionMessage } from "../../utils/index.js";
+import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../constants";
 
 export const UsersManagement = () => {
     const {
@@ -17,23 +15,16 @@ export const UsersManagement = () => {
 
     console.log(users);
 
-    const columns = useMemo(() => {
-        return USERS_TABLE_COLUMNS.map((column) => {
-            if (column.id === "actions") {
-                return {
-                    ...column,
-                    render: (user) =>
-                        <Actions
-                            id={user.id}
-                            actions={USER_ACTIONS}
-                            getMessage={getActionMessage}
-                            entity="user"
-                        />
-                };
-            }
-            return column;
-        });
-    }, []);
+    const columns = useTableColumns(USERS_TABLE_COLUMNS, {
+        actions: (user) => (
+            <Actions
+                id={user.id}
+                actions={USER_ACTIONS}
+                getMessage={getActionMessage}
+                entity="user"
+            />
+        ),
+    });
 
     return (
         <Loader isLoading={isLoading} error={error}>

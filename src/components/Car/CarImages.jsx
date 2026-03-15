@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
+import { ArrowBackIcon, ArrowForwardIcon } from "../../libs/mui-icons";
+
 import { ActionIconButton, ImageItem } from "../../components";
 
 export const CarImages = ({ images }) => {

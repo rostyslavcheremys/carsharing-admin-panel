@@ -3,6 +3,7 @@ export * from "./useDocument.js";
 export * from "./useCollection.js";
 export * from "./useFullscreen.js";
 export * from "./useMessageDialog.js";
+export * from "./useTableColumns.js";
 export * from "./useTheme.js";
 
 export * from "./map/useActiveIndex.js";

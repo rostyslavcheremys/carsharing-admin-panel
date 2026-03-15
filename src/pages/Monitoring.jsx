@@ -1,16 +1,16 @@
 import { Loader , Map } from "../components";
 
-import { useCollection} from "../hooks";
+import { useCollection } from "../hooks";
 
 export const Monitoring = () => {
     const {
         data: cars,
         isLoading,
-        /*error,*/
+        error,
     } = useCollection("cars");
 
     return (
-        <Loader isLoading={isLoading}>
+        <Loader isLoading={isLoading} error={error}>
             <div className="page">
                 <Map cars={cars}/>
             </div>

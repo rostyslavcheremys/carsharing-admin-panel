@@ -1,21 +1,23 @@
-import { useCallback, useMemo, useState} from "react";
+import { useCallback, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
     AppButton,
     DataTable,
     Loader,
-    MessageDialog, Actions
-} from "../../components/index.js";
+    MessageDialog,
+    Actions
+} from "../../components";
 
 import {
     useCollection,
-    useMessageDialog
-} from "../../hooks/index.js";
+    useMessageDialog,
+    useTableColumns
+} from "../../hooks";
 
-import { getActionMessage } from "../../utils/index.js";
+import { getActionMessage } from "../../utils";
 
-import { deleteCar } from "../../services/index.js";
+import { deleteCar } from "../../services";
 
 import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
 
@@ -56,24 +58,16 @@ export const CarsManagement = () => {
         }
     }, [showMessage]);
 
-    const columns = useMemo(() => {
-        return CARS_TABLE_COLUMNS.map((column) => {
-            if (column.id === "actions") {
-                return {
-                    ...column,
-                    render: (car) => (
-                        <Actions
-                            id={car.id}
-                            actions={CAR_ACTIONS(handleDelete)}
-                            getMessage={getActionMessage}
-                            entity="car"
-                        />
-                    )
-                }
-            }
-            return column;
-        });
-    }, [handleDelete]);
+    const columns = useTableColumns(CARS_TABLE_COLUMNS, {
+        actions: (car) => (
+            <Actions
+                id={car.id}
+                actions={CAR_ACTIONS(handleDelete)}
+                getMessage={getActionMessage}
+                entity="car"
+            />
+        ),
+    });
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
@@ -88,10 +82,7 @@ export const CarsManagement = () => {
                     />
                 </header>
 
-                <DataTable
-                    rows={cars}
-                    columns={columns}
-                />
+                <DataTable rows={cars} columns={columns} />
 
                 <MessageDialog
                     open={messageOpen}

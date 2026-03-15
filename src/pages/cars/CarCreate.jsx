@@ -1,17 +1,16 @@
 import { useState } from "react";
-
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader, CarForm, MessageDialog } from "../../components/index.js";
+import { Loader, CarForm, MessageDialog } from "../../components";
 
-import { useMessageDialog } from "../../hooks/index.js";
+import { useMessageDialog } from "../../hooks";
 
-import { createCar } from "../../services/index.js";
+import { createCar } from "../../services";
 
-import { getErrorMessage } from "../../utils/index.js";
+import { getErrorMessage } from "../../utils";
 
-import { CAR_FORM_DEFAULT_VALUES } from "../../constants/index.js";
+import { CAR_FORM_DEFAULT_VALUES } from "../../constants";
 
 export const CarCreate = () => {
     const navigate = useNavigate();

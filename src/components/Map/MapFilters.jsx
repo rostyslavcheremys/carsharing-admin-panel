@@ -8,9 +8,10 @@ import {
     FormControlLabel
 } from "../../libs/mui";
 
-import { FilterListIcon } from "../../libs/mui-icons";
+import {FilterListIcon, RoomIcon} from "../../libs/mui-icons";
 
 import { CAR_STATUS_FILTER } from "../../constants";
+import {ActionIconButton} from "../Buttons/ActionIconButton.jsx";
 
 export const MapFilters = ({ selectedStatus, onChange }) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -35,12 +36,11 @@ export const MapFilters = ({ selectedStatus, onChange }) => {
     return (
         <div className="map-filters">
             <div className="map-filters__button">
-                <IconButton
-                    className="map__icon"
+                <ActionIconButton
+                    Icon={FilterListIcon}
                     onClick={handleClick}
-                >
-                    <FilterListIcon />
-                </IconButton>
+                    className="map__icon"
+                />
             </div>
 
             <Menu

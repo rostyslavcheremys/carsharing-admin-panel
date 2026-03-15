@@ -1,8 +1,6 @@
-import {useMemo} from "react";
-
 import { Actions, DataTable, Loader } from "../../components";
 
-import { useCollection } from "../../hooks";
+import { useCollection, useTableColumns } from "../../hooks";
 
 import { getActionMessage } from "../../utils";
 
@@ -17,23 +15,16 @@ export const BookingsManagement = () => {
 
     console.log(bookings);
 
-    const columns = useMemo(() => {
-        return BOOKINGS_TABLE_COLUMNS.map((column) => {
-            if (column.id === "actions") {
-                return {
-                    ...column,
-                    render: (booking) =>
-                        <Actions
-                            id={booking.id}
-                            actions={BOOKING_ACTIONS}
-                            getMessage={getActionMessage}
-                            entity="booking"
-                        />
-                };
-            }
-            return column;
-        });
-    }, []);
+    const columns = useTableColumns(BOOKINGS_TABLE_COLUMNS, {
+        actions: (booking) => (
+            <Actions
+                id={booking.id}
+                actions={BOOKING_ACTIONS}
+                getMessage={getActionMessage}
+                entity="booking"
+            />
+        ),
+    });
 
     return (
         <Loader isLoading={isLoading} error={error}>

@@ -50,7 +50,7 @@ export const Login = () => {
         } finally {
             setIsLoading(false);
         }
-    };
+    }
 
     return (
         <Loader isLoading={isLoading}>
