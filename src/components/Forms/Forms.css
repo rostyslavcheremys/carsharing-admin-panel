@@ -35,6 +35,10 @@
     border-color: var(--main-color) !important;
 }
 
+.form__field .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: var(--red-color) !important;
+}
+
 .form__field .MuiIconButton-root,
 .form__field .MuiInputAdornment-root {
     margin: 0;
@@ -95,6 +99,11 @@
 .form__location:hover {
     border-color: var(--main-color) !important;
     background-color: transparent;
+}
+
+.form__error,
+.form__error:hover {
+    border-color: var(--red-color) !important;
 }
 
 .form__gallery {

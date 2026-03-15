@@ -4,7 +4,7 @@ import {
     MenuItem
 } from "../../libs/mui";
 
-export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
+export const FormSelect = ({ label, name, value, onChange, options = [], error }) => {
     return (
         <div className="form">
             <label className="form__label">{label}</label>
@@ -14,6 +14,7 @@ export const FormSelect = ({ label, name, value, onChange, options = [] }) => {
                     value={value}
                     onChange={onChange}
                     name={name}
+                    error={error}
                     MenuProps={{
                         PaperProps: {
                             className: "form__select"

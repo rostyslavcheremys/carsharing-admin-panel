@@ -26,6 +26,7 @@ export const InputController = ({
                         className={className}
                         value={field.value ?? ""}
                         disabled={disabled}
+                        error={!!fieldState.error}
                         {...field}
                     />
                     {fieldState.error &&
@@ -35,4 +36,4 @@ export const InputController = ({
             )}
         />
     );
-};
+}

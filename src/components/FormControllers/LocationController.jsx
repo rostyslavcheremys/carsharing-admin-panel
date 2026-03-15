@@ -27,6 +27,7 @@ export const LocationController = ({
                         label={label}
                         value={value}
                         disabled={disabled}
+                        error={!!fieldState.error}
                         onOpen={() => setOpen(true)}
                     />
 

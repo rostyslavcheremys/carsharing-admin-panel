@@ -20,7 +20,7 @@ import {
 import { ActionIconButton, FormButton} from "../../components";
 
 export const FormUpload = forwardRef(
-    ({ label, value = [], onChange, className = "", disabled, name }, ref) => {
+    ({ label, value = [], onChange, className = "", disabled, name, error }, ref) => {
 
         const previews = useMemo(
             () =>
@@ -108,7 +108,7 @@ export const FormUpload = forwardRef(
                 <span className={`form__label ${className}`}>{label}</span>
 
                 <FormButton
-                    className="form__upload"
+                    className={`form__upload ${error ? "form__error" : ""}`}
                     disabled={disabled}
                     children={
                         <>

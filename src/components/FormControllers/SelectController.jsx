@@ -22,6 +22,7 @@ export const SelectController = ({
                         value={field.value}
                         onChange={field.onChange}
                         options={options}
+                        error={!!fieldState.error}
                     />
                     {fieldState.error && (
                         <p className="form-controller__error">{fieldState.error.message}</p>
@@ -30,4 +31,4 @@ export const SelectController = ({
             )}
         />
     );
-};
+}

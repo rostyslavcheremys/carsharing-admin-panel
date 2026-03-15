@@ -26,6 +26,7 @@ export const FileUploadController = ({
                         onChange={onChange}
                         className={className}
                         disabled={disabled}
+                        error={!!fieldState.error}
                     />
                     {fieldState.error &&
                         <p className="form-controller__error">{fieldState.error.message}</p>
