@@ -89,7 +89,7 @@ export const CARS_TABLE_COLUMNS = [
     },
     {
         id: "fuelType", label: "Тип палива",
-        render: (car) => getLabel(getString(car?.engine?.fuelType), FUEL_TYPES)
+        render: (car) => getLabel(car?.engine?.fuelType, FUEL_TYPES)
     },
     {
         id: "displacement", label: "Об'єм двигуна",

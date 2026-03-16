@@ -77,10 +77,3 @@
     justify-content: center !important;
     align-items: center !important;
 }
-
-@media (max-width: 768px) {
-    .map-filters__menu-item,
-    .map-filters__label {
-        font-size: 14px !important;
-    }
-}

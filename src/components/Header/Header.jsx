@@ -1,7 +1,11 @@
 import { Tooltip, IconButton } from "@mui/material";
 
 import {
+    NearMeIcon,
     DirectionsCarIcon,
+    PeopleIcon,
+    EventNoteIcon,
+    RoomIcon,
     DarkModeIcon,
     LightModeIcon,
     LogoutIcon
@@ -10,8 +14,6 @@ import {
 import {ActionIconButton, NavigateIconButton} from "../../components";
 
 import { useAuth, useTheme } from "../../hooks";
-
-import { HEADER__BUTTONS } from "../../constants";
 
 export const Header = () => {
     const { darkMode, toggleTheme } = useTheme();
@@ -29,17 +31,49 @@ export const Header = () => {
                 />
 
                 <nav className="header__nav">
-                    {user &&
-                        HEADER__BUTTONS.map(({ to, Icon, tooltip, iconClassName }) => (
-                            <Tooltip key={to} title={tooltip} placement="right">
+                    {user && (
+                        <>
+                            <Tooltip title="Моніторинг автомобілів" placement="right">
                                 <NavigateIconButton
-                                    to={to}
-                                    Icon={Icon}
-                                    iconClassName={iconClassName}
+                                    to="/monitoring"
+                                    Icon={NearMeIcon}
+                                    iconClassName="header__nav-icon"
                                 />
                             </Tooltip>
-                        ))
-                    }
+
+                            <Tooltip title="Керування автомобілями" placement="right">
+                                <NavigateIconButton
+                                    to="/cars"
+                                    Icon={DirectionsCarIcon}
+                                    iconClassName="header__nav-icon header__nav-icon--cars"
+                                />
+                            </Tooltip>
+
+                            <Tooltip title="Керування користувачами" placement="right">
+                                <NavigateIconButton
+                                    to="/users"
+                                    Icon={PeopleIcon}
+                                    iconClassName="header__nav-icon header__nav-icon--users"
+                                />
+                            </Tooltip>
+
+                            <Tooltip title="Керування бронюваннями" placement="right">
+                                <NavigateIconButton
+                                    to="/bookings"
+                                    Icon={EventNoteIcon}
+                                    iconClassName="header__nav-icon"
+                                />
+                            </Tooltip>
+
+                            <Tooltip title="Керування поїздками" placement="right">
+                                <NavigateIconButton
+                                    to="/trips"
+                                    Icon={RoomIcon}
+                                    iconClassName="header__nav-icon"
+                                />
+                            </Tooltip>
+                        </>
+                    )}
 
                     <Tooltip title={darkMode ? "Темна тема" : "Світла тема"} placement="right">
                         <IconButton onClick={toggleTheme}>

@@ -13,12 +13,12 @@ export * from "./map/constants.js";
 export * from "./map/icons.js";
 export * from "./map/location.js";
 
+export * from "./trips/actions.js";
+export * from "./trips/details.jsx";
 export * from "./trips/options.js";
+export * from "./trips/table.jsx";
 
 export * from "./users/actions.js";
 export * from "./users/details.js";
 export * from "./users/options.js";
 export * from "./users/table.jsx";
-
-export * from "./buttons/header.js";
-

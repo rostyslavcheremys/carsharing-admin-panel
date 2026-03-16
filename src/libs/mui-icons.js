@@ -23,6 +23,7 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import PersonIcon from '@mui/icons-material/Person';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 export {
     MapIcon,
@@ -49,5 +50,6 @@ export {
     FilterListIcon,
     NearMeIcon,
     EventNoteIcon,
-    PersonIcon
+    PersonIcon,
+    FactCheckIcon
 }

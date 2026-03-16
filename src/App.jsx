@@ -3,16 +3,19 @@ import { Routes, Route } from "react-router-dom";
 import {
     Layout,
     Dashboard,
-    CarsManagement,
     Login,
     Monitoring,
     UsersManagement,
     UserDetails,
-    CarCreate,
+    CarsManagement,
     CarDetails,
+    CarCreate,
     CarEdit,
     BookingsManagement,
-    BookingDetails
+    BookingDetails,
+    TripsManagement,
+    TripsDetails,
+    CarStateDetails,
 } from "./pages";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
@@ -38,7 +41,6 @@ export const App = () => {
                         <Monitoring />
                     </ProtectedRoute>
                 }/>
-
 
                 <Route path="cars">
                     <Route index element={
@@ -90,6 +92,28 @@ export const App = () => {
                     <Route path=":id" element={
                         <ProtectedRoute adminOnly>
                             <BookingDetails />
+                        </ProtectedRoute>
+                    }/>
+                </Route>
+
+                <Route path="trips">
+                    <Route index element={
+                        <ProtectedRoute adminOnly>
+                            <TripsManagement />
+                        </ProtectedRoute>
+                    }/>
+
+                    <Route path=":id" element={
+                        <ProtectedRoute adminOnly>
+                            <TripsDetails />
+                        </ProtectedRoute>
+                    }/>
+                </Route>
+
+                <Route path="car-state">
+                     <Route path=":id" element={
+                        <ProtectedRoute adminOnly>
+                            <CarStateDetails />
                         </ProtectedRoute>
                     }/>
                 </Route>

@@ -11,6 +11,7 @@ export * from "./Car/CarImages.jsx";
 export * from "./Details/Details.jsx";
 export * from "./Details/DetailsItem.jsx";
 export * from "./Details/DetailsLink.jsx";
+export * from "./Details/DetailsMap.jsx";
 
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";

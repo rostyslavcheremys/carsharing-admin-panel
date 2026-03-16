@@ -43,6 +43,17 @@ main {
     margin-bottom: 10px;
 }
 
+.page__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: var(--font-family), sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
 .page__header {
     display: flex;
     justify-content: center;

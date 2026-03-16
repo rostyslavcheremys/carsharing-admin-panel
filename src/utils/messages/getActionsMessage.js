@@ -3,6 +3,7 @@ export const getActionMessage = (entity, action, id) => {
         car: "автомобіль",
         user: "користувача",
         booking: "бронювання",
+        trip: "поїздку",
     };
 
     const actions = {

@@ -13,6 +13,10 @@ export const BOOKINGS_TABLE_COLUMNS = [
         render: (booking) => getString(booking?.id)
     },
     {
+        id: "status", label: "Статус",
+        render: (booking) => getLabel(booking?.status, BOOKING_STATUS)
+    },
+    {
         id: "carId", label: "Автомобіль",
         render: (booking) => (
             <NavigateIconButton
@@ -31,10 +35,6 @@ export const BOOKINGS_TABLE_COLUMNS = [
                 iconClassName="icon-button"
             />
         )
-    },
-    {
-        id: "status", label: "Статус",
-        render: (booking) => getLabel(booking?.status, BOOKING_STATUS)
     },
     {
         id: "plannedStart", label: "Запланований початок",

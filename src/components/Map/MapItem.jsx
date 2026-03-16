@@ -4,7 +4,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 
 import { MapDetailsDialog } from "../../components";
 
-import { useAutoPanToMarker, useMapOptions} from "../../hooks";
+import { useAutoPanToMarker, useMapOptions } from "../../hooks";
 
 import { getPickerMarkerIcon, getCarMarkerIcon, } from "../../utils";
 
@@ -44,8 +44,6 @@ export const MapItem = ({
     }, [mapCenter, mapRef]);
 
     useAutoPanToMarker(mapRef, locations, activeIndex);
-
-
 
     return (
         <GoogleMap

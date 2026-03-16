@@ -1,9 +1,7 @@
-import { useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import {
     Loader,
-    CarImages,
     Details,
     DetailsMap,
     AppButton,
@@ -14,9 +12,9 @@ import { useMessageDialog, useDocument } from "../../hooks";
 
 import { getTripLocation } from "../../utils";
 
-import { CAR_DETAILS } from "../../constants";
+import { TRIP_DETAILS } from "../../constants";
 
-export const CarDetails = () => {
+export const TripsDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -28,31 +26,27 @@ export const CarDetails = () => {
     } = useMessageDialog();
 
     const {
-        document: car, isLoading, error
-    } = useDocument("cars", id, showMessage, navigate);
+        document: trip, isLoading, error
+    } = useDocument("trips", id, showMessage, navigate);
 
-    const images = useMemo(() => {
-        if (!car?.images) return [];
-        return Array.isArray(car.images) ? car.images : [car.images];
-    }, [car]);
+    const startLocation = getTripLocation(trip, "startLocation");
+    const endLocation = getTripLocation(trip, "endLocation");
 
-    const location = getTripLocation(car, "location");
-
-    if (!car) return null;
-
-    return(
+    return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Автомобіль</span>
+                <span className="page__title">Поїздка</span>
 
-                {images.length > 0 && <CarImages images={images} />}
-
-                <Details data={car} details={CAR_DETAILS} />
+                <Details data={trip} details={TRIP_DETAILS} />
 
                 <DetailsMap
-                    label="Місцезнаходження"
-                    location={location}
-                    status={car.status}
+                    label="Початкове місцезнаходження"
+                    location={startLocation}
+                />
+
+                <DetailsMap
+                    label="Кінцеве місцезнаходження"
+                    location={endLocation}
                 />
 
                 <div className="page__button">
