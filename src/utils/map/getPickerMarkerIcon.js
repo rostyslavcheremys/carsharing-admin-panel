@@ -1,8 +1,10 @@
+import markerPicker from "../../assets/icons/marker-picker.svg";
+
 export const getPickerMarkerIcon = () => {
     if (!window.google) return null;
 
     return {
-        url: "/public/icons/marker-picker.svg",
+        url: markerPicker,
         scaledSize: new window.google.maps.Size(48, 48),
         anchor: new window.google.maps.Point(24, 48),
     };

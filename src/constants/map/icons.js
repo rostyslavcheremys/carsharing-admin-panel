@@ -1,6 +1,6 @@
-import carBlue from "/public/icons/car-blue.svg";
-import carRed from "/public/icons/car-red.svg";
-import carGray from "/public/icons/car-gray.svg";
+import carBlue from "../../assets/icons/car-blue.svg";
+import carRed from "../../assets/icons/car-red.svg";
+import carGray from "../../assets/icons/car-gray.svg";
 
 export const CAR_ICONS = {
     available: carBlue,
