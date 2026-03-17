@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase/index.js";
 
 export const getDocumentById = async (collectionName, docId) => {
     const carRef = doc(db, collectionName, docId);

@@ -1,44 +1,72 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { LockOpenIcon, LockIcon } from "../../libs/mui-icons";
+
 import { ActionIconButton, ConfirmDialog } from "../../components";
 
-export const Actions = ({ id, actions, getMessage, entity }) => {
+import { getActionMessage } from "../../utils";
+
+export const Actions = ({ id, actions, entity, currentState }) => {
     const navigate = useNavigate();
     const [action, setAction] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const openDialog = (type) => (e) => {
         e.stopPropagation();
-        setAction(type);
-    }
+        if (!loading) setAction(type);
+    };
 
     const closeDialog = () => setAction(null);
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         const actionConfig = actions.find((a) => a.type === action);
-
-        if (actionConfig?.handler) actionConfig.handler({ id, navigate });
+        if (!actionConfig) return;
 
         closeDialog();
-    }
+        setLoading(true);
+
+        try {
+            await actionConfig.handler({
+                id,
+                isBlocked: currentState?.isBlocked,
+                navigate,
+            });
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
-        <div className="actions">
-            {actions.map(({ type, Icon }) => (
-                <ActionIconButton
-                    key={type}
-                    Icon={Icon}
-                    onClick={openDialog(type)}
-                    iconClassName="icon-button"
-                />
-            ))}
+        <>
+            {actions.map(({ type, Icon }) => {
+                let DynamicIcon = Icon;
 
-            <ConfirmDialog
-                open={Boolean(action)}
-                message={getMessage(entity, action, id)}
-                onCancel={closeDialog}
-                onConfirm={handleConfirm}
-            />
-        </div>
+                if (type === "toggleBlock" && currentState) {
+                    DynamicIcon = currentState.isBlocked ? LockIcon : LockOpenIcon;
+                }
+
+                return (
+                    <ActionIconButton
+                        key={type}
+                        Icon={DynamicIcon}
+                        onClick={openDialog(type)}
+                        iconClassName="icon-button"
+                        disabled={loading}
+                    />
+                );
+            })}
+
+            {action && (
+                <ConfirmDialog
+                    open={Boolean(action)}
+                    message={getActionMessage(entity, action, id, currentState?.isBlocked)}
+                    onCancel={closeDialog}
+                    onConfirm={handleConfirm}
+                />
+            )}
+        </>
     );
 }

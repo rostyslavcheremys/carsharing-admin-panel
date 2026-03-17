@@ -1,7 +1,7 @@
-export const getActionMessage = (entity, action, id) => {
+export const getActionMessage = (entity, action, id, isBlocked) => {
     const entities = {
-        car: "автомобіль",
         user: "користувача",
+        car: "автомобіль",
         booking: "бронювання",
         trip: "поїздку",
     };
@@ -10,6 +10,7 @@ export const getActionMessage = (entity, action, id) => {
         view: "Переглянути",
         edit: "Редагувати",
         delete: "Видалити",
+        toggleBlock: isBlocked ? "Розблокувати" : "Заблокувати",
     };
 
     if (!entities[entity] || !actions[action]) return "";

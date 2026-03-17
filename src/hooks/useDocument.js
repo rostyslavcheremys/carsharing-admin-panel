@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { getDocumentById } from "../services";
-
-import { getErrorMessage } from "../utils";
+import { getErrorMessage, getDocumentById } from "../utils";
 
 export const useDocument = (collection, id, showMessage, navigate) => {
     const [document, setDocument] = useState(null);
@@ -10,7 +8,7 @@ export const useDocument = (collection, id, showMessage, navigate) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const loadCar = async () => {
+        const loadDocument = async () => {
             if (!id) return;
 
             try {
@@ -30,7 +28,7 @@ export const useDocument = (collection, id, showMessage, navigate) => {
             }
         };
 
-        loadCar();
+        loadDocument();
     }, [id]);
 
     return {

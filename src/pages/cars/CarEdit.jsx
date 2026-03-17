@@ -7,7 +7,7 @@ import { Loader, CarForm, MessageDialog } from "../../components";
 
 import {useMessageDialog, useDocument } from "../../hooks";
 
-import { updateCar } from "../../services";
+import { CarService } from "../../services";
 
 import { getErrorMessage, getCarValues } from "../../utils";
 
@@ -53,7 +53,7 @@ export const CarEdit = () => {
         try {
             setIsSubmitting(true);
 
-            await updateCar(id, data, images);
+            await CarService.updateCar(id, data, images);
 
             showMessage(
                 "Автомобіль оновлено!",

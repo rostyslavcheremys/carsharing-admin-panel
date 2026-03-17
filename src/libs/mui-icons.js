@@ -24,6 +24,8 @@ import NearMeIcon from '@mui/icons-material/NearMe';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import PersonIcon from '@mui/icons-material/Person';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import LockIcon from '@mui/icons-material/Lock';
 
 export {
     MapIcon,
@@ -51,5 +53,7 @@ export {
     NearMeIcon,
     EventNoteIcon,
     PersonIcon,
-    FactCheckIcon
+    FactCheckIcon,
+    LockOpenIcon,
+    LockIcon
 }

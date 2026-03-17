@@ -1,12 +1,17 @@
 import { getLabel, getString, getFormattedTimestamp } from "../../utils";
 
-import { ROLES } from "./options.js";
+import { ROLES, USER_STATUS } from "./options.js";
 
 export const USERS_TABLE_COLUMNS = [
     { id: "actions", label: "Дії" },
     {
         id: "id", label: "ID",
         render: (user) => getString(user?.id)
+    },
+    {
+        id: "status",
+        label: "Статус",
+        render: (user) => getLabel(user?.isBlocked, USER_STATUS),
     },
     {
         id: "firstName", label: "Ім'я",

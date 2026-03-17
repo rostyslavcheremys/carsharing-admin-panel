@@ -17,7 +17,7 @@ import {
     getPasswordValidation,
 } from "../utils";
 
-import { login } from "../services";
+import { AuthService } from "../services";
 
 export const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ export const Login = () => {
     const onSubmit = async (data) => {
         try {
             setIsLoading(true);
-            await login(data.email, data.password);
+            await AuthService.login(data.email, data.password);
 
             navigate("/cars", { replace: true });
         } catch (error) {

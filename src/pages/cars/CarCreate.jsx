@@ -6,7 +6,7 @@ import { Loader, CarForm, MessageDialog } from "../../components";
 
 import { useMessageDialog } from "../../hooks";
 
-import { createCar } from "../../services";
+import { CarService } from "../../services";
 
 import { getErrorMessage } from "../../utils";
 
@@ -39,7 +39,7 @@ export const CarCreate = () => {
         try {
             setIsSubmitting(true);
 
-            await createCar(data);
+            await CarService.createCar(data);
 
             showMessage(
                 "Автомобіль додано!",

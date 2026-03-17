@@ -10,7 +10,7 @@ export const Details = ({ data, details }) => {
 
                 if (value === undefined || value === null || value === "") return null;
 
-                const display = formatter
+                const displayValue = formatter
                     ? formatter(value)
                     : map
                         ? getLabel(value, map)
@@ -20,7 +20,7 @@ export const Details = ({ data, details }) => {
                     <DetailsItem
                         key={key}
                         label={label}
-                        value={suffix ? `${display} ${suffix}` : display}
+                        value={suffix ? `${displayValue} ${suffix}` : displayValue}
                     />
                 );
             })}

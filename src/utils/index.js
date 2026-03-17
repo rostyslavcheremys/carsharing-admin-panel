@@ -1,6 +1,8 @@
 export * from "./cars/getCarObject.js";
 export * from "./cars/getCarValues.js";
 
+export * from "./firebase/getDocumentById.js";
+
 export * from "./messages/getActionsMessage.js";
 export * from "./messages/getErrorMessage.js";
 

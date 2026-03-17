@@ -17,7 +17,7 @@ import {
 
 import { getActionMessage } from "../../utils";
 
-import { deleteCar } from "../../services";
+import { CarService } from "../../services";
 
 import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
 
@@ -48,7 +48,7 @@ export const CarsManagement = () => {
     const handleDelete = useCallback(async (id) => {
         try {
             setIsDeleting(true);
-            await deleteCar(id);
+            await CarService.deleteCar(id);
 
             showMessage("Автомобіль видалено!");
         } catch (error) {

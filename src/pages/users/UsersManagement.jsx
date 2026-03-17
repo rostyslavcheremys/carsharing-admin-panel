@@ -22,6 +22,8 @@ export const UsersManagement = () => {
                 actions={USER_ACTIONS}
                 getMessage={getActionMessage}
                 entity="user"
+                currentState={user}
+
             />
         ),
     });
