@@ -1,6 +1,6 @@
 import { DataTable, Loader, Actions } from "../../components";
 
-import { useCollection, useTableColumns } from "../../hooks";
+import { useAuth, useCollection, useTableColumns } from "../../hooks";
 
 import { getActionMessage } from "../../utils";
 
@@ -13,6 +13,8 @@ export const UsersManagement = () => {
         error,
     } = useCollection("users");
 
+    const { user: currentUser } = useAuth();
+
     console.log(users);
 
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
@@ -23,7 +25,7 @@ export const UsersManagement = () => {
                 getMessage={getActionMessage}
                 entity="user"
                 currentState={user}
-
+                currentUser={currentUser}
             />
         ),
     });

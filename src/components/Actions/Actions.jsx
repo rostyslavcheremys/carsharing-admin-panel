@@ -7,7 +7,7 @@ import { ActionIconButton, ConfirmDialog } from "../../components";
 
 import { getActionMessage } from "../../utils";
 
-export const Actions = ({ id, actions, entity, currentState }) => {
+export const Actions = ({ id, actions, entity, currentState, currentUser }) => {
     const navigate = useNavigate();
     const [action, setAction] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export const Actions = ({ id, actions, entity, currentState }) => {
     const openDialog = (type) => (e) => {
         e.stopPropagation();
         if (!loading) setAction(type);
-    };
+    }
 
     const closeDialog = () => setAction(null);
 
@@ -37,12 +37,18 @@ export const Actions = ({ id, actions, entity, currentState }) => {
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     return (
         <>
-            {actions.map(({ type, Icon }) => {
+            {actions.map(({ type, Icon, isAllowed }) => {
                 let DynamicIcon = Icon;
+
+                const allowed = isAllowed
+                    ? isAllowed(currentState, currentUser)
+                    : true;
+
+                const disabled = !allowed;
 
                 if (type === "toggleBlock" && currentState) {
                     DynamicIcon = currentState.isBlocked ? LockIcon : LockOpenIcon;
@@ -52,9 +58,9 @@ export const Actions = ({ id, actions, entity, currentState }) => {
                     <ActionIconButton
                         key={type}
                         Icon={DynamicIcon}
-                        onClick={openDialog(type)}
+                        onClick={openDialog(type, disabled)}
                         iconClassName="icon-button"
-                        disabled={loading}
+                        disabled={disabled}
                     />
                 );
             })}
