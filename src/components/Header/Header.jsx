@@ -11,7 +11,7 @@ import {
     LogoutIcon
 } from "../../libs/mui-icons";
 
-import {ActionIconButton, NavigateIconButton} from "../../components";
+import { ActionIconButton, NavigateIconButton } from "../../components";
 
 import { useAuth, useTheme } from "../../hooks";
 
