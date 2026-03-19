@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 
+import { AdminLayout } from "./layouts";
+
 import {
-    Layout,
     Dashboard,
     Login,
     Monitoring,
@@ -23,7 +24,7 @@ import { ProtectedRoute, PublicRoute } from "./routes";
 export const App = () => {
     return (
         <Routes>
-            <Route element={<Layout />}>
+            <Route element={<AdminLayout />}>
                 <Route path="/login" element={
                     <PublicRoute>
                         <Login />

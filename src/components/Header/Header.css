@@ -75,8 +75,8 @@
     }
 
     .header__logo-icon {
-        bottom: 2px !important;
-        font-size: 35px !important;
+        height: 35px !important;
+        width: 35px !important;
     }
 
     .header__nav {
@@ -104,12 +104,11 @@
     .header__logo {
         height: 30px;
         width: 30px;
-        border-radius: 7px;
     }
 
     .header__logo-icon {
-        bottom: 1px !important;
-        font-size: 25px !important;
+        height: 25px !important;
+        width: 25px !important;
     }
 
     .header__nav {

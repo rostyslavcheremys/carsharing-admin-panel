@@ -14,6 +14,5 @@ export * from "./users/UsersManagement.jsx";
 export * from "./users/UserDetails.jsx";
 
 export * from "./Dashboard.jsx";
-export * from "./Layout.jsx";
 export * from "./Login.jsx";
 export * from "./Monitoring.jsx";

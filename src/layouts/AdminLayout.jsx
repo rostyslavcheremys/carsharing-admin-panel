@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-import { Header } from "../components";
+import { Header } from "../components/index.js";
 
-export const Layout = () => {
+export const AdminLayout = () => {
     return (
         <div className="layout">
             <Header/>
