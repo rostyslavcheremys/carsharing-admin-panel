@@ -9,9 +9,9 @@ import {
 
 import { useMessageDialog, useDocument } from "../../hooks";
 
-import { BOOKING_DETAILS } from "../../constants";
+import { USER_DETAILS } from "../../constants";
 
-export const BookingDetails = () => {
+export const UserDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -23,15 +23,15 @@ export const BookingDetails = () => {
     } = useMessageDialog();
 
     const {
-        document: booking, isLoading, error
-    } = useDocument("bookings", id, showMessage, navigate);
+        document: user, isLoading, error
+    } = useDocument("users", id, showMessage, navigate);
 
     return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Бронювання</span>
+                <span className="page__title">Користувач</span>
 
-                <Details data={booking} details={BOOKING_DETAILS} />
+                <Details data={user} details={USER_DETAILS} />
 
                 <div className="page__button">
                     <AppButton

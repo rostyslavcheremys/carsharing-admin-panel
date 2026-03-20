@@ -1,18 +1,19 @@
-export * from "./bookings/BookingsManagement.jsx";
-export * from "./bookings/BookingDetails.jsx";
+export * from "./auth/LoginPage.jsx";
 
-export * from "./cars/CarsManagement.jsx";
-export * from "./cars/CarDetails.jsx";
-export * from "./cars/CarCreate.jsx";
-export * from "./cars/CarEdit.jsx";
-export * from "./cars/CarStateDetails.jsx";
+export * from "./bookings/BookingsManagementPage.jsx";
+export * from "./bookings/BookingDetailsPage.jsx";
 
-export * from "./trips/TripsManagement.jsx"
-export * from "./trips/TripsDetails.jsx"
+export * from "./cars/CarsManagementPage.jsx";
+export * from "./cars/CarDetailsPage.jsx";
+export * from "./cars/CarCreatePage.jsx";
+export * from "./cars/CarEditPage.jsx";
+export * from "./cars/CarStateDetailsPage.jsx";
 
-export * from "./users/UsersManagement.jsx";
-export * from "./users/UserDetails.jsx";
+export * from "./trips/TripsManagementPage.jsx"
+export * from "./trips/TripsDetailsPage.jsx"
 
-export * from "./Dashboard.jsx";
-export * from "./Login.jsx";
-export * from "./Monitoring.jsx";
+export * from "./users/UsersManagementPage.jsx";
+export * from "./users/UserDetailsPage.jsx";
+
+export * from "./DashboardPage.jsx";
+export * from "./MonitoringPage.jsx";

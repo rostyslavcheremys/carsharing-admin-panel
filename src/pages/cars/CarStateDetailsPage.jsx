@@ -5,18 +5,15 @@ import {
     Loader,
     CarImages,
     Details,
-    DetailsMap,
     AppButton,
-    MessageDialog,
+    MessageDialog
 } from "../../components";
 
 import { useMessageDialog, useDocument } from "../../hooks";
 
-import { getTripLocation } from "../../utils";
+import { CAR_STATE_DETAILS } from "../../constants";
 
-import { CAR_DETAILS } from "../../constants";
-
-export const CarDetails = () => {
+export const CarStateDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -28,32 +25,24 @@ export const CarDetails = () => {
     } = useMessageDialog();
 
     const {
-        document: car, isLoading, error
-    } = useDocument("cars", id, showMessage, navigate);
+        document: carState, isLoading, error
+    } = useDocument("carState", id, showMessage, navigate);
 
     const images = useMemo(() => {
-        if (!car?.images) return [];
-        return Array.isArray(car.images) ? car.images : [car.images];
-    }, [car]);
+        if (!carState?.images) return [];
+        return Array.isArray(carState.images) ? carState.images : [carState.images];
+    }, [carState]);
 
-    const location = getTripLocation(car, "location");
-
-    if (!car) return null;
+    if (!carState) return null;
 
     return(
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Автомобіль</span>
+                <span className="page__title">Стан автомобіля</span>
 
                 {images.length > 0 && <CarImages images={images} />}
 
-                <Details data={car} details={CAR_DETAILS} />
-
-                <DetailsMap
-                    label="Місцезнаходження"
-                    location={location}
-                    status={car.status}
-                />
+                <Details data={carState} details={CAR_STATE_DETAILS} />
 
                 <div className="page__button">
                     <AppButton

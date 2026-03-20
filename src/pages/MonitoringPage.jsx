@@ -2,7 +2,7 @@ import { Loader , Map } from "../components";
 
 import { useCollection } from "../hooks";
 
-export const Monitoring = () => {
+export const MonitoringPage = () => {
     const {
         data: cars,
         isLoading,

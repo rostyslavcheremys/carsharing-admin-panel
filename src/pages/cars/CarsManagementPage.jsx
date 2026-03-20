@@ -21,7 +21,7 @@ import { CarService } from "../../services";
 
 import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
 
-export const CarsManagement = () => {
+export const CarsManagementPage = () => {
     const [isDeleting, setIsDeleting] = useState(false);
 
     const {

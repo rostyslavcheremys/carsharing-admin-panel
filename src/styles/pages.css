@@ -6,9 +6,16 @@
     width: 100%;
 }
 
-.main__container {
+.layout__container {
     display: flex;
     flex-direction: column;
+}
+
+.layout--auth .layout__container {
+    width: 100%;
+}
+
+.layout--admin .layout__container {
     margin-left: 70px;
     width: calc(100% - 70px);
 }
@@ -91,7 +98,7 @@ main {
 }
 
 @media (max-width: 768px) {
-    .main__container {
+    .layout--admin .layout__container {
         margin-left: 60px;
         width: calc(100% - 60px);
     }
@@ -106,7 +113,7 @@ main {
 }
 
 @media (max-width: 500px) {
-    .main__container {
+    .layout--admin .layout__container {
         margin-left: 50px;
         width: calc(100% - 50px);
     }

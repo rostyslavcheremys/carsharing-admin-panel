@@ -6,7 +6,7 @@ import { getActionMessage } from "../../utils";
 
 import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../constants";
 
-export const UsersManagement = () => {
+export const UsersManagementPage = () => {
     const {
         data: users,
         isLoading,

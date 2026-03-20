@@ -1,7 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useMemo } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import {
     Loader,
+    CarImages,
     Details,
     DetailsMap,
     AppButton,
@@ -12,9 +14,9 @@ import { useMessageDialog, useDocument } from "../../hooks";
 
 import { getTripLocation } from "../../utils";
 
-import { TRIP_DETAILS } from "../../constants";
+import { CAR_DETAILS } from "../../constants";
 
-export const TripsDetails = () => {
+export const CarDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -26,27 +28,31 @@ export const TripsDetails = () => {
     } = useMessageDialog();
 
     const {
-        document: trip, isLoading, error
-    } = useDocument("trips", id, showMessage, navigate);
+        document: car, isLoading, error
+    } = useDocument("cars", id, showMessage, navigate);
 
-    const startLocation = getTripLocation(trip, "startLocation");
-    const endLocation = getTripLocation(trip, "endLocation");
+    const images = useMemo(() => {
+        if (!car?.images) return [];
+        return Array.isArray(car.images) ? car.images : [car.images];
+    }, [car]);
 
-    return (
+    const location = getTripLocation(car, "location");
+
+    if (!car) return null;
+
+    return(
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Поїздка</span>
+                <span className="page__title">Автомобіль</span>
 
-                <Details data={trip} details={TRIP_DETAILS} />
+                {images.length > 0 && <CarImages images={images} />}
 
-                <DetailsMap
-                    label="Початкове місцезнаходження"
-                    location={startLocation}
-                />
+                <Details data={car} details={CAR_DETAILS} />
 
                 <DetailsMap
-                    label="Кінцеве місцезнаходження"
-                    location={endLocation}
+                    label="Місцезнаходження"
+                    location={location}
+                    status={car.status}
                 />
 
                 <div className="page__button">

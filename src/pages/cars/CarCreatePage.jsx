@@ -12,7 +12,7 @@ import { getErrorMessage } from "../../utils";
 
 import { CAR_FORM_DEFAULT_VALUES } from "../../constants";
 
-export const CarCreate = () => {
+export const CarCreatePage = () => {
     const navigate = useNavigate();
 
     const [isSubmitting, setIsSubmitting] = useState(false);

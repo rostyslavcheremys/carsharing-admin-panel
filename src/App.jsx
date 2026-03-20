@@ -1,22 +1,25 @@
 import { Routes, Route } from "react-router-dom";
 
-import { AdminLayout } from "./layouts";
+import {
+    AdminLayout,
+    AuthLayout,
+} from "./layouts";
 
 import {
-    Dashboard,
-    Login,
-    Monitoring,
-    UsersManagement,
-    UserDetails,
-    CarsManagement,
-    CarDetails,
-    CarCreate,
-    CarEdit,
-    BookingsManagement,
-    BookingDetails,
-    TripsManagement,
-    TripsDetails,
-    CarStateDetails,
+    DashboardPage,
+    LoginPage,
+    MonitoringPage,
+    UsersManagementPage,
+    UserDetailsPage,
+    CarsManagementPage,
+    CarDetailsPage,
+    CarCreatePage,
+    CarEditPage,
+    BookingsManagementPage,
+    BookingDetailsPage,
+    TripsManagementPage,
+    TripsDetailsPage,
+    CarStateDetailsPage,
 } from "./pages";
 
 import { ProtectedRoute, PublicRoute } from "./routes";
@@ -24,47 +27,50 @@ import { ProtectedRoute, PublicRoute } from "./routes";
 export const App = () => {
     return (
         <Routes>
-            <Route element={<AdminLayout />}>
+
+            <Route element={<AuthLayout />}>
                 <Route path="/login" element={
                     <PublicRoute>
-                        <Login />
+                        <LoginPage />
                     </PublicRoute>
                 }/>
+            </Route>
 
+            <Route element={<AdminLayout />}>
                 <Route path="/" element={
                     <ProtectedRoute adminOnly>
-                        <Dashboard />
+                        <DashboardPage />
                     </ProtectedRoute>
                 }/>
 
                 <Route path="/monitoring" element={
                     <ProtectedRoute adminOnly>
-                        <Monitoring />
+                        <MonitoringPage />
                     </ProtectedRoute>
                 }/>
 
                 <Route path="cars">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <CarsManagement />
+                            <CarsManagementPage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path="add" element={
                         <ProtectedRoute adminOnly>
-                            <CarCreate />
+                            <CarCreatePage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path=":id" element={
                         <ProtectedRoute adminOnly>
-                            <CarDetails />
+                            <CarDetailsPage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path=":id/edit" element={
                         <ProtectedRoute adminOnly>
-                            <CarEdit />
+                            <CarEditPage />
                         </ProtectedRoute>
                     }/>
                 </Route>
@@ -72,13 +78,13 @@ export const App = () => {
                 <Route path="users">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <UsersManagement />
+                            <UsersManagementPage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path=":id" element={
                         <ProtectedRoute adminOnly>
-                            <UserDetails />
+                            <UserDetailsPage />
                         </ProtectedRoute>
                     }/>
                 </Route>
@@ -86,13 +92,13 @@ export const App = () => {
                 <Route path="bookings">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <BookingsManagement />
+                            <BookingsManagementPage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path=":id" element={
                         <ProtectedRoute adminOnly>
-                            <BookingDetails />
+                            <BookingDetailsPage />
                         </ProtectedRoute>
                     }/>
                 </Route>
@@ -100,13 +106,13 @@ export const App = () => {
                 <Route path="trips">
                     <Route index element={
                         <ProtectedRoute adminOnly>
-                            <TripsManagement />
+                            <TripsManagementPage />
                         </ProtectedRoute>
                     }/>
 
                     <Route path=":id" element={
                         <ProtectedRoute adminOnly>
-                            <TripsDetails />
+                            <TripsDetailsPage />
                         </ProtectedRoute>
                     }/>
                 </Route>
@@ -114,7 +120,7 @@ export const App = () => {
                 <Route path="car-state">
                      <Route path=":id" element={
                         <ProtectedRoute adminOnly>
-                            <CarStateDetails />
+                            <CarStateDetailsPage />
                         </ProtectedRoute>
                     }/>
                 </Route>

@@ -7,19 +7,19 @@ import {
     InputController,
     AppButton,
     MessageDialog,
-} from "../components";
+} from "../../components/index.js";
 
-import { useMessageDialog } from "../hooks";
+import { useMessageDialog } from "../../hooks/index.js";
 
 import {
     getErrorMessage,
     getEmailValidation,
     getPasswordValidation,
-} from "../utils";
+} from "../../utils/index.js";
 
-import { AuthService } from "../services";
+import { AuthService } from "../../services/index.js";
 
-export const Login = () => {
+export const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const {
@@ -56,7 +56,7 @@ export const Login = () => {
         <Loader isLoading={isLoading}>
             <div className="page">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title form">Адміністративна панель</span>
+                    <span className="page__title form">Вхід</span>
 
                     <InputController
                         control={control}

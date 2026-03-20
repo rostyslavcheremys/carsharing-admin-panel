@@ -6,7 +6,7 @@ import { getActionMessage } from "../../utils";
 
 import { TRIPS_TABLE_COLUMNS, TRIPS_ACTIONS } from "../../constants";
 
-export const TripsManagement = () => {
+export const TripsManagementPage = () => {
     const {
         data: trips,
         isLoading,

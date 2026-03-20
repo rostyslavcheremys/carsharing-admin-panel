@@ -13,7 +13,7 @@ import { getErrorMessage, getCarValues } from "../../utils";
 
 import { CAR_FORM_DEFAULT_VALUES } from "../../constants";
 
-export const CarEdit = () => {
+export const CarEditPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
