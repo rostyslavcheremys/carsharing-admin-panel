@@ -1,4 +1,6 @@
 export * from "./auth/LoginPage.jsx";
+export * from "./auth/RegisterPage.jsx";
+export * from "./auth/DriverVerificationPage.jsx";
 
 export * from "./bookings/BookingsManagementPage.jsx";
 export * from "./bookings/BookingDetailsPage.jsx";

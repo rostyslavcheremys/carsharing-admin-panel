@@ -3,7 +3,11 @@ import { BrowserRouter } from "react-router-dom";
 
 import { App } from "./App.jsx";
 
-import { AuthProvider, AppThemeProvider } from "./context";
+import {
+    AuthProvider,
+    AppThemeProvider,
+    DateLocalizationProvider
+} from "./context";
 
 import "./index.css";
 import "./styles";
@@ -13,7 +17,9 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
         <AuthProvider>
             <AppThemeProvider>
-                <App />
+                <DateLocalizationProvider>
+                    <App />
+                </DateLocalizationProvider>
             </AppThemeProvider>
         </AuthProvider>
     </BrowserRouter>

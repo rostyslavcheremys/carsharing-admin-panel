@@ -21,19 +21,27 @@ export * from "./map/getTripLocation.js";
 
 export * from "./theme/getTheme.js";
 
-export * from "./validations/getEmailValidation.js";
-export * from "./validations/getPasswordValidation.js";
-export * from "./validations/getRequiredFieldValidation.js";
-export * from "./validations/getRequiredAnyValidation.js";
-export * from "./validations/getBrandValidation.js";
-export * from "./validations/getModelValidation.js";
-export * from "./validations/getYearValidation.js";
-export * from "./validations/getMileageValidation.js";
-export * from "./validations/getLicensePlateValidation.js";
-export * from "./validations/getDisplacementValidation.js";
-export * from "./validations/getCapacityValidation.js";
-export * from "./validations/getRangeValidation.js";
-export * from "./validations/getSeatsValidation.js";
-export * from "./validations/getPricePerDayValidation.js";
-export * from "./validations/requiredField.js";
-export * from "./validations/requiredAny.js";
+export * from "./validations/auth/getFirstNameValidation.js";
+export * from "./validations/auth/getLastNameValidation.js";
+export * from "./validations/auth/getPhoneNumberValidation.js";
+export * from "./validations/auth/getBirthDateValidation.js";
+export * from "./validations/auth/getEmailValidation.js";
+export * from "./validations/auth/getPasswordValidation.js";
+export * from "./validations/auth/getConfirmPasswordValidation.js";
+
+export * from "./validations/car/getBrandValidation.js";
+export * from "./validations/car/getModelValidation.js";
+export * from "./validations/car/getYearValidation.js";
+export * from "./validations/car/getMileageValidation.js";
+export * from "./validations/car/getLicensePlateValidation.js";
+export * from "./validations/car/getDisplacementValidation.js";
+export * from "./validations/car/getCapacityValidation.js";
+export * from "./validations/car/getRangeValidation.js";
+export * from "./validations/car/getSeatsValidation.js";
+export * from "./validations/car/getPricePerDayValidation.js";
+
+export * from "./validations/common/getRequiredFieldValidation.js";
+export * from "./validations/common/getRequiredAnyValidation.js";
+export * from "./validations/common/requiredField.js";
+export * from "./validations/common/requiredAny.js";
+export * from "./validations/common/maxLengthField.js";

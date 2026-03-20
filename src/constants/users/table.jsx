@@ -42,8 +42,8 @@ export const USERS_TABLE_COLUMNS = [
         render: (user) => getString(user?.email)
     },
     {
-        id: "phone", label: "Номер телефону",
-        render: (user) => getString(user?.phone)
+        id: "phoneNumber", label: "Номер телефону",
+        render: (user) => getString(user?.phoneNumber)
     },
     {
         id: "birthDate", label: "Дата народження",

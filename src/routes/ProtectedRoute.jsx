@@ -9,10 +9,10 @@ export const ProtectedRoute = ({ children, adminOnly = false }) => {
 
     return (
         <Loader isLoading={loading}>
-            {!user && <Navigate to="/login" replace />}
+            {!user && <Navigate to="/auth/login" replace />}
 
             {adminOnly && user?.role !== "admin" && (
-                <Navigate to="/login" replace />
+                <Navigate to="/auth/login" replace />
             )}
 
             {user && children}

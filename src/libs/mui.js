@@ -10,3 +10,5 @@ export {
     Dialog, DialogTitle, DialogContent, DialogActions,
     CircularProgress, ImageList, ImageListItem
 } from "@mui/material";
+
+export { DatePicker } from "@mui/x-date-pickers/DatePicker";

@@ -6,8 +6,10 @@ import {
 } from "./layouts";
 
 import {
-    DashboardPage,
     LoginPage,
+    RegisterPage,
+    DriverVerificationPage,
+    DashboardPage,
     MonitoringPage,
     UsersManagementPage,
     UserDetailsPage,
@@ -27,11 +29,23 @@ import { ProtectedRoute, PublicRoute } from "./routes";
 export const App = () => {
     return (
         <Routes>
-
             <Route element={<AuthLayout />}>
-                <Route path="/login" element={
+                <Route path="/auth/login" element={
                     <PublicRoute>
                         <LoginPage />
+                    </PublicRoute>
+                }/>
+
+                <Route path="/auth/register" element={
+                    <PublicRoute>
+                        <RegisterPage />
+                    </PublicRoute>
+                }/>
+
+
+                <Route path="/auth/driver-verification" element={
+                    <PublicRoute>
+                        <DriverVerificationPage />
                     </PublicRoute>
                 }/>
             </Route>

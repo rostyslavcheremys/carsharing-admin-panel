@@ -1,4 +1,4 @@
-import { requiredAny } from "../../utils";
+import { requiredAny } from "../../index.js";
 
 export const getRequiredAnyValidation = (value) => ({
     required: requiredAny(value)

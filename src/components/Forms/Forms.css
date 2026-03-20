@@ -14,28 +14,33 @@
     width: 400px;
 }
 
-.form__field .MuiOutlinedInput-root {
+.form__field .MuiOutlinedInput-root,
+.form__field .MuiPickersInputBase-root {
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
     font-size: 16px;
     height: 50px;
 }
 
-.form__field .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-notchedOutline,
+.form__field .MuiPickersOutlinedInput-notchedOutline {
     border-radius: 10px;
     border: 2px solid var(--grey-color) !important;
     transition: border 0.2s ease-in-out !important;
 }
 
-.form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+.form__field .MuiPickersInputBase-root:hover .MuiPickersOutlinedInput-notchedOutline {
     border-color: var(--main-color) !important;
 }
 
-.form__field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.form__field .MuiPickersInputBase-root.Mui-focused .MuiPickersOutlinedInput-notchedOutline {
     border-color: var(--main-color) !important;
 }
 
-.form__field .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+.form__field .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline,
+.form__field .MuiPickersInputBase-root.Mui-error .MuiPickersOutlinedInput-notchedOutline {
     border-color: var(--red-color) !important;
 }
 

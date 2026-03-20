@@ -1,4 +1,4 @@
-import { requiredField } from "../../utils";
+import { requiredField } from "../../index.js";
 
 export const getPricePerDayValidation = () => ({
     required: requiredField("Вартість за добу"),

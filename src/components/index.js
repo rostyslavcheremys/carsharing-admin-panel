@@ -13,11 +13,13 @@ export * from "./Details/DetailsItem.jsx";
 export * from "./Details/DetailsLink.jsx";
 export * from "./Details/DetailsMap.jsx";
 
+export * from "./FormControllers/DatePickerController.jsx";
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";
 export * from "./FormControllers/LocationController.jsx";
 export * from "./FormControllers/SelectController.jsx";
 
+export * from "./Forms/FormDatePicker.jsx";
 export * from "./Forms/FormField.jsx";
 export * from "./Forms/FormLocation.jsx";
 export * from "./Forms/FormSelect.jsx";

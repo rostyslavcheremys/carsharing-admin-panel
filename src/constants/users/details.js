@@ -8,7 +8,7 @@ export const USER_DETAILS = [
     { label: "Прізвище:", key: "lastName" },
     { label: "Посвідчення водія:", key: "drivingLicense" },
     { label: "Електронна адреса:", key: "email" },
-    { label: "Номер телефону:", key: "phone" },
+    { label: "Номер телефону:", key: "phoneNumber" },
     {
         label: "Дата народження:", key: "birthDate",
         formatter: (user) => getFormattedTimestamp(user)

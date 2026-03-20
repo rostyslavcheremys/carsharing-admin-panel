@@ -1,4 +1,4 @@
-import { requiredField } from "../../utils";
+import { requiredField } from "../../index.js";
 
 export const getEmailValidation = () => ({
     required: requiredField("Електронна пошта"),

@@ -76,7 +76,7 @@ export const CarsManagementPage = () => {
 
                 <header className="page__header">
                     <AppButton
-                        className="cars__app-button"
+                        className="app-button--wide"
                         label="Додати автомобіль"
                         onClick={handleAdd}
                     />
