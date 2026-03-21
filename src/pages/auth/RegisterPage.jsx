@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
+import dayjs from "dayjs";
 
 import {
     Loader,
     InputController,
     DatePickerController,
     AppButton,
+    AuthRedirect,
     MessageDialog,
 } from "../../components";
 
@@ -35,14 +37,12 @@ export const RegisterPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const navigate = useNavigate();
-
     const { control, watch, handleSubmit } = useForm({
         defaultValues: {
             firstName: "",
             lastName: "",
             phoneNumber: "",
-            birthDate: "",
+            birthDate: dayjs("2000-01-01"),
             email: "",
             password: "",
             confirmPassword: "",
@@ -52,10 +52,8 @@ export const RegisterPage = () => {
 
     const onSubmit = async (data) => {
         try {
-            setIsLoading(true);
-            await AuthService.login(data.email, data.password);
-
-            navigate("/", { replace: true });
+            const { confirmPassword: _confirmPassword, ...userData } = data;
+            await AuthService.register(userData);
         } catch (error) {
             showMessage(getErrorMessage(error));
         } finally {
@@ -129,6 +127,12 @@ export const RegisterPage = () => {
                             disabled={isLoading}
                         />
                     </div>
+
+                    <AuthRedirect
+                        text="Вже маєте акаунт?"
+                        linkText="Увійти"
+                        to="/auth/login"
+                    />
                 </form>
 
                 <MessageDialog

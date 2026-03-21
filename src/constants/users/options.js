@@ -7,3 +7,9 @@ export const USER_STATUS = [
     { value: true, label: "Заблокований" },
     { value: false, label: "Активний" }
 ];
+
+export const VERIFICATION_STATUS = [
+    { value: "pending", label: "Очікує перевірки" },
+    { value: "approved", label: "Підтверджено" },
+    { value: "rejected", label: "Відхилено" },
+];

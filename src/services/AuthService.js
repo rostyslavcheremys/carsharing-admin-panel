@@ -1,5 +1,15 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
+} from "firebase/auth";
+
+import {
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+} from "firebase/firestore";
+
 import { auth, db } from "../firebase";
 
 export class AuthService {
@@ -20,5 +30,28 @@ export class AuthService {
             email: firebaseUser.email,
             ...userSnap.data(),
         };
+    }
+
+    static async register(data) {
+        const { email, password, firstName, lastName, phoneNumber, birthDate } = data;
+
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        await setDoc(doc(db, "users", user.uid), {
+            id: user.uid,
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            role: "user",
+            isBlocked: false,
+            drivingLicense: "",
+            verificationStatus: "pending",
+            birthDate: birthDate.toDate(),
+            createdAt: serverTimestamp(),
+        });
+
+        return user;
     }
 }

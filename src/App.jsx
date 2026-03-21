@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
 import {
-    AdminLayout,
     AuthLayout,
+    AdminLayout,
+    UserLayout,
 } from "./layouts";
 
 import {
@@ -37,21 +38,28 @@ export const App = () => {
                 }/>
 
                 <Route path="/auth/register" element={
-                    <PublicRoute>
+                    <PublicRoute redirectTo="/auth/driver-verification">
                         <RegisterPage />
                     </PublicRoute>
                 }/>
 
-
                 <Route path="/auth/driver-verification" element={
-                    <PublicRoute>
+                    <ProtectedRoute userOnly>
                         <DriverVerificationPage />
-                    </PublicRoute>
+                    </ProtectedRoute>
+                }/>
+            </Route>
+
+            <Route element={<UserLayout />}>
+                <Route path="/" element={
+                    <ProtectedRoute userOnly>
+                        <DashboardPage />
+                    </ProtectedRoute>
                 }/>
             </Route>
 
             <Route element={<AdminLayout />}>
-                <Route path="/" element={
+                <Route path="/dashboard" element={
                     <ProtectedRoute adminOnly>
                         <DashboardPage />
                     </ProtectedRoute>

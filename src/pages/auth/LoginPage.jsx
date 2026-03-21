@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 import {
     Loader,
     InputController,
     AppButton,
+    AuthRedirect,
     MessageDialog,
-} from "../../components/index.js";
+} from "../../components";
 
-import { useMessageDialog } from "../../hooks/index.js";
+import { useMessageDialog } from "../../hooks";
 
 import {
     getErrorMessage,
     getEmailValidation,
     getPasswordValidation,
-} from "../../utils/index.js";
+} from "../../utils";
 
-import { AuthService } from "../../services/index.js";
+import { AuthService } from "../../services";
 
 export const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +28,6 @@ export const LoginPage = () => {
         showMessage,
         handleMessageClose,
     } = useMessageDialog();
-
-    const navigate = useNavigate();
 
     const { control, handleSubmit } = useForm({
         defaultValues: {
@@ -43,8 +41,6 @@ export const LoginPage = () => {
         try {
             setIsLoading(true);
             await AuthService.login(data.email, data.password);
-
-            navigate("/cars", { replace: true });
         } catch (error) {
             showMessage(getErrorMessage(error));
         } finally {
@@ -81,6 +77,12 @@ export const LoginPage = () => {
                             disabled={isLoading}
                         />
                     </div>
+
+                    <AuthRedirect
+                        text="Немає акаунта?"
+                        linkText="Зареєструватися"
+                        to="/auth/register"
+                    />
                 </form>
 
                 <MessageDialog
@@ -91,4 +93,4 @@ export const LoginPage = () => {
             </div>
         </Loader>
     );
-};
+}

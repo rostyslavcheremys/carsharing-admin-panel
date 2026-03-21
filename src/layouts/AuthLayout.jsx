@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom";
 
-import { Header } from "../components";
+import { AuthHeader } from "../components";
+
+import "./Layouts.css";
 
 export const AuthLayout = () => {
     return (
         <div className="layout layout--auth">
+            <AuthHeader/>
+
             <div className="layout__container">
                 <main>
                     <Outlet/>

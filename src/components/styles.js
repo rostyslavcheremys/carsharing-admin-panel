@@ -1,10 +1,11 @@
 import "./Actions/Actions.css";
+import "./auth/Auth.css";
 import "./Buttons/Buttons.css";
 import "./Car/Car.css";
 import "./FormControllers/FormControllers.css";
 import "./Forms/Forms.css";
 import "./ImageItem/ImageItem.css";
-import "./Header/Header.css";
+import "./headers/Headers.css";
 import "./Loader/Loader.css";
 import "./Map/Map.css";
 import "./Details/Details.css";

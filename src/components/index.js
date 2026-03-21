@@ -1,5 +1,7 @@
 export * from "./Actions/Actions.jsx";
 
+export * from "./auth/AuthRedirect.jsx";
+
 export * from "./Buttons/ActionIconButton.jsx";
 export * from "./Buttons/AppButton.jsx";
 export * from "./Buttons/FormButton.jsx";
@@ -25,8 +27,13 @@ export * from "./Forms/FormLocation.jsx";
 export * from "./Forms/FormSelect.jsx";
 export * from "./Forms/FormUpload.jsx";
 
+
+export * from "./headers/AdminHeader.jsx";
+export * from "./headers/UserHeader.jsx";
+export * from "./headers/AuthHeader.jsx";
+
 export * from "./ImageItem/ImageItem.jsx";
-export * from "./Header/Header.jsx";
+
 export * from "./Loader/Loader.jsx";
 
 export * from "./Dialogs/DialogCell.jsx";

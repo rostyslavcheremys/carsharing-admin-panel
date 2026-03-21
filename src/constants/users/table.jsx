@@ -1,6 +1,6 @@
 import { getLabel, getString, getFormattedTimestamp } from "../../utils";
 
-import { ROLES, USER_STATUS } from "./options.js";
+import { ROLES, USER_STATUS, VERIFICATION_STATUS } from "./options.js";
 
 export const USERS_TABLE_COLUMNS = [
     { id: "actions", label: "Дії" },
@@ -9,8 +9,7 @@ export const USERS_TABLE_COLUMNS = [
         render: (user) => getString(user?.id)
     },
     {
-        id: "status",
-        label: "Статус",
+        id: "status", label: "Статус",
         render: (user) => getLabel(user?.isBlocked, USER_STATUS),
     },
     {
@@ -36,6 +35,10 @@ export const USERS_TABLE_COLUMNS = [
             ) : (
                 "—"
             ),
+    },
+    {
+        id: "verificationStatus", label: "Верифікація",
+        render: (user) => getLabel(user?.verificationStatus, VERIFICATION_STATUS),
     },
     {
         id: "email", label: "Електронна адреса",

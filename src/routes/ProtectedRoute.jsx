@@ -4,18 +4,30 @@ import { Loader } from "../components";
 
 import { useAuth } from "../hooks";
 
-export const ProtectedRoute = ({ children, adminOnly = false }) => {
+export const ProtectedRoute = ({
+                                   children,
+                                   adminOnly = false,
+                                   userOnly = false
+                                }) => {
     const { user, loading } = useAuth();
 
-    return (
-        <Loader isLoading={loading}>
-            {!user && <Navigate to="/auth/login" replace />}
+    if (loading) return <Loader isLoading />;
 
-            {adminOnly && user?.role !== "admin" && (
-                <Navigate to="/auth/login" replace />
-            )}
+    if (!user) return <Navigate to="/auth/login" replace />;
 
-            {user && children}
-        </Loader>
-    );
-};
+    if (adminOnly && user.role !== "admin") {
+        return <Navigate to="/" replace />;
+    }
+
+    if (userOnly) {
+        if (user.role !== "user") {
+            return <Navigate to="/dashboard" replace />;
+        }
+
+        if (user.verificationStatus !== "approved") {
+            return <Navigate to="/auth/driver-verification" replace />;
+        }
+    }
+
+    return children;
+}

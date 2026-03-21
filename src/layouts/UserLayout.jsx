@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-import { AdminHeader } from "../components";
+import { UserHeader } from "../components";
 
 import "./Layouts.css";
 
-export const AdminLayout = () => {
+export const UserLayout = () => {
     return (
-        <div className="layout layout--admin">
-            <AdminHeader/>
+        <div className="layout layout--user">
+            <UserHeader/>
 
             <div className="layout__container">
                 <main>

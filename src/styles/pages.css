@@ -1,25 +1,3 @@
-.layout {
-    display: flex;
-    flex-direction: row;
-    min-height: 100vh;
-    height: 100%;
-    width: 100%;
-}
-
-.layout__container {
-    display: flex;
-    flex-direction: column;
-}
-
-.layout--auth .layout__container {
-    width: 100%;
-}
-
-.layout--admin .layout__container {
-    margin-left: 70px;
-    width: calc(100% - 70px);
-}
-
 main {
     flex: 1;
 }
@@ -98,11 +76,6 @@ main {
 }
 
 @media (max-width: 768px) {
-    .layout--admin .layout__container {
-        margin-left: 60px;
-        width: calc(100% - 60px);
-    }
-
     .page__title {
         font-size: 20px;
     }
@@ -113,11 +86,6 @@ main {
 }
 
 @media (max-width: 500px) {
-    .layout--admin .layout__container {
-        margin-left: 50px;
-        width: calc(100% - 50px);
-    }
-
     .page__title {
         font-size: 18px;
     }
