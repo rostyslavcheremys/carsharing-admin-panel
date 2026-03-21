@@ -98,7 +98,7 @@ export const RegisterPage = () => {
                     <InputController
                         control={control}
                         name="email"
-                        label="Електронна пошта*"
+                        label="Електронна адреса*"
                         type="email"
                         rules={getEmailValidation()}
                     />

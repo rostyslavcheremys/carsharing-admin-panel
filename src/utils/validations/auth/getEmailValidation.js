@@ -1,9 +1,9 @@
 import { requiredField } from "../../index.js";
 
 export const getEmailValidation = () => ({
-    required: requiredField("Електронна пошта"),
+    required: requiredField("Електронна адреса"),
     pattern: {
         value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        message: "Введіть коректну електронну пошту!"
+        message: "Введіть коректну електронну адреса!"
     }
 });

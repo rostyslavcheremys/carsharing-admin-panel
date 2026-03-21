@@ -7,16 +7,16 @@ export const getErrorMessage = (error) => {
         case "auth/invalid-credential":
         case "auth/user-not-found":
         case "auth/wrong-password":
-            return "Невірна електронна пошта або пароль.";
+            return "Невірна електронна адреса або пароль.";
 
         case "auth/email-already-in-use":
-            return "Ця пошта вже використовується іншим користувачем.";
+            return "Ця адреса вже використовується іншим користувачем.";
 
         case "auth/weak-password":
             return "Пароль занадто слабкий (мінімум 6 символів).";
 
         case "auth/invalid-email":
-            return "Невірний формат електронної пошти.";
+            return "Невірний формат електронної адреси.";
 
         case "auth/user-disabled":
             return "Ваш обліковий запис заблоковано адміністратором.";
