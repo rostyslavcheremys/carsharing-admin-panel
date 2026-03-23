@@ -15,7 +15,7 @@ import {
     useTableColumns
 } from "../../hooks";
 
-import { getActionMessage } from "../../utils";
+import { getActionMessage, getErrorMessage } from "../../utils";
 
 import { CarService } from "../../services";
 
@@ -41,9 +41,7 @@ export const CarsManagementPage = () => {
 
     console.log(cars);
 
-    const handleAdd = () => {
-        navigate("/cars/add");
-    }
+    const handleAdd = () => navigate("/cars/add");
 
     const handleDelete = useCallback(async (id) => {
         try {
@@ -52,7 +50,7 @@ export const CarsManagementPage = () => {
 
             showMessage("Автомобіль видалено!");
         } catch (error) {
-            showMessage("Помилка: " + error.message);
+            showMessage(getErrorMessage(error));
         } finally {
             setIsDeleting(false);
         }

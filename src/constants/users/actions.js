@@ -1,9 +1,9 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-import { Visibility, LockOpenIcon } from "../../libs/mui-icons";
+import {Visibility, LockOpenIcon, DeleteIcon} from "../../libs/mui-icons";
 
-export const USER_ACTIONS = [
+export const USER_ACTIONS = (onDelete) => [
     {
         type: "view",
         Icon: Visibility,
@@ -17,6 +17,11 @@ export const USER_ACTIONS = [
             await updateDoc(doc(db, "users", id), {
                 isBlocked: !isBlocked,
             });
-        },
+        }
     },
+    {
+        type: "delete",
+        Icon: DeleteIcon,
+        handler: ({ id }) => onDelete(id)
+    }
 ];

@@ -50,7 +50,7 @@ export const LoginPage = () => {
 
     return (
         <Loader isLoading={isLoading}>
-            <div className="page">
+            <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <span className="page__title form">Вхід</span>
 

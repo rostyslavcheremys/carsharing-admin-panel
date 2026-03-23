@@ -93,6 +93,10 @@
         width: 60px;
     }
 
+    .header.header--user {
+        height: 60px;
+    }
+
     .header__logo {
         height: 40px;
         width: 40px;
@@ -123,6 +127,10 @@
 @media (max-width: 500px) {
     .header.header--admin {
         width: 50px;
+    }
+
+    .header.header--user {
+        height: 50px;
     }
 
     .header__logo {
