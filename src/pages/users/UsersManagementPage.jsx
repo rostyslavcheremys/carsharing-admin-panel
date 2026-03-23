@@ -1,5 +1,3 @@
-import { useCallback, useState } from "react";
-
 import {
     DataTable,
     Loader,
@@ -8,19 +6,17 @@ import {
 
 import {
     useAuth,
-    useCollection, useMessageDialog,
+    useCollection, useDelete, useMessageDialog,
     useTableColumns
 } from "../../hooks";
 
-import { getActionMessage, getErrorMessage } from "../../utils";
+import { getActionMessage } from "../../utils";
 
 import { UserService } from "../../services";
 
 import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../constants";
 
 export const UsersManagementPage = () => {
-    const [isDeleting, setIsDeleting] = useState(false);
-
     const {
         messageOpen,
         message,
@@ -34,28 +30,19 @@ export const UsersManagementPage = () => {
         error,
     } = useCollection("users");
 
-    const { user: currentUser } = useAuth();
-
     console.log(users);
 
-    const handleDelete = useCallback(async (id) => {
-        try {
-            setIsDeleting(true);
-            await UserService.deleteUser(id);
+    const { user: currentUser } = useAuth();
 
-            showMessage("Користувача видалено!");
-        } catch (error) {
-            showMessage(getErrorMessage(error));
-        } finally {
-            setIsDeleting(false);
-        }
-    }, [showMessage]);
+    const { isDeleting, handleDelete } = useDelete(UserService.deleteUser, showMessage);
+
+    const handleUserDelete = (id) => handleDelete(id, "Користувача видалено!");
 
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
         actions: (user) => (
             <Actions
                 id={user.id}
-                actions={USER_ACTIONS(handleDelete)}
+                actions={USER_ACTIONS(handleUserDelete)}
                 getMessage={getActionMessage}
                 entity="user"
                 currentState={user}

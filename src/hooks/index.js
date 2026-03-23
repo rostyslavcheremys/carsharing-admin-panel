@@ -5,6 +5,7 @@ export * from "./useFullscreen.js";
 export * from "./useMessageDialog.js";
 export * from "./useTableColumns.js";
 export * from "./useTheme.js";
+export * from "./useDelete.js";
 
 export * from "./map/useActiveIndex.js";
 export * from "./map/useAutoPanToMarker.js";

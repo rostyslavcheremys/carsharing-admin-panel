@@ -1,4 +1,3 @@
-import { useCallback, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -11,18 +10,18 @@ import {
 
 import {
     useCollection,
+    useDelete,
     useMessageDialog,
     useTableColumns
 } from "../../hooks";
 
-import { getActionMessage, getErrorMessage } from "../../utils";
+import { getActionMessage } from "../../utils";
 
 import { CarService } from "../../services";
 
 import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
 
 export const CarsManagementPage = () => {
-    const [isDeleting, setIsDeleting] = useState(false);
 
     const {
         messageOpen,
@@ -43,24 +42,15 @@ export const CarsManagementPage = () => {
 
     const handleAdd = () => navigate("/cars/add");
 
-    const handleDelete = useCallback(async (id) => {
-        try {
-            setIsDeleting(true);
-            await CarService.deleteCar(id);
+    const { isDeleting, handleDelete } = useDelete(CarService.deleteCar, showMessage);
 
-            showMessage("Автомобіль видалено!");
-        } catch (error) {
-            showMessage(getErrorMessage(error));
-        } finally {
-            setIsDeleting(false);
-        }
-    }, [showMessage]);
+    const handleCarDelete = (id) => handleDelete(id, "Автомобіль видалено!");
 
     const columns = useTableColumns(CARS_TABLE_COLUMNS, {
         actions: (car) => (
             <Actions
                 id={car.id}
-                actions={CAR_ACTIONS(handleDelete)}
+                actions={CAR_ACTIONS(handleCarDelete)}
                 getMessage={getActionMessage}
                 entity="car"
             />
@@ -72,13 +62,13 @@ export const CarsManagementPage = () => {
             <div className="page page__content">
                 <span className="page__title">Керування автомобілями</span>
 
-                <header className="page__header">
+                <div className="page__header">
                     <AppButton
                         className="app-button--wide"
                         label="Додати автомобіль"
                         onClick={handleAdd}
                     />
-                </header>
+                </div>
 
                 <DataTable rows={cars} columns={columns} />
 
