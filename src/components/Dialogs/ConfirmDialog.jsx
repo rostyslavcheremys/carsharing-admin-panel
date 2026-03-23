@@ -13,7 +13,9 @@ export const ConfirmDialog = ({
             className="dialog"
             open={open}
             onClose={onCancel}
+            disableEnforceFocus={true}
             disableRestoreFocus={true}
+            disablePortal={false}
         >
             <div className="dialog__content">
                 <span className="dialog__message">{message}</span>
