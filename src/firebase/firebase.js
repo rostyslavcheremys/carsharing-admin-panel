@@ -7,7 +7,6 @@ import { getFunctions } from "firebase/functions";
 
 import { firebaseConfig } from './firebaseConfig.js';
 
-
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
