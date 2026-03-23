@@ -29,10 +29,9 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy Functions to Firebase
+        uses: w9jds/firebase-action@v2.2.0
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          projectId: id-carsharing
-          channelId: live
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
