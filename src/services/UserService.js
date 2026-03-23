@@ -2,10 +2,12 @@ import { httpsCallable } from "firebase/functions";
 
 import { functions } from "../firebase";
 
-export const deleteUser = async (userId) => {
-    const callable = httpsCallable(functions, "deleteUser");
+export class UserService {
+    static async deleteUser(userId){
+        const callable = httpsCallable(functions, "deleteUser");
 
-    const result = await callable({ userId });
+        const result = await callable({ userId });
 
-    return result.data;
+        return result.data;
+    }
 }
