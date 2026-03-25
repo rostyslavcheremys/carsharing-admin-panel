@@ -1,6 +1,6 @@
 import "./Actions/Actions.css";
 import "./auth/Auth.css";
-import "./Buttons/Buttons.css";
+import "./buttons/Buttons.css";
 import "./Car/Car.css";
 import "./FormControllers/FormControllers.css";
 import "./Forms/Forms.css";

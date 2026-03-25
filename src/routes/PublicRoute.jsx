@@ -8,14 +8,9 @@ export const PublicRoute = ({ children, redirectTo }) => {
 
     if (loading) return <Loader isLoading />;
 
-    if (user) {
-        if (redirectTo) {
-            return <Navigate to={redirectTo} replace />;
-        }
+    if (!user) return children;
 
-        const roleRedirect = user.role === "admin" ? "/dashboard" : "/";
-        return <Navigate to={roleRedirect} replace />;
-    }
+    const roleRedirect = redirectTo ?? (user.role === "admin" ? "/dashboard" : "/");
 
-    return children;
+    return <Navigate to={roleRedirect} replace />;
 }

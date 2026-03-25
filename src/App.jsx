@@ -44,7 +44,7 @@ export const App = () => {
                 }/>
 
                 <Route path="/auth/driver-verification" element={
-                    <ProtectedRoute userOnly>
+                    <ProtectedRoute>
                         <DriverVerificationPage />
                     </ProtectedRoute>
                 }/>

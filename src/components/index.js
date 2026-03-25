@@ -2,10 +2,11 @@ export * from "./Actions/Actions.jsx";
 
 export * from "./auth/AuthRedirect.jsx";
 
-export * from "./Buttons/ActionIconButton.jsx";
-export * from "./Buttons/AppButton.jsx";
-export * from "./Buttons/FormButton.jsx";
-export * from "./Buttons/NavigateIconButton.jsx";
+export * from "./buttons/ActionIconButton.jsx";
+export * from "./buttons/AppButton.jsx";
+export * from "./buttons/DiiaButton.jsx";
+export * from "./buttons/FormButton.jsx";
+export * from "./buttons/NavigateIconButton.jsx";
 
 export * from "./Car/CarForm.jsx";
 export * from "./Car/CarImages.jsx";

@@ -34,3 +34,48 @@
 .icon-button:hover {
     color: var(--main-color) !important;
 }
+
+
+.diia-button {
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.1s ease;
+}
+
+.diia-button:active {
+    transform: scale(0.95);
+}
+
+.diia-button--disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.diia-button__image {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .diia-button__image {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .diia-button__image {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media (max-width: 500px) {
+    .diia-button__image {
+        height: 70px;
+        width: 70px;
+    }
+}
