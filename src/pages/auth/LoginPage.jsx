@@ -74,7 +74,7 @@ export const LoginPage = () => {
                         <AppButton
                             type="submit"
                             label="Увійти"
-                            disabled={isLoading}
+                            disabled={isLoading || messageOpen}
                         />
                     </div>
 

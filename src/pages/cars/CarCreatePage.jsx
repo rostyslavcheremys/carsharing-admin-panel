@@ -63,7 +63,8 @@ export const CarCreatePage = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 isSubmitting={isSubmitting}
                 submitLabel="Додати"
-                showBack={true}
+                showBack
+                messageOpen={messageOpen}
                 onBack={() => navigate("/cars")}
             />
 

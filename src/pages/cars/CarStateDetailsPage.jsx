@@ -49,7 +49,7 @@ export const CarStateDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading}
+                        disabled={isLoading || messageOpen}
                     />
                 </div>
 

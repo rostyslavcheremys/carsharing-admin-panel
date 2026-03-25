@@ -75,7 +75,8 @@ export const CarEditPage = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 isSubmitting={isSubmitting}
                 submitLabel="Зберегти"
-                showBack={true}
+                showBack
+                messageOpen={messageOpen}
                 onBack={() => navigate("/cars")}
             />
 

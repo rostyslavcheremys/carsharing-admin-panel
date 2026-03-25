@@ -38,7 +38,7 @@ export const BookingDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading}
+                        disabled={isLoading || messageOpen}
                     />
                 </div>
 

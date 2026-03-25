@@ -67,6 +67,7 @@ export const CarsManagementPage = () => {
                         className="app-button--wide"
                         label="Додати автомобіль"
                         onClick={handleAdd}
+                        disabled={isLoading || messageOpen}
                     />
                 </div>
 

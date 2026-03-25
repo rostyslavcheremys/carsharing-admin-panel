@@ -39,6 +39,7 @@ export const CarForm = ({
                             isSubmitting,
                             submitLabel,
                             showBack,
+                            messageOpen,
                             onBack
                         }) => {
     const isIce = powertrainType === "ice";
@@ -203,7 +204,7 @@ export const CarForm = ({
                     <AppButton
                         type="submit"
                         label={submitLabel}
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || messageOpen}
                     />
 
                     {showBack && (
@@ -211,7 +212,7 @@ export const CarForm = ({
                             type="button"
                             label="Назад"
                             onClick={onBack}
-                            disabled={isSubmitting}
+                            disabled={isSubmitting || messageOpen}
                         />
                     )}
                 </div>
