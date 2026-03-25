@@ -1,9 +1,9 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase/index.js";
+import { db } from "../../firebase";
 
 export const getDocumentById = async (collectionName, docId) => {
-    const carRef = doc(db, collectionName, docId);
-    const snapshot = await getDoc(carRef);
+    const documentRef = doc(db, collectionName, docId);
+    const snapshot = await getDoc(documentRef);
 
     if (!snapshot.exists()) {
         throw new Error("Car not found");
