@@ -5,18 +5,15 @@ import {
     Loader,
     CarImages,
     Details,
-    DetailsMap,
     AppButton,
-    MessageDialog,
-} from "../../components";
+    MessageDialog
+} from "../../../components/index.js";
 
-import { useMessageDialog, useDocument } from "../../hooks";
+import { useMessageDialog, useDocument } from "../../../hooks/index.js";
 
-import { getTripLocation } from "../../utils";
+import { CAR_CONDITION_DETAILS } from "../../../constants/index.js";
 
-import { CAR_DETAILS } from "../../constants";
-
-export const CarDetailsPage = () => {
+export const CarConditionDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -28,32 +25,26 @@ export const CarDetailsPage = () => {
     } = useMessageDialog();
 
     const {
-        document: car, isLoading, error
-    } = useDocument("cars", id, showMessage, navigate);
+        document: carCondition, isLoading, error
+    } = useDocument("carCondition", id, showMessage, navigate);
+
+    console.log(carCondition);
 
     const images = useMemo(() => {
-        if (!car?.images) return [];
-        return Array.isArray(car.images) ? car.images : [car.images];
-    }, [car]);
+        if (!carCondition?.images) return [];
+        return Array.isArray(carCondition.images) ? carCondition.images : [carCondition.images];
+    }, [carCondition]);
 
-    const location = getTripLocation(car, "location");
-
-    if (!car) return null;
+    if (!carCondition) return null;
 
     return(
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Автомобіль</span>
+                <span className="page__title">Стан автомобіля</span>
 
                 {images.length > 0 && <CarImages images={images} />}
 
-                <Details data={car} details={CAR_DETAILS} />
-
-                <DetailsMap
-                    label="Місцезнаходження"
-                    location={location}
-                    status={car.status}
-                />
+                <Details data={carCondition} details={CAR_CONDITION_DETAILS} />
 
                 <div className="page__button">
                     <AppButton

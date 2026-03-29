@@ -5,13 +5,13 @@ import {
     Details,
     AppButton,
     MessageDialog,
-} from "../../components";
+} from "../../../components/index.js";
 
-import { useMessageDialog, useDocument } from "../../hooks";
+import { useMessageDialog, useDocument } from "../../../hooks/index.js";
 
-import { BOOKING_DETAILS } from "../../constants";
+import { USER_DETAILS } from "../../../constants/index.js";
 
-export const BookingDetailsPage = () => {
+export const UserDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -23,15 +23,15 @@ export const BookingDetailsPage = () => {
     } = useMessageDialog();
 
     const {
-        document: booking, isLoading, error
-    } = useDocument("bookings", id, showMessage, navigate);
+        document: user, isLoading, error
+    } = useDocument("users", id, showMessage, navigate);
 
     return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Бронювання</span>
+                <span className="page__title">Користувач</span>
 
-                <Details data={booking} details={BOOKING_DETAILS} />
+                <Details data={user} details={USER_DETAILS} />
 
                 <div className="page__button">
                     <AppButton

@@ -5,15 +5,18 @@ import {
     Loader,
     CarImages,
     Details,
+    DetailsMap,
     AppButton,
-    MessageDialog
-} from "../../components";
+    MessageDialog,
+} from "../../../components/index.js";
 
-import { useMessageDialog, useDocument } from "../../hooks";
+import { useMessageDialog, useDocument } from "../../../hooks/index.js";
 
-import { CAR_STATE_DETAILS } from "../../constants";
+import { getTripLocation } from "../../../utils/index.js";
 
-export const CarStateDetailsPage = () => {
+import { CAR_DETAILS } from "../../../constants/index.js";
+
+export const CarDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -25,24 +28,32 @@ export const CarStateDetailsPage = () => {
     } = useMessageDialog();
 
     const {
-        document: carState, isLoading, error
-    } = useDocument("carState", id, showMessage, navigate);
+        document: car, isLoading, error
+    } = useDocument("cars", id, showMessage, navigate);
 
     const images = useMemo(() => {
-        if (!carState?.images) return [];
-        return Array.isArray(carState.images) ? carState.images : [carState.images];
-    }, [carState]);
+        if (!car?.images) return [];
+        return Array.isArray(car.images) ? car.images : [car.images];
+    }, [car]);
 
-    if (!carState) return null;
+    const location = getTripLocation(car, "location");
+
+    if (!car) return null;
 
     return(
         <Loader isLoading={isLoading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Стан автомобіля</span>
+                <span className="page__title">Автомобіль</span>
 
                 {images.length > 0 && <CarImages images={images} />}
 
-                <Details data={carState} details={CAR_STATE_DETAILS} />
+                <Details data={car} details={CAR_DETAILS} />
+
+                <DetailsMap
+                    label="Місцезнаходження"
+                    location={location}
+                    status={car.status}
+                />
 
                 <div className="page__button">
                     <AppButton

@@ -1,6 +1,6 @@
-import { Loader , Map } from "../components";
+import { Loader , Map } from "../../components/index.js";
 
-import { useCollection } from "../hooks";
+import { useCollection } from "../../hooks/index.js";
 
 export const MonitoringPage = () => {
     const {

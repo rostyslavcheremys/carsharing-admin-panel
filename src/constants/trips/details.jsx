@@ -25,15 +25,15 @@ export const TRIP_DETAILS = [
         )
     },
     {
-        label: "Стан до поїздки:", key: "stateBeforeId",
+        label: "Стан до поїздки:", key: "beforeConditionId",
         formatter: (id) => (
-            <DetailsLink to={`/car-state/${id}`} />
+            <DetailsLink to={`/car-condition/${id}`} />
         )
     },
     {
-        label: "Стан після поїздки:", key: "stateAfterId",
+        label: "Стан після поїздки:", key: "afterConditionId",
         formatter: (id) => (
-            <DetailsLink to={`/car-state/${id}`} />
+            <DetailsLink to={`/car-condition/${id}`} />
         )
     },
     { label: "Статус:", key: "status", map: TRIP_STATUS },

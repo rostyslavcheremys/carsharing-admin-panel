@@ -60,20 +60,20 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "stateBeforeId", label: "Стан до поїздки",
+        id: "beforeConditionId", label: "Стан до поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={`/car-state/${trip?.stateBeforeId}`}
+                to={`/car-condition/${trip?.beforeConditionId}`}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
         )
     },
     {
-        id: "stateAfterId", label: "Стан після поїздки",
+        id: "afterConditionId", label: "Стан після поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={`/car-state/${trip?.stateAfterId}`}
+                to={`/car-condition/${trip?.afterConditionId}`}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />

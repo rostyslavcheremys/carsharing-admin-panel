@@ -30,7 +30,7 @@ export const CAR_DETAILS = [
     { label: "Статус:", key: "status", map: CAR_STATUS },
 ];
 
-export const CAR_STATE_DETAILS = [
+export const CAR_CONDITION_DETAILS = [
     { label: "ID:", key: "id" },
     { label: "Опис:", key: "description" },
     { label: "Пробіг:", key: "mileage", suffix: "км" },

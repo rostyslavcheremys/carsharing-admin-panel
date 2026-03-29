@@ -6,20 +6,20 @@ import {
     Loader,
     MessageDialog,
     Actions
-} from "../../components";
+} from "../../../components/index.js";
 
 import {
     useCollection,
     useDelete,
     useMessageDialog,
     useTableColumns
-} from "../../hooks";
+} from "../../../hooks/index.js";
 
-import { getActionMessage } from "../../utils";
+import { getActionMessage } from "../../../utils/index.js";
 
-import { CarService } from "../../services";
+import { CarService } from "../../../services/index.js";
 
-import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../constants";
+import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../../constants/index.js";
 
 export const CarsManagementPage = () => {
 

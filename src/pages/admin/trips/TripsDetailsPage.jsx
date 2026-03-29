@@ -6,13 +6,13 @@ import {
     DetailsMap,
     AppButton,
     MessageDialog,
-} from "../../components";
+} from "../../../components/index.js";
 
-import { useMessageDialog, useDocument } from "../../hooks";
+import { useMessageDialog, useDocument } from "../../../hooks/index.js";
 
-import { getTripLocation } from "../../utils";
+import { getTripLocation } from "../../../utils/index.js";
 
-import { TRIP_DETAILS } from "../../constants";
+import { TRIP_DETAILS } from "../../../constants/index.js";
 
 export const TripsDetailsPage = () => {
     const { id } = useParams();

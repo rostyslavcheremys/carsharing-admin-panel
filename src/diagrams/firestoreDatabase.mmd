@@ -15,11 +15,11 @@ erDiagram
         string bodyType "Тип кузова"
         string driveType "Тип приводу"
         string color "Колір"
-        number year "Рік випуску"
-        number mileage "Пробіг"
-        number pricePerDay "Вартість за добу"
-        number seats "Кількість місць"
-        number rating "Рейтинг"
+        int64 year "Рік випуску"
+        int64 mileage "Пробіг"
+        int64 pricePerDay "Вартість за добу"
+        int64 seats "Кількість місць"
+        int64 rating "Рейтинг"
         map battery "Батарея"
         map engine "Двигун"
         array images "Фотографії"
@@ -28,17 +28,17 @@ erDiagram
 
     ENGINE {
         string fuelType "Тип палива"
-        number displacement "Об'єм двигуна"
+        int64 displacement "Об'єм двигуна"
     }
 
     BATTERY {
-        number capacity "Ємність батареї"
-        number range "Запас ходу"
+        int64 capacity "Ємність батареї"
+        int64 range "Запас ходу"
     }
 
     LOCATION {
-        number latitude "Широта"
-        number longitude "Довгота"
+        int64 latitude "Широта"
+        int64 longitude "Довгота"
     }
 
     USERS {
@@ -70,27 +70,27 @@ erDiagram
         string carId "ID автомобіля"
         string userId "ID користувача"
         string bookingId "ID бронювання"
-        string stateBeforeId "ID стану до поїздки"
-        string stateAfterId "ID стану після поїздки"
+        string beforeConditionId "ID стану до поїздки"
+        string afterConditionId "ID стану після поїздки"
         string status "Статус"
-        number totalPrice "Загальна вартість"
+        int64 totalPrice "Загальна вартість"
         timestamp actualStart "Фактичний початок"
         timestamp actualEnd "Фактичне завершення"
         geopoint startLocation "Початкове місцезнаходження"
         geopoint endLocation "Кінцеве місцезнаходження"
     }
 
-    CAR_STATE {
+    CAR_CONDITION {
         string id "ID"
         string description "Опис"
-        number mileage "Пробіг"
+        int64 mileage "Пробіг"
         array images "Фотографії"
         map energyLevel "Енергетичний рівень"
     }
 
     ENERGY_LEVEL {
-        number batteryPercent "Рівень заряду батареї"
-        number fuelPercent "Рівень пального"
+        int64 batteryPercent "Рівень заряду батареї"
+        int64 fuelPercent "Рівень пального"
     }
 
     CARS ||--|| ENGINE : "оснащений двигуном"
@@ -105,9 +105,9 @@ erDiagram
 
     BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
 
-    TRIPS ||--|| CAR_STATE : "фіксує стан до початку"
-    TRIPS ||--|| CAR_STATE : "фіксує стан після завершення"
+    TRIPS ||--|| CAR_CONDITION : "фіксує стан до початку"
+    TRIPS ||--|| CAR_CONDITION : "фіксує стан після завершення"
     TRIPS ||--|| LOCATION : "починається в"
     TRIPS ||--|| LOCATION : "завершується в"
 
-    CAR_STATE ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
+    CAR_CONDITION ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"

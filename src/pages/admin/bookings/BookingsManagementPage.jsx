@@ -1,10 +1,10 @@
-import { Actions, DataTable, Loader } from "../../components";
+import { Actions, DataTable, Loader } from "../../../components/index.js";
 
-import { useCollection, useTableColumns } from "../../hooks";
+import { useCollection, useTableColumns } from "../../../hooks/index.js";
 
-import { getActionMessage } from "../../utils";
+import { getActionMessage } from "../../../utils/index.js";
 
-import { BOOKINGS_TABLE_COLUMNS, BOOKING_ACTIONS } from "../../constants";
+import { BOOKINGS_TABLE_COLUMNS, BOOKING_ACTIONS } from "../../../constants/index.js";
 
 export const BookingsManagementPage = () => {
     const {
