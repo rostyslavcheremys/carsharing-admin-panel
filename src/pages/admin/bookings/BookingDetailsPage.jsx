@@ -5,11 +5,11 @@ import {
     Details,
     AppButton,
     MessageDialog,
-} from "../../../components/index.js";
+} from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks/index.js";
+import { useMessageDialog, useDocument } from "../../../hooks";
 
-import { BOOKING_DETAILS } from "../../../constants/index.js";
+import { BOOKING_DETAILS } from "../../../constants";
 
 export const BookingDetailsPage = () => {
     const { id } = useParams();
