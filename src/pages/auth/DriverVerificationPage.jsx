@@ -3,11 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuth, useMessageDialog } from "../../hooks";
 
-import { DiiaButton, Loader, MessageDialog } from "../../components";
+import {
+    Loader,
+    InfoMessage,
+    DiiaButton,
+    MessageDialog
+} from "../../components";
 
 import { UserService } from "../../services";
 
 import { getErrorMessage } from "../../utils";
+
+import { USER, DRIVER_VERIFICATION_MESSAGES } from "../../constants";
 
 export const DriverVerificationPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +24,12 @@ export const DriverVerificationPage = () => {
 
     const { user, setUser } = useAuth();
 
-    const { messageOpen, message, showMessage, handleMessageClose } = useMessageDialog();
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
 
     const handleVerify = async () => {
         setIsLoading(true);
@@ -42,7 +54,7 @@ export const DriverVerificationPage = () => {
         const updatedUser = await UserService.getUser(user.id);
         setUser(updatedUser);
 
-        navigate("/", { replace: true });
+        navigate(USER.HOME, { replace: true });
     }
 
     return (
@@ -50,13 +62,7 @@ export const DriverVerificationPage = () => {
             <div className="page page__content">
                 <span className="page__title">Верифікація водія</span>
 
-                <div className="page__info">
-                    <p className="page__text">
-                        Для користування всіма функціями сервісу необхідно підтвердити свій статус водія.
-                        Натисніть на емблему «Дія», щоб надіслати цифрову копію вашого водійського посвідчення.
-                        Це дозволяє автоматично перевірити ваші дані та надати повний доступ до сервісу.
-                    </p>
-                </div>
+                <InfoMessage message={DRIVER_VERIFICATION_MESSAGES} />
 
                 <DiiaButton
                     onClick={handleVerify}

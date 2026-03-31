@@ -28,12 +28,13 @@ export * from "./Forms/FormLocation.jsx";
 export * from "./Forms/FormSelect.jsx";
 export * from "./Forms/FormUpload.jsx";
 
-
 export * from "./Headers/AdminHeader.jsx";
 export * from "./Headers/UserHeader.jsx";
 export * from "./Headers/AuthHeader.jsx";
 
 export * from "./ImageItem/ImageItem.jsx";
+
+export * from "./InfoMessage/InfoMessage.jsx";
 
 export * from "./Loader/Loader.jsx";
 
