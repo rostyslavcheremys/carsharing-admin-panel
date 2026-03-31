@@ -20,6 +20,8 @@ export * from "./admin/users/UserDetailsPage.jsx";
 export * from "./admin/DashboardPage.jsx";
 export * from "./admin/MonitoringPage.jsx";
 
+export * from "./user/HomePage.jsx";
+
 export * from "./user/cars/CarsMapPage.jsx";
 export * from "./user/cars/CarDetailsUserPage.jsx";
 export * from "./user/cars/CarAccessPage.jsx";
