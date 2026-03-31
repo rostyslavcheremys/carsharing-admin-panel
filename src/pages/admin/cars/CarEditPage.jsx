@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { Loader, CarForm, MessageDialog } from "../../../components/index.js";
+import { Loader, CarForm, MessageDialog } from "../../../components";
 
-import {useMessageDialog, useDocument } from "../../../hooks/index.js";
+import {useMessageDialog, useDocument } from "../../../hooks";
 
-import { CarService } from "../../../services/index.js";
+import { CarService } from "../../../services";
 
-import { getErrorMessage, getCarValues } from "../../../utils/index.js";
+import { getErrorMessage, getCarValues } from "../../../utils";
 
-import { CAR_FORM_DEFAULT_VALUES } from "../../../constants/index.js";
+import { ADMIN, CAR_FORM_DEFAULT_VALUES } from "../../../constants";
 
 export const CarEditPage = () => {
     const { id } = useParams();
@@ -57,7 +57,7 @@ export const CarEditPage = () => {
 
             showMessage(
                 "Автомобіль оновлено!",
-                () => navigate("/cars")
+                () => navigate(ADMIN.CARS)
             );
         } catch (error) {
             showMessage(getErrorMessage(error));
@@ -77,7 +77,7 @@ export const CarEditPage = () => {
                 submitLabel="Зберегти"
                 showBack
                 messageOpen={messageOpen}
-                onBack={() => navigate("/cars")}
+                onBack={() => navigate(-1)}
             />
 
             <MessageDialog

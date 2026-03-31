@@ -1,4 +1,4 @@
-import { Tooltip, IconButton } from "@mui/material";
+import { Tooltip } from "../../libs/mui";
 
 import {
     NearMeIcon,
@@ -15,6 +15,8 @@ import { ActionIconButton, NavigateIconButton } from "../../components";
 
 import { useAuth, useTheme } from "../../hooks";
 
+import { ADMIN } from "../../constants";
+
 export const AdminHeader = () => {
     const { darkMode, toggleTheme } = useTheme();
 
@@ -24,7 +26,7 @@ export const AdminHeader = () => {
         <header className="header header--admin">
             <div className="header__content header__content--admin">
                 <NavigateIconButton
-                    to="/dashboard"
+                    to={ADMIN.DASHBOARD}
                     Icon={DirectionsCarIcon}
                     className="header__logo"
                     iconClassName="header__logo-icon"
@@ -33,7 +35,7 @@ export const AdminHeader = () => {
                 <nav className="header__nav header__nav--admin">
                     <Tooltip title="Моніторинг автомобілів" placement="right">
                         <NavigateIconButton
-                            to="/monitoring"
+                            to={ADMIN.MONITORING}
                             Icon={NearMeIcon}
                             iconClassName="header__nav-icon"
                         />
@@ -41,7 +43,7 @@ export const AdminHeader = () => {
 
                     <Tooltip title="Керування автомобілями" placement="right">
                         <NavigateIconButton
-                            to="/cars"
+                            to={ADMIN.CARS}
                             Icon={DirectionsCarIcon}
                             iconClassName="header__nav-icon header__nav-icon--cars"
                         />
@@ -49,7 +51,7 @@ export const AdminHeader = () => {
 
                     <Tooltip title="Керування користувачами" placement="right">
                         <NavigateIconButton
-                            to="/users"
+                            to={ADMIN.USERS}
                             Icon={PeopleIcon}
                             iconClassName="header__nav-icon header__nav-icon--users"
                         />
@@ -57,7 +59,7 @@ export const AdminHeader = () => {
 
                     <Tooltip title="Керування бронюваннями" placement="right">
                         <NavigateIconButton
-                            to="/bookings"
+                            to={ADMIN.BOOKINGS}
                             Icon={EventNoteIcon}
                             iconClassName="header__nav-icon"
                         />
@@ -65,20 +67,18 @@ export const AdminHeader = () => {
 
                     <Tooltip title="Керування поїздками" placement="right">
                         <NavigateIconButton
-                            to="/trips"
+                            to={ADMIN.TRIPS}
                             Icon={RoomIcon}
                             iconClassName="header__nav-icon"
                         />
                     </Tooltip>
 
                     <Tooltip title={darkMode ? "Темна тема" : "Світла тема"} placement="right">
-                        <IconButton onClick={toggleTheme}>
-                            {darkMode ? (
-                                <DarkModeIcon className="header__nav-icon" />
-                            ) : (
-                                <LightModeIcon className="header__nav-icon" />
-                            )}
-                        </IconButton>
+                        <ActionIconButton
+                            Icon={darkMode ? DarkModeIcon : LightModeIcon}
+                            onClick={toggleTheme}
+                            iconClassName="header__nav-icon"
+                        />
                     </Tooltip>
 
                     <Tooltip title="Вихід" placement="right">

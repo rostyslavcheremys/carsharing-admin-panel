@@ -19,6 +19,8 @@ import {
 
 import { AuthService } from "../../services";
 
+import { LOGIN_FORM_DEFAULT_VALUES, AUTH } from "../../constants";
+
 export const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,10 +32,7 @@ export const LoginPage = () => {
     } = useMessageDialog();
 
     const { control, handleSubmit } = useForm({
-        defaultValues: {
-            email: "",
-            password: "",
-        },
+        defaultValues: LOGIN_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
 
@@ -81,7 +80,7 @@ export const LoginPage = () => {
                     <AuthRedirect
                         text="Немає акаунта?"
                         linkText="Зареєструватися"
-                        to="/auth/register"
+                        to={AUTH.REGISTER}
                     />
                 </form>
 

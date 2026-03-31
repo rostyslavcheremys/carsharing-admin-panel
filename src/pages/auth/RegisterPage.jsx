@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import dayjs from "dayjs";
-
 import {
     Loader,
     InputController,
@@ -27,6 +25,8 @@ import {
 
 import { AuthService } from "../../services";
 
+import { REGISTER_FORM_DEFAULT_VALUES, AUTH } from "../../constants";
+
 export const RegisterPage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
@@ -38,15 +38,7 @@ export const RegisterPage = () => {
     } = useMessageDialog();
 
     const { control, watch, handleSubmit } = useForm({
-        defaultValues: {
-            firstName: "",
-            lastName: "",
-            phoneNumber: "",
-            birthDate: dayjs("2000-01-01"),
-            email: "",
-            password: "",
-            confirmPassword: "",
-        },
+        defaultValues: REGISTER_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
 
@@ -131,7 +123,7 @@ export const RegisterPage = () => {
                     <AuthRedirect
                         text="Вже маєте акаунт?"
                         linkText="Увійти"
-                        to="/auth/login"
+                        to={AUTH.LOGIN}
                     />
                 </form>
 

@@ -4,6 +4,8 @@ import { NavigateIconButton } from "../../components";
 
 import { getString, getFormattedTimestamp, getLabel } from "../../utils";
 
+import { ADMIN } from "../../constants";
+
 import { BOOKING_STATUS } from "./options.js";
 
 export const BOOKINGS_TABLE_COLUMNS = [
@@ -20,7 +22,7 @@ export const BOOKINGS_TABLE_COLUMNS = [
         id: "carId", label: "Автомобіль",
         render: (booking) => (
             <NavigateIconButton
-                to={`/cars/${booking?.carId}`}
+                to={ADMIN.carDetails(booking?.carId)}
                 Icon={DirectionsCarIcon}
                 iconClassName="icon-button"
             />
@@ -30,7 +32,7 @@ export const BOOKINGS_TABLE_COLUMNS = [
         id: "userId", label: "Користувач",
         render: (booking) => (
             <NavigateIconButton
-                to={`/users/${booking?.userId}`}
+                to={ADMIN.userDetails(booking?.userId)}
                 Icon={PersonIcon}
                 iconClassName="icon-button"
             />

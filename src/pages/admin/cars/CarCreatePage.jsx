@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Loader, CarForm, MessageDialog } from "../../../components/index.js";
+import { Loader, CarForm, MessageDialog } from "../../../components";
 
-import { useMessageDialog } from "../../../hooks/index.js";
+import { useMessageDialog } from "../../../hooks";
 
-import { CarService } from "../../../services/index.js";
+import { CarService } from "../../../services";
 
-import { getErrorMessage } from "../../../utils/index.js";
+import { getErrorMessage } from "../../../utils";
 
-import { CAR_FORM_DEFAULT_VALUES } from "../../../constants/index.js";
+import { ADMIN, CAR_FORM_DEFAULT_VALUES } from "../../../constants";
 
 export const CarCreatePage = () => {
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ export const CarCreatePage = () => {
 
             showMessage(
                 "Автомобіль додано!",
-                () => navigate("/cars")
+                () => navigate(ADMIN.CARS)
             );
 
             reset(CAR_FORM_DEFAULT_VALUES);
@@ -65,7 +65,7 @@ export const CarCreatePage = () => {
                 submitLabel="Додати"
                 showBack
                 messageOpen={messageOpen}
-                onBack={() => navigate("/cars")}
+                onBack={() => navigate(-1)}
             />
 
             <MessageDialog

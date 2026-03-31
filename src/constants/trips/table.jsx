@@ -17,6 +17,8 @@ import {
     getLabel
 } from "../../utils";
 
+import { ADMIN } from "../../constants";
+
 import { TRIP_STATUS } from "./options.js";
 
 export const TRIPS_TABLE_COLUMNS = [
@@ -33,7 +35,7 @@ export const TRIPS_TABLE_COLUMNS = [
         id: "carId", label: "Автомобіль",
         render: (trip) => (
             <NavigateIconButton
-                to={`/cars/${trip?.carId}`}
+                to={ADMIN.carDetails(trip?.carId)}
                 Icon={DirectionsCarIcon}
                 iconClassName="icon-button"
             />
@@ -43,7 +45,7 @@ export const TRIPS_TABLE_COLUMNS = [
         id: "userId", label: "Користувач",
         render: (trip) => (
             <NavigateIconButton
-                to={`/users/${trip?.userId}`}
+                to={ADMIN.userDetails(trip?.userId)}
                 Icon={PersonIcon}
                 iconClassName="icon-button"
             />
@@ -53,7 +55,7 @@ export const TRIPS_TABLE_COLUMNS = [
         id: "bookingId", label: "Бронювання",
         render: (trip) => (
             <NavigateIconButton
-                to={`/bookings/${trip?.bookingId}`}
+                to={ADMIN.bookingDetails(trip?.bookingId)}
                 Icon={EventNoteIcon}
                 iconClassName="icon-button"
             />
@@ -63,7 +65,7 @@ export const TRIPS_TABLE_COLUMNS = [
         id: "beforeConditionId", label: "Стан до поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={`/car-condition/${trip?.beforeConditionId}`}
+                to={ADMIN.carConditionDetails(trip?.beforeConditionId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
@@ -73,7 +75,7 @@ export const TRIPS_TABLE_COLUMNS = [
         id: "afterConditionId", label: "Стан після поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={`/car-condition/${trip?.afterConditionId}`}
+                to={ADMIN.carConditionDetails(trip?.afterConditionId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />

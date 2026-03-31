@@ -2,6 +2,8 @@ import { DetailsLink } from "../../components";
 
 import { getFormattedTimestamp } from "../../utils";
 
+import { ADMIN } from "../../constants";
+
 import { BOOKING_STATUS } from "./options.js";
 
 export const BOOKING_DETAILS = [
@@ -9,13 +11,13 @@ export const BOOKING_DETAILS = [
     {
         label: "Автомобіль:", key: "carId",
         formatter: (id) => (
-            <DetailsLink to={`/cars/${id}`} />
+            <DetailsLink to={ADMIN.carDetails(id)} />
         )
     },
     {
         label: "Користувач:", key: "userId",
         formatter: (id) => (
-            <DetailsLink to={`/users/${id}`} />
+            <DetailsLink to={ADMIN.userDetails(id)} />
         )
     },
     { label: "Статус:", key: "status", map: BOOKING_STATUS },

@@ -8,14 +8,14 @@ import { ActionIconButton, AppButton } from "../../components";
 
 import { getLabel } from "../../utils";
 
-import { CAR_STATUS } from "../../constants";
+import { ADMIN, CAR_STATUS } from "../../constants";
 
 export const MapDetailsDialog = ({ car, onClose }) => {
     const navigate = useNavigate();
 
     if (!car) return null;
 
-    const handleDetails = () => navigate("/cars/" + car.id);
+    const handleDetails = () => navigate(ADMIN.carDetails(car.id));
 
     return (
         <Dialog

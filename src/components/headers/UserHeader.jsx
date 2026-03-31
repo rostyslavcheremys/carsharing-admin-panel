@@ -1,5 +1,3 @@
-import { Tooltip, IconButton } from "@mui/material";
-
 import {
     NearMeIcon,
     DirectionsCarIcon,
@@ -15,6 +13,8 @@ import { ActionIconButton, NavigateIconButton } from "../../components";
 
 import { useAuth, useTheme } from "../../hooks";
 
+import { USER } from "../../constants";
+
 export const UserHeader = () => {
     const { darkMode, toggleTheme } = useTheme();
 
@@ -24,7 +24,7 @@ export const UserHeader = () => {
         <header className="header header--user">
             <div className="header__content header__content--user">
                 <NavigateIconButton
-                    to="/"
+                    to={USER.HOME}
                     Icon={DirectionsCarIcon}
                     className="header__logo"
                     iconClassName="header__logo-icon"
@@ -71,23 +71,17 @@ export const UserHeader = () => {
                         />
                     </Tooltip>*/}
 
-                    <Tooltip title={darkMode ? "Темна тема" : "Світла тема"} placement="right">
-                        <IconButton onClick={toggleTheme}>
-                            {darkMode ? (
-                                <DarkModeIcon className="header__nav-icon" />
-                            ) : (
-                                <LightModeIcon className="header__nav-icon" />
-                            )}
-                        </IconButton>
-                    </Tooltip>
+                    <ActionIconButton
+                        Icon={darkMode ? DarkModeIcon : LightModeIcon}
+                        onClick={toggleTheme}
+                        iconClassName="header__nav-icon"
+                    />
 
-                    <Tooltip title="Вихід" placement="right">
-                        <ActionIconButton
-                            Icon={LogoutIcon}
-                            onClick={logout}
-                            iconClassName="header__nav-icon"
-                        />
-                    </Tooltip>
+                    <ActionIconButton
+                        Icon={LogoutIcon}
+                        onClick={logout}
+                        iconClassName="header__nav-icon"
+                    />
                 </nav>
             </div>
         </header>
