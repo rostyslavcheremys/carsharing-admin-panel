@@ -18,6 +18,8 @@ export * from "./map/location.js";
 export * from "./messages/error.js"
 export * from "./messages/infoMessages.js"
 
+export * from "./profile/details.js"
+
 export * from "./routes/auth.js"
 export * from "./routes/admin.js"
 export * from "./routes/user.js"
