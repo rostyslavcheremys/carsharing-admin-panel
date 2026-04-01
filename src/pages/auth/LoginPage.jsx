@@ -69,7 +69,7 @@ export const LoginPage = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <div className="page__buttons">
+                    <div className="page__button page__buttons--form">
                         <AppButton
                             type="submit"
                             label="Увійти"

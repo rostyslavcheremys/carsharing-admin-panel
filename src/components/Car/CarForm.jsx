@@ -200,7 +200,7 @@ export const CarForm = ({
                     rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
-                <div className="page__buttons">
+                <div className="page__buttons page__buttons--form">
                     <AppButton
                         type="submit"
                         label={submitLabel}
