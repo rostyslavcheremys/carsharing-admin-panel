@@ -33,7 +33,7 @@ export const UsersManagementPage = () => {
 
     console.log(users);
 
-    const { user: currentUser } = useAuth();
+    const { user: currentUser, loading } = useAuth();
 
     const { isDeleting, handleDelete } = useDelete(UserService.deleteUser, showMessage);
 
@@ -53,7 +53,7 @@ export const UsersManagementPage = () => {
     });
 
     return (
-        <Loader isLoading={isLoading || isDeleting} error={error}>
+        <Loader isLoading={isLoading || isDeleting || loading} error={error}>
             <div className="page page__content">
                 <span className="page__title">Керування користувачами</span>
 

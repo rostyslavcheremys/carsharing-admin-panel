@@ -22,7 +22,7 @@ export const DriverVerificationPage = () => {
 
     const navigate = useNavigate();
 
-    const { user, setUser } = useAuth();
+    const { user, setUser, loading } = useAuth();
 
     const {
         messageOpen,
@@ -58,7 +58,7 @@ export const DriverVerificationPage = () => {
     }
 
     return (
-        <Loader isLoading={isLoading}>
+        <Loader isLoading={isLoading || loading}>
             <div className="page page__content">
                 <span className="page__title">Верифікація водія</span>
 

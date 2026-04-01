@@ -13,6 +13,7 @@ import { USER_DETAILS } from "../../../constants";
 
 export const UserDetailsPage = () => {
     const { id } = useParams();
+
     const navigate = useNavigate();
 
     const {
