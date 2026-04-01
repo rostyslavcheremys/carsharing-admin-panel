@@ -90,6 +90,15 @@ export const DataTable = ({
                 labelDisplayedRows={({ from, to, count }) =>
                     `${from}–${to} з ${count}`
                 }
+                slotProps={{
+                    select: {
+                        MenuProps: {
+                            PaperProps: {
+                                className: "table__pagination--menu",
+                            },
+                        },
+                    },
+                }}
             />
         </Paper>
     );
