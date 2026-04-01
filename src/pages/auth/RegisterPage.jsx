@@ -111,10 +111,10 @@ export const RegisterPage = () => {
                         rules={getConfirmPasswordValidation(() => watch("password"))}
                     />
 
-                    <div className="page__buttons">
+                    <div className="page__button page__buttons--form">
                         <AppButton
                             type="submit"
-                            className="app-button--wide"
+                            className="app-button--large"
                             label="Зареєструватися"
                             disabled={isLoading || messageOpen}
                         />
