@@ -1,12 +1,12 @@
 export * from "./Actions/Actions.jsx";
 
-export * from "./auth/AuthRedirect.jsx";
+export * from "./Auth/AuthRedirect.jsx";
 
-export * from "./buttons/ActionIconButton.jsx";
-export * from "./buttons/AppButton.jsx";
-export * from "./buttons/DiiaButton.jsx";
-export * from "./buttons/FormButton.jsx";
-export * from "./buttons/NavigateIconButton.jsx";
+export * from "./Buttons/ActionIconButton.jsx";
+export * from "./Buttons/AppButton.jsx";
+export * from "./Buttons/DiiaButton.jsx";
+export * from "./Buttons/FormButton.jsx";
+export * from "./Buttons/NavigateIconButton.jsx";
 
 export * from "./Car/CarForm.jsx";
 export * from "./Car/CarImages.jsx";
@@ -28,12 +28,13 @@ export * from "./Forms/FormLocation.jsx";
 export * from "./Forms/FormSelect.jsx";
 export * from "./Forms/FormUpload.jsx";
 
-
-export * from "./headers/AdminHeader.jsx";
-export * from "./headers/UserHeader.jsx";
-export * from "./headers/AuthHeader.jsx";
+export * from "./Headers/AdminHeader.jsx";
+export * from "./Headers/UserHeader.jsx";
+export * from "./Headers/AuthHeader.jsx";
 
 export * from "./ImageItem/ImageItem.jsx";
+
+export * from "./InfoMessage/InfoMessage.jsx";
 
 export * from "./Loader/Loader.jsx";
 

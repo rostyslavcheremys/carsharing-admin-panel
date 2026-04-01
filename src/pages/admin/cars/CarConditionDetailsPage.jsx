@@ -7,11 +7,11 @@ import {
     Details,
     AppButton,
     MessageDialog
-} from "../../../components/index.js";
+} from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks/index.js";
+import { useMessageDialog, useDocument } from "../../../hooks";
 
-import { CAR_CONDITION_DETAILS } from "../../../constants/index.js";
+import { CAR_CONDITION_DETAILS } from "../../../constants";
 
 export const CarConditionDetailsPage = () => {
     const { id } = useParams();

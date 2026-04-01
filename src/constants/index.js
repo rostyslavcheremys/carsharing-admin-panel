@@ -1,3 +1,5 @@
+export * from "./auth/defaults.js";
+
 export * from "./bookings/actions.js";
 export * from "./bookings/details.jsx";
 export * from "./bookings/options.js";
@@ -13,6 +15,13 @@ export * from "./map/constants.js";
 export * from "./map/icons.js";
 export * from "./map/location.js";
 
+export * from "./messages/error.js"
+export * from "./messages/infoMessages.js"
+
+export * from "./routes/auth.js"
+export * from "./routes/admin.js"
+export * from "./routes/user.js"
+
 export * from "./trips/actions.js";
 export * from "./trips/details.jsx";
 export * from "./trips/options.js";
@@ -22,5 +31,3 @@ export * from "./users/actions.js";
 export * from "./users/details.js";
 export * from "./users/options.js";
 export * from "./users/table.jsx";
-
-export * from "./errors/messages.js"

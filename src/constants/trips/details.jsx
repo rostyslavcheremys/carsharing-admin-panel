@@ -2,6 +2,8 @@ import { DetailsLink } from "../../components";
 
 import { getFormattedTimestamp } from "../../utils";
 
+import { ADMIN } from "../../constants";
+
 import { TRIP_STATUS } from "./options.js";
 
 export const TRIP_DETAILS = [
@@ -9,31 +11,31 @@ export const TRIP_DETAILS = [
     {
         label: "Автомобіль:", key: "carId",
         formatter: (id) => (
-            <DetailsLink to={`/cars/${id}`} />
+            <DetailsLink to={ADMIN.carDetails(id)} />
         )
     },
     {
         label: "Користувач:", key: "userId",
         formatter: (id) => (
-            <DetailsLink to={`/users/${id}`} />
+            <DetailsLink to={ADMIN.userDetails(id)} />
         )
     },
     {
         label: "Бронювання:", key: "bookingId",
         formatter: (id) => (
-            <DetailsLink to={`/bookings/${id}`} />
+            <DetailsLink to={ADMIN.bookingDetails(id)} />
         )
     },
     {
         label: "Стан до поїздки:", key: "beforeConditionId",
         formatter: (id) => (
-            <DetailsLink to={`/car-condition/${id}`} />
+            <DetailsLink to={ADMIN.carConditionDetails(id)} />
         )
     },
     {
         label: "Стан після поїздки:", key: "afterConditionId",
         formatter: (id) => (
-            <DetailsLink to={`/car-condition/${id}`} />
+            <DetailsLink to={ADMIN.carConditionDetails(id)} />
         )
     },
     { label: "Статус:", key: "status", map: TRIP_STATUS },

@@ -1,2 +1,4 @@
-export * from "./ProtectedRoute.jsx";
-export * from "./PublicRoute.jsx";
+export * from "./AppRoutes.jsx";
+export * from "./AuthRoutes.jsx";
+export * from "./AdminRoutes.jsx";
+export * from "./UserRoutes.jsx";

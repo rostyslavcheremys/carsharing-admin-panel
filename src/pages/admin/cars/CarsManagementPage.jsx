@@ -6,20 +6,24 @@ import {
     Loader,
     MessageDialog,
     Actions
-} from "../../../components/index.js";
+} from "../../../components";
 
 import {
     useCollection,
     useDelete,
     useMessageDialog,
     useTableColumns
-} from "../../../hooks/index.js";
+} from "../../../hooks";
 
-import { getActionMessage } from "../../../utils/index.js";
+import { getActionMessage } from "../../../utils";
 
-import { CarService } from "../../../services/index.js";
+import { CarService } from "../../../services";
 
-import { CARS_TABLE_COLUMNS, CAR_ACTIONS } from "../../../constants/index.js";
+import {
+    ADMIN,
+    CARS_TABLE_COLUMNS,
+    CAR_ACTIONS
+} from "../../../constants";
 
 export const CarsManagementPage = () => {
 
@@ -40,7 +44,7 @@ export const CarsManagementPage = () => {
 
     console.log(cars);
 
-    const handleAdd = () => navigate("/cars/add");
+    const handleAdd = () => navigate(ADMIN.CAR_CREATE);
 
     const { isDeleting, handleDelete } = useDelete(CarService.deleteCar, showMessage);
 

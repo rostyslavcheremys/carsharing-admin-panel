@@ -1,5 +1,6 @@
-import { Tooltip, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { Tooltip, IconButton } from "../../libs/mui";
 
 export const NavigateIconButton = ({
                                        to,

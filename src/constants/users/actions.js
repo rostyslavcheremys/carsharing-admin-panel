@@ -1,13 +1,15 @@
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-import {Visibility, LockOpenIcon, DeleteIcon} from "../../libs/mui-icons";
+import { Visibility, LockOpenIcon, DeleteIcon } from "../../libs/mui-icons";
+
+import { ADMIN } from "../../constants";
 
 export const USER_ACTIONS = (onDelete) => [
     {
         type: "view",
         Icon: Visibility,
-        handler: ({ id, navigate }) => navigate(`/users/${id}`),
+        handler: ({ id, navigate }) => navigate(ADMIN.userDetails(id)),
     },
     {
         type: "toggleBlock",

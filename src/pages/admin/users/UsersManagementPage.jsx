@@ -1,20 +1,21 @@
 import {
     DataTable,
     Loader,
-    Actions, MessageDialog
-} from "../../../components/index.js";
+    Actions,
+    MessageDialog
+} from "../../../components";
 
 import {
     useAuth,
     useCollection, useDelete, useMessageDialog,
     useTableColumns
-} from "../../../hooks/index.js";
+} from "../../../hooks";
 
-import { getActionMessage } from "../../../utils/index.js";
+import { getActionMessage } from "../../../utils";
 
-import { UserService } from "../../../services/index.js";
+import { UserService } from "../../../services";
 
-import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../../constants/index.js";
+import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../../constants";
 
 export const UsersManagementPage = () => {
     const {
