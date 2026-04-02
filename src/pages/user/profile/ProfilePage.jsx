@@ -14,13 +14,13 @@ export const ProfilePage = () => {
     return (
         <Loader isLoading={loading}>
             <div className="page page__content">
-                <span className="page__title">Вітаємо, {user.firstName || "Користувач"}!</span>
+                <span className="page__title">Вітаємо, {user?.firstName || "Користувач"}!</span>
 
                 <div className="page__buttons page__buttons--column">
                     <AppButton
                         type="button"
                         label="Профіль"
-                        onClick={() => navigate(USER.profileDetails(user.id))}
+                        onClick={() => navigate(USER.profileDetails(user?.id))}
                         disabled={loading}
                     />
 
