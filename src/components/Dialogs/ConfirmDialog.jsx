@@ -27,6 +27,7 @@ export const ConfirmDialog = ({
                     label="Так"
                     onClick={onConfirm}
                 />
+
                 <AppButton
                     className="dialog__app-button"
                     label="Ні"

@@ -15,33 +15,39 @@ export const MapDetailsDialog = ({ car, onClose }) => {
 
     if (!car) return null;
 
-    const handleDetails = () => navigate(ADMIN.carDetails(car.id));
+    const handleDetails = () => {
+        if (car?.id) navigate(ADMIN.carDetails(car.id));
+    }
 
     return (
         <Dialog
             className="dialog"
-            open={open}
+            open
             onClose={onClose}
-            disableEnforceFocus={true}
-            disableRestoreFocus={true}
+            disableEnforceFocus
+            disableRestoreFocus
             disablePortal={false}
         >
             <div className="dialog__header">
-                <span className="dialog__title">{car.brand} {car.model}</span>
+                <span className="dialog__title">{car?.brand || "Автомобіль"} {car?.model || ""}</span>
 
                 <ActionIconButton
                     Icon={CloseIcon}
-                    className="dialog__icon--close"
                     onClick={onClose}
+                    iconClassName="dialog__icon--close"
                 />
             </div>
 
             <div className="dialog__text--container">
                 <span className="dialog__text">
-                    Статус: <span className={`status--${car.status}`}>{getLabel(car.status, CAR_STATUS)}</span>
+                    Статус: <span className={`status--${car?.status}`}>
+                        {getLabel(car?.status, CAR_STATUS) || "Невідомо"}
+                    </span>
                 </span>
 
-                <span className="dialog__text">{`Номерний знак: ${car.licensePlate}`}</span>
+                <span className="dialog__text">
+                    {`Номерний знак: ${car?.licensePlate || "Невідомо"}`}
+                </span>
             </div>
 
             <div className="dialog__map--button">
@@ -53,4 +59,4 @@ export const MapDetailsDialog = ({ car, onClose }) => {
             </div>
         </Dialog>
     );
-};
+}
