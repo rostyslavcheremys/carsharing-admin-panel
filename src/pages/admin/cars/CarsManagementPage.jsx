@@ -1,31 +1,30 @@
 import { useNavigate } from "react-router-dom";
 
 import {
-    AppButton,
-    DataTable,
+    Actions,
     Loader,
+    DataTable,
+    AppButton,
     MessageDialog,
-    Actions
 } from "../../../components";
 
 import {
+    useMessageDialog,
     useCollection,
     useDelete,
-    useMessageDialog,
     useTableColumns
 } from "../../../hooks";
-
-import { getActionMessage } from "../../../utils";
 
 import { CarService } from "../../../services";
 
 import {
-    ADMIN,
     CARS_TABLE_COLUMNS,
-    CAR_ACTIONS
+    CAR_ACTIONS,
+    ADMIN
 } from "../../../constants";
 
 export const CarsManagementPage = () => {
+    const navigate = useNavigate();
 
     const {
         messageOpen,
@@ -34,29 +33,19 @@ export const CarsManagementPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const navigate = useNavigate();
-
     const {
         data: cars,
         isLoading,
         error,
     } = useCollection("cars");
 
-    console.log(cars);
-
-    const handleAdd = () => navigate(ADMIN.CAR_CREATE);
-
-    const { isDeleting, handleDelete } = useDelete(CarService.deleteCar, showMessage);
-
-    const handleCarDelete = (id) => handleDelete(id, "Автомобіль видалено!");
+    const { isDeleting, handleDelete } = useDelete(CarService.deleteCar);
 
     const columns = useTableColumns(CARS_TABLE_COLUMNS, {
         actions: (car) => (
             <Actions
-                id={car.id}
-                actions={CAR_ACTIONS(handleCarDelete)}
-                getMessage={getActionMessage}
-                entity="car"
+                id={car?.id}
+                actions={CAR_ACTIONS(handleDelete, showMessage)}
             />
         ),
     });
@@ -71,8 +60,8 @@ export const CarsManagementPage = () => {
                         type="button"
                         className="app-button--large"
                         label="Додати автомобіль"
-                        onClick={handleAdd}
-                        disabled={isLoading || messageOpen}
+                        onClick={() => navigate(ADMIN.CAR_CREATE)}
+                        disabled={isLoading || isDeleting || messageOpen}
                     />
                 </div>
 

@@ -1,10 +1,18 @@
 import { DirectionsCarIcon, PersonIcon } from "../../libs/mui-icons";
 
-import { NavigateIconButton } from "../../components";
+import { ConfirmNavigateIconButton } from "../../components";
 
-import { getString, getFormattedTimestamp, getLabel } from "../../utils";
+import {
+    getString,
+    getFormattedTimestamp,
+    getLabel
+} from "../../utils";
 
-import { ADMIN } from "../../constants";
+import {
+    ADMIN,
+    CAR_ACTION_MESSAGES,
+    USER_ACTION_MESSAGES
+} from "../../constants";
 
 import { BOOKING_STATUS } from "./options.js";
 
@@ -21,20 +29,22 @@ export const BOOKINGS_TABLE_COLUMNS = [
     {
         id: "carId", label: "Автомобіль",
         render: (booking) => (
-            <NavigateIconButton
+            <ConfirmNavigateIconButton
                 to={ADMIN.carDetails(booking?.carId)}
                 Icon={DirectionsCarIcon}
                 iconClassName="icon-button"
+                message={CAR_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },
     {
         id: "userId", label: "Користувач",
         render: (booking) => (
-            <NavigateIconButton
+            <ConfirmNavigateIconButton
                 to={ADMIN.userDetails(booking?.userId)}
                 Icon={PersonIcon}
                 iconClassName="icon-button"
+                message={USER_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },

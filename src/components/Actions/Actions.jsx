@@ -1,74 +1,78 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { LockOpenIcon, LockIcon } from "../../libs/mui-icons";
-
+import { LockIcon, LockOpenIcon } from "../../libs/mui-icons";
 import { ActionIconButton, ConfirmDialog } from "../../components";
 
-import { getActionMessage } from "../../utils";
-
-export const Actions = ({ id, actions, entity, currentState, currentUser }) => {
+export const Actions = ({ id, actions = [], currentState, currentUser }) => {
     const navigate = useNavigate();
-    const [action, setAction] = useState(null);
+    const [activeAction, setActiveAction] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    const openDialog = (type) => (e) => {
-        e.stopPropagation();
-        if (!loading) setAction(type);
-    }
+    const activeActionConfig = useMemo(
+        () => actions.find((a) => a.type === activeAction),
+        [activeAction, actions]
+    );
 
-    const closeDialog = () => setAction(null);
+    const openDialog = useCallback(
+        (type) => (e) => {
+            e.stopPropagation();
+            if (!loading) setActiveAction(type);
+        },
+        [loading]
+    );
 
-    const handleConfirm = async () => {
-        const actionConfig = actions.find((a) => a.type === action);
-        if (!actionConfig) return;
+    const closeDialog = useCallback(() => setActiveAction(null), []);
+
+    const handleConfirm = useCallback(async () => {
+        if (!activeActionConfig) return;
 
         closeDialog();
         setLoading(true);
 
         try {
-            await actionConfig.handler({
+            await activeActionConfig.handler({
                 id,
                 isBlocked: currentState?.isBlocked,
                 navigate,
             });
-        } catch (err) {
-            console.error(err);
         } finally {
             setLoading(false);
         }
-    }
+    }, [activeActionConfig, id, currentState?.isBlocked, navigate, closeDialog]);
 
     return (
         <>
             {actions.map(({ type, Icon, isAllowed }) => {
-                let DynamicIcon = Icon;
+                const allowed =
+                    isAllowed ? isAllowed(currentState, currentUser) : true;
 
-                const allowed = isAllowed
-                    ? isAllowed(currentState, currentUser)
-                    : true;
+                if (!allowed) return null;
 
-                const disabled = !allowed;
-
-                if (type === "toggleBlock" && currentState) {
-                    DynamicIcon = currentState.isBlocked ? LockIcon : LockOpenIcon;
-                }
+                const DynamicIcon =
+                    type === "block" && currentState
+                        ? currentState.isBlocked
+                            ? LockIcon
+                            : LockOpenIcon
+                        : Icon;
 
                 return (
                     <ActionIconButton
                         key={type}
                         Icon={DynamicIcon}
-                        onClick={openDialog(type, disabled)}
+                        onClick={openDialog(type)}
                         iconClassName="icon-button"
-                        disabled={disabled}
+                        disabled={loading || !allowed}
                     />
                 );
             })}
 
-            {action && (
+            {activeActionConfig?.confirmMessage && (
                 <ConfirmDialog
-                    open={Boolean(action)}
-                    message={getActionMessage(entity, action, id, currentState?.isBlocked)}
+                    open={Boolean(activeAction)}
+                    message={activeActionConfig.confirmMessage({
+                        isBlocked: currentState?.isBlocked,
+                    })}
                     onCancel={closeDialog}
                     onConfirm={handleConfirm}
                 />

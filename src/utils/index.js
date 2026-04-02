@@ -3,9 +3,6 @@ export * from "./cars/getCarValues.js";
 
 export * from "./firebase/getDocumentById.js";
 
-export * from "./messages/getActionsMessage.js";
-export * from "./messages/getErrorMessage.js";
-
 export * from "./formatters/getFormattedTimestamp.js";
 export * from "./formatters/getNumber.js";
 export * from "./formatters/getString.js";
@@ -18,6 +15,8 @@ export * from "./images/deleteImages.js";
 export * from "./map/getCarMarkerIcon.js";
 export * from "./map/getPickerMarkerIcon.js";
 export * from "./map/getTripLocation.js";
+
+export * from "./messages/getErrorMessage.js";
 
 export * from "./theme/getTheme.js";
 

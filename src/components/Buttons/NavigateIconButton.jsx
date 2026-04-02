@@ -8,14 +8,23 @@ export const NavigateIconButton = ({
                                        tooltip,
                                        className,
                                        iconClassName,
+                                       onClick,
                                        ...props
                                    }) => {
+    const handleClick = (e) => {
+        if (onClick) {
+            e.preventDefault();
+            onClick(e);
+        }
+    }
+
     return (
         <Tooltip title={tooltip} placement="right">
             <IconButton
                 component={Link}
                 to={to}
                 className={className}
+                onClick={handleClick}
                 {...props}
             >
                 <Icon className={iconClassName} />
