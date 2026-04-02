@@ -1,9 +1,6 @@
 import {
-    NearMeIcon,
     DirectionsCarIcon,
-    PeopleIcon,
-    EventNoteIcon,
-    RoomIcon,
+    PersonIcon,
     DarkModeIcon,
     LightModeIcon,
     LogoutIcon
@@ -31,45 +28,11 @@ export const UserHeader = () => {
                 />
 
                 <nav className="header__nav header__nav--user">
-                    {/*<Tooltip title="Моніторинг автомобілів" placement="right">
-                        <NavigateIconButton
-                            to="/monitoring"
-                            Icon={NearMeIcon}
-                            iconClassName="header__nav-icon"
-                        />
-                    </Tooltip>
-
-                    <Tooltip title="Керування автомобілями" placement="right">
-                        <NavigateIconButton
-                            to="/cars"
-                            Icon={DirectionsCarIcon}
-                            iconClassName="header__nav-icon header__nav-icon--cars"
-                        />
-                    </Tooltip>
-
-                    <Tooltip title="Керування користувачами" placement="right">
-                        <NavigateIconButton
-                            to="/users"
-                            Icon={PeopleIcon}
-                            iconClassName="header__nav-icon header__nav-icon--users"
-                        />
-                    </Tooltip>
-
-                    <Tooltip title="Керування бронюваннями" placement="right">
-                        <NavigateIconButton
-                            to="/bookings"
-                            Icon={EventNoteIcon}
-                            iconClassName="header__nav-icon"
-                        />
-                    </Tooltip>
-
-                    <Tooltip title="Керування поїздками" placement="right">
-                        <NavigateIconButton
-                            to="/trips"
-                            Icon={RoomIcon}
-                            iconClassName="header__nav-icon"
-                        />
-                    </Tooltip>*/}
+                    <NavigateIconButton
+                        to={USER.PROFILE}
+                        Icon={PersonIcon}
+                        iconClassName="header__nav-icon header__nav-icon--large"
+                    />
 
                     <ActionIconButton
                         Icon={darkMode ? DarkModeIcon : LightModeIcon}

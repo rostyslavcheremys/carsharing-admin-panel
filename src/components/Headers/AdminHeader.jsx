@@ -45,7 +45,7 @@ export const AdminHeader = () => {
                         <NavigateIconButton
                             to={ADMIN.CARS}
                             Icon={DirectionsCarIcon}
-                            iconClassName="header__nav-icon header__nav-icon--cars"
+                            iconClassName="header__nav-icon header__nav-icon--large"
                         />
                     </Tooltip>
 
@@ -53,7 +53,7 @@ export const AdminHeader = () => {
                         <NavigateIconButton
                             to={ADMIN.USERS}
                             Icon={PeopleIcon}
-                            iconClassName="header__nav-icon header__nav-icon--users"
+                            iconClassName="header__nav-icon header__nav-icon--xlarge"
                         />
                     </Tooltip>
 
