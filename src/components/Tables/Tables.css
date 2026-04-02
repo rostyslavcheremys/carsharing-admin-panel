@@ -31,10 +31,34 @@
     font-size: 16px !important;
 }
 
+.table__pagination--menu .MuiMenuItem-root {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-weight: 900;
+}
+
+.table__pagination--menu .MuiMenuItem-root:hover {
+    color: var(--white-color) !important;
+    background: var(--main-color) !important;
+}
+
 @media (max-width: 768px) {
     .table__label,
     .table__data,
-    .table__pagination * {
+    .table__pagination *,
+    .table__pagination--menu .MuiMenuItem-root {
         font-size: 14px !important;
+    }
+
+    .table__label,
+    .table__data {
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .table__data {
+        padding: 5px !important;
     }
 }
