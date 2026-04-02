@@ -68,7 +68,8 @@ export const CarsManagementPage = () => {
 
                 <div className="page__header">
                     <AppButton
-                        className="app-button--wide"
+                        type="button"
+                        className="app-button--large"
                         label="Додати автомобіль"
                         onClick={handleAdd}
                         disabled={isLoading || messageOpen}
