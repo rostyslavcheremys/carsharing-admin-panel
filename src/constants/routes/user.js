@@ -1,9 +1,12 @@
 export const USER = {
     HOME: "/",
-    SUPPORT: "/support",
+    HELP: "/help",
 
     PROFILE: "/profile",
-    PROFILE_EDIT: "/profile/edit",
+    PROFILE_DETAILS: "/profile/:id",
+    PROFILE_EDIT: "/profile/:id/edit",
+    profileDetails: (id) => `/profile/${id}`,
+    profileEdit: (id) => `/profile/${id}/edit`,
 
     CARS_MAP: "/cars/map",
     CAR_DETAILS: "/cars/:id",

@@ -6,8 +6,10 @@ import { ProtectedRoute } from "../guards";
 
 import {
     HomePage,
+    HelpPage,
     ProfilePage,
     ProfileEditPage,
+    ProfileDetailsPage,
     CarsMapPage,
     CarDetailsUserPage,
     CarAccessPage,
@@ -22,7 +24,6 @@ import {
     TripSummaryPage,
     TripsHistoryPage,
     TripHistoryDetailsPage,
-    SupportPage,
 } from "../pages";
 
 import { USER } from "../constants";
@@ -35,9 +36,21 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
+        <Route path={USER.HELP} element={
+            <ProtectedRoute userOnly>
+                <HelpPage />
+            </ProtectedRoute>
+        }/>
+
         <Route path={USER.PROFILE} element={
             <ProtectedRoute userOnly>
                 <ProfilePage />
+            </ProtectedRoute>
+        }/>
+
+        <Route path={USER.PROFILE_DETAILS} element={
+            <ProtectedRoute userOnly>
+                <ProfileDetailsPage />
             </ProtectedRoute>
         }/>
 
@@ -128,12 +141,6 @@ export const UserRoutes = (
         <Route path={USER.TRIPS_HISTORY_DETAILS} element={
             <ProtectedRoute userOnly>
                 <TripHistoryDetailsPage />
-            </ProtectedRoute>
-        }/>
-
-        <Route path={USER.SUPPORT} element={
-            <ProtectedRoute userOnly>
-                <SupportPage />
             </ProtectedRoute>
         }/>
     </Route>
