@@ -10,12 +10,16 @@ import { CarService } from "../../../services";
 
 import { getErrorMessage } from "../../../utils";
 
-import { ADMIN, CAR_FORM_DEFAULT_VALUES } from "../../../constants";
+import {
+    CAR_FORM_DEFAULT_VALUES,
+    CAR_ACTION_MESSAGES,
+    ADMIN
+} from "../../../constants";
 
 export const CarCreatePage = () => {
-    const navigate = useNavigate();
-
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const navigate = useNavigate();
 
     const {
         messageOpen,
@@ -42,7 +46,7 @@ export const CarCreatePage = () => {
             await CarService.createCar(data);
 
             showMessage(
-                "Автомобіль додано!",
+                CAR_ACTION_MESSAGES.CREATE_SUCCESS,
                 () => navigate(ADMIN.CARS)
             );
 

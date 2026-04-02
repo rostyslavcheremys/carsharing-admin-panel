@@ -15,14 +15,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    text-align: center;
+    height: 100%;
     font-family: var(--font-family), sans-serif;
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .loader__error {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 600px) {
     .loader__error {
-        font-size: 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .loader__error {
+        font-size: 14px;
     }
 }

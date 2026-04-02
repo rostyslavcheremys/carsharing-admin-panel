@@ -12,6 +12,8 @@ import {
 
 import { useMessageDialog } from "../../hooks";
 
+import { AuthService } from "../../services";
+
 import {
     getErrorMessage,
     getFirstNameValidation,
@@ -22,8 +24,6 @@ import {
     getPasswordValidation,
     getConfirmPasswordValidation
 } from "../../utils";
-
-import { AuthService } from "../../services";
 
 import { REGISTER_FORM_DEFAULT_VALUES, AUTH } from "../../constants";
 
@@ -135,4 +135,4 @@ export const RegisterPage = () => {
             </div>
         </Loader>
     );
-};
+}

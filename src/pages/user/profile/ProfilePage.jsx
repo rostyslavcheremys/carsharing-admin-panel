@@ -9,12 +9,14 @@ import { USER } from "../../../constants";
 export const ProfilePage = () => {
     const navigate = useNavigate();
 
-    const { user, loading } = useAuth();
+    const { user, loading, error } = useAuth();
 
     return (
-        <Loader isLoading={loading}>
+        <Loader isLoading={loading} error={error}>
             <div className="page page__content">
-                <span className="page__title">Вітаємо, {user?.firstName || "Користувач"}!</span>
+                <span className="page__title">
+                    Вітаємо, {user?.firstName || "Користувач"}!
+                </span>
 
                 <div className="page__buttons page__buttons--column">
                     <AppButton

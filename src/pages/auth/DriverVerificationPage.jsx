@@ -14,7 +14,7 @@ import { UserService } from "../../services";
 
 import { getErrorMessage } from "../../utils";
 
-import { USER, DRIVER_VERIFICATION_MESSAGES } from "../../constants";
+import { DRIVER_VERIFICATION_MESSAGES, USER } from "../../constants";
 
 export const DriverVerificationPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +22,7 @@ export const DriverVerificationPage = () => {
 
     const navigate = useNavigate();
 
-    const { user, setUser, loading } = useAuth();
+    const { user, setUser, loading, error } = useAuth();
 
     const {
         messageOpen,
@@ -32,13 +32,17 @@ export const DriverVerificationPage = () => {
     } = useMessageDialog();
 
     const handleVerify = async () => {
+        if (!user?.id) {
+            return showMessage(DRIVER_VERIFICATION_MESSAGES.USER_NOT_FOUND);
+        }
+
         setIsLoading(true);
 
         try {
-            await UserService.approveUser(user.id);
+            await UserService.approveUser(user?.id);
 
             setIsSuccess(true);
-            showMessage("Верифікація успішна!");
+            showMessage(DRIVER_VERIFICATION_MESSAGES.SUCCESS);
         } catch (error) {
             showMessage(getErrorMessage(error));
         } finally {
@@ -49,24 +53,24 @@ export const DriverVerificationPage = () => {
     const handleClose = async () => {
         handleMessageClose();
 
-        if (!isSuccess) return;
+        if (!isSuccess || !user?.id) return;
 
-        const updatedUser = await UserService.getUser(user.id);
+        const updatedUser = await UserService.getUser(user?.id);
         setUser(updatedUser);
 
         navigate(USER.HOME, { replace: true });
     }
 
     return (
-        <Loader isLoading={isLoading || loading}>
+        <Loader isLoading={isLoading || loading} error={error}>
             <div className="page page__content">
                 <span className="page__title">Верифікація водія</span>
 
-                <InfoMessage message={DRIVER_VERIFICATION_MESSAGES} />
+                <InfoMessage message={DRIVER_VERIFICATION_MESSAGES.INFO} />
 
                 <DiiaButton
                     onClick={handleVerify}
-                    disabled={isLoading || messageOpen}
+                    disabled={isLoading || loading || messageOpen}
                 />
 
                 <MessageDialog

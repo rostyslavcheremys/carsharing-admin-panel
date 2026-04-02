@@ -7,41 +7,32 @@ import {
     Details,
     DetailsMap,
     AppButton,
-    MessageDialog,
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { getTripLocation } from "../../../utils";
 
 import { CAR_DETAILS } from "../../../constants";
 
 export const CarDetailsPage = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
+    const { id } = useParams();
 
     const {
         document: car, isLoading, error
-    } = useDocument("cars", id, showMessage, navigate);
+    } = useDocument("cars", id);
 
     const images = useMemo(() => {
         if (!car?.images) return [];
         return Array.isArray(car.images) ? car.images : [car.images];
     }, [car]);
 
-    const location = getTripLocation(car, "location");
-
-    if (!car) return null;
+    const location = useMemo(() => getTripLocation(car, "location"), [car]);
 
     return(
-        <Loader isLoading={isLoading} error={error}>
+        <Loader isLoading={isLoading || !car} error={error}>
             <div className="page page__content">
                 <span className="page__title">Автомобіль</span>
 
@@ -52,7 +43,7 @@ export const CarDetailsPage = () => {
                 <DetailsMap
                     label="Місцезнаходження"
                     location={location}
-                    status={car.status}
+                    status={car?.status}
                 />
 
                 <div className="page__button">
@@ -60,15 +51,9 @@ export const CarDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );
