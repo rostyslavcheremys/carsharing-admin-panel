@@ -4,27 +4,20 @@ import {
     Loader,
     Details,
     AppButton,
-    MessageDialog,
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { BOOKING_DETAILS } from "../../../constants";
 
 export const BookingDetailsPage = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
+    const { id } = useParams();
 
     const {
         document: booking, isLoading, error
-    } = useDocument("bookings", id, showMessage, navigate);
+    } = useDocument("bookings", id);
 
     return (
         <Loader isLoading={isLoading} error={error}>
@@ -38,15 +31,9 @@ export const BookingDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );

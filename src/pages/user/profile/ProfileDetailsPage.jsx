@@ -4,10 +4,9 @@ import {
     Loader,
     Details,
     AppButton,
-    MessageDialog,
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { PROFILE_DETAILS, USER } from "../../../constants";
 
@@ -17,17 +16,8 @@ export const ProfileDetailsPage = () => {
     const { id } = useParams();
 
     const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
-
-    const {
         document: user, isLoading, error
-    } = useDocument("users", id, showMessage, navigate);
-
-    console.log(user);
+    } = useDocument("users", id);
 
     return (
         <Loader isLoading={isLoading} error={error}>
@@ -41,22 +31,16 @@ export const ProfileDetailsPage = () => {
                         type="button"
                         label="Редагувати"
                         onClick={() => navigate(USER.profileEdit(user.id))}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading || !user?.id}
                     />
 
                     <AppButton
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );

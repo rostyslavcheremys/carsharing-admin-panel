@@ -5,29 +5,22 @@ import {
     Details,
     DetailsMap,
     AppButton,
-    MessageDialog,
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { getTripLocation } from "../../../utils";
 
 import { TRIP_DETAILS } from "../../../constants";
 
 export const TripsDetailsPage = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
+    const { id } = useParams();
 
     const {
         document: trip, isLoading, error
-    } = useDocument("trips", id, showMessage, navigate);
+    } = useDocument("trips", id);
 
     const startLocation = getTripLocation(trip, "startLocation");
     const endLocation = getTripLocation(trip, "endLocation");
@@ -54,15 +47,9 @@ export const TripsDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );

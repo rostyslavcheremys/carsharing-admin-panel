@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import { getErrorMessage, getDocumentById } from "../utils";
+import { getDocumentById } from "../utils";
 
-export const useDocument = (collection, id, showMessage, navigate) => {
+export const useDocument = (collection, id) => {
     const [document, setDocument] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -19,10 +19,6 @@ export const useDocument = (collection, id, showMessage, navigate) => {
                 setDocument(data);
             } catch (error) {
                 setError(error);
-                showMessage(
-                    getErrorMessage(error),
-                    () => navigate(collection)
-                );
             } finally {
                 setIsLoading(false);
             }
@@ -31,9 +27,5 @@ export const useDocument = (collection, id, showMessage, navigate) => {
         loadDocument();
     }, [id]);
 
-    return {
-        document,
-        isLoading,
-        error
-    }
+    return { document, isLoading, error }
 }

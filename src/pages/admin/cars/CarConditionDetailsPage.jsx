@@ -6,37 +6,28 @@ import {
     CarImages,
     Details,
     AppButton,
-    MessageDialog
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { CAR_CONDITION_DETAILS } from "../../../constants";
 
 export const CarConditionDetailsPage = () => {
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
+    const { id } = useParams();
 
     const {
         document: carCondition, isLoading, error
-    } = useDocument("carCondition", id, showMessage, navigate);
+    } = useDocument("carCondition", id);
 
     const images = useMemo(() => {
         if (!carCondition?.images) return [];
         return Array.isArray(carCondition.images) ? carCondition.images : [carCondition.images];
     }, [carCondition]);
 
-    if (!carCondition) return null;
-
     return(
-        <Loader isLoading={isLoading} error={error}>
+        <Loader isLoading={isLoading || !carCondition} error={error}>
             <div className="page page__content">
                 <span className="page__title">Стан автомобіля</span>
 
@@ -49,15 +40,9 @@ export const CarConditionDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );

@@ -11,13 +11,13 @@ import {
 
 import { useMessageDialog } from "../../hooks";
 
+import { AuthService } from "../../services";
+
 import {
     getErrorMessage,
     getEmailValidation,
     getPasswordValidation,
 } from "../../utils";
-
-import { AuthService } from "../../services";
 
 import { LOGIN_FORM_DEFAULT_VALUES, AUTH } from "../../constants";
 
@@ -78,7 +78,7 @@ export const LoginPage = () => {
                     </div>
 
                     <AuthRedirect
-                        text="Немає акаунта?"
+                        text="Ще не маєте акаунта?"
                         linkText="Зареєструватися"
                         to={AUTH.REGISTER}
                     />

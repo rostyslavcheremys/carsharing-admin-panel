@@ -4,28 +4,20 @@ import {
     Loader,
     Details,
     AppButton,
-    MessageDialog,
 } from "../../../components";
 
-import { useMessageDialog, useDocument } from "../../../hooks";
+import { useDocument } from "../../../hooks";
 
 import { USER_DETAILS } from "../../../constants";
 
 export const UserDetailsPage = () => {
-    const { id } = useParams();
-
     const navigate = useNavigate();
 
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose
-    } = useMessageDialog();
+    const { id } = useParams();
 
     const {
         document: user, isLoading, error
-    } = useDocument("users", id, showMessage, navigate);
+    } = useDocument("users", id);
 
     return (
         <Loader isLoading={isLoading} error={error}>
@@ -39,15 +31,9 @@ export const UserDetailsPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={isLoading || messageOpen}
+                        disabled={isLoading}
                     />
                 </div>
-
-                <MessageDialog
-                    open={messageOpen}
-                    onClose={handleMessageClose}
-                    message={message}
-                />
             </div>
         </Loader>
     );
