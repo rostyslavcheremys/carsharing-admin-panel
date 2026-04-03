@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        return onAuthStateChanged(auth, async (firebaseUser) => {
             setLoading(true);
             setError(null);
 
@@ -27,22 +27,24 @@ export const AuthProvider = ({ children }) => {
                 const userRef = doc(db, "users", firebaseUser.uid);
                 const userSnap = await getDoc(userRef);
 
-                if (!userSnap.exists()) setError(error);
+                if (!userSnap.exists()) {
+                    throw new Error("Документ користувача не знайдено.");
+                }
 
                 setUser({
                     uid: firebaseUser.uid,
                     email: firebaseUser.email,
                     ...userSnap.data(),
                 });
+
             } catch (error) {
                 setError(error);
                 setUser(null);
+
             } finally {
                 setLoading(false);
             }
         });
-
-        return () => unsubscribe();
     }, []);
 
     const logout = async () => {

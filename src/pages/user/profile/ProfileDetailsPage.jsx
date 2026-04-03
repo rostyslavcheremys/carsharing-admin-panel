@@ -30,8 +30,8 @@ export const ProfileDetailsPage = () => {
                     <AppButton
                         type="button"
                         label="Редагувати"
-                        onClick={() => navigate(USER.profileEdit(user?.id))}
-                        disabled={isLoading}
+                        onClick={() => navigate(USER.profileEdit(user.id))}
+                        disabled={isLoading || !user?.id}
                     />
 
                     <AppButton
