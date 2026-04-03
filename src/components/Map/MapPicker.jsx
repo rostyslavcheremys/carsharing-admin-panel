@@ -2,7 +2,11 @@ import { useRef, useMemo } from "react";
 
 import { Loader, MapItem, MapControls } from "../../components";
 
-import { useMapState, useGoogleMapsLoader, useMapCenter } from "../../hooks";
+import {
+    useMapState,
+    useGoogleMapsLoader,
+    useMapCenter
+} from "../../hooks";
 
 import { DEFAULT_LOCATION } from "../../constants";
 

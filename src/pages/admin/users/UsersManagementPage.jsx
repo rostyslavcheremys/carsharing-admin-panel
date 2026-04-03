@@ -1,17 +1,17 @@
 import {
-    DataTable,
-    Loader,
     Actions,
+    Loader,
+    DataTable,
     MessageDialog
 } from "../../../components";
 
 import {
+    useMessageDialog,
+    useCollection,
     useAuth,
-    useCollection, useDelete, useMessageDialog,
+    useDelete,
     useTableColumns
 } from "../../../hooks";
-
-import { getActionMessage } from "../../../utils";
 
 import { UserService } from "../../../services";
 
@@ -31,21 +31,15 @@ export const UsersManagementPage = () => {
         error,
     } = useCollection("users");
 
-    console.log(users);
-
     const { user: currentUser, loading } = useAuth();
 
-    const { isDeleting, handleDelete } = useDelete(UserService.deleteUser, showMessage);
-
-    const handleUserDelete = (id) => handleDelete(id, "Користувача видалено!");
+    const { isDeleting, handleDelete } = useDelete(UserService.deleteUser);
 
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
         actions: (user) => (
             <Actions
-                id={user.id}
-                actions={USER_ACTIONS(handleUserDelete)}
-                getMessage={getActionMessage}
-                entity="user"
+                id={user?.id}
+                actions={USER_ACTIONS(handleDelete, showMessage)}
                 currentState={user}
                 currentUser={currentUser}
             />

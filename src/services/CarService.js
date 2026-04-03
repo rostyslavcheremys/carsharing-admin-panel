@@ -1,4 +1,11 @@
-import { collection, doc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    setDoc,
+    updateDoc,
+    deleteDoc
+} from "firebase/firestore";
+
 import { ref, deleteObject, listAll } from "firebase/storage";
 
 import { db, storage } from "../firebase";

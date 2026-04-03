@@ -1,29 +1,45 @@
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-
 import { Visibility, LockOpenIcon, DeleteIcon } from "../../libs/mui-icons";
 
-import { ADMIN } from "../../constants";
+import { UserService } from "../../services";
 
-export const USER_ACTIONS = (onDelete) => [
+import { ADMIN, USER_ACTION_MESSAGES } from "../../constants";
+
+export const USER_ACTIONS = (onDelete, showMessage) => [
     {
         type: "view",
         Icon: Visibility,
-        handler: ({ id, navigate }) => navigate(ADMIN.userDetails(id)),
+        handler: ({ id, navigate }) =>
+            navigate(ADMIN.userDetails(id))
     },
     {
-        type: "toggleBlock",
+        type: "block",
         Icon: LockOpenIcon,
-        isAllowed: (user, currentUser) => user.id !== currentUser.id && user.role !== "admin",
+        isAllowed: (user, currentUser) =>
+            user.id !== currentUser?.id && user.role !== "admin",
         handler: async ({ id, isBlocked }) => {
-            await updateDoc(doc(db, "users", id), {
-                isBlocked: !isBlocked,
-            });
-        }
+            try {
+                await UserService.blockUser(id, isBlocked);
+            } catch {
+                showMessage(USER_ACTION_MESSAGES.BLOCK_ERROR);
+            }
+        },
+        confirmMessage: ({ isBlocked }) =>
+            USER_ACTION_MESSAGES.BLOCK_CONFIRM(isBlocked)
     },
     {
         type: "delete",
         Icon: DeleteIcon,
-        handler: ({ id }) => onDelete(id)
+        isAllowed: (user, currentUser) =>
+            user.id !== currentUser?.id && user.role !== "admin",
+        handler: async ({ id }) => {
+            try {
+                await onDelete(id);
+                showMessage(USER_ACTION_MESSAGES.DELETE_SUCCESS);
+            } catch {
+                showMessage(USER_ACTION_MESSAGES.DELETE_ERROR);
+            }
+        },
+        confirmMessage: () =>
+            USER_ACTION_MESSAGES.DELETE_CONFIRM
     }
 ];

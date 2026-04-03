@@ -1,10 +1,10 @@
 import {
-    AppButton,
     FileUploadController,
     InputController,
     SelectController,
-    LocationController
-} from "../index.js";
+    LocationController,
+    AppButton
+} from "../../components";
 
 import {
     BODY_TYPES,

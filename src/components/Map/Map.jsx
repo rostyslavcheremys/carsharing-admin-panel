@@ -22,9 +22,9 @@ export const Map = ({ cars = [] }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 
-    const { zoom, setZoom, mapType, setMapType } = useMapState();
-
     const [statusFilter, setStatusFilter] = useState([]);
+
+    const { zoom, setZoom, mapType, setMapType } = useMapState();
 
     const { isLoaded } = useGoogleMapsLoader();
 

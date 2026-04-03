@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 
-import { Dialog, IconButton } from "../../libs/mui";
+import { Dialog } from "../../libs/mui";
 
-import { MyLocationIcon, CloseIcon } from "../../libs/mui-icons";
+import { MyLocationIcon, CloseIcon} from "../../libs/mui-icons";
 
-import { AppButton, MapPicker } from "../../components";
+import { ActionIconButton, MapPicker, AppButton } from "../../components";
 
 import { DEFAULT_LOCATION } from "../../constants";
 
@@ -45,9 +45,11 @@ export const MapDialog = ({
         <>
             {isDialogIcon && (
                 <div className="dialog__icon">
-                    <IconButton onClick={handleOpen}>
-                        <MyLocationIcon className="dialog__icon--location" />
-                    </IconButton>
+                    <ActionIconButton
+                        Icon={MyLocationIcon}
+                        onClick={handleOpen}
+                        iconClassName={"dialog__icon--location"}
+                    />
                 </div>
             )}
 
@@ -62,9 +64,11 @@ export const MapDialog = ({
                 <div className="dialog__header">
                     <span className="dialog__title">Місцезнаходження автомобіля</span>
 
-                    <IconButton onClick={onClose}>
-                        <CloseIcon className="dialog__icon--close" />
-                    </IconButton>
+                    <ActionIconButton
+                        Icon={CloseIcon}
+                        onClick={onClose}
+                        iconClassName={"dialog__icon--close"}
+                    />
                 </div>
 
                 <div className="dialog__map">

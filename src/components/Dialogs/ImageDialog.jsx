@@ -1,7 +1,6 @@
 import {
     Dialog,
     ImageList,
-    IconButton,
     ImageListItem
 } from "../../libs/mui";
 
@@ -10,7 +9,7 @@ import {
     CloseIcon,
 } from "../../libs/mui-icons";
 
-import { ImageItem } from "../../components";
+import { ActionIconButton, ImageItem } from "../../components";
 
 export const ImageDialog = ({
                                 open,
@@ -26,9 +25,11 @@ export const ImageDialog = ({
     return (
         <>
             <div className="dialog__icon">
-                <IconButton onClick={onOpen}>
-                    <ImageIcon className="dialog__icon--photos" />
-                </IconButton>
+                <ActionIconButton
+                    Icon={ImageIcon}
+                    onClick={onOpen}
+                    iconClassName="dialog__icon--photos"
+                />
             </div>
 
             <Dialog
@@ -42,9 +43,11 @@ export const ImageDialog = ({
                 <div className="dialog__header">
                     <span className="dialog__title">Перегляд фотографій</span>
 
-                    <IconButton onClick={onClose}>
-                        <CloseIcon className="dialog__icon--close" />
-                    </IconButton>
+                    <ActionIconButton
+                        Icon={CloseIcon}
+                        onClick={onClose}
+                        iconClassName="dialog__icon--close"
+                    />
                 </div>
 
                 <div className="dialog__content--images">
