@@ -2,7 +2,11 @@ import { DirectionsCarIcon, PersonIcon } from "../../libs/mui-icons";
 
 import { NavigateIconButton } from "../../components";
 
-import { getString, getFormattedTimestamp, getLabel } from "../../utils";
+import {
+    getString,
+    getFormattedTimestamp,
+    getLabel
+} from "../../utils";
 
 import { ADMIN } from "../../constants";
 

@@ -6,6 +6,7 @@ export const BOOKING_ACTIONS = [
     {
         type: "view",
         Icon: Visibility,
-        handler: ({ id, navigate }) => navigate(ADMIN.bookingDetails(id))
+        handler: ({ id, navigate }) =>
+            navigate(ADMIN.bookingDetails(id)),
     }
 ];

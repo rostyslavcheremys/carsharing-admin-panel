@@ -28,8 +28,6 @@ export const CarConditionDetailsPage = () => {
         document: carCondition, isLoading, error
     } = useDocument("carCondition", id, showMessage, navigate);
 
-    console.log(carCondition);
-
     const images = useMemo(() => {
         if (!carCondition?.images) return [];
         return Array.isArray(carCondition.images) ? carCondition.images : [carCondition.images];

@@ -8,6 +8,7 @@ export const NavigateIconButton = ({
                                        tooltip,
                                        className,
                                        iconClassName,
+
                                        ...props
                                    }) => {
     return (

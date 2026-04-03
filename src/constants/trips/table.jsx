@@ -6,9 +6,9 @@ import {
 } from "../../libs/mui-icons";
 
 import {
+    NavigateIconButton,
     DialogCell,
     MapDialog,
-    NavigateIconButton
 } from "../../components";
 
 import {

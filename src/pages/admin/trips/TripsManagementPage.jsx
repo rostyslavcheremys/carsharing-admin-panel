@@ -1,8 +1,6 @@
-import { Actions, DataTable, Loader } from "../../../components";
+import { Actions, Loader, DataTable } from "../../../components";
 
 import { useCollection, useTableColumns } from "../../../hooks";
-
-import { getActionMessage } from "../../../utils";
 
 import { TRIPS_TABLE_COLUMNS, TRIPS_ACTIONS } from "../../../constants";
 
@@ -13,15 +11,11 @@ export const TripsManagementPage = () => {
         error,
     } = useCollection("trips");
 
-    console.log(trips);
-
     const columns = useTableColumns(TRIPS_TABLE_COLUMNS, {
         actions: (trip) => (
             <Actions
-                id={trip.id}
+                id={trip?.id}
                 actions={TRIPS_ACTIONS}
-                getMessage={getActionMessage}
-                entity="trip"
             />
         ),
     });
