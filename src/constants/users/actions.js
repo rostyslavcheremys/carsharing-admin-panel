@@ -9,9 +9,7 @@ export const USER_ACTIONS = (onDelete, showMessage) => [
         type: "view",
         Icon: Visibility,
         handler: ({ id, navigate }) =>
-            navigate(ADMIN.userDetails(id)),
-        confirmMessage: () =>
-            USER_ACTION_MESSAGES.VIEW_CONFIRM
+            navigate(ADMIN.userDetails(id))
     },
     {
         type: "block",
@@ -21,7 +19,6 @@ export const USER_ACTIONS = (onDelete, showMessage) => [
         handler: async ({ id, isBlocked }) => {
             try {
                 await UserService.blockUser(id, isBlocked);
-                showMessage(USER_ACTION_MESSAGES.BLOCK_SUCCESS(isBlocked));
             } catch {
                 showMessage(USER_ACTION_MESSAGES.BLOCK_ERROR);
             }

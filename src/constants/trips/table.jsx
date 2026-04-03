@@ -6,7 +6,7 @@ import {
 } from "../../libs/mui-icons";
 
 import {
-    ConfirmNavigateIconButton,
+    NavigateIconButton,
     DialogCell,
     MapDialog,
 } from "../../components";
@@ -17,13 +17,7 @@ import {
     getLabel
 } from "../../utils";
 
-import {
-    ADMIN,
-    CAR_ACTION_MESSAGES,
-    USER_ACTION_MESSAGES,
-    BOOKING_ACTION_MESSAGES,
-    CAR_CONDITION_ACTION_MESSAGES,
-} from "../../constants";
+import { ADMIN } from "../../constants";
 
 import { TRIP_STATUS } from "./options.js";
 
@@ -40,55 +34,50 @@ export const TRIPS_TABLE_COLUMNS = [
     {
         id: "carId", label: "Автомобіль",
         render: (trip) => (
-            <ConfirmNavigateIconButton
+            <NavigateIconButton
                 to={ADMIN.carDetails(trip?.carId)}
                 Icon={DirectionsCarIcon}
                 iconClassName="icon-button"
-                message={CAR_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },
     {
         id: "userId", label: "Користувач",
         render: (trip) => (
-            <ConfirmNavigateIconButton
+            <NavigateIconButton
                 to={ADMIN.userDetails(trip?.userId)}
                 Icon={PersonIcon}
                 iconClassName="icon-button"
-                message={USER_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },
     {
         id: "bookingId", label: "Бронювання",
         render: (trip) => (
-            <ConfirmNavigateIconButton
+            <NavigateIconButton
                 to={ADMIN.bookingDetails(trip?.bookingId)}
                 Icon={EventNoteIcon}
                 iconClassName="icon-button"
-                message={BOOKING_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },
     {
         id: "beforeConditionId", label: "Стан до поїздки",
         render: (trip) => (
-            <ConfirmNavigateIconButton
+            <NavigateIconButton
                 to={ADMIN.carConditionDetails(trip?.beforeConditionId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
-                message={CAR_CONDITION_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },
     {
         id: "afterConditionId", label: "Стан після поїздки",
         render: (trip) => (
-            <ConfirmNavigateIconButton
+            <NavigateIconButton
                 to={ADMIN.carConditionDetails(trip?.afterConditionId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
-                message={CAR_CONDITION_ACTION_MESSAGES.VIEW_CONFIRM}
             />
         )
     },

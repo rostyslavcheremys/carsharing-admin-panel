@@ -15,11 +15,29 @@ export const Actions = ({ id, actions = [], currentState, currentUser }) => {
     );
 
     const openDialog = useCallback(
-        (type) => (e) => {
+        (type) => async (e) => {
             e.stopPropagation();
-            if (!loading) setActiveAction(type);
+            if (loading) return;
+
+            const action = actions.find((a) => a.type === type);
+
+            if (!action?.confirmMessage) {
+                setLoading(true);
+                try {
+                    await action.handler({
+                        id,
+                        isBlocked: currentState?.isBlocked,
+                        navigate,
+                    });
+                } finally {
+                    setLoading(false);
+                }
+                return;
+            }
+
+            setActiveAction(type);
         },
-        [loading]
+        [actions, id, currentState?.isBlocked, navigate, loading]
     );
 
     const closeDialog = useCallback(() => setActiveAction(null), []);

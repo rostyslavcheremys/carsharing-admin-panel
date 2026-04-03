@@ -7,9 +7,7 @@ export const CAR_ACTIONS = (onDelete, showMessage) => [
         type: "view",
         Icon: Visibility,
         handler: ({ id, navigate }) =>
-            navigate(ADMIN.carDetails(id)),
-        confirmMessage: () =>
-            CAR_ACTION_MESSAGES.VIEW_CONFIRM
+            navigate(ADMIN.carDetails(id))
     },
     {
         type: "edit",
