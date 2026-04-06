@@ -11,6 +11,12 @@
     box-shadow: none;
 }
 
+.app-button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 .app-button.MuiButton-root:hover {
     box-shadow: none;
 }
