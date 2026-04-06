@@ -1,84 +1,120 @@
 import { useState } from "react";
 
+import { Drawer } from "../../libs/mui";
+
+import { FilterListIcon, CloseIcon } from "../../libs/mui-icons";
+
 import {
-    Menu,
-    MenuItem,
-    Checkbox,
-    FormControlLabel
-} from "../../libs/mui";
+    ActionIconButton,
+    AppButton,
+    MapFilterCheckbox,
+    MapFilterSlider,
+} from "../../components";
 
-import { FilterListIcon } from "../../libs/mui-icons";
+import { MAP_FILTERS } from "../../constants";
 
-import { ActionIconButton } from "../../components";
+export const MapFilters = ({ filters, onChange, userMode = false }) => {
+    const [open, setOpen] = useState(false);
 
-import { CAR_STATUS_FILTER } from "../../constants";
+    const toggleDrawer = (state) => () => setOpen(state);
 
-export const MapFilters = ({ selectedStatus, onChange }) => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
+    const activeFilters = MAP_FILTERS.filter(f => {
+        return !(userMode && f.key === "status");
+    });
 
-    const handleClick = (event) => setAnchorEl(event.currentTarget);
-    const handleClose = () => setAnchorEl(null);
+    const handleCheckboxToggle = (type, value) => {
+        const current = filters[type] || [];
 
-    const handleToggle = (status) => {
-        const currentIndex = selectedStatus.indexOf(status);
-        const newChecked = [...selectedStatus];
+        const updated = current.includes(value)
+            ? current.filter(v => v !== value)
+            : [...current, value];
 
-        if (currentIndex === -1) {
-            newChecked.push(status);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
-
-        onChange(newChecked);
+        onChange({ ...filters, [type]: updated });
     }
+
+    const handleRangeChange = (key, value) => {
+        onChange({ ...filters, [key]: value });
+    }
+
+    const resetFilters = () => {
+        const reset = {};
+
+        MAP_FILTERS.forEach(filter => {
+            if (filter.type === "checkbox") reset[filter.key] = [];
+            if (filter.type === "range") reset[filter.key] = [filter.min, filter.max];
+        });
+
+        onChange(reset);
+    }
+
+    const hasActiveFilters = MAP_FILTERS.some(filter => {
+        const value = filters[filter.key];
+
+        if (filter.type === "checkbox") return value?.length > 0;
+        if (filter.type === "range") return value && (value[0] !== filter.min || value[1] !== filter.max);
+
+        return false;
+    });
 
     return (
         <div className="map-filters">
-            <div className="map-filters__button">
-                <ActionIconButton
-                    Icon={FilterListIcon}
-                    onClick={handleClick}
-                    className="map__icon"
-                />
-            </div>
+            <ActionIconButton
+                Icon={FilterListIcon}
+                onClick={toggleDrawer(true)}
+                className="map__icon"
+            />
 
-            <Menu
-                className="map-filters__menu"
-                anchorEl={anchorEl}
+            <Drawer
                 open={open}
-                onClose={handleClose}
-                disablePortal
+                onClose={toggleDrawer(false)}
+                anchor={userMode ? "left" : "right"}
             >
-                {CAR_STATUS_FILTER.map((status) => (
-                    <MenuItem
-                        className="map-filters__menu-item"
-                        key={status.value}
-                    >
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    className="map-filters__checkbox"
-                                    checked={selectedStatus.includes(status.value)}
-                                    onChange={() => handleToggle(status.value)}
-                                />
-                            }
-                            label={
-                                <span className="map-filters__label">{status.label}</span>
-                            }
-                        />
-                    </MenuItem>
-                ))}
+                <div className="map-filters__header">
+                    <span className="map-filters__title">Фільтри</span>
 
-                {selectedStatus.length > 0 && (
-                    <MenuItem
-                        className="map-filters__menu-item map-filters__menu-item--reset"
-                        onClick={() => { onChange([]); handleClose(); }}
-                    >
-                        Скинути фільтри
-                    </MenuItem>
-                )}
-            </Menu>
+                    <ActionIconButton
+                        Icon={CloseIcon}
+                        onClick={toggleDrawer(false)}
+                        iconClassName="map-filters__icon"
+                    />
+                </div>
+
+                <div className="map-filters__content">
+                    <AppButton
+                        type="button"
+                        label="Скинути фільтри"
+                        className="map-filters__button"
+                        onClick={resetFilters}
+                        disabled={!hasActiveFilters}
+                    />
+
+                    {activeFilters.map(filter => {
+                        if (filter.type === "checkbox") {
+                            return (
+                                <MapFilterCheckbox
+                                    key={filter.key}
+                                    filter={filter}
+                                    filters={filters}
+                                    onToggle={handleCheckboxToggle}
+                                />
+                            );
+                        }
+
+                        if (filter.type === "range") {
+                            return (
+                                <MapFilterSlider
+                                    key={filter.key}
+                                    filter={filter}
+                                    filters={filters}
+                                    onChange={handleRangeChange}
+                                />
+                            );
+                        }
+
+                        return null;
+                    })}
+                </div>
+            </Drawer>
         </div>
     );
 }

@@ -8,7 +8,8 @@ export {
     Grid, Card, CardMedia, CardActions,
     FormControl, Select,
     Dialog, DialogTitle, DialogContent, DialogActions,
-    CircularProgress, ImageList, ImageListItem
+    CircularProgress, ImageList, ImageListItem, Slider,
+    Drawer, Accordion, AccordionSummary, AccordionDetails
 } from "@mui/material";
 
 export { DatePicker } from "@mui/x-date-pickers/DatePicker";

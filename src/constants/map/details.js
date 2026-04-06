@@ -1,0 +1,16 @@
+export const MAP_FILTERS_DEFAULT_VALUES = {
+    status: [],
+    rating: [0, 5],
+    pricePerDay: [0, 20000],
+    year: [2000, 2026],
+    bodyType: [],
+    transmissionType: [],
+    driveType: [],
+    powertrainType: [],
+    fuelType: [],
+    displacement: [0, 10],
+    capacity: [1, 200],
+    range: [1, 1000],
+    seats: [1, 9],
+    color: [],
+}

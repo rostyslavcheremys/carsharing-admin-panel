@@ -1,9 +1,12 @@
 import {
     collection,
     doc,
+    getDocs,
     setDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    query,
+    where
 } from "firebase/firestore";
 
 import { ref, deleteObject, listAll } from "firebase/storage";
@@ -63,5 +66,9 @@ export class CarService {
         const deletePromises = fileList.items.map(fileRef => deleteObject(fileRef));
 
         await Promise.all(deletePromises);
+    }
+
+    static getAvailableCars() {
+        return query(collection(db, "cars"), where("status", "==", "available"));
     }
 }

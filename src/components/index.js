@@ -47,9 +47,11 @@ export * from "./Dialogs/MapDetailsDialog.jsx";
 
 export * from "./Map/Map.jsx";
 export * from "./Map/MapControls.jsx";
-export * from "./Map/MapItem.jsx";
+export * from "./Map/MapFilterCheckbox.jsx";
 export * from "./Map/MapFilters.jsx";
-export * from "./Map/MapStepper.jsx";
+export * from "./Map/MapFilterSlider.jsx";
+export * from "./Map/MapItem.jsx";
 export * from "./Map/MapPicker.jsx";
+export * from "./Map/MapStepper.jsx";
 
 export * from "./Tables/DataTable.jsx";

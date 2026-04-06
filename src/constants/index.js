@@ -12,6 +12,8 @@ export * from "./cars/options.js";
 export * from "./cars/table.jsx";
 
 export * from "./map/constants.js";
+export * from "./map/details.js";
+export * from "./map/filters.js";
 export * from "./map/icons.js";
 export * from "./map/location.js";
 
