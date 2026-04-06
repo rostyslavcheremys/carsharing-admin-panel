@@ -16,7 +16,7 @@ export * from "./map/icons.js";
 export * from "./map/location.js";
 
 export * from "./messages/actions.js";
-export * from "./messages/error.js";
+export * from "./messages/errors.js";
 export * from "./messages/messages.js";
 
 export * from "./profile/details.js";

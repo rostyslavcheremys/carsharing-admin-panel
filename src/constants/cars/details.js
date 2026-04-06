@@ -7,6 +7,7 @@ import {
     CAR_STATUS,
     TRANSMISSION_TYPES,
 } from "./options.js";
+import {getFormattedTimestamp} from "../../utils/index.js";
 
 export const CAR_DETAILS = [
     { label: "ID:", key: "id" },
@@ -36,4 +37,8 @@ export const CAR_CONDITION_DETAILS = [
     { label: "Пробіг:", key: "mileage", suffix: "км" },
     { label: "Рівень пального:", key: "energyLevel.fuelPercent", suffix: "%" },
     { label: "Рівень заряду батареї:", key: "energyLevel.batteryPercent", suffix: "%" },
+    {
+        label: "Дата створення:", key: "createdAt",
+        formatter: (user) => getFormattedTimestamp(user, true)
+    },
 ];
