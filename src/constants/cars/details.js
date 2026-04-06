@@ -7,13 +7,14 @@ import {
     CAR_STATUS,
     TRANSMISSION_TYPES,
 } from "./options.js";
-import {getFormattedTimestamp} from "../../utils/index.js";
+
+import { getFormattedTimestamp } from "../../utils";
 
 export const CAR_DETAILS = [
     { label: "ID:", key: "id" },
     { label: "Марка:", key: "brand" },
     { label: "Модель:", key: "model" },
-    { label: "Рік:", key: "year" },
+    { label: "Рік випуску:", key: "year" },
     { label: "Пробіг:", key: "mileage", suffix: "км" },
     { label: "Номерний знак:", key: "licensePlate" },
     { label: "Тип кузова:", key: "bodyType", map: BODY_TYPES },
