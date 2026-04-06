@@ -10,8 +10,8 @@ import {
     ProfilePage,
     ProfileEditPage,
     ProfileDetailsPage,
-    CarsMapPage,
-    CarDetailsUserPage,
+    MapPage,
+    CarPage,
     CarAccessPage,
     CarConditionStartPage,
     CarConditionEndPage,
@@ -33,6 +33,12 @@ export const UserRoutes = (
         <Route path={USER.HOME} element={
             <ProtectedRoute userOnly>
                 <HomePage />
+            </ProtectedRoute>
+        }/>
+
+        <Route path={USER.MAP} element={
+            <ProtectedRoute userOnly>
+                <MapPage />
             </ProtectedRoute>
         }/>
 
@@ -60,15 +66,9 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CARS_MAP} element={
-            <ProtectedRoute userOnly>
-                <CarsMapPage />
-            </ProtectedRoute>
-        }/>
-
         <Route path={USER.CAR_DETAILS}  element={
             <ProtectedRoute userOnly>
-                <CarDetailsUserPage />
+                <CarPage />
             </ProtectedRoute>
         }/>
 
