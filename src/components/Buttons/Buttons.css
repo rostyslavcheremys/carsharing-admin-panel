@@ -11,7 +11,8 @@
     box-shadow: none;
 }
 
-.app-button.disabled {
+.Mui-disabled {
+    color: var(--white-color) !important;
     opacity: 0.5;
     pointer-events: none;
     cursor: not-allowed;
