@@ -15,11 +15,12 @@ export const USER = {
     CAR_CONDITIONS_END: "/car-conditions/end",
     carDetails: (id) => `/cars/${id}`,
 
-    BOOKING_DATE: "/booking/date",
+    BOOKING_DATE: "/booking/date/:id",
     BOOKING_PAYMENT: "/booking/payment",
     BOOKING_CONFIRM: "/booking/confirm",
     BOOKINGS_HISTORY: "/bookings/history",
     BOOKINGS_HISTORY_DETAILS: "/bookings/history/:id",
+    bookingDate: (id) => `/booking/date/${id}`,
     bookingsHistoryDetails: (id) => `/bookings/history/${id}`,
 
     TRIP: "/trip",
