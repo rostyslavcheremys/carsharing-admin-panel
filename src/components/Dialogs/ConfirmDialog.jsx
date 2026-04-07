@@ -1,6 +1,4 @@
-import { Dialog } from "../../libs/mui";
-
-import { AppButton } from "../../components";
+import { AppDialog, AppButton } from "../../components";
 
 export const ConfirmDialog = ({
                                   open,
@@ -9,31 +7,24 @@ export const ConfirmDialog = ({
                                   onCancel,
                               }) => {
     return (
-        <Dialog
-            className="dialog"
-            open={open}
-            onClose={onCancel}
-            disableEnforceFocus={true}
-            disableRestoreFocus={true}
-            disablePortal={false}
-        >
+        <AppDialog open={open} onClose={onCancel}>
             <div className="dialog__content">
                 <span className="dialog__message">{message}</span>
             </div>
 
             <div className="dialog__button">
                 <AppButton
-                    className="dialog__app-button"
+                    className="app-button--small"
                     label="Так"
                     onClick={onConfirm}
                 />
 
                 <AppButton
-                    className="dialog__app-button"
+                    className="app-button--small"
                     label="Ні"
                     onClick={onCancel}
                 />
             </div>
-        </Dialog>
+        </AppDialog>
     );
 }
