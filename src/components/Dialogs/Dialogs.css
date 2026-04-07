@@ -98,7 +98,8 @@
 .dialog__icon--location,
 .dialog__icon--photos,
 .dialog__icon--close {
-    font-size: 25px !important;
+    height: 25px !important;
+    width: 25px !important;
     transition: color 0.2s ease-in-out !important;
     cursor: pointer;
 }

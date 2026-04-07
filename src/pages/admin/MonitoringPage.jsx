@@ -1,4 +1,4 @@
-import { Loader , Map } from "../../components";
+import {Loader, Map } from "../../components";
 
 import { useCollection } from "../../hooks";
 
@@ -8,6 +8,8 @@ export const MonitoringPage = () => {
         isLoading,
         error,
     } = useCollection("cars");
+
+    console.log(cars);
 
     return (
         <Loader isLoading={isLoading} error={error}>
