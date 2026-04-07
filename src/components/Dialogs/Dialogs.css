@@ -1,27 +1,7 @@
 .dialog .MuiPaper-root {
     border-radius: 10px !important;
     min-width: 250px;
-}
-
-.dialog__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    padding: 15px 17px 15px 25px !important;
-    background: inherit;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.dialog__content {
-    text-align: center;
-    padding: 25px !important;
-}
-
-.dialog__content--images {
-    padding: 0 25px 25px !important;
+    max-width: 800px;
 }
 
 .dialog__title {
@@ -30,29 +10,42 @@
     font-size: 18px;
 }
 
-.dialog__text--container {
+.dialog__header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 15px 17px 15px 25px;
+    background: inherit;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.dialog__content {
+    text-align: center;
+    padding: 25px 25px 0;
+}
+
+.dialog__images--container {
+    padding: 0 25px 25px;
+}
+
+.dialog__images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.dialog__details {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 25px 10px 25px;
-    gap: 5px;
-}
-
-.dialog__text {
-    font-family: var(--font-family), sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.status--available {
-    color: var(--main-color);
-}
-
-.status--rented {
-    color: var(--red-color);
+    gap: 20px;
+    padding: 0 25px;
 }
 
 .dialog__message {
@@ -64,9 +57,30 @@
 
 .dialog__button {
     display: flex;
-    justify-content: center !important;
-    padding: 0 25px 25px !important;
+    justify-content: center;
+    padding: 25px;
     gap: 20px;
+}
+
+.dialog__button.map-dialog__button {
+    padding: 20px;
+}
+
+.dialog__icon--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog__icon {
+    height: 25px !important;
+    width: 25px !important;
+    transition: color 0.2s ease-in-out !important;
+    cursor: pointer;
+}
+
+.dialog__icon:hover {
+    color: var(--main-color) !important;
 }
 
 .dialog__map {
@@ -75,84 +89,49 @@
     height: 600px;
 }
 
-.dialog__map--button {
-    display: flex;
-    justify-content: center !important;
-    padding: 15px 25px !important;
-}
-
-.dialog__images {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    width: 100%;
-}
-
-.dialog__icon {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-.dialog__icon--location,
-.dialog__icon--photos,
-.dialog__icon--close {
-    height: 25px !important;
-    width: 25px !important;
-    transition: color 0.2s ease-in-out !important;
-    cursor: pointer;
-}
-
-.dialog__icon--location:hover,
-.dialog__icon--photos:hover,
-.dialog__icon--close:hover {
-    color: var(--main-color) !important;
-}
-
 @media (max-width: 768px) {
     .dialog__header {
-        padding: 15px 12px 15px 20px !important;
+        padding: 15px 12px 15px 20px;
     }
 
     .dialog__title {
         font-size: 16px;
     }
 
+    .dialog__details {
+        padding: 0 20px;
+    }
+
+    .dialog__content {
+        padding: 20px 20px 0;
+    }
+
+    .dialog__button {
+        padding: 20px;
+    }
+
+    .dialog__images--container{
+        padding: 0 20px 20px;
+    }
+
     .dialog__images {
-        height: auto !important;
-        width: 100% !important;
+        height: auto;
+        width: 100%;
+        gap: 15px;
     }
 
     .dialog__map {
         width: 500px;
         height: 500px;
     }
-
-    .dialog__content {
-        padding: 20px !important;
-    }
-
-    .dialog__content--images,
-    .dialog__button {
-        padding: 0 20px 20px !important;
-    }
-
-    .dialog__map--button {
-        padding: 15px 20px !important;
-    }
 }
 
 @media (max-width: 600px) {
     .dialog__title,
     .dialog__message,
-    .dialog__text {
-        font-size: 14px;
-    }
-
     .dialog__images {
-        height: auto !important;
-        width: 100% !important;
+        height: auto;
+        width: 100%;
     }
 
     .dialog__map {
