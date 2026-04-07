@@ -1,6 +1,7 @@
 export const USER = {
     HOME: "/",
     HELP: "/help",
+    MAP: "/map",
 
     PROFILE: "/profile",
     PROFILE_DETAILS: "/profile/:id",
@@ -8,7 +9,6 @@ export const USER = {
     profileDetails: (id) => `/profile/${id}`,
     profileEdit: (id) => `/profile/${id}/edit`,
 
-    CARS_MAP: "/cars/map",
     CAR_DETAILS: "/cars/:id",
     CAR_ACCESS: "/car-access",
     CAR_CONDITIONS_START: "/car-conditions/start",
