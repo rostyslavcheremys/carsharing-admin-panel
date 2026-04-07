@@ -16,19 +16,19 @@ import {
     useMapCenter,
 } from "../../hooks";
 
-import { CAR_STATUS_FILTER } from "../../constants";
+import { MAP_FILTERS_DEFAULT_VALUES } from "../../constants";
 
-export const Map = ({ cars = [] }) => {
+export const Map = ({ cars = [], userMode = false  }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 
-    const [statusFilter, setStatusFilter] = useState([]);
+    const [filters, setFilters] = useState(MAP_FILTERS_DEFAULT_VALUES);
 
     const { zoom, setZoom, mapType, setMapType } = useMapState();
 
     const { isLoaded } = useGoogleMapsLoader();
 
-    const filteredCars = useFilteredCars(cars, statusFilter);
+    const filteredCars = useFilteredCars(cars, filters);
 
     const {
         index: activeIndex,
@@ -42,7 +42,7 @@ export const Map = ({ cars = [] }) => {
     const hasCars = filteredCars.length > 0;
 
     const handleFilterChange = (newFilters) => {
-        setStatusFilter(newFilters);
+        setFilters(newFilters);
         reset();
     }
 
@@ -50,9 +50,9 @@ export const Map = ({ cars = [] }) => {
         <Loader isLoading={!isLoaded}>
             <div className="map-container" ref={wrapperRef}>
                 <MapFilters
-                    selectedStatus={statusFilter}
+                    filters={filters}
                     onChange={handleFilterChange}
-                    buttons={CAR_STATUS_FILTER}
+                    userMode={userMode}
                 />
 
                 {hasCars && (

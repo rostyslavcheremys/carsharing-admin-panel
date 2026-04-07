@@ -1,29 +1,44 @@
-import { useEffect, useState, useCallback } from "react";
+import {
+    useState,
+    useMemo,
+    useCallback,
+    useEffect
+} from "react";
 
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import {
+    collection,
+    getDocs,
+    onSnapshot
+} from "firebase/firestore";
 
 import { db } from "../firebase";
 
-export const useCollection = (collectionName, { live = true } = {}) => {
+export const useCollection = (refOrName, { live = true } = {}) => {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const ref = useMemo(() => {
+        return typeof refOrName === "string"
+            ? collection(db, refOrName)
+            : refOrName;
+    }, [refOrName]);
+
     const fetch = useCallback(async () => {
         setIsLoading(true);
         try {
-            const snapshot =
-                await getDocs(collection(db, collectionName));
+            const snapshot = await getDocs(ref);
 
             setData(snapshot.docs.map(doc => ({
-                id: doc.id, ...doc.data()
+                id: doc.id,
+                ...doc.data()
             })));
         } catch (error) {
             setError(error);
         } finally {
             setIsLoading(false);
         }
-    }, [collectionName]);
+    }, [ref]);
 
     useEffect(() => {
         if (!live) {
@@ -32,9 +47,12 @@ export const useCollection = (collectionName, { live = true } = {}) => {
         }
 
         const unsub = onSnapshot(
-            collection(db, collectionName),
+            ref,
             (snapshot) => {
-                setData(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+                setData(snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                })));
                 setIsLoading(false);
             },
             (err) => {
@@ -44,7 +62,7 @@ export const useCollection = (collectionName, { live = true } = {}) => {
         );
 
         return () => unsub();
-    }, [collectionName, live, fetch]);
+    }, [ref, live, fetch]);
 
     return { data, isLoading, error, refetch: fetch };
 }

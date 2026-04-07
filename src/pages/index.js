@@ -26,8 +26,7 @@ export * from "./user/bookings/BookingConfirmationPage.jsx";
 export * from "./user/bookings/BookingsHistoryPage.jsx";
 export * from "./user/bookings/BookingHistoryDetailsPage.jsx";
 
-export * from "./user/cars/CarsMapPage.jsx";
-export * from "./user/cars/CarDetailsUserPage.jsx";
+export * from "./user/cars/CarPage.jsx";
 export * from "./user/cars/CarAccessPage.jsx";
 export * from "./user/cars/CarConditionStartPage.jsx";
 export * from "./user/cars/CarConditionEndPage.jsx";
@@ -43,3 +42,4 @@ export * from "./user/trips/TripHistoryDetailsPage.jsx";
 
 export * from "./user/HomePage.jsx";
 export * from "./user/HelpPage.jsx";
+export * from "./user/MapPage.jsx";
