@@ -16,6 +16,14 @@ export * from "./Details/DetailsItem.jsx";
 export * from "./Details/DetailsLink.jsx";
 export * from "./Details/DetailsMap.jsx";
 
+export * from "./Dialogs/AppDialog.jsx";
+export * from "./Dialogs/CarDetailsDialog.jsx";
+export * from "./Dialogs/ConfirmDialog.jsx";
+export * from "./Dialogs/DialogCell.jsx";
+export * from "./Dialogs/ImageDialog.jsx";
+export * from "./Dialogs/MapDialog.jsx";
+export * from "./Dialogs/MessageDialog.jsx";
+
 export * from "./FormControllers/DatePickerController.jsx";
 export * from "./FormControllers/FileUploadController.jsx";
 export * from "./FormControllers/InputController.jsx";
@@ -29,21 +37,14 @@ export * from "./Forms/FormSelect.jsx";
 export * from "./Forms/FormUpload.jsx";
 
 export * from "./Headers/AdminHeader.jsx";
-export * from "./Headers/UserHeader.jsx";
 export * from "./Headers/AuthHeader.jsx";
+export * from "./Headers/UserHeader.jsx";
 
 export * from "./ImageItem/ImageItem.jsx";
 
 export * from "./InfoMessage/InfoMessage.jsx";
 
 export * from "./Loader/Loader.jsx";
-
-export * from "./Dialogs/DialogCell.jsx";
-export * from "./Dialogs/ConfirmDialog.jsx";
-export * from "./Dialogs/MessageDialog.jsx";
-export * from "./Dialogs/ImageDialog.jsx";
-export * from "./Dialogs/MapDialog.jsx";
-export * from "./Dialogs/MapDetailsDialog.jsx";
 
 export * from "./Map/Map.jsx";
 export * from "./Map/MapControls.jsx";

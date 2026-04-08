@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 
 import { GoogleMap, Marker } from "@react-google-maps/api";
 
-import { MapDetailsDialog } from "../../components";
+import { CarDetailsDialog } from "../../components";
 
 import { useAutoPanToMarker, useMapOptions } from "../../hooks";
 
@@ -68,7 +68,7 @@ export const MapItem = ({
 
             {mapCard && (
                 <div className="map-item__card">
-                    <MapDetailsDialog
+                    <CarDetailsDialog
                         car={markerCard}
                         onClose={() => setMarkerCard(null)}
                     />

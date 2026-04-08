@@ -22,7 +22,7 @@
     box-shadow: none;
 }
 
-.dialog__app-button {
+.app-button--small {
     width: 90px !important;
     height: 40px !important;
 }
