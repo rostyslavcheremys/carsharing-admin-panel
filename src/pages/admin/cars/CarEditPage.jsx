@@ -61,7 +61,7 @@ export const CarEditPage = () => {
 
             showMessage(
                 CAR_ACTION_MESSAGES.EDIT_SUCCESS,
-                () => navigate(ADMIN.CARS)
+                () => navigate(-1)
             );
         } catch (error) {
             showMessage(getErrorMessage(error));

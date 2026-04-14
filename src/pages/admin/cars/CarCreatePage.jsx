@@ -47,7 +47,7 @@ export const CarCreatePage = () => {
 
             showMessage(
                 CAR_ACTION_MESSAGES.CREATE_SUCCESS,
-                () => navigate(ADMIN.CARS)
+                () => navigate(-1)
             );
 
             reset(CAR_FORM_DEFAULT_VALUES);
