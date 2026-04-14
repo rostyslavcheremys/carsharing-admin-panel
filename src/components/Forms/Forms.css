@@ -133,7 +133,7 @@
     height: 100%;
     border-radius: 10px !important;
     border: 0 !important;
-    box-shadow: 0 0 7px var(--grey-color);
+    box-shadow: 0 0 3px var(--grey-color);
 }
 
 .form__image {
@@ -224,6 +224,10 @@
 
     .form__badge {
         font-size: 16px !important;
+    }
+
+    .form__icon--rotated {
+        transform: rotate(90deg);
     }
 }
 

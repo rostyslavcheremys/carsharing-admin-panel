@@ -81,7 +81,7 @@ export const FormUpload = forwardRef(
                                             Icon={ArrowBackIcon}
                                             onClick={() => handleMove(index, -1)}
                                             disabled={index === 0}
-                                            iconClassName="form__icon"
+                                            iconClassName="form__icon form__icon--rotated"
                                         />
 
                                         <ActionIconButton
@@ -94,7 +94,7 @@ export const FormUpload = forwardRef(
                                             Icon={ArrowForwardIcon}
                                             onClick={() => handleMove(index, 1)}
                                             disabled={index === value.length - 1}
-                                            iconClassName="form__icon"
+                                            iconClassName="form__icon form__icon--rotated"
                                         />
                                     </CardActions>
 
