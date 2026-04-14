@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import {
@@ -8,7 +7,7 @@ import {
     AppButton,
 } from "../../../components";
 
-import { useDocument } from "../../../hooks";
+import { useDocument, useImages } from "../../../hooks";
 
 import { CAR_CONDITION_DETAILS } from "../../../constants";
 
@@ -21,17 +20,14 @@ export const CarConditionDetailsPage = () => {
         document: carCondition, isLoading, error
     } = useDocument("carCondition", id);
 
-    const images = useMemo(() => {
-        if (!carCondition?.images) return [];
-        return Array.isArray(carCondition.images) ? carCondition.images : [carCondition.images];
-    }, [carCondition]);
+    const conditionImages = useImages(carCondition?.images);
 
     return(
         <Loader isLoading={isLoading || !carCondition} error={error}>
             <div className="page page__content">
                 <span className="page__title">Стан автомобіля</span>
 
-                {images.length > 0 && <CarImages images={images} />}
+                {conditionImages.length > 0 && <CarImages images={conditionImages} />}
 
                 <Details data={carCondition} details={CAR_CONDITION_DETAILS} />
 
