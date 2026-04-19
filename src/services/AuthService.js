@@ -22,7 +22,7 @@ export class AuthService {
         const userSnap = await getDoc(userRef);
 
         if (!userSnap.exists()) {
-            throw new Error("User profile not found");
+            throw new Error("Користувача не знайдено!");
         }
 
         return {

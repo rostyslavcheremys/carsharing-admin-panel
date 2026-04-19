@@ -71,6 +71,13 @@ export const CarForm = ({
 
                 <TextController
                     control={control}
+                    name="pricePerDay"
+                    label="Вартість за добу (грн)*"
+                    rules={getPricePerDayValidation()}
+                />
+
+                <TextController
+                    control={control}
                     name="brand"
                     label="Марка*"
                     rules={getBrandValidation()}
@@ -184,13 +191,6 @@ export const CarForm = ({
                     name="seats"
                     label="Кількість місць*"
                     rules={getSeatsValidation()}
-                />
-
-                <TextController
-                    control={control}
-                    name="pricePerDay"
-                    label="Вартість за добу (грн)*"
-                    rules={getPricePerDayValidation()}
                 />
 
                 <LocationController

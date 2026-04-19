@@ -1,5 +1,7 @@
 import { forwardRef } from "react";
 
+import dayjs from "dayjs";
+
 import { DateTimePicker } from "../../libs/mui";
 
 export const FormDateTime = forwardRef(
@@ -9,7 +11,7 @@ export const FormDateTime = forwardRef(
                 <span className="form__label">{label}</span>
 
                 <DateTimePicker
-                    value={value}
+                    value={value ? dayjs(value) : null}
                     disabled={disabled}
                     disablePast={disablePast}
                     onChange={onChange}

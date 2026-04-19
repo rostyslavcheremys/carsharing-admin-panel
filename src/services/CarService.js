@@ -64,8 +64,4 @@ export class CarService {
 
         await Promise.all(deletePromises);
     }
-
-    static getAllCars() {
-        return collection(db, "cars");
-    }
 }

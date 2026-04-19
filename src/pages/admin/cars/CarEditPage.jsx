@@ -13,7 +13,6 @@ import { getErrorMessage, getCarValues } from "../../../utils";
 import {
     CAR_FORM_DEFAULT_VALUES,
     CAR_ACTION_MESSAGES,
-    ADMIN
 } from "../../../constants";
 
 export const CarEditPage = () => {
