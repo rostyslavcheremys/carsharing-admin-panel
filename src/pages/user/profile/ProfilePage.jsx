@@ -42,13 +42,6 @@ export const ProfilePage = () => {
 
                     <AppButton
                         type="button"
-                        label="Допомога"
-                        onClick={() => navigate(USER.HELP)}
-                        disabled={loading}
-                    />
-
-                    <AppButton
-                        type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
                         disabled={loading}
