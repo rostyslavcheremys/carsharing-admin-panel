@@ -22,7 +22,7 @@ export class AuthService {
         const userSnap = await getDoc(userRef);
 
         if (!userSnap.exists()) {
-            throw new Error("User profile not found");
+            throw new Error("Користувача не знайдено!");
         }
 
         return {
@@ -46,7 +46,6 @@ export class AuthService {
             phoneNumber,
             role: "user",
             isBlocked: false,
-            drivingLicense: "",
             verificationStatus: "pending",
             birthDate: birthDate.toDate(),
             createdAt: serverTimestamp(),

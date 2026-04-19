@@ -6,19 +6,19 @@ import { functions, db } from "../firebase";
 const deleteUserCallable = httpsCallable(functions, "deleteUser");
 
 export class UserService {
-    static async deleteUser(userId){
+    static async delete(userId){
         const result = await deleteUserCallable({ userId });
         return result.data;
     }
 
-    static async approveUser(userId) {
+    static async approve(userId) {
         const userRef = doc(db, "users", userId);
         await updateDoc(userRef, {
             verificationStatus: "approved",
         });
     }
 
-    static async getUser(id) {
+    static async get(id) {
         const userRef = doc(db, "users", id);
         const userSnap = await getDoc(userRef);
 
@@ -28,7 +28,7 @@ export class UserService {
         }
     }
 
-    static async blockUser(userId, isBlocked) {
+    static async block(userId, isBlocked) {
         const userRef = doc(db, "users", userId);
 
         await updateDoc(userRef, {

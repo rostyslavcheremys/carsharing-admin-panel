@@ -13,7 +13,6 @@ import { getErrorMessage, getCarValues } from "../../../utils";
 import {
     CAR_FORM_DEFAULT_VALUES,
     CAR_ACTION_MESSAGES,
-    ADMIN
 } from "../../../constants";
 
 export const CarEditPage = () => {
@@ -57,7 +56,7 @@ export const CarEditPage = () => {
         try {
             setIsSubmitting(true);
 
-            await CarService.updateCar(id, data, images);
+            await CarService.update(id, data, images);
 
             showMessage(
                 CAR_ACTION_MESSAGES.EDIT_SUCCESS,

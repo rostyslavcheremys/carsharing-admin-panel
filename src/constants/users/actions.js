@@ -18,7 +18,7 @@ export const USER_ACTIONS = (onDelete, showMessage) => [
             user.id !== currentUser?.id && user.role !== "admin",
         handler: async ({ id, isBlocked }) => {
             try {
-                await UserService.blockUser(id, isBlocked);
+                await UserService.block(id, isBlocked);
             } catch {
                 showMessage(USER_ACTION_MESSAGES.BLOCK_ERROR);
             }

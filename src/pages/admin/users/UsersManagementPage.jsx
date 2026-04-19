@@ -33,7 +33,7 @@ export const UsersManagementPage = () => {
 
     const { user: currentUser, loading } = useAuth();
 
-    const { isDeleting, handleDelete } = useDelete(UserService.deleteUser);
+    const { isDeleting, handleDelete } = useDelete(UserService.delete);
 
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
         actions: (user) => (
