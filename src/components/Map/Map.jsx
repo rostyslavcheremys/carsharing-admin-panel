@@ -18,7 +18,7 @@ import {
 
 import { MAP_FILTERS_DEFAULT_VALUES } from "../../constants";
 
-export const Map = ({ cars = [], userMode = false  }) => {
+export const Map = ({ cars = [], activeCarId, userMode = false  }) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 
@@ -73,6 +73,7 @@ export const Map = ({ cars = [], userMode = false  }) => {
                     mapRef={mapRef}
                     isLoaded={isLoaded}
                     activeIndex={activeIndex}
+                    activeCarId={activeCarId}
                     mapCard
                 />
 

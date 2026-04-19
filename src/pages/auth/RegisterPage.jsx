@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 
 import {
     Loader,
-    InputController,
-    DatePickerController,
+    TextController,
+    DateController,
     AppButton,
     AuthRedirect,
     MessageDialog,
@@ -59,35 +59,35 @@ export const RegisterPage = () => {
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <span className="page__title form">Реєстрація</span>
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="firstName"
                         label="Ім'я*"
                         rules={getFirstNameValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="lastName"
                         label="Прізвище*"
                         rules={getLastNameValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="phoneNumber"
                         label="Номер телефону*"
                         rules={getPhoneNumberValidation()}
                     />
 
-                    <DatePickerController
+                    <DateController
                         control={control}
                         name="birthDate"
                         label="Дата народження*"
                         rules={getBirthDateValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="email"
                         label="Електронна адреса*"
@@ -95,7 +95,7 @@ export const RegisterPage = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="password"
                         label="Пароль*"
@@ -103,7 +103,7 @@ export const RegisterPage = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="confirmPassword"
                         label="Підтвердження пароля*"

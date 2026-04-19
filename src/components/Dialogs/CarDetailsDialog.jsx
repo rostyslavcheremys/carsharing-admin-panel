@@ -17,7 +17,7 @@ import {
     CAR_USER_DETAILS, USER,
 } from "../../constants";
 
-export const CarDetailsDialog = ({ car, onClose }) => {
+export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
     const navigate = useNavigate();
 
     const { user } = useAuth();
@@ -26,6 +26,8 @@ export const CarDetailsDialog = ({ car, onClose }) => {
 
     const isAdmin = user?.role === "admin";
     const canBook = user?.role === "user" && car?.status === "available";
+
+    const isMyCar = car?.id === activeCarId;
 
     if (!car) return null;
 
@@ -46,29 +48,38 @@ export const CarDetailsDialog = ({ car, onClose }) => {
             <div className="dialog__details">
                 {images.length > 0 && <CarImages images={images} />}
 
+                <div className="dialog__buttons">
+                    {isAdmin && (
+                        <AppButton
+                            type="button"
+                            label="Редагувати"
+                            onClick={() => navigate(ADMIN.carEdit(car.id))}
+                            disabled={!car?.id}
+                        />
+                    )}
+
+                    {isMyCar && (
+                        <AppButton
+                            type="button"
+                            label="Розпочати поїздку"
+                            className="app-button--large"
+                            onClick={() => console.log("START DRIVE")}
+                        />
+                    )}
+
+                    {!isMyCar && canBook && (
+                        <AppButton
+                            type="button"
+                            label="Забронювати"
+                            onClick={() => navigate(USER.bookingPeriod(car.id))}
+                        />
+                    )}
+                </div>
+
                 <Details
                     data={car}
                     details={isAdmin ? CAR_ADMIN_DETAILS : CAR_USER_DETAILS}
                 />
-            </div>
-
-            <div className="dialog__button">
-                {isAdmin && (
-                    <AppButton
-                        type="button"
-                        label="Редагувати"
-                        onClick={() => navigate(ADMIN.carEdit(car.id))}
-                        disabled={!car?.id}
-                    />
-                )}
-
-                {canBook && (
-                    <AppButton
-                        type="button"
-                        label="Забронювати"
-                        onClick={() => navigate(USER.bookingDate(car.id))}
-                    />
-                )}
             </div>
         </AppDialog>
     );

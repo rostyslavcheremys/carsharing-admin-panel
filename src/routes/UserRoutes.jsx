@@ -6,7 +6,6 @@ import { ProtectedRoute } from "../guards";
 
 import {
     HomePage,
-    HelpPage,
     ProfilePage,
     ProfileEditPage,
     ProfileDetailsPage,
@@ -15,7 +14,7 @@ import {
     CarAccessPage,
     CarConditionStartPage,
     CarConditionEndPage,
-    BookingDatePage,
+    BookingPeriodPage,
     BookingPaymentPage,
     BookingConfirmationPage,
     BookingsHistoryPage,
@@ -39,12 +38,6 @@ export const UserRoutes = (
         <Route path={USER.MAP} element={
             <ProtectedRoute userOnly>
                 <MapPage />
-            </ProtectedRoute>
-        }/>
-
-        <Route path={USER.HELP} element={
-            <ProtectedRoute userOnly>
-                <HelpPage />
             </ProtectedRoute>
         }/>
 
@@ -72,9 +65,9 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.BOOKING_DATE} element={
+        <Route path={USER.BOOKING_PERIOD} element={
             <ProtectedRoute userOnly>
-                <BookingDatePage />
+                <BookingPeriodPage />
             </ProtectedRoute>
         }/>
 

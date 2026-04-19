@@ -20,7 +20,7 @@ export * from "./auth/LoginPage.jsx";
 export * from "./auth/RegisterPage.jsx";
 export * from "./auth/DriverVerificationPage.jsx";
 
-export * from "./user/bookings/BookingDatePage.jsx";
+export * from "./user/bookings/BookingPeriodPage.jsx";
 export * from "./user/bookings/BookingPaymentPage.jsx";
 export * from "./user/bookings/BookingConfirmationPage.jsx";
 export * from "./user/bookings/BookingsHistoryPage.jsx";
@@ -41,5 +41,4 @@ export * from "./user/trips/TripsHistoryPage.jsx";
 export * from "./user/trips/TripHistoryDetailsPage.jsx";
 
 export * from "./user/HomePage.jsx";
-export * from "./user/HelpPage.jsx";
 export * from "./user/MapPage.jsx";

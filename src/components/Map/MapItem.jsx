@@ -4,7 +4,10 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 
 import { CarDetailsDialog } from "../../components";
 
-import { useAutoPanToMarker, useMapOptions } from "../../hooks";
+import {
+    useAutoPanToMarker,
+    useMapOptions
+} from "../../hooks";
 
 import { getPickerMarkerIcon, getCarMarkerIcon, } from "../../utils";
 
@@ -18,8 +21,9 @@ export const MapItem = ({
                             mapCenter,
                             mapRef,
                             isLoaded,
+                            activeIndex,
+                            activeCarId,
                             mapCard,
-                            activeIndex
                         }) => {
     const [markerCard, setMarkerCard] = useState(null);
 
@@ -56,20 +60,28 @@ export const MapItem = ({
             options={mapOptions}
         >
             {isLoaded &&
-                locations.map((marker) => (
-                    <Marker
-                        key={marker.id}
-                        position={{ lat: marker.lat, lng: marker.lng }}
-                        icon={selectable ? locationIcon : getCarMarkerIcon(marker.status)}
-                        onClick={() => mapCard && setMarkerCard(marker)}
-                    />
-                ))
-            }
+                locations.map((marker) => {
+                    const isMine = marker.id === activeCarId;
 
+                    return (
+                        <Marker
+                            key={marker.id}
+                            position={{ lat: marker.lat, lng: marker.lng }}
+                            icon={
+                                selectable
+                                    ? locationIcon
+                                    : getCarMarkerIcon(marker.status, isMine)
+                            }
+                            onClick={() => mapCard && setMarkerCard(marker)}
+                        />
+                    );
+                })
+            }
             {mapCard && (
                 <div className="map-item__card">
                     <CarDetailsDialog
                         car={markerCard}
+                        activeCarId={activeCarId}
                         onClose={() => setMarkerCard(null)}
                     />
                 </div>

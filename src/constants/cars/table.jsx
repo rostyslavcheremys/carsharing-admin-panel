@@ -27,6 +27,10 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getLabel(car?.status, CAR_STATUS)
     },
     {
+        id: "pricePerDay", label: "Вартість за добу",
+        render: (car) => getString(car?.pricePerDay, "грн")
+    },
+    {
         id: "location", label: "Місцезнаходження",
         render: (car) => (
             <DialogCell>
@@ -120,11 +124,7 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getString(car?.seats)
     },
     {
-        id: "pricePerDay", label: "Вартість за добу",
-        render: (car) => getString(car?.pricePerDay, "грн")
-    },
-    {
         id: "rating", label: "Рейтинг",
-        render: (car) => getString(car?.rating)
+        render: (car) => getString(car?.rating, "★")
     },
 ];

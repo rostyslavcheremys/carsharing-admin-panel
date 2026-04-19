@@ -46,7 +46,6 @@ export class AuthService {
             phoneNumber,
             role: "user",
             isBlocked: false,
-            drivingLicense: "",
             verificationStatus: "pending",
             birthDate: birthDate.toDate(),
             createdAt: serverTimestamp(),

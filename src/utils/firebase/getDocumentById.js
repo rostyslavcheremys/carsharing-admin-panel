@@ -7,7 +7,7 @@ export const getDocumentById = async (collectionName, docId) => {
     const snapshot = await getDoc(documentRef);
 
     if (!snapshot.exists()) {
-        throw new Error("Car not found");
+        throw new Error("Запис не знайдено!");
     }
 
     return {

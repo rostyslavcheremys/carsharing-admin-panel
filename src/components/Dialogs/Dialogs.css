@@ -44,8 +44,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 0 25px;
+    padding: 0 25px 25px;
+    gap: 25px;
 }
 
 .dialog__message {
@@ -60,6 +60,18 @@
     justify-content: center;
     padding: 25px;
     gap: 20px;
+}
+
+.dialog__buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.dialog__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
 .dialog__button.map-dialog__button {
@@ -99,7 +111,7 @@
     }
 
     .dialog__details {
-        padding: 0 20px;
+        padding: 0 20px 20px;
     }
 
     .dialog__content {
@@ -140,7 +152,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .dialog__map {
         width: 300px;
         height: 400px;

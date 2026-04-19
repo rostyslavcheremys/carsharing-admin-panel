@@ -1,6 +1,7 @@
 export * from "./auth/defaults.js";
 
 export * from "./bookings/actions.js";
+export * from "./bookings/defaults.js";
 export * from "./bookings/details.jsx";
 export * from "./bookings/options.js";
 export * from "./bookings/table.jsx";

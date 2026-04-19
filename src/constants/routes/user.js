@@ -1,6 +1,5 @@
 export const USER = {
     HOME: "/",
-    HELP: "/help",
     MAP: "/map",
 
     PROFILE: "/profile",
@@ -15,12 +14,14 @@ export const USER = {
     CAR_CONDITIONS_END: "/car-conditions/end",
     carDetails: (id) => `/cars/${id}`,
 
-    BOOKING_DATE: "/booking/date/:id",
-    BOOKING_PAYMENT: "/booking/payment",
-    BOOKING_CONFIRM: "/booking/confirm",
+    BOOKING_PERIOD: "/booking/:id/date",
+    BOOKING_PAYMENT: "/booking/:id/payment",
+    BOOKING_CONFIRM: "/booking/:id/confirm",
     BOOKINGS_HISTORY: "/bookings/history",
     BOOKINGS_HISTORY_DETAILS: "/bookings/history/:id",
-    bookingDate: (id) => `/booking/date/${id}`,
+    bookingPeriod: (id) => `/booking/${id}/date`,
+    bookingPayment: (id) => `/booking/${id}/payment`,
+    bookingConfirm: (id) => `/booking/${id}/confirm`,
     bookingsHistoryDetails: (id) => `/bookings/history/${id}`,
 
     TRIP: "/trip",

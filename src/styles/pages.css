@@ -30,10 +30,7 @@ main {
 }
 
 .page__label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    text-align: center;
     font-family: var(--font-family), sans-serif;
     font-weight: 500;
     font-size: 15px;
@@ -90,6 +87,12 @@ main {
 
     .page__content {
         padding: 30px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page__label {
+        font-size: 13px;
     }
 }
 

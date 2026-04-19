@@ -46,47 +46,40 @@ export const CarImages = ({ images }) => {
 
     return(
         <div className="car-images">
-            <ActionIconButton
-                Icon={ArrowBackIcon}
-                className="car-images__button car-images__button--side"
-                disabled={!canScrollLeft}
-                onClick={scrollLeft}
-            />
-
             <div className="car-images__container">
-                <div className="car-images__slider" onScroll={checkScroll} ref={sliderRef}>
-                    {images.map((item, index) => (
-                        <ImageItem
-                            key={index}
-                            src={item}
-                            alt={`image_${index + 1}`}
+                <div className="car-images__wrapper">
+                    <div
+                        className="car-images__slider"
+                        onScroll={checkScroll}
+                        ref={sliderRef}
+                    >
+                        {images.map((item, index) => (
+                            <ImageItem
+                                key={index}
+                                src={item}
+                                alt={`image_${index + 1}`}
+                            />
+                        ))}
+                    </div>
+
+                    <div className="car-images__overlay">
+                        <ActionIconButton
+                            Icon={ArrowBackIcon}
+                            className="car-images__button"
+                            disabled={!canScrollLeft}
+                            onClick={scrollLeft}
                         />
-                    ))}
+
+                        <ActionIconButton
+                            Icon={ArrowForwardIcon}
+                            className="car-images__button"
+                            disabled={!canScrollRight}
+                            onClick={scrollRight}
+
+                        />
+                    </div>
                 </div>
             </div>
-
-            <div className="car-images__buttons">
-                <ActionIconButton
-                    Icon={ArrowBackIcon}
-                    className="car-images__button"
-                    disabled={!canScrollLeft}
-                    onClick={scrollLeft}
-                />
-
-                <ActionIconButton
-                    Icon={ArrowForwardIcon}
-                    className="car-images__button"
-                    disabled={!canScrollRight}
-                    onClick={scrollRight}
-                />
-            </div>
-
-            <ActionIconButton
-                Icon={ArrowForwardIcon}
-                className="car-images__button car-images__button--side"
-                disabled={!canScrollRight}
-                onClick={scrollRight}
-            />
         </div>
     );
 }

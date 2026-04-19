@@ -39,7 +39,7 @@ export const DriverVerificationPage = () => {
         setIsLoading(true);
 
         try {
-            await UserService.approveUser(user?.id);
+            await UserService.approve(user?.id);
 
             setIsSuccess(true);
             showMessage(DRIVER_VERIFICATION_MESSAGES.SUCCESS);
@@ -55,7 +55,7 @@ export const DriverVerificationPage = () => {
 
         if (!isSuccess || !user?.id) return;
 
-        const updatedUser = await UserService.getUser(user?.id);
+        const updatedUser = await UserService.get(user?.id);
         setUser(updatedUser);
 
         navigate(USER.HOME, { replace: true });

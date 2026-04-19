@@ -2,9 +2,10 @@ import { getNestedValue, getLabel } from "../../utils";
 
 import { DetailsItem } from "../../components";
 
-export const Details = ({ data, details }) => {
+export const Details = ({ data, details, className }) => {
     return(
-        <div className="details">
+
+        <div className={`details ${className || ''}`}>
             {details.map(({ label, key, map, suffix, formatter }) => {
                 const value = getNestedValue(data, key);
 

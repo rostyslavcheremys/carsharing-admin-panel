@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import {
     Loader,
-    InputController,
+    TextController,
     AppButton,
     AuthRedirect,
     MessageDialog,
@@ -53,7 +53,7 @@ export const LoginPage = () => {
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <span className="page__title form">Вхід</span>
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="email"
                         label="Електронна адреса*"
@@ -61,7 +61,7 @@ export const LoginPage = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="password"
                         label="Пароль*"

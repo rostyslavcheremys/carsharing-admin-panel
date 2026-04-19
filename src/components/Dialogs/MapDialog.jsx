@@ -58,7 +58,7 @@ export const MapDialog = ({
 
             <AppDialog open={open} onClose={onClose}>
                 <div className="dialog__header">
-                    <span className="dialog__title">Місцезнаходження автомобіля</span>
+                    <span className="dialog__title">Місцезнаходження</span>
 
                     <ActionIconButton
                         Icon={CloseIcon}

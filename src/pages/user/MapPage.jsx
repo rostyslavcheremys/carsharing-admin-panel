@@ -1,28 +1,34 @@
-import { useMemo } from "react";
-
 import { Loader, Map } from "../../components";
 
-import { useCollection } from "../../hooks";
-
-import { CarService } from "../../services";
+import {
+    useCollection,
+    useActiveBooking,
+    useAvailableCars,
+} from "../../hooks";
 
 export const MapPage = () => {
-    const availableCars = useMemo(
-        () => CarService.getAvailableCars(), []
-    );
-
     const {
         data: cars,
         isLoading,
         error,
-    } = useCollection(availableCars);
+    } = useCollection("cars");
 
-    console.log(cars);
+    const {
+        activeCarId,
+        loading: loadingBooking,
+        error: errorBooking,
+    } = useActiveBooking();
+
+    const filteredCars = useAvailableCars(cars, activeCarId);
 
     return (
-        <Loader isLoading={isLoading} error={error}>
+        <Loader isLoading={isLoading || loadingBooking} error={error || errorBooking}>
             <div className="page">
-                <Map cars={cars} userMode />
+                <Map
+                    cars={filteredCars}
+                    activeCarId={activeCarId}
+                    userMode
+                />
             </div>
         </Loader>
     );

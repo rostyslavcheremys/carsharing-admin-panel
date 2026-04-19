@@ -13,7 +13,6 @@ import { getErrorMessage } from "../../../utils";
 import {
     CAR_FORM_DEFAULT_VALUES,
     CAR_ACTION_MESSAGES,
-    ADMIN
 } from "../../../constants";
 
 export const CarCreatePage = () => {
@@ -43,7 +42,7 @@ export const CarCreatePage = () => {
         try {
             setIsSubmitting(true);
 
-            await CarService.createCar(data);
+            await CarService.create(data);
 
             showMessage(
                 CAR_ACTION_MESSAGES.CREATE_SUCCESS,

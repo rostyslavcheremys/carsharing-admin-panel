@@ -14,7 +14,7 @@ import {
 import { db } from "../firebase";
 
 export const useCollection = (refOrName, { live = true } = {}) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -24,15 +24,19 @@ export const useCollection = (refOrName, { live = true } = {}) => {
             : refOrName;
     }, [refOrName]);
 
+    const mapSnapshot = (snapshot) =>
+        snapshot.docs
+            .map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            .filter(Boolean);
+
     const fetch = useCallback(async () => {
         setIsLoading(true);
         try {
             const snapshot = await getDocs(ref);
-
-            setData(snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            })));
+            setData(mapSnapshot(snapshot));
         } catch (error) {
             setError(error);
         } finally {
@@ -41,6 +45,8 @@ export const useCollection = (refOrName, { live = true } = {}) => {
     }, [ref]);
 
     useEffect(() => {
+        if (!ref) return;
+
         if (!live) {
             fetch();
             return;
@@ -49,10 +55,7 @@ export const useCollection = (refOrName, { live = true } = {}) => {
         const unsub = onSnapshot(
             ref,
             (snapshot) => {
-                setData(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })));
+                setData(mapSnapshot(snapshot));
                 setIsLoading(false);
             },
             (err) => {
@@ -65,4 +68,4 @@ export const useCollection = (refOrName, { live = true } = {}) => {
     }, [ref, live, fetch]);
 
     return { data, isLoading, error, refetch: fetch };
-}
+};

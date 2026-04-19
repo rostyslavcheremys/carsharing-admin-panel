@@ -39,7 +39,7 @@ export const CarsManagementPage = () => {
         error,
     } = useCollection("cars");
 
-    const { isDeleting, handleDelete } = useDelete(CarService.deleteCar);
+    const { isDeleting, handleDelete } = useDelete(CarService.delete);
 
     const columns = useTableColumns(CARS_TABLE_COLUMNS, {
         actions: (car) => (

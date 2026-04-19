@@ -4,8 +4,6 @@ import {
     setDoc,
     updateDoc,
     deleteDoc,
-    query,
-    where
 } from "firebase/firestore";
 
 import { ref, deleteObject, listAll } from "firebase/storage";
@@ -15,7 +13,7 @@ import { db, storage } from "../firebase";
 import { uploadImages, deleteImages, getCarObject } from "../utils";
 
 export class CarService {
-    static async createCar(data) {
+    static async create(data) {
         const newCarRef = doc(collection(db, "cars"));
         const newCarId = newCarRef.id;
 
@@ -32,7 +30,7 @@ export class CarService {
         return carData;
     }
 
-    static async updateCar(carId, data, originalImages = []) {
+    static async update(carId, data, originalImages = []) {
         const currentImages = data.images || [];
         const retainedImages = currentImages.filter(img => typeof img === 'string');
         const newFiles = currentImages.filter(img => img instanceof File);
@@ -56,7 +54,7 @@ export class CarService {
         return carData;
     }
 
-    static async deleteCar(carId) {
+    static async delete(carId) {
         const carDocRef = doc(db, "cars", carId);
         await deleteDoc(carDocRef);
 
@@ -67,7 +65,7 @@ export class CarService {
         await Promise.all(deletePromises);
     }
 
-    static getAvailableCars() {
-        return query(collection(db, "cars"), where("status", "==", "available"));
+    static getAllCars() {
+        return collection(db, "cars");
     }
 }
