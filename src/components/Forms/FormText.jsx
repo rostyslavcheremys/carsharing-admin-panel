@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from "../../libs/mui-icons";
 
 import { ActionIconButton } from "../../components";
 
-export const FormField = forwardRef(
+export const FormText = forwardRef(
     ({
         label,
         type,
