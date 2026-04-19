@@ -6,23 +6,21 @@ import { ProtectedRoute } from "../guards";
 
 import {
     HomePage,
+    MapPage,
     ProfilePage,
     ProfileEditPage,
     ProfileDetailsPage,
-    MapPage,
-    CarPage,
-    CarAccessPage,
-    CarConditionStartPage,
-    CarConditionEndPage,
     BookingPeriodPage,
     BookingPaymentPage,
     BookingConfirmationPage,
     BookingsHistoryPage,
     BookingHistoryDetailsPage,
-    TripPage,
-    TripSummaryPage,
+    TripAccessPage,
+    TripActivePage,
+    TripConditionPage,
     TripsHistoryPage,
     TripHistoryDetailsPage,
+    TripSummaryPage,
 } from "../pages";
 
 import { USER } from "../constants";
@@ -59,12 +57,6 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_DETAILS}  element={
-            <ProtectedRoute userOnly>
-                <CarPage />
-            </ProtectedRoute>
-        }/>
-
         <Route path={USER.BOOKING_PERIOD} element={
             <ProtectedRoute userOnly>
                 <BookingPeriodPage />
@@ -95,27 +87,27 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_ACCESS} element={
+        <Route path={USER.TRIP_ACCESS} element={
             <ProtectedRoute userOnly>
-                <CarAccessPage />
+                <TripAccessPage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_CONDITIONS_START} element={
+        <Route path={USER.TRIP_CONDITION_START} element={
             <ProtectedRoute userOnly>
-                <CarConditionStartPage />
+                <TripConditionPage type="start" />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_CONDITIONS_END} element={
+        <Route path={USER.TRIP_ACTIVE} element={
             <ProtectedRoute userOnly>
-                <CarConditionEndPage />
+                <TripActivePage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.TRIP} element={
+        <Route path={USER.TRIP_CONDITION_END} element={
             <ProtectedRoute userOnly>
-                <TripPage />
+                <TripConditionPage type="end" />
             </ProtectedRoute>
         }/>
 

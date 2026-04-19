@@ -39,11 +39,12 @@
 
 .car-images__button {
     color: var(--white-color) !important;
+    transition: background 0.2s ease-in-out !important;
     pointer-events: all;
 }
 
 .car-images__button:hover {
-    background-color: var(--main-color) !important;
+    background: var(--main-color) !important;
 }
 
 @media (max-width: 768px) {

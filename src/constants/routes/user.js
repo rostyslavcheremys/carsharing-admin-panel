@@ -8,12 +8,6 @@ export const USER = {
     profileDetails: (id) => `/profile/${id}`,
     profileEdit: (id) => `/profile/${id}/edit`,
 
-    CAR_DETAILS: "/cars/:id",
-    CAR_ACCESS: "/car-access",
-    CAR_CONDITIONS_START: "/car-conditions/start",
-    CAR_CONDITIONS_END: "/car-conditions/end",
-    carDetails: (id) => `/cars/${id}`,
-
     BOOKING_PERIOD: "/booking/:id/date",
     BOOKING_PAYMENT: "/booking/:id/payment",
     BOOKING_CONFIRM: "/booking/:id/confirm",
@@ -24,9 +18,17 @@ export const USER = {
     bookingConfirm: (id) => `/booking/${id}/confirm`,
     bookingsHistoryDetails: (id) => `/bookings/history/${id}`,
 
-    TRIP: "/trip",
-    TRIP_SUMMARY: "/trip/summary",
+    TRIP_ACCESS: "/trips/:tripId/access",
+    TRIP_CONDITION_START: "/trips/:tripId/condition-start",
+    TRIP_ACTIVE: "/trips/:tripId",
+    TRIP_CONDITION_END: "/trips/:tripId/condition-end",
+    TRIP_SUMMARY: "/trips/:tripId/summary",
     TRIPS_HISTORY: "/trips/history",
     TRIPS_HISTORY_DETAILS: "/trips/history/:id",
+    tripAccess: (id) => `/trips/${id}/start`,
+    tripConditionStart: (id) => `/trips/${id}/condition-start`,
+    tripActive: (id) => `/trips/${id}`,
+    tripConditionEnd: (id) => `/trips/${id}/condition-end`,
+    tripSummary: (id) => `/trips/${id}/summary`,
     tripsHistoryDetails: (id) => `/trips/history/${id}`,
 }
