@@ -32,6 +32,10 @@ export const TRIPS_TABLE_COLUMNS = [
         render: (trip) => getLabel(trip?.status, TRIP_STATUS)
     },
     {
+        id: "totalPrice", label: "Загальна вартість",
+        render: (trip) => getString(trip?.totalPrice)
+    },
+    {
         id: "carId", label: "Автомобіль",
         render: (trip) => (
             <NavigateIconButton
@@ -116,10 +120,6 @@ export const TRIPS_TABLE_COLUMNS = [
                 )}
             </DialogCell>
         )
-    },
-    {
-        id: "totalPrice", label: "Загальна вартість",
-        render: (trip) => getString(trip?.totalPrice)
     },
     {
         id: "plannedStart", label: "Фактичний початок",

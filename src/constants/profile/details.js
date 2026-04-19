@@ -5,7 +5,6 @@ import { getFormattedTimestamp } from "../../utils";
 export const PROFILE_DETAILS = [
     { label: "Ім’я:", key: "firstName" },
     { label: "Прізвище:", key: "lastName" },
-    { label: "Посвідчення водія:", key: "drivingLicense" },
     { label: "Верифікація:", key: "verificationStatus", map: VERIFICATION_STATUS },
     { label: "Електронна адреса:", key: "email" },
     { label: "Номер телефону:", key: "phoneNumber" },

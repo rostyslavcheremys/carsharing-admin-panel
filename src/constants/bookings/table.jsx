@@ -23,6 +23,10 @@ export const BOOKINGS_TABLE_COLUMNS = [
         render: (booking) => getLabel(booking?.status, BOOKING_STATUS)
     },
     {
+        id: "price", label: "Вартість",
+        render: (booking) => getString(booking?.price, "грн")
+    },
+    {
         id: "carId", label: "Автомобіль",
         render: (booking) => (
             <NavigateIconButton
@@ -49,6 +53,10 @@ export const BOOKINGS_TABLE_COLUMNS = [
     {
         id: "plannedEnd", label: "Заплановане завершення",
         render: (booking) => getFormattedTimestamp(booking?.plannedEnd, true)
+    },
+    {
+        id: "expiresAt", label: "Дедлайн оплати",
+        render: (booking) => getFormattedTimestamp(booking?.expiresAt, true)
     },
     {
         id: "createdAt", label: "Дата створення",

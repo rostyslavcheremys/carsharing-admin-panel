@@ -13,28 +13,16 @@ export const USERS_TABLE_COLUMNS = [
         render: (user) => getLabel(user?.isBlocked, USER_STATUS),
     },
     {
+        id: "role", label: "Роль",
+        render: (user) => getLabel(user?.role, ROLES)
+    },
+    {
         id: "firstName", label: "Ім'я",
         render: (user) => getString(user?.firstName)
     },
     {
         id: "lastName", label: "Прізвище",
         render: (user) => getString(user?.lastName)
-    },
-    {
-        id: "drivingLicense",
-        label: "Посвідчення водія",
-        render: (user) =>
-            user?.drivingLicense ? (
-                <a
-                    href={user.drivingLicense}
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Документ
-                </a>
-            ) : (
-                "—"
-            ),
     },
     {
         id: "verificationStatus", label: "Верифікація",
@@ -51,10 +39,6 @@ export const USERS_TABLE_COLUMNS = [
     {
         id: "birthDate", label: "Дата народження",
         render: (user) => getFormattedTimestamp(user?.birthDate)
-    },
-    {
-        id: "role", label: "Роль",
-        render: (user) => getLabel(user?.role, ROLES)
     },
     {
         id: "createdAt", label: "Дата створення",

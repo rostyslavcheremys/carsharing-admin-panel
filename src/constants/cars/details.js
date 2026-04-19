@@ -11,6 +11,7 @@ import {
 import { getFormattedTimestamp } from "../../utils";
 
 export const CAR_USER_DETAILS = [
+    { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
     { label: "Марка:", key: "brand" },
     { label: "Модель:", key: "model" },
     { label: "Рік випуску:", key: "year" },
@@ -27,11 +28,12 @@ export const CAR_USER_DETAILS = [
     { label: "Колір:", key: "color", map: COLORS },
     { label: "Кількість місць:", key: "seats" },
     { label: "Рейтинг:", key: "rating" },
-    { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
 ];
 
 export const CAR_ADMIN_DETAILS = [
     { label: "ID:", key: "id" },
+    { label: "Статус:", key: "status", map: CAR_STATUS },
+    { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
     { label: "Марка:", key: "brand" },
     { label: "Модель:", key: "model" },
     { label: "Рік випуску:", key: "year" },
@@ -47,9 +49,7 @@ export const CAR_ADMIN_DETAILS = [
     { label: "Тип приводу:", key: "driveType", map: DRIVE_TYPES },
     { label: "Колір:", key: "color", map: COLORS },
     { label: "Кількість місць:", key: "seats" },
-    { label: "Рейтинг:", key: "rating" },
-    { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
-    { label: "Статус:", key: "status", map: CAR_STATUS },
+    { label: "Рейтинг:", key: "rating", suffix: "★" },
 ];
 
 export const CAR_CONDITION_DETAILS = [
