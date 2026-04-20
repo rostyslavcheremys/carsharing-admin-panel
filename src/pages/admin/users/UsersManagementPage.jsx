@@ -6,11 +6,11 @@ import {
 } from "../../../components";
 
 import {
-    useMessageDialog,
     useCollection,
     useAuth,
     useDelete,
-    useTableColumns
+    useTableColumns,
+    useMessageDialog
 } from "../../../hooks";
 
 import { UserService } from "../../../services";
@@ -18,13 +18,6 @@ import { UserService } from "../../../services";
 import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../../constants";
 
 export const UsersManagementPage = () => {
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
-
     const {
         data: users,
         isLoading,
@@ -45,6 +38,13 @@ export const UsersManagementPage = () => {
             />
         ),
     });
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting || loading} error={error}>

@@ -9,10 +9,10 @@ import {
 } from "../../../components";
 
 import {
-    useMessageDialog,
     useCollection,
     useDelete,
-    useTableColumns
+    useTableColumns,
+    useMessageDialog
 } from "../../../hooks";
 
 import { CarService } from "../../../services";
@@ -25,13 +25,6 @@ import {
 
 export const CarsManagementPage = () => {
     const navigate = useNavigate();
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
 
     const {
         data: cars,
@@ -49,6 +42,13 @@ export const CarsManagementPage = () => {
             />
         ),
     });
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
