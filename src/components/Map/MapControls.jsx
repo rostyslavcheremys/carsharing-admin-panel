@@ -1,10 +1,9 @@
-import { useCallback } from "react";
-
 import {
     AddIcon,
     RemoveIcon,
     MapIcon,
     RoomIcon,
+    MyLocationIcon,
     SatelliteAltIcon,
     FullscreenIcon,
     FullscreenExitIcon
@@ -12,7 +11,12 @@ import {
 
 import { ActionIconButton } from "../../components";
 
-import { useFullscreen } from "../../hooks";
+import {
+    useMapZoom,
+    useFullscreen,
+    useMapType,
+    useMapCenterAction
+} from "../../hooks";
 
 import {
     MIN_ZOOM,
@@ -25,61 +29,78 @@ export const MapControls = ({
                                 setZoom,
                                 mapType,
                                 setMapType,
-                                canCenter,
-                                mapCenter,
                                 mapRef,
                                 wrapperRef,
+                                onFindNearest,
+                                mapCenter,
+                                canCenter
                             }) => {
-    const { isFullscreen, toggle } = useFullscreen(wrapperRef);
+    const { increase, decrease } = useMapZoom(zoom, setZoom);
 
-    const handleZoomChange = useCallback((delta) => {
-        setZoom(z => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z + delta)));
-    }, [setZoom]);
+    const {
+        isFullscreen,
+        toggle: toggleFullscreen
+    } = useFullscreen(wrapperRef);
 
-    const handleMapType = () => {
-        setMapType(prev => {
-            const index = MAP_TYPES.indexOf(prev);
-            return MAP_TYPES[(index + 1) % MAP_TYPES.length];
-        });
-    }
+    const {
+        mapType: currentMapType,
+        toggle: toggleMapType
+    } = useMapType(mapType, setMapType, MAP_TYPES);
 
-    const handleCenterMarker = () => {
-        if (!canCenter || !mapRef.current) return;
-        mapRef.current.panTo(mapCenter);
-    };
+    const { centerMap } = useMapCenterAction({ mapRef, canCenter });
 
     return(
         <div className="map-controls">
-            <ActionIconButton
-                Icon={RoomIcon}
-                onClick={handleCenterMarker}
-                className="map__icon"
-            />
+            {onFindNearest ? (
+                <ActionIconButton
+                    className="map__icon"
+                    title="Найближчий автомобіль"
+                    placement="left"
+                    Icon={MyLocationIcon}
+                    onClick={onFindNearest}
+                />
+            ) : (
+                <ActionIconButton
+                    className="map__icon"
+                    title="Центрувати карту"
+                    placement="left"
+                    Icon={RoomIcon}
+                    onClick={() => centerMap(mapCenter)}
+                />
+            )}
 
             <ActionIconButton
-                Icon={AddIcon}
-                onClick={() => handleZoomChange(1)}
                 className="map__icon"
+                title="Збільшити"
+                placement={"left"}
+                Icon={AddIcon}
+                onClick={increase}
                 disabled={zoom >= MAX_ZOOM}
             />
 
             <ActionIconButton
-                Icon={RemoveIcon}
-                onClick={() => handleZoomChange(-1)}
                 className="map__icon"
+                title="Зменшити"
+                placement={"left"}
+                Icon={RemoveIcon}
+                onClick={decrease}
                 disabled={zoom <= MIN_ZOOM}
             />
 
             <ActionIconButton
-                Icon={mapType === "roadmap" ? MapIcon : SatelliteAltIcon}
-                onClick={handleMapType}
                 className="map__icon"
+                title={currentMapType === "roadmap" ? "Супутник" : "Карта"}
+                placement={"left"}
+                Icon={currentMapType === "roadmap" ? MapIcon : SatelliteAltIcon}
+                onClick={toggleMapType}
             />
 
             <ActionIconButton
-                Icon={isFullscreen ? FullscreenExitIcon : FullscreenIcon}
-                onClick={toggle}
                 className="map__icon"
+                title={isFullscreen ? "Згорнути" : "На весь екран"}
+                placement={"left"}
+                Icon={isFullscreen ? FullscreenExitIcon : FullscreenIcon}
+                onClick={toggleFullscreen}
             />
         </div>
     );

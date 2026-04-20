@@ -5,7 +5,8 @@ import {
     MapFilters,
     MapStepper,
     MapItem,
-    MapControls
+    MapControls,
+    MessageDialog,
 } from "../../components";
 
 import {
@@ -14,11 +15,17 @@ import {
     useFilteredCars,
     useActiveIndex,
     useMapCenter,
+    useMessageDialog,
+    useNearestCar
 } from "../../hooks";
 
 import { MAP_FILTERS_DEFAULT_VALUES } from "../../constants";
 
-export const Map = ({ cars = [], activeCarId, userMode = false  }) => {
+export const Map = ({
+                        cars = [],
+                        activeCarId,
+                        userMode = false
+}) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 
@@ -32,12 +39,22 @@ export const Map = ({ cars = [], activeCarId, userMode = false  }) => {
 
     const {
         index: activeIndex,
+        setIndex,
         prev,
         next,
         reset,
     } = useActiveIndex(filteredCars.length);
 
-    const mapCenter = useMapCenter(filteredCars[activeIndex] || null);
+    const mapCenter = useMapCenter(filteredCars[activeIndex]);
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+    const findNearestCar = useNearestCar(filteredCars, setIndex, mapRef, showMessage);
 
     const hasCars = filteredCars.length > 0;
 
@@ -82,10 +99,17 @@ export const Map = ({ cars = [], activeCarId, userMode = false  }) => {
                     setZoom={setZoom}
                     mapType={mapType}
                     setMapType={setMapType}
-                    canCenter={hasCars}
-                    mapCenter={mapCenter}
                     mapRef={mapRef}
                     wrapperRef={wrapperRef}
+                    onFindNearest={findNearestCar}
+                    canCenter={hasCars}
+                    mapCenter={mapCenter}
+                />
+
+                <MessageDialog
+                    open={messageOpen}
+                    onClose={handleMessageClose}
+                    message={message}
                 />
             </div>
         </Loader>
