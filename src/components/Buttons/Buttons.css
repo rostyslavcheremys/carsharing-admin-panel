@@ -18,6 +18,16 @@
     cursor: not-allowed;
 }
 
+.MuiTooltip-tooltip {
+    font-family: var(--font-family), sans-serif !important;
+    background: var(--grey-color) !important;
+    color: var(--white-color) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border-radius: 5px !important;
+    z-index: 100 !important;
+}
+
 .app-button.MuiButton-root:hover {
     box-shadow: none;
 }
