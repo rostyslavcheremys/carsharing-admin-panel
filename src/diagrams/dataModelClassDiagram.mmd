@@ -44,6 +44,7 @@ classDiagram
         +Int price
         +Timestamp plannedStart
         +Timestamp plannedEnd
+        +Timestamp expiresAt
         +Timestamp createdAt
     }
 
@@ -71,38 +72,40 @@ classDiagram
         +Map energyLevel
     }
 
+    class AuthService {
+        <<service>>
+        +login(email, password) Promise~User~
+        +register(data) Promise~User~
+    }
+
     class UserService {
         <<service>>
-        +getUser(id) Promise~User~
-        +getUsers() Promise~User[]~
-        +updateUser(id, data) Promise~void~
-        +blockUser(id, isBlocked) Promise~void~
-        +deleteUser(id) Promise~void~
+        +get(id) Promise~User~
+        +approve(id) Promise~void~
+        +block(id, isBlocked) Promise~void~
+        +delete(id) Promise~Object~
     }
 
     class CarService {
         <<service>>
-        +getCar(id) Promise~Car~
-        +getCars() Promise~Car[]~
-        +createCar(data) Promise~void~
-        +updateCar(id, data) Promise~void~
-        +deleteCar(id) Promise~void~
+        +create(data) Promise~Car~
+        +update(id, data, images) Promise~Car~
+        +delete(id) Promise~void~
     }
 
     class BookingService {
         <<service>>
-        +getBooking(id) Promise~Booking~
-        +getBookings() Promise~Booking[]~
-        +createBooking(data) Promise~void~
-        +cancelBooking(id) Promise~void~
+        +create(data) Promise~Booking~
+        +confirm(id) Promise~void~
+        +cancel(id) Promise~void~
+        +delete(id) Promise~void~
+        +getActiveBookingByUserId(id) Promise~Booking~
     }
 
     class TripService {
         <<service>>
-        +getTrip(id) Promise~Trip~
-        +getTrips() Promise~Trip[]~
-        +startTrip(bookingId) Promise~void~
-        +endTrip(id, data) Promise~void~
+        +start(id) Promise~void~
+        +end(id, data) Promise~void~
     }
 
     class Firestore {
@@ -113,6 +116,13 @@ classDiagram
         +Collection trips
         +Collection carConditions
     }
+
+    class FirebaseAuth {
+        <<infrastructure>>
+    }
+
+    AuthService ..> FirebaseAuth : auth
+    AuthService ..> Firestore : users
 
     UserService ..> Firestore : users
     CarService ..> Firestore : cars
