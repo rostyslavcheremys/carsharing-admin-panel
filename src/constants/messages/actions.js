@@ -19,3 +19,15 @@ export const USER_ACTION_MESSAGES = {
         : "Заблокувати користувача?",
     BLOCK_ERROR: "Не вдалося змінити статус користувача."
 }
+
+export const BOOKING_ACTION_MESSAGES = {
+    DELETE_CONFIRM: "Видалити бронювання?",
+    DELETE_SUCCESS: "Бронювання видалено!",
+    DELETE_ERROR: "Не вдалося видалити бронювання.",
+}
+
+export const TRIP_ACTION_MESSAGES = {
+    DELETE_CONFIRM: "Видалити поїздку?",
+    DELETE_SUCCESS: "Поїздку видалено!",
+    DELETE_ERROR: "Не вдалося видалити поїздку.",
+}

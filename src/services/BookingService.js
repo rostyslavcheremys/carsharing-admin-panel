@@ -6,6 +6,7 @@ import {
     query,
     where,
     updateDoc,
+    deleteDoc,
     runTransaction
 } from "firebase/firestore";
 
@@ -128,6 +129,24 @@ export class BookingService {
         await updateDoc(bookingRef, {
             status: "cancelled",
         });
+    }
+
+    static async delete(bookingId) {
+        const bookingRef = doc(db, "bookings", bookingId);
+        const bookingSnap = await getDoc(bookingRef);
+
+        if (!bookingSnap.exists()) {
+            throw new Error("Бронювання не знайдено!");
+        }
+
+        const booking = bookingSnap.data();
+
+        if (booking.status === "confirmed") {
+            const carRef = doc(db, "cars", booking.carId);
+            await updateDoc(carRef, { status: "available" });
+        }
+
+        await deleteDoc(bookingRef);
     }
 
     static async getActiveBookingByUser(userId) {
