@@ -1,0 +1,95 @@
+classDiagram
+    direction TB
+
+    class MonitoringPage {
+        <<page>>
+        +cars
+        +isLoading
+        +error
+    }
+
+    class MapPage {
+        <<page>>
+        +cars
+        +activeCarId
+    }
+
+    class Map {
+        <<component>>
+        +cars
+        +activeCarId
+        +userMode
+        -filteredCars
+        -activeIndex
+        -mapCenter
+        -mapRef
+        -wrapperRef
+    }
+
+    class MapItem {
+        <<component>>
+        +locations
+        +mapCenter
+        +mapRef
+        +zoom
+    }
+
+    class MapControls {
+        <<component>>
+        +zoom
+        +mapType
+        +mapCenter
+        +mapRef
+        +wrapperRef
+        +onFindNearest()
+        +centerMap()
+    }
+
+    class MapFilters {
+        <<component>>
+        +filters
+        +onChange()
+    }
+
+    class MapStepper {
+        <<component>>
+        +current
+        +total
+    }
+
+    class MapPicker {
+        <<component>>
+        +location
+        +selectable
+        +onSelect()
+    }
+
+    class MessageDialog {
+        <<component>>
+        +open
+        +message
+    }
+
+    class Hooks {
+        useFilteredCars
+        useActiveIndex
+        useMapCenter
+        useNearestCar
+        useMapState
+        useMapZoom
+        useMapType
+        useFullscreen
+    }
+
+    MonitoringPage --> Map : renders
+    MapPage --> Map : renders
+
+    Map --> MapItem
+    Map --> MapControls
+    Map --> MapFilters
+    Map --> MapStepper
+    Map --> MessageDialog
+    Map --> MapPicker
+
+    Map ..> Hooks
+    MapControls ..> Hooks
