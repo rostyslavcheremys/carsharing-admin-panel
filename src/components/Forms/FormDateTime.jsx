@@ -11,7 +11,7 @@ export const FormDateTime = forwardRef(
                 <span className="form__label">{label}</span>
 
                 <DateTimePicker
-                    value={value ? dayjs(value) : null}
+                    value={value || dayjs(value)}
                     disabled={disabled}
                     disablePast={disablePast}
                     onChange={onChange}
