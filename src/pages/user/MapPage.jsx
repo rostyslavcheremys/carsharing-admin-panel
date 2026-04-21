@@ -3,7 +3,7 @@ import { Loader, Map } from "../../components";
 import {
     useCollection,
     useActiveBooking,
-    useAvailableCars,
+    useAvailableCars
 } from "../../hooks";
 
 export const MapPage = () => {
