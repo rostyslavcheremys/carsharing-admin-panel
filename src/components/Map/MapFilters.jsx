@@ -59,9 +59,11 @@ export const MapFilters = ({ filters, onChange, userMode = false }) => {
     return (
         <div className="map-filters">
             <ActionIconButton
+                className="map__icon"
+                title={"Фільтри"}
+                placement={"right"}
                 Icon={FilterListIcon}
                 onClick={toggleDrawer(true)}
-                className="map__icon"
             />
 
             <Drawer

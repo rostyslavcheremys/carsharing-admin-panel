@@ -82,15 +82,6 @@
     width: 37px !important;
 }
 
-.MuiTooltip-tooltip {
-    font-family: var(--font-family), sans-serif !important;
-    background: var(--grey-color) !important;
-    color: var(--white-color) !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    border-radius: 5px !important;
-}
-
 @media (max-width: 768px) {
     .header.header--admin {
         width: 60px;
