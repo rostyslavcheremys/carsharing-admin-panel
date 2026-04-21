@@ -6,23 +6,21 @@ import { ProtectedRoute } from "../guards";
 
 import {
     HomePage,
+    MapPage,
     ProfilePage,
     ProfileEditPage,
-    CarsMapPage,
-    CarDetailsUserPage,
-    CarAccessPage,
-    CarConditionStartPage,
-    CarConditionEndPage,
-    BookingDatePage,
+    ProfileDetailsPage,
+    BookingPeriodPage,
     BookingPaymentPage,
     BookingConfirmationPage,
     BookingsHistoryPage,
     BookingHistoryDetailsPage,
-    TripPage,
-    TripSummaryPage,
+    TripAccessPage,
+    TripActivePage,
+    TripConditionPage,
     TripsHistoryPage,
     TripHistoryDetailsPage,
-    SupportPage,
+    TripSummaryPage,
 } from "../pages";
 
 import { USER } from "../constants";
@@ -35,9 +33,21 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
+        <Route path={USER.MAP} element={
+            <ProtectedRoute userOnly>
+                <MapPage />
+            </ProtectedRoute>
+        }/>
+
         <Route path={USER.PROFILE} element={
             <ProtectedRoute userOnly>
                 <ProfilePage />
+            </ProtectedRoute>
+        }/>
+
+        <Route path={USER.PROFILE_DETAILS} element={
+            <ProtectedRoute userOnly>
+                <ProfileDetailsPage />
             </ProtectedRoute>
         }/>
 
@@ -47,21 +57,9 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CARS_MAP} element={
+        <Route path={USER.BOOKING_PERIOD} element={
             <ProtectedRoute userOnly>
-                <CarsMapPage />
-            </ProtectedRoute>
-        }/>
-
-        <Route path={USER.CAR_DETAILS}  element={
-            <ProtectedRoute userOnly>
-                <CarDetailsUserPage />
-            </ProtectedRoute>
-        }/>
-
-        <Route path={USER.BOOKING_DATE} element={
-            <ProtectedRoute userOnly>
-                <BookingDatePage />
+                <BookingPeriodPage />
             </ProtectedRoute>
         }/>
 
@@ -89,27 +87,27 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_ACCESS} element={
+        <Route path={USER.TRIP_ACCESS} element={
             <ProtectedRoute userOnly>
-                <CarAccessPage />
+                <TripAccessPage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_CONDITIONS_START} element={
+        <Route path={USER.TRIP_CONDITION_START} element={
             <ProtectedRoute userOnly>
-                <CarConditionStartPage />
+                <TripConditionPage type="start" />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.CAR_CONDITIONS_END} element={
+        <Route path={USER.TRIP_ACTIVE} element={
             <ProtectedRoute userOnly>
-                <CarConditionEndPage />
+                <TripActivePage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.TRIP} element={
+        <Route path={USER.TRIP_CONDITION_END} element={
             <ProtectedRoute userOnly>
-                <TripPage />
+                <TripConditionPage type="end" />
             </ProtectedRoute>
         }/>
 
@@ -128,12 +126,6 @@ export const UserRoutes = (
         <Route path={USER.TRIPS_HISTORY_DETAILS} element={
             <ProtectedRoute userOnly>
                 <TripHistoryDetailsPage />
-            </ProtectedRoute>
-        }/>
-
-        <Route path={USER.SUPPORT} element={
-            <ProtectedRoute userOnly>
-                <SupportPage />
             </ProtectedRoute>
         }/>
     </Route>

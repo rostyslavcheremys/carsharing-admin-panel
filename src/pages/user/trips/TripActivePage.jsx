@@ -1,4 +1,4 @@
-export const TripPage = () => {
+export const TripActivePage = () => {
     return (
         <div>TripPage</div>
     )

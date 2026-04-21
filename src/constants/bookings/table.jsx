@@ -2,7 +2,11 @@ import { DirectionsCarIcon, PersonIcon } from "../../libs/mui-icons";
 
 import { NavigateIconButton } from "../../components";
 
-import { getString, getFormattedTimestamp, getLabel } from "../../utils";
+import {
+    getString,
+    getFormattedTimestamp,
+    getLabel
+} from "../../utils";
 
 import { ADMIN } from "../../constants";
 
@@ -17,6 +21,10 @@ export const BOOKINGS_TABLE_COLUMNS = [
     {
         id: "status", label: "Статус",
         render: (booking) => getLabel(booking?.status, BOOKING_STATUS)
+    },
+    {
+        id: "price", label: "Вартість",
+        render: (booking) => getString(booking?.price, "грн")
     },
     {
         id: "carId", label: "Автомобіль",
@@ -45,6 +53,10 @@ export const BOOKINGS_TABLE_COLUMNS = [
     {
         id: "plannedEnd", label: "Заплановане завершення",
         render: (booking) => getFormattedTimestamp(booking?.plannedEnd, true)
+    },
+    {
+        id: "expiresAt", label: "Дедлайн оплати",
+        render: (booking) => getFormattedTimestamp(booking?.expiresAt, true)
     },
     {
         id: "createdAt", label: "Дата створення",

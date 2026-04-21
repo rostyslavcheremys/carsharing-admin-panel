@@ -1,10 +1,10 @@
 import {
-    AppButton,
     FileUploadController,
-    InputController,
+    TextController,
     SelectController,
-    LocationController
-} from "../index.js";
+    LocationController,
+    AppButton
+} from "../../components";
 
 import {
     BODY_TYPES,
@@ -69,35 +69,42 @@ export const CarForm = ({
                     rules={getRequiredFieldValidation("Статус")}
                 />
 
-                <InputController
+                <TextController
+                    control={control}
+                    name="pricePerDay"
+                    label="Вартість за добу (грн)*"
+                    rules={getPricePerDayValidation()}
+                />
+
+                <TextController
                     control={control}
                     name="brand"
                     label="Марка*"
                     rules={getBrandValidation()}
                 />
 
-                <InputController
+                <TextController
                     control={control}
                     name="model"
                     label="Модель*"
                     rules={getModelValidation()}
                 />
 
-                <InputController
+                <TextController
                     control={control}
                     name="year"
                     label="Рік випуску*"
                     rules={getYearValidation()}
                 />
 
-                <InputController
+                <TextController
                     control={control}
                     name="mileage"
                     label="Пробіг (км)*"
                     rules={getMileageValidation()}
                 />
 
-                <InputController
+                <TextController
                     control={control}
                     name="licensePlate"
                     label="Номерний знак*"
@@ -129,7 +136,7 @@ export const CarForm = ({
                             options={FUEL_TYPES}
                             rules={getRequiredFieldValidation("Тип палива")}
                         />
-                        <InputController
+                        <TextController
                             control={control}
                             name="displacement"
                             label="Об'єм двигуна (л)*"
@@ -140,13 +147,13 @@ export const CarForm = ({
 
                 {showBatteryFields && (
                     <>
-                        <InputController
+                        <TextController
                             control={control}
                             name="capacity"
                             label="Ємність батареї (кВт·год)*"
                             rules={getCapacityValidation()}
                         />
-                        <InputController
+                        <TextController
                             control={control}
                             name="range"
                             label="Запас ходу (км)*"
@@ -179,18 +186,11 @@ export const CarForm = ({
                     rules={getRequiredFieldValidation("Колір")}
                 />
 
-                <InputController
+                <TextController
                     control={control}
                     name="seats"
                     label="Кількість місць*"
                     rules={getSeatsValidation()}
-                />
-
-                <InputController
-                    control={control}
-                    name="pricePerDay"
-                    label="Вартість за добу (грн)*"
-                    rules={getPricePerDayValidation()}
                 />
 
                 <LocationController
@@ -200,7 +200,7 @@ export const CarForm = ({
                     rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
-                <div className="page__buttons">
+                <div className="page__buttons page__buttons--form">
                     <AppButton
                         type="submit"
                         label={submitLabel}

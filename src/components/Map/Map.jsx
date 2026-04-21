@@ -5,7 +5,8 @@ import {
     MapFilters,
     MapStepper,
     MapItem,
-    MapControls
+    MapControls,
+    MessageDialog,
 } from "../../components";
 
 import {
@@ -14,35 +15,51 @@ import {
     useFilteredCars,
     useActiveIndex,
     useMapCenter,
+    useMessageDialog,
+    useNearestCar
 } from "../../hooks";
 
-import { CAR_STATUS_FILTER } from "../../constants";
+import { MAP_FILTERS_DEFAULT_VALUES } from "../../constants";
 
-export const Map = ({ cars = [] }) => {
+export const Map = ({
+                        cars = [],
+                        activeCarId,
+                        userMode = false
+}) => {
     const mapRef = useRef(null);
     const wrapperRef = useRef(null);
 
-    const { zoom, setZoom, mapType, setMapType } = useMapState();
+    const [filters, setFilters] = useState(MAP_FILTERS_DEFAULT_VALUES);
 
-    const [statusFilter, setStatusFilter] = useState([]);
+    const { zoom, setZoom, mapType, setMapType } = useMapState();
 
     const { isLoaded } = useGoogleMapsLoader();
 
-    const filteredCars = useFilteredCars(cars, statusFilter);
+    const filteredCars = useFilteredCars(cars, filters);
 
     const {
         index: activeIndex,
+        setIndex,
         prev,
         next,
         reset,
     } = useActiveIndex(filteredCars.length);
 
-    const mapCenter = useMapCenter(filteredCars[activeIndex] || null);
+    const mapCenter = useMapCenter(filteredCars[activeIndex]);
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+    const findNearestCar = useNearestCar(filteredCars, setIndex, mapRef, showMessage);
 
     const hasCars = filteredCars.length > 0;
 
     const handleFilterChange = (newFilters) => {
-        setStatusFilter(newFilters);
+        setFilters(newFilters);
         reset();
     }
 
@@ -50,9 +67,9 @@ export const Map = ({ cars = [] }) => {
         <Loader isLoading={!isLoaded}>
             <div className="map-container" ref={wrapperRef}>
                 <MapFilters
-                    selectedStatus={statusFilter}
+                    filters={filters}
                     onChange={handleFilterChange}
-                    buttons={CAR_STATUS_FILTER}
+                    userMode={userMode}
                 />
 
                 {hasCars && (
@@ -73,6 +90,7 @@ export const Map = ({ cars = [] }) => {
                     mapRef={mapRef}
                     isLoaded={isLoaded}
                     activeIndex={activeIndex}
+                    activeCarId={activeCarId}
                     mapCard
                 />
 
@@ -81,10 +99,17 @@ export const Map = ({ cars = [] }) => {
                     setZoom={setZoom}
                     mapType={mapType}
                     setMapType={setMapType}
-                    canCenter={hasCars}
-                    mapCenter={mapCenter}
                     mapRef={mapRef}
                     wrapperRef={wrapperRef}
+                    onFindNearest={findNearestCar}
+                    canCenter={hasCars}
+                    mapCenter={mapCenter}
+                />
+
+                <MessageDialog
+                    open={messageOpen}
+                    onClose={handleMessageClose}
+                    message={message}
                 />
             </div>
         </Loader>

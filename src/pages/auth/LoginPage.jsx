@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import {
     Loader,
-    InputController,
+    TextController,
     AppButton,
     AuthRedirect,
     MessageDialog,
@@ -11,13 +11,13 @@ import {
 
 import { useMessageDialog } from "../../hooks";
 
+import { AuthService } from "../../services";
+
 import {
     getErrorMessage,
     getEmailValidation,
     getPasswordValidation,
 } from "../../utils";
-
-import { AuthService } from "../../services";
 
 import { LOGIN_FORM_DEFAULT_VALUES, AUTH } from "../../constants";
 
@@ -53,7 +53,7 @@ export const LoginPage = () => {
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <span className="page__title form">Вхід</span>
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="email"
                         label="Електронна адреса*"
@@ -61,7 +61,7 @@ export const LoginPage = () => {
                         rules={getEmailValidation()}
                     />
 
-                    <InputController
+                    <TextController
                         control={control}
                         name="password"
                         label="Пароль*"
@@ -69,7 +69,7 @@ export const LoginPage = () => {
                         rules={getPasswordValidation()}
                     />
 
-                    <div className="page__buttons">
+                    <div className="page__button page__buttons--form">
                         <AppButton
                             type="submit"
                             label="Увійти"
@@ -78,7 +78,7 @@ export const LoginPage = () => {
                     </div>
 
                     <AuthRedirect
-                        text="Немає акаунта?"
+                        text="Ще не маєте акаунта?"
                         linkText="Зареєструватися"
                         to={AUTH.REGISTER}
                     />

@@ -6,9 +6,9 @@ import {
 } from "../../libs/mui-icons";
 
 import {
+    NavigateIconButton,
     DialogCell,
     MapDialog,
-    NavigateIconButton
 } from "../../components";
 
 import {
@@ -30,6 +30,10 @@ export const TRIPS_TABLE_COLUMNS = [
     {
         id: "status", label: "Статус",
         render: (trip) => getLabel(trip?.status, TRIP_STATUS)
+    },
+    {
+        id: "totalPrice", label: "Загальна вартість",
+        render: (trip) => getString(trip?.totalPrice)
     },
     {
         id: "carId", label: "Автомобіль",
@@ -116,10 +120,6 @@ export const TRIPS_TABLE_COLUMNS = [
                 )}
             </DialogCell>
         )
-    },
-    {
-        id: "totalPrice", label: "Загальна вартість",
-        render: (trip) => getString(trip?.totalPrice)
     },
     {
         id: "plannedStart", label: "Фактичний початок",

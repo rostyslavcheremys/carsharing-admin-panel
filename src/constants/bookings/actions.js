@@ -1,11 +1,26 @@
-import { Visibility } from "../../libs/mui-icons";
+import { DeleteIcon, Visibility } from "../../libs/mui-icons";
 
-import { ADMIN } from "../../constants";
+import { ADMIN, BOOKING_ACTION_MESSAGES } from "../../constants";
 
-export const BOOKING_ACTIONS = [
+export const BOOKING_ACTIONS = (onDelete, showMessage) => [
     {
         type: "view",
         Icon: Visibility,
-        handler: ({ id, navigate }) => navigate(ADMIN.bookingDetails(id))
+        handler: ({ id, navigate }) =>
+            navigate(ADMIN.bookingDetails(id)),
+    },
+    {
+        type: "delete",
+        Icon: DeleteIcon,
+        handler: async ({ id }) => {
+            try {
+                await onDelete(id);
+                showMessage(BOOKING_ACTION_MESSAGES.DELETE_SUCCESS);
+            } catch {
+                showMessage(BOOKING_ACTION_MESSAGES.DELETE_ERROR);
+            }
+        },
+        confirmMessage: () =>
+            BOOKING_ACTION_MESSAGES.DELETE_CONFIRM
     }
 ];

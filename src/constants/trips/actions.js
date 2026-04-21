@@ -6,6 +6,7 @@ export const TRIPS_ACTIONS = [
     {
         type: "view",
         Icon: Visibility,
-        handler: ({ id, navigate }) => navigate(ADMIN.tripDetails(id))
+        handler: ({ id, navigate }) =>
+            navigate(ADMIN.tripDetails(id))
     }
 ];

@@ -1,39 +1,29 @@
 import { useNavigate } from "react-router-dom";
 
 import {
-    AppButton,
-    DataTable,
+    Actions,
     Loader,
+    DataTable,
+    AppButton,
     MessageDialog,
-    Actions
 } from "../../../components";
 
 import {
     useCollection,
     useDelete,
-    useMessageDialog,
-    useTableColumns
+    useTableColumns,
+    useMessageDialog
 } from "../../../hooks";
-
-import { getActionMessage } from "../../../utils";
 
 import { CarService } from "../../../services";
 
 import {
-    ADMIN,
     CARS_TABLE_COLUMNS,
-    CAR_ACTIONS
+    CAR_ACTIONS,
+    ADMIN
 } from "../../../constants";
 
 export const CarsManagementPage = () => {
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
-
     const navigate = useNavigate();
 
     const {
@@ -42,24 +32,23 @@ export const CarsManagementPage = () => {
         error,
     } = useCollection("cars");
 
-    console.log(cars);
-
-    const handleAdd = () => navigate(ADMIN.CAR_CREATE);
-
-    const { isDeleting, handleDelete } = useDelete(CarService.deleteCar, showMessage);
-
-    const handleCarDelete = (id) => handleDelete(id, "Автомобіль видалено!");
+    const { isDeleting, handleDelete } = useDelete(CarService.delete);
 
     const columns = useTableColumns(CARS_TABLE_COLUMNS, {
         actions: (car) => (
             <Actions
-                id={car.id}
-                actions={CAR_ACTIONS(handleCarDelete)}
-                getMessage={getActionMessage}
-                entity="car"
+                id={car?.id}
+                actions={CAR_ACTIONS(handleDelete, showMessage)}
             />
         ),
     });
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
@@ -68,10 +57,11 @@ export const CarsManagementPage = () => {
 
                 <div className="page__header">
                     <AppButton
-                        className="app-button--wide"
+                        type="button"
+                        className="app-button--large"
                         label="Додати автомобіль"
-                        onClick={handleAdd}
-                        disabled={isLoading || messageOpen}
+                        onClick={() => navigate(ADMIN.CAR_CREATE)}
+                        disabled={isLoading || isDeleting || messageOpen}
                     />
                 </div>
 

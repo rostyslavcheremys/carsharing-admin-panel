@@ -1,8 +1,8 @@
 import { Controller } from "react-hook-form";
 
-import { FormField } from "../../components";
+import { FormText } from "../../components";
 
-export const InputController = ({
+export const TextController = ({
                                     control,
                                     name,
                                     label,
@@ -20,11 +20,11 @@ export const InputController = ({
             defaultValue={defaultValue}
             render={({ field, fieldState }) => (
                 <>
-                    <FormField
+                    <FormText
                         label={label}
                         type={type}
                         className={className}
-                        value={field.value ?? ""}
+                        value={field.value}
                         disabled={disabled}
                         error={!!fieldState.error}
                         {...field}

@@ -1,17 +1,17 @@
 import {
-    DataTable,
-    Loader,
     Actions,
+    Loader,
+    DataTable,
     MessageDialog
 } from "../../../components";
 
 import {
+    useCollection,
     useAuth,
-    useCollection, useDelete, useMessageDialog,
-    useTableColumns
+    useDelete,
+    useTableColumns,
+    useMessageDialog
 } from "../../../hooks";
-
-import { getActionMessage } from "../../../utils";
 
 import { UserService } from "../../../services";
 
@@ -19,41 +19,35 @@ import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../../constants";
 
 export const UsersManagementPage = () => {
     const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
-
-    const {
         data: users,
         isLoading,
         error,
     } = useCollection("users");
 
-    console.log(users);
+    const { user: currentUser, loading } = useAuth();
 
-    const { user: currentUser } = useAuth();
-
-    const { isDeleting, handleDelete } = useDelete(UserService.deleteUser, showMessage);
-
-    const handleUserDelete = (id) => handleDelete(id, "Користувача видалено!");
+    const { isDeleting, handleDelete } = useDelete(UserService.delete);
 
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
         actions: (user) => (
             <Actions
-                id={user.id}
-                actions={USER_ACTIONS(handleUserDelete)}
-                getMessage={getActionMessage}
-                entity="user"
+                id={user?.id}
+                actions={USER_ACTIONS(handleDelete, showMessage)}
                 currentState={user}
                 currentUser={currentUser}
             />
         ),
     });
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+
     return (
-        <Loader isLoading={isLoading || isDeleting} error={error}>
+        <Loader isLoading={isLoading || isDeleting || loading} error={error}>
             <div className="page page__content">
                 <span className="page__title">Керування користувачами</span>
 

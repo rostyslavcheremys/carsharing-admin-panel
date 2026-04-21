@@ -1,6 +1,8 @@
 import { CircularProgress } from "../../libs/mui";
 
-export const Loader = ({ isLoading, error, errorText, children }) => {
+import { getErrorMessage } from "../../utils";
+
+export const Loader = ({ isLoading, error, children }) => {
     if (isLoading) {
         return (
             <div className="loader">
@@ -9,7 +11,9 @@ export const Loader = ({ isLoading, error, errorText, children }) => {
         );
     }
 
-    if (error) return <div className="loader__error">{errorText}</div>
+    if (error) {
+        return <div className="loader__error">{getErrorMessage(error)}</div>;
+    }
 
     return <>{children}</>;
 }

@@ -2,9 +2,11 @@ import { useRef, useMemo } from "react";
 
 import { Loader, MapItem, MapControls } from "../../components";
 
-import { useMapState, useGoogleMapsLoader, useMapCenter } from "../../hooks";
-
-import { DEFAULT_LOCATION } from "../../constants";
+import {
+    useMapState,
+    useGoogleMapsLoader,
+    useMapCenter
+} from "../../hooks";
 
 export const MapPicker = ({
                               location,
@@ -20,7 +22,7 @@ export const MapPicker = ({
 
     const { isLoaded } = useGoogleMapsLoader();
 
-    const mapCenter = useMapCenter(location || DEFAULT_LOCATION);
+    const mapCenter = useMapCenter(location);
 
     const locations = useMemo(() =>
         (location ? [{ ...location, status, id: 'temp' }] : []), [location, status]
@@ -40,14 +42,15 @@ export const MapPicker = ({
                     selectable={selectable}
                     onSelect={onSelect}
                 />
+
                 <MapControls
                     zoom={zoom}
                     setZoom={setZoom}
                     mapType={mapType}
                     setMapType={setMapType}
-                    mapCenter={mapCenter}
                     mapRef={mapRef}
                     wrapperRef={wrapperRef}
+                    mapCenter={mapCenter}
                     canCenter
                 />
             </div>

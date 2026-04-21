@@ -1,8 +1,8 @@
 import { Controller } from "react-hook-form";
 
-import { FormDatePicker } from "../../components";
+import { FormDateTime } from "../../components";
 
-export const DatePickerController = ({
+export const DateTimeController = ({
                                          control,
                                          name,
                                          label,
@@ -16,7 +16,7 @@ export const DatePickerController = ({
         rules={rules}
         render={({ field, fieldState }) => (
             <>
-                <FormDatePicker
+                <FormDateTime
                     label={label}
                     value={field.value}
                     onChange={field.onChange}

@@ -1,24 +1,27 @@
 import { useEffect, useState } from "react";
-
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { Loader, CarForm, MessageDialog } from "../../../components";
 
-import {useMessageDialog, useDocument } from "../../../hooks";
+import { useMessageDialog, useDocument } from "../../../hooks";
 
 import { CarService } from "../../../services";
 
 import { getErrorMessage, getCarValues } from "../../../utils";
 
-import { ADMIN, CAR_FORM_DEFAULT_VALUES } from "../../../constants";
+import {
+    CAR_FORM_DEFAULT_VALUES,
+    CAR_ACTION_MESSAGES,
+} from "../../../constants";
 
 export const CarEditPage = () => {
-    const { id } = useParams();
-    const navigate = useNavigate();
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [images, setImages] = useState([]);
+
+    const navigate = useNavigate();
+
+    const { id } = useParams();
 
     const {
         messageOpen,
@@ -29,7 +32,7 @@ export const CarEditPage = () => {
 
     const {
         document: car, isLoading, error
-    } = useDocument("cars", id, showMessage, navigate);
+    } = useDocument("cars", id);
 
     const {
         control,
@@ -53,11 +56,11 @@ export const CarEditPage = () => {
         try {
             setIsSubmitting(true);
 
-            await CarService.updateCar(id, data, images);
+            await CarService.update(id, data, images);
 
             showMessage(
-                "Автомобіль оновлено!",
-                () => navigate(ADMIN.CARS)
+                CAR_ACTION_MESSAGES.EDIT_SUCCESS,
+                () => navigate(-1)
             );
         } catch (error) {
             showMessage(getErrorMessage(error));

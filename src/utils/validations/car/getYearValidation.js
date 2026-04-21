@@ -7,8 +7,8 @@ export const getYearValidation = () => ({
         message: "Введіть тільки цифри!"
     },
     min: {
-        value: 1900,
-        message: "Рік випуску має бути не менше 1900!"
+        value: 2000,
+        message: "Рік випуску має бути не менше 2000!"
     },
     max: {
         value: new Date().getFullYear(),

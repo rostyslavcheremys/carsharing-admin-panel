@@ -1,0 +1,143 @@
+classDiagram
+    direction TB
+
+    class User {
+        +String id
+        +String email
+        +String firstName
+        +String lastName
+        +String phoneNumber
+        +String role
+        +String verificationStatus
+        +Boolean isBlocked
+        +Timestamp birthDate
+        +Timestamp createdAt
+    }
+
+    class Car {
+        +String id
+        +String brand
+        +String model
+        +String licensePlate
+        +String status
+        +String transmissionType
+        +String powertrainType
+        +String bodyType
+        +String driveType
+        +String color
+        +Int year
+        +Int mileage
+        +Int pricePerDay
+        +Int seats
+        +Int rating
+        +Array images
+        +Geopoint location
+        +Map engine
+        +Map battery
+    }
+
+    class Booking {
+        +String id
+        +String carId
+        +String userId
+        +String status
+        +Int price
+        +Timestamp plannedStart
+        +Timestamp plannedEnd
+        +Timestamp expiresAt
+        +Timestamp createdAt
+    }
+
+    class Trip {
+        +String id
+        +String carId
+        +String userId
+        +String bookingId
+        +String beforeConditionId
+        +String afterConditionId
+        +String status
+        +Int totalPrice
+        +Timestamp actualStart
+        +Timestamp actualEnd
+        +Geopoint startLocation
+        +Geopoint endLocation
+    }
+
+    class CarCondition {
+        +String id
+        +String description
+        +Int mileage
+        +Array images
+        +Timestamp createdAt
+        +Map energyLevel
+    }
+
+    class AuthService {
+        <<service>>
+        +login(email, password) Promise~User~
+        +register(data) Promise~User~
+    }
+
+    class UserService {
+        <<service>>
+        +get(id) Promise~User~
+        +approve(id) Promise~void~
+        +block(id, isBlocked) Promise~void~
+        +delete(id) Promise~Object~
+    }
+
+    class CarService {
+        <<service>>
+        +create(data) Promise~Car~
+        +update(id, data, images) Promise~Car~
+        +delete(id) Promise~void~
+    }
+
+    class BookingService {
+        <<service>>
+        +create(data) Promise~Booking~
+        +confirm(id) Promise~void~
+        +cancel(id) Promise~void~
+        +delete(id) Promise~void~
+        +getActiveBookingByUserId(id) Promise~Booking~
+    }
+
+    class TripService {
+        <<service>>
+        +start(id) Promise~void~
+        +end(id, data) Promise~void~
+    }
+
+    class Firestore {
+        <<infrastructure>>
+        +Collection users
+        +Collection cars
+        +Collection bookings
+        +Collection trips
+        +Collection carConditions
+    }
+
+    class FirebaseAuth {
+        <<infrastructure>>
+    }
+
+    AuthService ..> FirebaseAuth : auth
+    AuthService ..> Firestore : users
+
+    UserService ..> Firestore : users
+    CarService ..> Firestore : cars
+    BookingService ..> Firestore : bookings
+    TripService ..> Firestore : trips
+
+    UserService --> User : manages
+    CarService --> Car : manages
+    BookingService --> Booking : manages
+    TripService --> Trip : manages
+
+    Booking --> User : userId
+    Booking --> Car : carId
+    Trip --> Booking : bookingId
+    Trip --> User : userId
+    Trip --> Car : carId
+    Trip --> CarCondition : beforeConditionId
+    Trip --> CarCondition : afterConditionId

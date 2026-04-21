@@ -8,6 +8,8 @@ import { TRIP_STATUS } from "./options.js";
 
 export const TRIP_DETAILS = [
     { label: "ID:", key: "id" },
+    { label: "Статус:", key: "status", map: TRIP_STATUS },
+    { label: "Загальна вартість:", key: "totalPrice", suffix: "грн" },
     {
         label: "Автомобіль:", key: "carId",
         formatter: (id) => (
@@ -38,8 +40,6 @@ export const TRIP_DETAILS = [
             <DetailsLink to={ADMIN.carConditionDetails(id)} />
         )
     },
-    { label: "Статус:", key: "status", map: TRIP_STATUS },
-    { label: "Загальна вартість:", key: "totalPrice" },
     {
         label: "Фактичний початок:", key: "actualStart",
         formatter: (trip) => getFormattedTimestamp(trip, true)

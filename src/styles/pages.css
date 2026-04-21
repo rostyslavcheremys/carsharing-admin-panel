@@ -30,10 +30,7 @@ main {
 }
 
 .page__label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    text-align: center;
     font-family: var(--font-family), sans-serif;
     font-weight: 500;
     font-size: 15px;
@@ -68,7 +65,14 @@ main {
     align-items: center;
     flex-direction: row;
     width: 100%;
-    gap: 40px;
+    gap: 30px;
+}
+
+.page__buttons--column {
+    flex-direction: column;
+}
+
+.page__buttons--form {
     margin-top: 30px;
 }
 
@@ -83,6 +87,12 @@ main {
 
     .page__content {
         padding: 30px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .page__label {
+        font-size: 13px;
     }
 }
 

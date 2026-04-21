@@ -1,17 +1,23 @@
 import { useState, forwardRef } from "react";
 
-import {
-    TextField,
-    IconButton,
-    InputAdornment
-} from "../../libs/mui";
+import { TextField, InputAdornment } from "../../libs/mui";
 
-import {
-    Visibility,
-    VisibilityOff
-} from "../../libs/mui-icons";
+import { Visibility, VisibilityOff } from "../../libs/mui-icons";
 
-export const FormField = forwardRef(({ label, type, name, value, onChange, onBlur, className, disabled, error }, ref) => {
+import { ActionIconButton } from "../../components";
+
+export const FormText = forwardRef(
+    ({
+        label,
+        type,
+        name,
+        value,
+        onChange,
+        onBlur,
+        className,
+        disabled,
+        error
+    }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
     const isPassword = type === "password";
 
@@ -35,13 +41,11 @@ export const FormField = forwardRef(({ label, type, name, value, onChange, onBlu
                         ? {
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={() => setShowPassword(prev => !prev)}>
-                                        {showPassword
-                                            ? <VisibilityOff className="form__icon"/>
-                                            : <Visibility className="form__icon"/>
-                                        }
-                                    </IconButton>
+                                    <ActionIconButton
+                                        Icon={showPassword ? VisibilityOff : Visibility }
+                                        onClick={() => setShowPassword(prev => !prev)}
+                                        iconClassName="form__icon"
+                                    />
                                 </InputAdornment>
                             )
                         }

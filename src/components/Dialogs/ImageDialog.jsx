@@ -1,16 +1,10 @@
-import {
-    Dialog,
-    ImageList,
-    IconButton,
-    ImageListItem
-} from "../../libs/mui";
+import { ImageIcon, CloseIcon } from "../../libs/mui-icons";
 
 import {
-    ImageIcon,
-    CloseIcon,
-} from "../../libs/mui-icons";
-
-import { ImageItem } from "../../components";
+    ActionIconButton,
+    AppDialog,
+    ImageItem
+} from "../../components";
 
 export const ImageDialog = ({
                                 open,
@@ -25,38 +19,37 @@ export const ImageDialog = ({
 
     return (
         <>
-            <div className="dialog__icon">
-                <IconButton onClick={onOpen}>
-                    <ImageIcon className="dialog__icon--photos" />
-                </IconButton>
+            <div className="dialog__icon--container">
+                <ActionIconButton
+                    Icon={ImageIcon}
+                    onClick={onOpen}
+                    iconClassName="dialog__icon"
+                />
             </div>
 
-            <Dialog
-                className="dialog"
-                open={open}
-                onClose={onClose}
-                disableEnforceFocus={true}
-                disableRestoreFocus={true}
-                disablePortal={false}
-            >
+            <AppDialog open={open} onClose={onClose}>
                 <div className="dialog__header">
                     <span className="dialog__title">Перегляд фотографій</span>
 
-                    <IconButton onClick={onClose}>
-                        <CloseIcon className="dialog__icon--close" />
-                    </IconButton>
+                    <ActionIconButton
+                        Icon={CloseIcon}
+                        onClick={onClose}
+                        iconClassName="dialog__icon"
+                    />
                 </div>
 
-                <div className="dialog__content--images">
-                    <ImageList className="dialog__images">
+                <div className="dialog__images--container">
+                    <div className="dialog__images">
                         {imageList.map((item, index) => (
-                            <ImageListItem key={index}>
-                                <ImageItem src={item} alt={`image_${index + 1}`}/>
-                            </ImageListItem>
+                            <ImageItem
+                                key={item}
+                                src={item}
+                                alt={`image_${index + 1}`}
+                            />
                         ))}
-                    </ImageList>
+                    </div>
                 </div>
-            </Dialog>
+            </AppDialog>
         </>
     );
 }

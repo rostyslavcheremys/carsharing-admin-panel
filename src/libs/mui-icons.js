@@ -26,6 +26,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import LockIcon from '@mui/icons-material/Lock';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export {
     MapIcon,
@@ -55,5 +56,6 @@ export {
     PersonIcon,
     FactCheckIcon,
     LockOpenIcon,
-    LockIcon
+    LockIcon,
+    ExpandMoreIcon
 }

@@ -5,7 +5,8 @@ export const DetailsMap = ({ label, location, status }) => {
 
     return (
         <div className="map-details__container">
-            <span className="page__label">{label}</span>
+            <span className="map-details__label">{label}</span>
+
             <div className="map-details">
                 <MapPicker
                     className="map map-details__picker"

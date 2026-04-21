@@ -1,4 +1,4 @@
-export const CarAccessPage = () => {
+export const TripAccessPage = () => {
     return (
         <div>CarAccessPage</div>
     );

@@ -2,12 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    gap: 25px;
+    flex-direction: column;
 }
 
 .car-images__container {
     width: 500px;
+}
+
+.car-images__wrapper {
+    position: relative;
 }
 
 .car-images__slider {
@@ -24,27 +27,29 @@
     scroll-snap-align: start;
 }
 
-.car-images__buttons {
-    display: none !important;
-    gap: 20px;
+.car-images__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    pointer-events: none;
 }
 
 .car-images__button {
-    background: var(--main-color) !important;
     color: var(--white-color) !important;
+    transition: background 0.2s ease-in-out !important;
+    pointer-events: all;
 }
 
-.car-images__button.Mui-disabled {
-    background: var(--grey-color) !important;
+.car-images__button:hover {
+    background: var(--main-color) !important;
 }
 
 @media (max-width: 768px) {
     .car-images__container {
         width: 400px;
-    }
-
-    .car-images {
-        gap: 20px;
     }
 }
 
@@ -52,28 +57,10 @@
     .car-images__container {
         width: 300px;
     }
-
-    .car-images {
-        gap: 15px;
-    }
-
 }
 
-@media (max-width: 500px) {
-    .car-images {
-        flex-direction: column;
-        gap: 20px;
-    }
-
+@media (max-width: 400px) {
     .car-images__container {
         width: 250px;
-    }
-
-    .car-images__button--side {
-        display: none !important;
-    }
-
-    .car-images__buttons {
-        display: flex !important;
     }
 }

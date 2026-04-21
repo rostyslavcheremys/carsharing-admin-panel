@@ -1,6 +1,7 @@
 export * from "./auth/defaults.js";
 
 export * from "./bookings/actions.js";
+export * from "./bookings/defaults.js";
 export * from "./bookings/details.jsx";
 export * from "./bookings/options.js";
 export * from "./bookings/table.jsx";
@@ -12,15 +13,20 @@ export * from "./cars/options.js";
 export * from "./cars/table.jsx";
 
 export * from "./map/constants.js";
+export * from "./map/defaults.js";
+export * from "./map/filters.js";
 export * from "./map/icons.js";
 export * from "./map/location.js";
 
-export * from "./messages/error.js"
-export * from "./messages/infoMessages.js"
+export * from "./messages/actions.js";
+export * from "./messages/errors.js";
+export * from "./messages/messages.js";
 
-export * from "./routes/auth.js"
-export * from "./routes/admin.js"
-export * from "./routes/user.js"
+export * from "./profile/details.js";
+
+export * from "./routes/auth.js";
+export * from "./routes/admin.js";
+export * from "./routes/user.js";
 
 export * from "./trips/actions.js";
 export * from "./trips/details.jsx";

@@ -1,7 +1,3 @@
-export * from "./auth/LoginPage.jsx";
-export * from "./auth/RegisterPage.jsx";
-export * from "./auth/DriverVerificationPage.jsx";
-
 export * from "./admin/bookings/BookingsManagementPage.jsx";
 export * from "./admin/bookings/BookingDetailsPage.jsx";
 
@@ -20,26 +16,26 @@ export * from "./admin/users/UserDetailsPage.jsx";
 export * from "./admin/DashboardPage.jsx";
 export * from "./admin/MonitoringPage.jsx";
 
-export * from "./user/HomePage.jsx";
+export * from "./auth/LoginPage.jsx";
+export * from "./auth/RegisterPage.jsx";
+export * from "./auth/DriverVerificationPage.jsx";
 
-export * from "./user/cars/CarsMapPage.jsx";
-export * from "./user/cars/CarDetailsUserPage.jsx";
-export * from "./user/cars/CarAccessPage.jsx";
-export * from "./user/cars/CarConditionStartPage.jsx";
-export * from "./user/cars/CarConditionEndPage.jsx";
-
-export * from "./user/bookings/BookingDatePage.jsx";
+export * from "./user/bookings/BookingPeriodPage.jsx";
 export * from "./user/bookings/BookingPaymentPage.jsx";
 export * from "./user/bookings/BookingConfirmationPage.jsx";
 export * from "./user/bookings/BookingsHistoryPage.jsx";
 export * from "./user/bookings/BookingHistoryDetailsPage.jsx";
 
-export * from "./user/trips/TripPage.jsx";
-export * from "./user/trips/TripSummaryPage.jsx";
-export * from "./user/trips/TripsHistoryPage.jsx";
-export * from "./user/trips/TripHistoryDetailsPage.jsx";
-
 export * from "./user/profile/ProfilePage.jsx";
+export * from "./user/profile/ProfileDetailsPage.jsx";
 export * from "./user/profile/ProfileEditPage.jsx";
 
-export * from "./user/support/SupportPage.jsx";
+export * from "./user/trips/TripAccessPage.jsx";
+export * from "./user/trips/TripActivePage.jsx";
+export * from "./user/trips/TripConditionPage.jsx";
+export * from "./user/trips/TripsHistoryPage.jsx";
+export * from "./user/trips/TripHistoryDetailsPage.jsx";
+export * from "./user/trips/TripSummaryPage.jsx";
+
+export * from "./user/HomePage.jsx";
+export * from "./user/MapPage.jsx";
