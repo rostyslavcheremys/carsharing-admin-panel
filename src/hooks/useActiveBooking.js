@@ -7,7 +7,7 @@ import { BookingService } from "../services";
 export const useActiveBooking = () => {
     const { user } = useAuth();
 
-    const [activeCarId, setActiveCarId] = useState(null);
+    const [activeBooking, setActiveBooking] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -23,7 +23,7 @@ export const useActiveBooking = () => {
 
                 const booking = await BookingService.getActiveBookingByUser(user.id);
 
-                setActiveCarId(booking?.carId ?? null);
+                setActiveBooking(booking ?? null);
             } catch (e) {
                 setError(e);
             } finally {
@@ -35,7 +35,9 @@ export const useActiveBooking = () => {
     }, [user?.id]);
 
     return {
-        activeCarId,
+        activeBooking,
+        activeCarId: activeBooking?.carId ?? null,
+        activeBookingId: activeBooking?.id ?? null,
         loading,
         error
     }
