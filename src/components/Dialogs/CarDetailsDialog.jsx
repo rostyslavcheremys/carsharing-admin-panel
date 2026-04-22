@@ -10,7 +10,11 @@ import {
     AppButton,
 } from "../../components";
 
-import { useAuth, useImages } from "../../hooks";
+import {
+    useAuth,
+    useActiveBooking,
+    useImages
+} from "../../hooks";
 
 import {
     CAR_ADMIN_DETAILS, ADMIN,
@@ -21,6 +25,8 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
     const navigate = useNavigate();
 
     const { user } = useAuth();
+
+    const { activeBookingId } = useActiveBooking();
 
     const images = useImages(car?.images);
 
@@ -62,8 +68,8 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
                         <AppButton
                             type="button"
                             label="Розпочати поїздку"
-                            className="app-button--large"
-                            onClick={() => console.log("START DRIVE")}
+                            className="app-button--size-md"
+                            onClick={() => navigate(USER.tripStart(activeBookingId))}
                         />
                     )}
 

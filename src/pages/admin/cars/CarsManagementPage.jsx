@@ -58,7 +58,7 @@ export const CarsManagementPage = () => {
                 <div className="page__header">
                     <AppButton
                         type="button"
-                        className="app-button--large"
+                        className="app-button--size-md"
                         label="Додати автомобіль"
                         onClick={() => navigate(ADMIN.CAR_CREATE)}
                         disabled={isLoading || isDeleting || messageOpen}

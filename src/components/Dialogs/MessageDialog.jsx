@@ -9,7 +9,7 @@ export const MessageDialog = ({ open, onClose, message }) => {
 
             <div className="dialog__button">
                 <AppButton
-                    className="app-button--small"
+                    className="app-button--size-sm"
                     label="OK"
                     onClick={onClose}
                 />

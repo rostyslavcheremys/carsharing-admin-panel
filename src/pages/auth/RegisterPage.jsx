@@ -114,7 +114,7 @@ export const RegisterPage = () => {
                     <div className="page__button page__buttons--form">
                         <AppButton
                             type="submit"
-                            className="app-button--large"
+                            className="app-button--size-md"
                             label="Зареєструватися"
                             disabled={isLoading || messageOpen}
                         />
