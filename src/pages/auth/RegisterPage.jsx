@@ -37,7 +37,10 @@ export const RegisterPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const { control, watch, handleSubmit } = useForm({
+    const {
+        control,
+        watch, handleSubmit
+    } = useForm({
         defaultValues: REGISTER_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });

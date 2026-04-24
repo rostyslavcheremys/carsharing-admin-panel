@@ -31,7 +31,10 @@ export const LoginPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit
+    } = useForm({
         defaultValues: LOGIN_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
