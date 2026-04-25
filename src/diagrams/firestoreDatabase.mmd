@@ -73,8 +73,8 @@ erDiagram
         string carId "ID автомобіля"
         string userId "ID користувача"
         string bookingId "ID бронювання"
-        string beforeConditionId "ID стану до поїздки"
-        string afterConditionId "ID стану після поїздки"
+        string conditionStartId "ID фіксації стану перед початком поїздки"
+        string conditionEndId "ID фіксації стану після завершення поїздки"
         string status "Статус"
         int64 totalPrice "Загальна вартість"
         timestamp actualStart "Фактичний початок"
@@ -83,8 +83,12 @@ erDiagram
         geopoint endLocation "Кінцеве місцезнаходження"
     }
 
-    CAR_CONDITION {
+    CAR_CONDITIONS {
         string id "ID"
+        string carId "ID автомобіля"
+        string userId "ID користувача"
+        string tripId "ID поїздки"
+        string conditionType "Тип фіксації"
         string description "Опис"
         int64 mileage "Пробіг"
         array images "Фотографії"
@@ -109,9 +113,9 @@ erDiagram
 
     BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
 
-    TRIPS ||--|| CAR_CONDITION : "фіксує стан до початку"
-    TRIPS ||--|| CAR_CONDITION : "фіксує стан після завершення"
+    TRIPS ||--|| CAR_CONDITIONS : "фіксує стан до початку"
+    TRIPS ||--|| CAR_CONDITIONS : "фіксує стан після завершення"
     TRIPS ||--|| LOCATION : "починається в"
     TRIPS ||--|| LOCATION : "завершується в"
 
-    CAR_CONDITION ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
+    CAR_CONDITIONS ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
