@@ -7,7 +7,6 @@ import {
     doc,
     getDoc,
     setDoc,
-    serverTimestamp
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
@@ -48,7 +47,7 @@ export class AuthService {
             isBlocked: false,
             verificationStatus: "pending",
             birthDate: birthDate.toDate(),
-            createdAt: serverTimestamp(),
+            createdAt: new Date(),
         });
 
         return user;

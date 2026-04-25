@@ -45,10 +45,10 @@ export const BookingConfirmationPage = () => {
                     details={BOOKING_CONFIRM_DETAILS}
                 />
 
-                <div className="page__buttons">
+                <div className="page__button">
                     <AppButton
                         type="button"
-                        className="app-button--large"
+                        className="app-button--size-md"
                         label="Перейти до авто"
                         onClick={() => navigate(USER.MAP)}
                         disabled={isLoading || carLoading}

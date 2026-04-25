@@ -6,22 +6,27 @@ import {
     query,
     where,
     updateDoc,
-    deleteDoc,
     runTransaction
 } from "firebase/firestore";
 
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 export class BookingService {
     static async create(data) {
         return await runTransaction(db, async (transaction) => {
+            const userId = auth.currentUser?.uid;
+
+            if (!userId) {
+                throw new Error("Користувач не авторизований!");
+            }
+
             const now = Date.now();
 
             const userBookingsRef = collection(db, "bookings");
 
             const userQuery = query(
                 userBookingsRef,
-                where("userId", "==", data.userId),
+                where("userId", "==", userId),
                 where("status", "in", ["pending", "confirmed"])
             );
 
@@ -61,11 +66,12 @@ export class BookingService {
 
             transaction.set(bookingRef, {
                 ...data,
+                userId,
                 status: "pending",
                 plannedStart: new Date(data.plannedStart),
                 plannedEnd: new Date(data.plannedEnd),
                 createdAt: new Date(),
-                expiresAt: new Date(Date.now() + 3 * 60 * 1000),
+                expiresAt: new Date(Date.now() + 3 * 60 * 1000)
             });
 
             return {
@@ -132,21 +138,26 @@ export class BookingService {
     }
 
     static async delete(bookingId) {
-        const bookingRef = doc(db, "bookings", bookingId);
-        const bookingSnap = await getDoc(bookingRef);
+        await runTransaction(db, async (transaction) => {
+            const bookingRef = doc(db, "bookings", bookingId);
+            const bookingSnap = await transaction.get(bookingRef);
 
-        if (!bookingSnap.exists()) {
-            throw new Error("Бронювання не знайдено!");
-        }
+            if (!bookingSnap.exists()) {
+                throw new Error("Бронювання не знайдено!");
+            }
 
-        const booking = bookingSnap.data();
+            const booking = bookingSnap.data();
 
-        if (booking.status === "confirmed") {
-            const carRef = doc(db, "cars", booking.carId);
-            await updateDoc(carRef, { status: "available" });
-        }
+            if (booking.status === "confirmed") {
+                const carRef = doc(db, "cars", booking.carId);
 
-        await deleteDoc(bookingRef);
+                transaction.update(carRef, {
+                    status: "available"
+                });
+            }
+
+            transaction.delete(bookingRef);
+        });
     }
 
     static async getActiveBookingByUser(userId) {

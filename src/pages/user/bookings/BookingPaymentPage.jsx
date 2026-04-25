@@ -32,7 +32,7 @@ export const BookingPaymentPage = () => {
         document: booking, isLoading, error
     } = useDocument("bookings", id);
 
-    const { timeLeftFormatted } = useCountdown(booking?.expiresAt)
+    const { remainingTimeFormatted } = useCountdown(booking?.expiresAt)
 
     const {
         messageOpen,
@@ -75,7 +75,7 @@ export const BookingPaymentPage = () => {
                 <span className="page__title">Оплата бронювання</span>
 
                 <div className="page__label">
-                    Залишилось на оплату: {timeLeftFormatted}
+                    Залишилось на оплату: {remainingTimeFormatted}
                 </div>
 
                 <Details

@@ -26,7 +26,7 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
 
     const { user } = useAuth();
 
-    const { activeBookingId } = useActiveBooking();
+    const { entity: booking } = useActiveBooking();
 
     const images = useImages(car?.images);
 
@@ -69,7 +69,8 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
                             type="button"
                             label="Розпочати поїздку"
                             className="app-button--size-md"
-                            onClick={() => navigate(USER.tripStart(activeBookingId))}
+                            onClick={() => navigate(USER.tripStart(booking?.id))}
+                            disabled={!booking}
                         />
                     )}
 

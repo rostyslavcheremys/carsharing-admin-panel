@@ -14,15 +14,17 @@ export const MapPage = () => {
     } = useCollection("cars");
 
     const {
-        activeCarId,
-        loading: loadingBooking,
+        entity: booking,
+        loading: isLoadingBooking,
         error: errorBooking,
     } = useActiveBooking();
+
+    const activeCarId = booking?.carId;
 
     const filteredCars = useAvailableCars(cars, activeCarId);
 
     return (
-        <Loader isLoading={isLoading || loadingBooking} error={error || errorBooking}>
+        <Loader isLoading={isLoading || isLoadingBooking} error={error || errorBooking}>
             <div className="page">
                 <Map
                     cars={filteredCars}
