@@ -18,7 +18,7 @@ export const CarConditionDetailsPage = () => {
 
     const {
         document: carCondition, isLoading, error
-    } = useDocument("carCondition", id);
+    } = useDocument("carConditions", id);
 
     const conditionImages = useImages(carCondition?.images);
 
