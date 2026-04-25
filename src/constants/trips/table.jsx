@@ -66,20 +66,20 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "beforeConditionId", label: "Стан до поїздки",
+        id: "conditionStartId", label: "Фіксація до поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.beforeConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionStartId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
         )
     },
     {
-        id: "afterConditionId", label: "Стан після поїздки",
+        id: "conditionEndId", label: "Фіксація після поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.afterConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionEndId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />

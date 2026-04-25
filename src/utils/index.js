@@ -45,6 +45,7 @@ export * from "./validations/car/getRangeValidation.js";
 export * from "./validations/car/getSeatsValidation.js";
 export * from "./validations/car/getPricePerDayValidation.js";
 
+export * from "./validations/common/getPercentValidation.js";
 export * from "./validations/common/getRequiredFieldValidation.js";
 export * from "./validations/common/getRequiredAnyValidation.js";
 export * from "./validations/common/requiredField.js";

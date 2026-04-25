@@ -12,33 +12,23 @@ export const TRIP_DETAILS = [
     { label: "Загальна вартість:", key: "totalPrice", suffix: "грн" },
     {
         label: "Автомобіль:", key: "carId",
-        formatter: (id) => (
-            <DetailsLink to={ADMIN.carDetails(id)} />
-        )
+        formatter: (id) => <DetailsLink to={ADMIN.carDetails(id)} />
     },
     {
         label: "Користувач:", key: "userId",
-        formatter: (id) => (
-            <DetailsLink to={ADMIN.userDetails(id)} />
-        )
+        formatter: (id) => <DetailsLink to={ADMIN.userDetails(id)} />
     },
     {
         label: "Бронювання:", key: "bookingId",
-        formatter: (id) => (
-            <DetailsLink to={ADMIN.bookingDetails(id)} />
-        )
+        formatter: (id) => <DetailsLink to={ADMIN.bookingDetails(id)} />
     },
     {
-        label: "Стан до поїздки:", key: "beforeConditionId",
-        formatter: (id) => (
-            <DetailsLink to={ADMIN.carConditionDetails(id)} />
-        )
+        label: "Стан перед поїздкою:", key: "conditionStartId",
+        formatter: (id) => <DetailsLink to={ADMIN.carConditionDetails(id)} />
     },
     {
-        label: "Стан після поїздки:", key: "afterConditionId",
-        formatter: (id) => (
-            <DetailsLink to={ADMIN.carConditionDetails(id)} />
-        )
+        label: "Стан після поїздки:", key: "conditionEndId",
+        formatter: (id) => <DetailsLink to={ADMIN.carConditionDetails(id)} />
     },
     {
         label: "Фактичний початок:", key: "actualStart",

@@ -26,15 +26,17 @@ export * from "./user/bookings/BookingConfirmationPage.jsx";
 export * from "./user/bookings/BookingsHistoryPage.jsx";
 export * from "./user/bookings/BookingHistoryDetailsPage.jsx";
 
+export * from "./user/car/CarAccessPage.jsx";
+export * from "./user/car/CarConditionsPage.jsx";
+
 export * from "./user/profile/ProfilePage.jsx";
 export * from "./user/profile/ProfileDetailsPage.jsx";
 export * from "./user/profile/ProfileEditPage.jsx";
 
-export * from "./user/trips/TripAccessPage.jsx";
 export * from "./user/trips/TripActivePage.jsx";
-export * from "./user/trips/TripConditionPage.jsx";
 export * from "./user/trips/TripsHistoryPage.jsx";
-export * from "./user/trips/TripHistoryDetailsPage.jsx";
+export * from "./user/trips/TripHistoryDetailsPage.jsx"
+export * from "./user/trips/TripStartPage.jsx";
 export * from "./user/trips/TripSummaryPage.jsx";
 
 export * from "./user/HomePage.jsx";

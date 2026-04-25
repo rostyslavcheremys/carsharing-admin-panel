@@ -1,4 +1,6 @@
 export * from "./useActiveBooking.js";
+export * from "./useActiveEntity.js";
+export * from "./useActiveTrip.js";
 export * from "./useAuth.js";
 export * from "./useAvailableCars.js";
 export * from "./useCollection.js";

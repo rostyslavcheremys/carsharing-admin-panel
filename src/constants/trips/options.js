@@ -1,4 +1,4 @@
 export const TRIP_STATUS = [
     { value: "active", label: "Активна" },
-    { value: "finished", label: "Завершена" },
+    { value: "completed", label: "Завершена" },
 ];

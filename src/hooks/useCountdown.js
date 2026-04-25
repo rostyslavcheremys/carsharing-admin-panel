@@ -2,32 +2,34 @@ import { useEffect, useState } from "react";
 
 import { formatTime } from "../utils";
 
-export const useCountdown = (expiresAt) => {
-    const [timeLeft, setTimeLeft] = useState(0);
+export const useCountdown = (endTime) => {
+    const [remainingTime, setRemainingTime] = useState(0);
 
     useEffect(() => {
-        if (!expiresAt) return;
+        if (!endTime) return;
 
         const update = () => {
             const now = Date.now();
 
-            const endTime = expiresAt.toMillis
-                ? expiresAt.toMillis()
-                : new Date(expiresAt).getTime();
+            const targetTime = endTime?.toMillis
+                ? endTime.toMillis()
+                : new Date(endTime).getTime();
 
-            const diff = endTime - now;
+            const diff = Math.max(targetTime - now, 0);
 
-            setTimeLeft(diff > 0 ? diff : 0);
+            setRemainingTime(diff);
         };
 
         update();
+
         const interval = setInterval(update, 1000);
 
         return () => clearInterval(interval);
-    }, [expiresAt]);
+    }, [endTime]);
 
     return {
-        timeLeft,
-        timeLeftFormatted: formatTime(timeLeft),
-    }
-}
+        remainingTime,
+        remainingTimeFormatted: formatTime(remainingTime),
+        isExpired: remainingTime === 0,
+    };
+};

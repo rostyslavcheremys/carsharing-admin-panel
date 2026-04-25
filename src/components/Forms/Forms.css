@@ -22,6 +22,11 @@
     height: 50px;
 }
 
+.form__textarea .MuiOutlinedInput-root {
+    min-height: 120px;
+    align-items: flex-start;
+}
+
 .form__field .MuiOutlinedInput-notchedOutline,
 .form__field .MuiPickersOutlinedInput-notchedOutline {
     border-radius: 10px;

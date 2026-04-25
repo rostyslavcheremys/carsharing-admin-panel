@@ -1,14 +1,14 @@
 import { useAuth } from "../hooks";
 
-import { BookingService } from "../services";
+import { TripService } from "../services";
 
 import { useActiveEntity } from "../hooks";
 
-export const useActiveBooking = () => {
+export const useActiveTrip = () => {
     const { user } = useAuth();
 
     return useActiveEntity(
         user,
-        BookingService.getActiveBookingByUser
+        TripService.getActiveTripByUser
     );
 }

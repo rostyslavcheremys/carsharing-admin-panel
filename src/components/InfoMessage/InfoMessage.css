@@ -5,6 +5,7 @@
     transition: border 0.2s ease-in-out;
     border : 2px solid var(--grey-color);
     cursor: default;
+    white-space: pre-line;
 }
 
 .info-message:hover {

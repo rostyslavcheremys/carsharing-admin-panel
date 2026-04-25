@@ -9,6 +9,10 @@ export const CAR_ACTION_MESSAGES = {
     DELETE_ERROR: "Не вдалося видалити автомобіль.",
 }
 
+export const CAR_CONDITION_ACTION_MESSAGES = {
+    CREATE_SUCCESS: "Фіксацію стану збережено!",
+}
+
 export const USER_ACTION_MESSAGES = {
     DELETE_CONFIRM: "Видалити користувача?",
     DELETE_SUCCESS: "Користувача видалено!",
