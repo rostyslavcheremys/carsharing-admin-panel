@@ -70,7 +70,7 @@ export const DriverVerificationPage = () => {
 
                 <DiiaButton
                     onClick={handleVerify}
-                    disabled={isLoading || loading || messageOpen}
+                    disabled={isLoading || loading}
                 />
 
                 <MessageDialog

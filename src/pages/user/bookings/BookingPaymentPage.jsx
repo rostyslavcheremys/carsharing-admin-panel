@@ -99,14 +99,14 @@ export const BookingPaymentPage = () => {
                                 type="button"
                                 label="Оплатити"
                                 onClick={handlePay}
-                                disabled={isLoading || isPaying || messageOpen}
+                                disabled={isLoading || isPaying}
                             />
 
                             <AppButton
                                 type="button"
                                 label="Скасувати"
                                 onClick={handleCancel}
-                                disabled={isLoading || isCancel || messageOpen}
+                                disabled={isLoading || isCancel}
                             />
                         </>
                     )}

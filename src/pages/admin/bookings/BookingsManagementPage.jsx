@@ -25,6 +25,13 @@ export const BookingsManagementPage = () => {
 
     const { isDeleting, handleDelete } = useDelete(BookingService.delete);
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+    
     const columns = useTableColumns(BOOKINGS_TABLE_COLUMNS, {
         actions: (booking) => (
             <Actions
@@ -33,13 +40,6 @@ export const BookingsManagementPage = () => {
             />
         ),
     });
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>

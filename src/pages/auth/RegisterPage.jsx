@@ -119,7 +119,7 @@ export const RegisterPage = () => {
                             type="submit"
                             className="app-button--size-md"
                             label="Зареєструватися"
-                            disabled={isLoading || messageOpen}
+                            disabled={isLoading}
                         />
                     </div>
 

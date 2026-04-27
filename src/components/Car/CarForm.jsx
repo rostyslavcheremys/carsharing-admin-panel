@@ -204,7 +204,7 @@ export const CarForm = ({
                     <AppButton
                         type="submit"
                         label={submitLabel}
-                        disabled={isSubmitting || messageOpen}
+                        disabled={isSubmitting}
                     />
 
                     {showBack && (
@@ -212,7 +212,7 @@ export const CarForm = ({
                             type="button"
                             label="Назад"
                             onClick={onBack}
-                            disabled={isSubmitting || messageOpen}
+                            disabled={isSubmitting}
                         />
                     )}
                 </div>

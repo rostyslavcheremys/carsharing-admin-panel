@@ -123,14 +123,14 @@ export const BookingPeriodPage = () => {
                         <AppButton
                             type="submit"
                             label="Підтвердити"
-                            disabled={isLoading || messageOpen}
+                            disabled={isLoading}
                         />
 
                         <AppButton
                             type="button"
                             label="Назад"
                             onClick={() => navigate(-1)}
-                            disabled={isLoading || messageOpen}
+                            disabled={isLoading}
                         />
                     </div>
                 </form>

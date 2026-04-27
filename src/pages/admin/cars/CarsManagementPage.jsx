@@ -34,6 +34,13 @@ export const CarsManagementPage = () => {
 
     const { isDeleting, handleDelete } = useDelete(CarService.delete);
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+
     const columns = useTableColumns(CARS_TABLE_COLUMNS, {
         actions: (car) => (
             <Actions
@@ -42,13 +49,6 @@ export const CarsManagementPage = () => {
             />
         ),
     });
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>
@@ -61,7 +61,7 @@ export const CarsManagementPage = () => {
                         className="app-button--size-md"
                         label="Додати автомобіль"
                         onClick={() => navigate(ADMIN.CAR_CREATE)}
-                        disabled={isLoading || isDeleting || messageOpen}
+                        disabled={isLoading || isDeleting}
                     />
                 </div>
 

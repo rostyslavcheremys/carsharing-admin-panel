@@ -146,14 +146,14 @@ export const CarConditionsPage = ({ type }) => {
                         <AppButton
                             type="submit"
                             label="Зберегти"
-                            disabled={isSaving || messageOpen}
+                            disabled={isSaving}
                         />
 
                         <AppButton
                             type="button"
                             label="Назад"
                             onClick={() => navigate(-1)}
-                            disabled={isSaving || messageOpen}
+                            disabled={isSaving}
                         />
                     </div>
                 </form>

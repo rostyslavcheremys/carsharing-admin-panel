@@ -72,7 +72,7 @@ export const TripPaymentPage = () => {
                         type="button"
                         label="Оплатити"
                         onClick={handlePay}
-                        disabled={isLoading || isPaying || messageOpen}
+                        disabled={isLoading || isPaying}
                     />
                 </div>
 

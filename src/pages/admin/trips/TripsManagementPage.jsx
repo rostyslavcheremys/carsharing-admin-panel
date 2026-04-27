@@ -25,6 +25,13 @@ export const TripsManagementPage = () => {
 
     const { isDeleting, handleDelete } = useDelete(TripService.delete);
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+
     const columns = useTableColumns(TRIPS_TABLE_COLUMNS, {
         actions: (trip) => (
             <Actions
@@ -33,13 +40,6 @@ export const TripsManagementPage = () => {
             />
         ),
     });
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting} error={error}>

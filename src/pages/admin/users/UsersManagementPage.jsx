@@ -28,6 +28,13 @@ export const UsersManagementPage = () => {
 
     const { isDeleting, handleDelete } = useDelete(UserService.delete);
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+
     const columns = useTableColumns(USERS_TABLE_COLUMNS, {
         actions: (user) => (
             <Actions
@@ -38,13 +45,6 @@ export const UsersManagementPage = () => {
             />
         ),
     });
-
-    const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
 
     return (
         <Loader isLoading={isLoading || isDeleting || loading} error={error}>
