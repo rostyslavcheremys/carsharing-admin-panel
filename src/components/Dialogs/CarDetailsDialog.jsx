@@ -13,7 +13,7 @@ import {
 import {
     useAuth,
     useActiveBooking,
-    useImages
+    useImages, useActiveTrip
 } from "../../hooks";
 
 import {
@@ -26,7 +26,9 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
 
     const { user } = useAuth();
 
-    const { activeBookingId } = useActiveBooking();
+    const { entity: booking } = useActiveBooking();
+
+    const { entity: trip } = useActiveTrip();
 
     const images = useImages(car?.images);
 
@@ -34,6 +36,7 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
     const canBook = user?.role === "user" && car?.status === "available";
 
     const isMyCar = car?.id === activeCarId;
+    const hasActiveTrip = !!trip?.id;
 
     if (!car) return null;
 
@@ -59,17 +62,28 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
                         <AppButton
                             type="button"
                             label="Редагувати"
-                            onClick={() => navigate(ADMIN.carEdit(car.id))}
+                            onClick={() => navigate(ADMIN.carEdit(car?.id))}
                             disabled={!car?.id}
                         />
                     )}
 
-                    {isMyCar && (
+                    {isMyCar && !hasActiveTrip && (
                         <AppButton
                             type="button"
-                            label="Розпочати поїздку"
+                            label="Почати поїздку"
                             className="app-button--size-md"
-                            onClick={() => navigate(USER.tripStart(activeBookingId))}
+                            onClick={() => navigate(USER.tripStart(booking?.id))}
+                            disabled={!booking?.id}
+                        />
+                    )}
+
+                    {isMyCar && hasActiveTrip && (
+                        <AppButton
+                            type="button"
+                            label="Активна поїздка"
+                            className="app-button--size-md"
+                            onClick={() => navigate(USER.tripActive(trip?.id))}
+                            disabled={!trip?.id}
                         />
                     )}
 
@@ -77,7 +91,8 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
                         <AppButton
                             type="button"
                             label="Забронювати"
-                            onClick={() => navigate(USER.bookingPeriod(car.id))}
+                            onClick={() => navigate(USER.bookingPeriod(car?.id))}
+                            disabled={!car?.id}
                         />
                     )}
                 </div>

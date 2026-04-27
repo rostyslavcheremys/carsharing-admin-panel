@@ -6,23 +6,28 @@ import {
     query,
     where,
     updateDoc,
-    deleteDoc,
     runTransaction
 } from "firebase/firestore";
 
-import { db } from "../firebase";
+import { db, auth } from "../firebase";
 
 export class BookingService {
     static async create(data) {
         return await runTransaction(db, async (transaction) => {
+            const userId = auth.currentUser?.uid;
+
+            if (!userId) {
+                throw new Error("Користувач не авторизований!");
+            }
+
             const now = Date.now();
 
             const userBookingsRef = collection(db, "bookings");
 
             const userQuery = query(
                 userBookingsRef,
-                where("userId", "==", data.userId),
-                where("status", "in", ["pending", "confirmed"])
+                where("userId", "==", userId),
+                where("status", "in", ["awaiting_payment", "confirmed"])
             );
 
             const userSnapshot = await getDocs(userQuery);
@@ -32,12 +37,12 @@ export class BookingService {
 
                 const expiresAt = b.expiresAt?.toMillis?.() ?? 0;
 
-                const isPendingActive =
-                    b.status === "pending" && expiresAt > now;
+                const isAwaitingPayment =
+                    b.status === "awaiting_payment" && expiresAt > now;
 
                 const isConfirmed = b.status === "confirmed";
 
-                return isPendingActive || isConfirmed;
+                return isAwaitingPayment || isConfirmed;
             });
 
             if (hasActiveBooking) {
@@ -61,11 +66,12 @@ export class BookingService {
 
             transaction.set(bookingRef, {
                 ...data,
-                status: "pending",
+                userId,
+                status: "awaiting_payment",
                 plannedStart: new Date(data.plannedStart),
                 plannedEnd: new Date(data.plannedEnd),
                 createdAt: new Date(),
-                expiresAt: new Date(Date.now() + 3 * 60 * 1000),
+                expiresAt: new Date(Date.now() + 3 * 60 * 1000)
             });
 
             return {
@@ -86,7 +92,7 @@ export class BookingService {
 
             const booking = bookingSnap.data();
 
-            if (booking.status !== "pending") {
+            if (booking.status !== "awaiting_payment") {
                 throw new Error("Бронювання вже неактивне!");
             }
 
@@ -124,7 +130,7 @@ export class BookingService {
 
         const booking = bookingSnap.data();
 
-        if (booking.status !== "pending") return;
+        if (booking.status !== "awaiting_payment") return;
 
         await updateDoc(bookingRef, {
             status: "cancelled",
@@ -132,21 +138,26 @@ export class BookingService {
     }
 
     static async delete(bookingId) {
-        const bookingRef = doc(db, "bookings", bookingId);
-        const bookingSnap = await getDoc(bookingRef);
+        await runTransaction(db, async (transaction) => {
+            const bookingRef = doc(db, "bookings", bookingId);
+            const bookingSnap = await transaction.get(bookingRef);
 
-        if (!bookingSnap.exists()) {
-            throw new Error("Бронювання не знайдено!");
-        }
+            if (!bookingSnap.exists()) {
+                throw new Error("Бронювання не знайдено!");
+            }
 
-        const booking = bookingSnap.data();
+            const booking = bookingSnap.data();
 
-        if (booking.status === "confirmed") {
-            const carRef = doc(db, "cars", booking.carId);
-            await updateDoc(carRef, { status: "available" });
-        }
+            if (booking.status === "confirmed") {
+                const carRef = doc(db, "cars", booking.carId);
 
-        await deleteDoc(bookingRef);
+                transaction.update(carRef, {
+                    status: "available"
+                });
+            }
+
+            transaction.delete(bookingRef);
+        });
     }
 
     static async getActiveBookingByUser(userId) {

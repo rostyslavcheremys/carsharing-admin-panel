@@ -1,6 +1,18 @@
-import { Actions, Loader, DataTable } from "../../../components";
+import {
+    Actions,
+    Loader,
+    DataTable,
+    MessageDialog
+} from "../../../components";
 
-import { useCollection, useTableColumns } from "../../../hooks";
+import {
+    useCollection,
+    useDelete,
+    useTableColumns,
+    useMessageDialog
+} from "../../../hooks";
+
+import { TripService } from "../../../services";
 
 import { TRIPS_TABLE_COLUMNS, TRIPS_ACTIONS } from "../../../constants";
 
@@ -11,21 +23,36 @@ export const TripsManagementPage = () => {
         error,
     } = useCollection("trips");
 
+    const { isDeleting, handleDelete } = useDelete(TripService.delete);
+
     const columns = useTableColumns(TRIPS_TABLE_COLUMNS, {
         actions: (trip) => (
             <Actions
                 id={trip?.id}
-                actions={TRIPS_ACTIONS}
+                actions={TRIPS_ACTIONS(handleDelete, showMessage)}
             />
         ),
     });
 
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
+
     return (
-        <Loader isLoading={isLoading} error={error}>
+        <Loader isLoading={isLoading || isDeleting} error={error}>
             <div className="page page__content">
                 <span className="page__title">Керування поїздками</span>
 
                 <DataTable rows={trips} columns={columns} />
+
+                <MessageDialog
+                    open={messageOpen}
+                    onClose={handleMessageClose}
+                    message={message}
+                />
             </div>
         </Loader>
     );

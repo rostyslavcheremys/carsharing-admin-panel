@@ -3,14 +3,17 @@ import { Controller } from "react-hook-form";
 import { FormText } from "../../components";
 
 export const TextController = ({
-                                    control,
-                                    name,
-                                    label,
-                                    type,
-                                    className="",
-                                    defaultValue,
-                                    rules,
-                                    disabled
+                                   control,
+                                   name,
+                                   label,
+                                   type,
+                                   className="",
+                                   defaultValue,
+                                   rules,
+                                   disabled,
+                                   multiline = false,
+                                   rows = 4,
+                                   maxRows
                                 }) => {
     return (
         <Controller
@@ -27,6 +30,9 @@ export const TextController = ({
                         value={field.value}
                         disabled={disabled}
                         error={!!fieldState.error}
+                        multiline={multiline}
+                        rows={rows}
+                        maxRows={maxRows}
                         {...field}
                     />
                     {fieldState.error &&

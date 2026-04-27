@@ -1,6 +1,6 @@
 import { ROLES, USER_STATUS, VERIFICATION_STATUS } from "./options.js";
 
-import { getFormattedTimestamp } from "../../utils";
+import { formatDateTime } from "../../utils";
 
 export const USER_DETAILS = [
     { label: "ID:", key: "id" },
@@ -13,10 +13,10 @@ export const USER_DETAILS = [
     { label: "Номер телефону:", key: "phoneNumber" },
     {
         label: "Дата народження:", key: "birthDate",
-        formatter: (user) => getFormattedTimestamp(user)
+        formatter: (user) => formatDateTime(user)
     },
     {
         label: "Дата створення:", key: "createdAt",
-        formatter: (user) => getFormattedTimestamp(user, true)
+        formatter: (user) => formatDateTime(user, true)
     },
 ];

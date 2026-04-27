@@ -4,6 +4,7 @@ import {
     setDoc,
     updateDoc,
     deleteDoc,
+    getDoc,
 } from "firebase/firestore";
 
 import { ref, deleteObject, listAll } from "firebase/storage";
@@ -63,5 +64,17 @@ export class CarService {
         const deletePromises = fileList.items.map(fileRef => deleteObject(fileRef));
 
         await Promise.all(deletePromises);
+    }
+
+    static async getById(carId) {
+        const carRef = doc(db, "cars", carId);
+        const carSnap = await getDoc(carRef);
+
+        if (!carSnap.exists()) return null;
+
+        return {
+            id: carSnap.id,
+            ...carSnap.data(),
+        }
     }
 }

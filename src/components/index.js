@@ -4,6 +4,7 @@ export * from "./Auth/AuthRedirect.jsx";
 
 export * from "./Buttons/ActionIconButton.jsx";
 export * from "./Buttons/AppButton.jsx";
+export * from "./Buttons/CarAccessButton.jsx";
 export * from "./Buttons/DiiaButton.jsx";
 export * from "./Buttons/FormButton.jsx";
 export * from "./Buttons/NavigateIconButton.jsx";

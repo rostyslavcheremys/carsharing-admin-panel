@@ -11,7 +11,6 @@ import {
 } from "../../../components";
 
 import {
-    useAuth,
     useDocument,
     useMessageDialog
 } from "../../../hooks";
@@ -38,8 +37,6 @@ export const BookingPeriodPage = () => {
 
     const { id } = useParams();
 
-    const { user } = useAuth();
-
     const {
         document: car, isLoading, error
     } = useDocument("cars", id);
@@ -51,7 +48,10 @@ export const BookingPeriodPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit
+    } = useForm({
         defaultValues: BOOKING_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
@@ -78,15 +78,12 @@ export const BookingPeriodPage = () => {
         try {
             setIsSubmitting(true);
 
-            const bookingData = {
+            const booking = await BookingService.create({
                 carId: id,
-                userId: user.id,
                 price: totalPrice,
                 plannedStart: data.plannedStart,
                 plannedEnd: data.plannedEnd,
-            }
-
-            const booking = await BookingService.create(bookingData);
+            });
 
             navigate(USER.bookingPayment(booking.id));
         } catch (error) {
@@ -95,9 +92,6 @@ export const BookingPeriodPage = () => {
             setIsSubmitting(false);
         }
     }
-
-    console.log("START:", plannedStart);
-    console.log("END:", plannedEnd);
 
     return (
         <Loader isLoading={isLoading || isSubmitting} error={error}>
@@ -136,7 +130,7 @@ export const BookingPeriodPage = () => {
                             type="button"
                             label="Назад"
                             onClick={() => navigate(-1)}
-                            disabled={isLoading}
+                            disabled={isLoading || messageOpen}
                         />
                     </div>
                 </form>

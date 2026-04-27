@@ -8,8 +8,6 @@ import {
     TRANSMISSION_TYPES,
 } from "./options.js";
 
-import { getFormattedTimestamp } from "../../utils";
-
 export const CAR_USER_DETAILS = [
     { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
     { label: "Марка:", key: "brand" },
@@ -50,16 +48,4 @@ export const CAR_ADMIN_DETAILS = [
     { label: "Колір:", key: "color", map: COLORS },
     { label: "Кількість місць:", key: "seats" },
     { label: "Рейтинг:", key: "rating", suffix: "★" },
-];
-
-export const CAR_CONDITION_DETAILS = [
-    { label: "ID:", key: "id" },
-    { label: "Опис:", key: "description" },
-    { label: "Пробіг:", key: "mileage", suffix: "км" },
-    { label: "Рівень пального:", key: "energyLevel.fuelPercent", suffix: "%" },
-    { label: "Рівень заряду батареї:", key: "energyLevel.batteryPercent", suffix: "%" },
-    {
-        label: "Дата створення:", key: "createdAt",
-        formatter: (user) => getFormattedTimestamp(user, true)
-    },
 ];

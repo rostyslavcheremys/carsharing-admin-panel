@@ -1,6 +1,6 @@
 import { VERIFICATION_STATUS } from "../users/options.js";
 
-import { getFormattedTimestamp } from "../../utils";
+import { formatDateTime } from "../../utils";
 
 export const PROFILE_DETAILS = [
     { label: "Ім’я:", key: "firstName" },
@@ -10,6 +10,6 @@ export const PROFILE_DETAILS = [
     { label: "Номер телефону:", key: "phoneNumber" },
     {
         label: "Дата народження:", key: "birthDate",
-        formatter: (user) => getFormattedTimestamp(user)
+        formatter: (user) => formatDateTime(user)
     },
 ];

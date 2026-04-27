@@ -1,10 +1,11 @@
 .info-message {
     padding: 10px 14px;
     border-radius: 10px;
-    width: 450px;
+    width: 500px;
     transition: border 0.2s ease-in-out;
     border : 2px solid var(--grey-color);
     cursor: default;
+    white-space: pre-line;
 }
 
 .info-message:hover {
@@ -20,7 +21,7 @@
 
 @media (max-width: 768px) {
     .info-message {
-        width: 350px;
+        width: 400px;
     }
 
     .info-message__text {
@@ -28,7 +29,7 @@
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .info-message {
         width: 300px;
     }

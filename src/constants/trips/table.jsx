@@ -13,7 +13,7 @@ import {
 
 import {
     getString,
-    getFormattedTimestamp,
+    formatDateTime,
     getLabel
 } from "../../utils";
 
@@ -30,6 +30,14 @@ export const TRIPS_TABLE_COLUMNS = [
     {
         id: "status", label: "Статус",
         render: (trip) => getLabel(trip?.status, TRIP_STATUS)
+    },
+    {
+        id: "price", label: "Вартість",
+        render: (trip) => getString(trip?.price)
+    },
+    {
+        id: "additionalCharge", label: "Доплата",
+        render: (trip) => getString(trip?.additionalCharge)
     },
     {
         id: "totalPrice", label: "Загальна вартість",
@@ -66,20 +74,20 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "beforeConditionId", label: "Стан до поїздки",
+        id: "conditionStartId", label: "Стан перед поїздкою",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.beforeConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionStartId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
         )
     },
     {
-        id: "afterConditionId", label: "Стан після поїздки",
+        id: "conditionEndId", label: "Стан після поїздки",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.afterConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionEndId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
@@ -122,11 +130,11 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "plannedStart", label: "Фактичний початок",
-        render: (trip) => getFormattedTimestamp(trip?.actualStart, true)
+        id: "plannedStart", label: "Початок",
+        render: (trip) => formatDateTime(trip?.actualStart, true)
     },
     {
-        id: "plannedEnd", label: "Фактичне завершення",
-        render: (trip) => getFormattedTimestamp(trip?.actualEnd, true)
+        id: "plannedEnd", label: "Завершення",
+        render: (trip) => formatDateTime(trip?.actualEnd, true)
     }
 ];

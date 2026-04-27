@@ -1,4 +1,5 @@
 export const TRIP_STATUS = [
     { value: "active", label: "Активна" },
-    { value: "finished", label: "Завершена" },
+    { value: "awaiting_payment", label: "Очікування оплати" },
+    { value: "completed", label: "Завершена" },
 ];

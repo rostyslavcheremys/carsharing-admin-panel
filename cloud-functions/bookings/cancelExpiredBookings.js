@@ -5,7 +5,7 @@ export const cancelExpiredBookings = onSchedule("every 1 minutes", async () => {
     const now = Date.now();
 
     const snapshot = await db.collection("bookings")
-        .where("status", "==", "pending")
+        .where("status", "==", "awaiting_payment")
         .get();
 
     const batch = db.batch();

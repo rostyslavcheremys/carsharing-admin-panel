@@ -32,7 +32,10 @@ export const BookingPaymentPage = () => {
         document: booking, isLoading, error
     } = useDocument("bookings", id);
 
-    const { timeLeftFormatted } = useCountdown(booking?.expiresAt)
+    const {
+        remainingTimeFormatted,
+        isExpired
+    } = useCountdown(booking?.expiresAt)
 
     const {
         messageOpen,
@@ -75,7 +78,7 @@ export const BookingPaymentPage = () => {
                 <span className="page__title">Оплата бронювання</span>
 
                 <div className="page__label">
-                    Залишилось на оплату: {timeLeftFormatted}
+                    Залишилось на оплату: {remainingTimeFormatted}
                 </div>
 
                 <Details
@@ -84,19 +87,29 @@ export const BookingPaymentPage = () => {
                 />
 
                 <div className="page__buttons">
-                    <AppButton
-                        type="button"
-                        label="Оплатити"
-                        onClick={handlePay}
-                        disabled={isLoading || isPaying || messageOpen}
-                    />
+                    {isExpired ? (
+                        <AppButton
+                            type="button"
+                            label="Карта"
+                            onClick={() => navigate(USER.MAP)}
+                        />
+                    ) : (
+                        <>
+                            <AppButton
+                                type="button"
+                                label="Оплатити"
+                                onClick={handlePay}
+                                disabled={isLoading || isPaying || messageOpen}
+                            />
 
-                    <AppButton
-                        type="button"
-                        label="Скасувати"
-                        onClick={handleCancel}
-                        disabled={isLoading || isCancel || messageOpen}
-                    />
+                            <AppButton
+                                type="button"
+                                label="Скасувати"
+                                onClick={handleCancel}
+                                disabled={isLoading || isCancel || messageOpen}
+                            />
+                        </>
+                    )}
                 </div>
 
                 <MessageDialog

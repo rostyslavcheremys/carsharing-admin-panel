@@ -41,6 +41,7 @@ export const CarEditPage = () => {
         reset
     } = useForm({
         defaultValues: CAR_FORM_DEFAULT_VALUES,
+        mode: "onChange",
     });
 
     const powertrainType = watch("powertrainType");

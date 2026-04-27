@@ -1,4 +1,4 @@
-export const getFormattedTimestamp = (value, withTime = false) => {
+export const formatDateTime = (value, withTime = false) => {
     if (!value) return "—";
 
     let date;

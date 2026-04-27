@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import {
     Loader,
@@ -6,52 +6,68 @@ import {
     AppButton,
 } from "../../../components";
 
-import { useAuth, useDocument } from "../../../hooks";
+import  {
+    useActiveBooking,
+    useBookingCar,
+    useAuth
+} from "../../../hooks";
+
+import { getCarName, getFullName } from "../../../utils";
 
 import { BOOKING_CONFIRM_DETAILS, USER } from "../../../constants";
 
 export const BookingConfirmationPage = () => {
     const navigate = useNavigate();
 
-    const { id } = useParams();
-
-    const { user } = useAuth();
+    const {
+        entity: booking,
+        loading: bookingLoading,
+        error: bookingError,
+    } = useActiveBooking();
 
     const {
-        document: booking,
-        isLoading,
-        error
-    } = useDocument("bookings", id);
+        entity: car,
+        loading: carLoading,
+        error: carError,
+    } = useBookingCar();
 
     const {
-        document: car,
-        isLoading: carLoading,
-        error: carError
-    } = useDocument("cars", booking?.carId);
-
-    const bookingConfirmDetails = {
-        ...booking,
-        car: car ? `${car.brand} ${car.model} • ${car.licensePlate}` : "—",
-        fullName: user ? `${user.firstName} ${user.lastName}` : "—"
-    }
+        user,
+        loading: userLoading,
+        error: userError,
+    } = useAuth();
 
     return (
-        <Loader isLoading={isLoading || carLoading} error={error || carError}>
+        <Loader
+            isLoading={bookingLoading || carLoading || userLoading}
+            error={bookingError || carError || userError}
+        >
             <div className="page page__content">
                 <span className="page__title">Бронювання підтверджено</span>
 
                 <Details
-                    data={bookingConfirmDetails}
+                    data={{
+                        ...booking,
+                        car: getCarName(car),
+                        fullName: getFullName(user),
+                    }}
                     details={BOOKING_CONFIRM_DETAILS}
                 />
 
-                <div className="page__buttons">
+                <div className="page__buttons page__buttons--column">
                     <AppButton
                         type="button"
-                        className="app-button--large"
-                        label="Перейти до авто"
+                        label="Почати поїздку"
+                        className="app-button--size-md"
+                        onClick={() => navigate(USER.tripStart(booking?.id))}
+                        disabled={bookingLoading || carLoading || userLoading}
+                    />
+
+                    <AppButton
+                        type="button"
+                        label="Карта"
                         onClick={() => navigate(USER.MAP)}
-                        disabled={isLoading || carLoading}
+                        disabled={bookingLoading || carLoading || userLoading}
                     />
                 </div>
             </div>
