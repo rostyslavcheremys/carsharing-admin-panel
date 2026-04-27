@@ -5,45 +5,66 @@ import {
     Loader,
     CarAccessButton,
     AppButton,
+    MessageDialog,
 } from "../../../components";
 
+import {
+    useTripCar,
+    useMessageDialog
+} from "../../../hooks";
+
+import { CarService } from "../../../services";
+
+import { getErrorMessage } from "../../../utils";
+
 export const CarAccessPage = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
-    const handleOpen = async () => {
-        setLoading(true);
-        try {
+    const {
+        entity: car,
+        loading: carLoading,
+        error: carError,
+        refetch
+    } = useTripCar();
 
-            setIsOpen(true);
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+    const isLocked = car?.isLocked;
+
+    console.log(isLocked)
+
+    const handleToggle = async () => {
+        try {
+            setLoading(true);
+
+            await (isLocked ? CarService.unlock(car.id) : CarService.lock(car.id));
+
+            await refetch();
+        } catch (error) {
+            showMessage(getErrorMessage(error))
         } finally {
             setLoading(false);
         }
-    };
-
-    const handleClose = async () => {
-        setLoading(true);
-        try {
-
-            setIsOpen(false);
-        } finally {
-            setLoading(false);
-        }
-    };
+    }
 
     return (
-        <Loader>
+        <Loader isLoading={isLoading || carLoading} error={carError}>
             <div className="page page__content">
                 <span className="page__title">
-                    Автомобіль {isOpen ? "Відкрито" : "Закрито"}
+                    Автомобіль {isLocked ? "Розблоковано" : "Заблоковано"}
                 </span>
 
                 <CarAccessButton
-                    isOpen={isOpen}
-                    onClick={isOpen ? handleClose : handleOpen}
-                    loading={loading}
+                    isLocked={isLocked}
+                    onClick={handleToggle}
+                    loading={isLoading || carLoading}
                 />
 
                 <div className="page__button">
@@ -51,9 +72,15 @@ export const CarAccessPage = () => {
                         type="button"
                         label="Назад"
                         onClick={() => navigate(-1)}
-                        disabled={loading}
+                        disabled={isLoading}
                     />
                 </div>
+
+                <MessageDialog
+                    open={messageOpen}
+                    onClose={handleMessageClose}
+                    message={message}
+                />
             </div>
         </Loader>
     );

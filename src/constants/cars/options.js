@@ -4,6 +4,11 @@ export const CAR_STATUS = [
     { value: "unavailable", label: "Неактивний" },
 ];
 
+export const CAR_LOCK_STATUS = [
+    { value: true, label: "Розблоковано" },
+    { value: false, label: "Заблоковано" }
+];
+
 export const TRANSMISSION_TYPES = [
     { value: "automatic", label: "Автомат" },
     { value: "manual", label: "Механіка" },
