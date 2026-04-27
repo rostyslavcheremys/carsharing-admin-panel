@@ -25,6 +25,7 @@ erDiagram
         map battery "Батарея"
         map engine "Двигун"
         array images "Фотографії"
+        boolean isLocked "Доступ"
         geopoint location "Місцезнаходження"
     }
 
@@ -73,9 +74,11 @@ erDiagram
         string carId "ID автомобіля"
         string userId "ID користувача"
         string bookingId "ID бронювання"
-        string conditionStartId "ID фіксації стану перед початком поїздки"
-        string conditionEndId "ID фіксації стану після завершення поїздки"
+        string conditionStartId "ID Стану перед поїздкою"
+        string conditionEndId "ID Стану після поїздки"
         string status "Статус"
+        int64 price "Вартість"
+        int64 additionalCharge "Доплата"
         int64 totalPrice "Загальна вартість"
         timestamp actualStart "Фактичний початок"
         timestamp actualEnd "Фактичне завершення"
