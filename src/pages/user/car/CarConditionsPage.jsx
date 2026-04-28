@@ -91,6 +91,8 @@ export const CarConditionsPage = ({ type }) => {
         }
     }
 
+    const isEnd = type === "end";
+
     return (
         <Loader
             isLoading={isSaving || isLoadingTrip || isLoading}
@@ -98,7 +100,9 @@ export const CarConditionsPage = ({ type }) => {
         >
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title">Фіксація стану автомобіля</span>
+                    <span className="page__title">
+                        {isEnd ? "Кінцева фотофіксація" : "Початкова фотофіксація"}
+                    </span>
 
                     <FileUploadController
                         control={control}
