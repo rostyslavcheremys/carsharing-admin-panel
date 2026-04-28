@@ -77,4 +77,20 @@ export class CarService {
             ...carSnap.data(),
         }
     }
+
+    static async toggleLock(carId, isLocked) {
+        if (!carId) throw new Error("Автомобіль не знайдено!");
+
+        const carRef = doc(db, "cars", carId);
+
+        await updateDoc(carRef, { isLocked });
+    }
+
+    static async lock(carId) {
+        return this.toggleLock(carId, true);
+    }
+
+    static async unlock(carId) {
+        return this.toggleLock(carId, false);
+    }
 }

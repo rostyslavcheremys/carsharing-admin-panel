@@ -3,16 +3,16 @@ import { IconButton } from "../../libs/mui";
 import { LockIcon, LockOpenIcon } from "../../libs/mui-icons";
 
 export const CarAccessButton = ({
-                                    isOpen,
+                                    isLocked,
                                     onClick,
                                     disabled,
                                     loading,
                                 }) => {
-    const Icon = isOpen ? LockOpenIcon : LockIcon;
+    const Icon = isLocked ? LockOpenIcon : LockIcon;
 
     return (
         <IconButton
-            className={`car-access-button ${isOpen ? "car-access-button--open" : ""}`}
+            className={`car-access-button ${isLocked ? "car-access-button--open" : ""}`}
             onClick={onClick}
             disabled={disabled || loading}
         >

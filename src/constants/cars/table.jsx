@@ -14,6 +14,7 @@ import {
     POWERTRAIN_TYPES,
     CAR_STATUS,
     TRANSMISSION_TYPES,
+    CAR_LOCK_STATUS,
 } from "./options.js";
 
 export const CARS_TABLE_COLUMNS = [
@@ -25,6 +26,10 @@ export const CARS_TABLE_COLUMNS = [
     {
         id: "status", label: "Статус",
         render: (car) => getLabel(car?.status, CAR_STATUS)
+    },
+    {
+        id: "isLocked", label: "Доступ",
+        render: (car) => getLabel(car?.isLocked, CAR_LOCK_STATUS)
     },
     {
         id: "pricePerDay", label: "Вартість за добу",

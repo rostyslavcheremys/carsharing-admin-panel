@@ -13,11 +13,13 @@ export const useTripCar = () => {
         entity: car,
         loading: carLoading,
         error: carError,
+        refetch,
     } = useEntity(trip?.carId, CarService.getById);
 
     return {
         entity: car,
         loading: tripLoading || carLoading,
         error: tripError || carError,
+        refetch,
     }
 }

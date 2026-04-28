@@ -13,6 +13,7 @@ export const getCarObject = (data, id, imageUrls = []) => {
         model: getString(data.model),
         licensePlate: getString(data.licensePlate),
         status: getString(data.status),
+        isLocked: !!data.isLocked,
         transmissionType: getString(data.transmissionType),
         powertrainType: getString(data.powertrainType),
         bodyType: getString(data.bodyType),

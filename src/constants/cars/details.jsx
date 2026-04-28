@@ -6,6 +6,7 @@ import {
     POWERTRAIN_TYPES,
     CAR_STATUS,
     TRANSMISSION_TYPES,
+    CAR_LOCK_STATUS,
 } from "./options.js";
 
 export const CAR_USER_DETAILS = [
@@ -31,6 +32,7 @@ export const CAR_USER_DETAILS = [
 export const CAR_ADMIN_DETAILS = [
     { label: "ID:", key: "id" },
     { label: "Статус:", key: "status", map: CAR_STATUS },
+    { label: "Доступ:", key: "isLocked", map: CAR_LOCK_STATUS },
     { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },
     { label: "Марка:", key: "brand" },
     { label: "Модель:", key: "model" },
