@@ -10,7 +10,7 @@ export const CAR_ACTION_MESSAGES = {
 }
 
 export const CAR_CONDITION_ACTION_MESSAGES = {
-    CREATE_SUCCESS: "Фіксацію стану збережено!",
+    CREATE_SUCCESS: "Фотофіксацію стану автомобіля збережено!",
 }
 
 export const USER_ACTION_MESSAGES = {

@@ -78,6 +78,18 @@ export class TripService {
                 throw new Error("Поїздка вже завершена!");
             }
 
+            if (!trip.conditionStartId) {
+                throw new Error(
+                    "Перед завершенням поїздки необхідно виконати початкову фотофіксацію стану автомобіля!"
+                );
+            }
+
+            if (!trip.conditionEndId) {
+                throw new Error(
+                    "Перед завершенням поїздки необхідно виконати кінцеву фотофіксацію стану автомобіля!"
+                );
+            }
+
             const carRef = doc(db, "cars", trip.carId);
             const carSnap = await transaction.get(carRef);
 

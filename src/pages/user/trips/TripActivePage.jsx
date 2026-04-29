@@ -64,6 +64,10 @@ export const TripActivePage = () => {
         }
     }
 
+    const hasStartCondition = !!trip?.conditionStartId;
+    const hasEndCondition = !!trip?.conditionEndId;
+    const showConditionButton = !(hasStartCondition && hasEndCondition);
+
     return (
         <Loader
             isLoading={isLoadingBooking || isLoadingTrip || isEndingTrip}
@@ -80,21 +84,33 @@ export const TripActivePage = () => {
                     <AppButton
                         type="button"
                         label="Керування замком"
-                        className="app-button--size-md"
+                        className="app-button--size-lg"
                         onClick={() => navigate(USER.tripAccess(trip?.carId))}
                     />
 
-                    <AppButton
-                        type="button"
-                        label="Фіксація стану"
-                        className="app-button--size-md"
-                        onClick={() => navigate(USER.tripConditionStart(trip?.id))}
-                    />
+                    {showConditionButton && (
+                        <AppButton
+                            type="button"
+                            label={
+                                hasStartCondition
+                                    ? "Кінцева фотофіксація"
+                                    : "Початкова фотофіксація"
+                            }
+                            className="app-button--size-lg"
+                            onClick={() =>
+                                navigate(
+                                    hasStartCondition
+                                        ? USER.tripConditionEnd(trip?.id)
+                                        : USER.tripConditionStart(trip?.id)
+                                )
+                            }
+                        />
+                    )}
 
                     <AppButton
                         type="button"
                         label="Завершити поїздку"
-                        className="app-button--size-md"
+                        className="app-button--size-lg"
                         onClick={handleEndTrip}
                     />
 
