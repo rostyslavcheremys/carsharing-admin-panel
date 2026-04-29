@@ -74,7 +74,7 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "conditionStartId", label: "Стан перед поїздкою",
+        id: "conditionStartId", label: "Початкова фотофіксація",
         render: (trip) => (
             <NavigateIconButton
                 to={ADMIN.carConditionDetails(trip?.conditionStartId)}
@@ -84,7 +84,7 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "conditionEndId", label: "Стан після поїздки",
+        id: "conditionEndId", label: "Кінцева фотофіксація",
         render: (trip) => (
             <NavigateIconButton
                 to={ADMIN.carConditionDetails(trip?.conditionEndId)}

@@ -25,11 +25,11 @@ export const TRIP_DETAILS = [
         formatter: (id) => <DetailsLink to={ADMIN.bookingDetails(id)} />
     },
     {
-        label: "Стан перед поїздкою:", key: "conditionStartId",
+        label: "Початкова фотофіксація:", key: "conditionStartId",
         formatter: (id) => <DetailsLink to={ADMIN.carConditionDetails(id)} />
     },
     {
-        label: "Стан після поїздки:", key: "conditionEndId",
+        label: "Кінцева фотофіксація:", key: "conditionEndId",
         formatter: (id) => <DetailsLink to={ADMIN.carConditionDetails(id)} />
     },
     {

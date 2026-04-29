@@ -99,6 +99,22 @@ export class TripService {
 
             const car = carSnap.data();
 
+            if (!car.isLocked) {
+                throw new Error(
+                    "Перед завершенням поїздки необхідно заблокувати автомобіль!"
+                );
+            }
+
+            const conditionRef = doc(db, "carConditions", trip.conditionEndId);
+
+            const conditionSnap = await transaction.get(conditionRef);
+
+            if (!conditionSnap.exists()) {
+                throw new Error("Кінцеву фотофіксацію не знайдено!");
+            }
+
+            const condition = conditionSnap.data();
+
             const bookingRef = doc(db, "bookings", trip.bookingId);
 
             const bookingSnap = await transaction.get(bookingRef);
@@ -135,7 +151,12 @@ export class TripService {
                 }
             );
 
-            transaction.update(carRef, { status: "available" });
+            transaction.update(carRef, {
+                status: "available",
+                isLocked: true,
+                mileage: Number(condition.mileage)
+            });
+
             transaction.update(bookingRef, { status: "completed" });
         });
 
