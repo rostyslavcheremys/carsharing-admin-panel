@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import  { useMemo, useState, useEffect } from "react";
 
 import { MyLocationIcon, CloseIcon} from "../../libs/mui-icons";
 
@@ -43,6 +43,10 @@ export const MapDialog = ({
         onSelect?.(tempLocation);
         onClose?.();
     }
+
+    useEffect(() => {
+        setTempLocation(initialLocation);
+    }, [initialLocation]);
 
     return (
         <>

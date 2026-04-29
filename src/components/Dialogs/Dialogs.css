@@ -97,8 +97,8 @@
 
 .dialog__map {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
 }
 
 @media (max-width: 768px) {

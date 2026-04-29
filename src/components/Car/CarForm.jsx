@@ -1,8 +1,8 @@
 import {
     FileUploadController,
+    LocationController,
     TextController,
     SelectController,
-    LocationController,
     AppButton
 } from "../../components";
 
@@ -39,7 +39,6 @@ export const CarForm = ({
                             isSubmitting,
                             submitLabel,
                             showBack,
-                            messageOpen,
                             onBack
                         }) => {
     const isIce = powertrainType === "ice";
@@ -59,6 +58,13 @@ export const CarForm = ({
                     name="images"
                     label="Фотографії*"
                     rules={getRequiredAnyValidation("Фотографії")}
+                />
+
+                <LocationController
+                    control={control}
+                    name="location"
+                    label="Місцезнаходження*"
+                    rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
                 <SelectController
@@ -191,13 +197,6 @@ export const CarForm = ({
                     name="seats"
                     label="Кількість місць*"
                     rules={getSeatsValidation()}
-                />
-
-                <LocationController
-                    control={control}
-                    name="location"
-                    label="Місцезнаходження*"
-                    rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
                 <div className="page__buttons page__buttons--form">

@@ -80,7 +80,6 @@ export const CarEditPage = () => {
                 isSubmitting={isSubmitting}
                 submitLabel="Зберегти"
                 showBack
-                messageOpen={messageOpen}
                 onBack={() => navigate(-1)}
             />
 

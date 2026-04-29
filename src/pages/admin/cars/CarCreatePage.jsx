@@ -68,7 +68,6 @@ export const CarCreatePage = () => {
                 isSubmitting={isSubmitting}
                 submitLabel="Додати"
                 showBack
-                messageOpen={messageOpen}
                 onBack={() => navigate(-1)}
             />
 
