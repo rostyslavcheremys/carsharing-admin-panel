@@ -74,8 +74,8 @@ erDiagram
         string carId "ID автомобіля"
         string userId "ID користувача"
         string bookingId "ID бронювання"
-        string conditionStartId "ID Стану перед поїздкою"
-        string conditionEndId "ID Стану після поїздки"
+        string conditionStartId "ID Початкової фіксації стану"
+        string conditionEndId "ID Кінцевої фіксації стану"
         string status "Статус"
         int64 price "Вартість"
         int64 additionalCharge "Доплата"
@@ -116,8 +116,8 @@ erDiagram
 
     BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
 
-    TRIPS ||--|| CAR_CONDITIONS : "фіксує стан до початку"
-    TRIPS ||--|| CAR_CONDITIONS : "фіксує стан після завершення"
+    TRIPS ||--|| CAR_CONDITIONS : "фіксує початковий стан"
+    TRIPS ||--|| CAR_CONDITIONS : "фіксує кінцевий стан"
     TRIPS ||--|| LOCATION : "починається в"
     TRIPS ||--|| LOCATION : "завершується в"
 
