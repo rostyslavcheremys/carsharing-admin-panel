@@ -1,6 +1,7 @@
 import {
     collection,
     doc,
+    getDoc,
     setDoc,
     updateDoc
 } from "firebase/firestore";
@@ -13,8 +14,22 @@ import { CAR_CONDITION_FIELDS } from "../constants";
 
 export class CarConditionService {
     static async save({ trip, data, type }) {
-
         const conditionRef = doc(collection(db, "carConditions"));
+
+        const carRef = doc(db, "cars", trip.carId);
+        const carSnap = await getDoc(carRef);
+
+        if (!carSnap.exists()) {
+            throw new Error("Автомобіль не знайдено!");
+        }
+
+        const car = carSnap.data();
+
+        if (Number(data.mileage) < Number(car.mileage)) {
+            throw new Error(
+                "Вказаний пробіг не може бути меншим за поточний пробіг автомобіля!"
+            );
+        }
 
         let imageUrls = [];
 

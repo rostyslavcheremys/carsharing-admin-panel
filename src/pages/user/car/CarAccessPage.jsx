@@ -58,7 +58,7 @@ export const CarAccessPage = () => {
         <Loader isLoading={isLoading || carLoading} error={carError}>
             <div className="page page__content">
                 <span className="page__title">
-                    Автомобіль {isLocked ? "Розблоковано" : "Заблоковано"}
+                    Автомобіль {isLocked ? "Заблоковано" : "Розблоковано"}
                 </span>
 
                 <CarAccessButton

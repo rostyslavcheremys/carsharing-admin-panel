@@ -5,8 +5,8 @@ export const CAR_STATUS = [
 ];
 
 export const CAR_LOCK_STATUS = [
-    { value: true, label: "Розблоковано" },
-    { value: false, label: "Заблоковано" }
+    { value: true, label: "Заблоковано" },
+    { value: false, label: "Розблоковано" }
 ];
 
 export const TRANSMISSION_TYPES = [

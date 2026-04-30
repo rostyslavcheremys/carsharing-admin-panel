@@ -8,11 +8,11 @@ export const CarAccessButton = ({
                                     disabled,
                                     loading,
                                 }) => {
-    const Icon = isLocked ? LockOpenIcon : LockIcon;
+    const Icon = isLocked ? LockIcon : LockOpenIcon;
 
     return (
         <IconButton
-            className={`car-access-button ${isLocked ? "car-access-button--open" : ""}`}
+            className={`car-access-button ${isLocked ? "" : "car-access-button--unlock"}`}
             onClick={onClick}
             disabled={disabled || loading}
         >
