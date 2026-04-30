@@ -136,5 +136,9 @@ export const TRIPS_TABLE_COLUMNS = [
     {
         id: "plannedEnd", label: "Завершення",
         render: (trip) => formatDateTime(trip?.actualEnd, true)
-    }
+    },
+    {
+        id: "rating", label: "Рейтинг",
+        render: (car) => getString(car?.rating, "★")
+    },
 ];

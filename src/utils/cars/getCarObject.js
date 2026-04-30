@@ -36,6 +36,5 @@ export const getCarObject = (data, id, imageUrls = []) => {
                 getNumber(data.location?.lat) || "",
                 getNumber(data.location?.lng) || ""
             ),
-        rating: data.rating ?? 0
     }
 }
