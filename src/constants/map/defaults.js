@@ -1,6 +1,6 @@
 export const MAP_FILTERS_DEFAULT_VALUES = {
     status: [],
-    rating: [0, 5],
+    averageRating: [0, 5],
     pricePerDay: [0, 20000],
     year: [2000, 2026],
     bodyType: [],

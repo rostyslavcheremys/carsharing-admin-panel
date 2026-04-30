@@ -41,6 +41,7 @@ export const TRIP_DETAILS = [
         label: "Завершення:", key: "actualEnd",
         formatter: (trip) => formatDateTime(trip, true)
     },
+    { label: "Рейтинг:", key: "rating", suffix: "★" },
 ];
 
 export const TRIP_PAYMENT_DETAILS = [

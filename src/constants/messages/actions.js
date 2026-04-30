@@ -34,4 +34,5 @@ export const TRIP_ACTION_MESSAGES = {
     DELETE_CONFIRM: "Видалити поїздку?",
     DELETE_SUCCESS: "Поїздку видалено!",
     DELETE_ERROR: "Не вдалося видалити поїздку.",
+    RATING_SUCCESS: "Дякуємо за оцінку!"
 }

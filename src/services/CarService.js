@@ -25,7 +25,12 @@ export class CarService {
             imageUrls = uploadResult.urls;
         }
 
-        const carData = getCarObject(data, newCarId, imageUrls);
+        const carData = {
+            ...getCarObject(data, newCarId, imageUrls),
+            averageRating: 0,
+            ratingsCount: 0,
+        }
+
         await setDoc(newCarRef, carData);
 
         return carData;
