@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -11,14 +11,15 @@ import {
 } from "../../../components";
 
 import {
+    useCollection,
     useDocument,
-    useMessageDialog
+    useMessageDialog,
+    useBookingPeriod
 } from "../../../hooks";
 
 import { BookingService } from "../../../services";
 
 import {
-    calculateBookingDays,
     getErrorMessage,
     getPlannedStartValidation,
     getPlannedEndValidation,
@@ -27,11 +28,19 @@ import {
 import {
     USER,
     BOOKING_FORM_DEFAULT_VALUES,
-    BOOKING_PERIOD_DETAILS
+    BOOKING_PERIOD_DETAILS,
 } from "../../../constants";
 
 export const BookingPeriodPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const {
+        control,
+        handleSubmit
+    } = useForm({
+        defaultValues: BOOKING_FORM_DEFAULT_VALUES,
+        mode: "onChange",
+    });
 
     const navigate = useNavigate();
 
@@ -42,19 +51,9 @@ export const BookingPeriodPage = () => {
     } = useDocument("cars", id);
 
     const {
-        messageOpen,
-        message,
-        showMessage,
-        handleMessageClose,
-    } = useMessageDialog();
-
-    const {
-        control,
-        handleSubmit
-    } = useForm({
-        defaultValues: BOOKING_FORM_DEFAULT_VALUES,
-        mode: "onChange",
-    });
+        data: bookings,
+        isLoading: bookingsLoading,
+    } = useCollection("bookings");
 
     const plannedStart = useWatch({
         control, name: "plannedStart",
@@ -66,13 +65,24 @@ export const BookingPeriodPage = () => {
 
     const pricePerDay = car?.pricePerDay;
 
-    const days = useMemo(() => {
-        return calculateBookingDays(plannedStart, plannedEnd);
-    }, [plannedStart, plannedEnd]);
+    const {
+        disabledRanges,
+        days,
+        totalPrice
+    } = useBookingPeriod(
+        bookings,
+        id,
+        plannedStart,
+        plannedEnd,
+        pricePerDay
+    );
 
-    const totalPrice = useMemo(() => {
-        return days * pricePerDay;
-    }, [days, pricePerDay]);
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose,
+    } = useMessageDialog();
 
     const onSubmit = async (data) => {
         try {
@@ -94,7 +104,7 @@ export const BookingPeriodPage = () => {
     }
 
     return (
-        <Loader isLoading={isLoading || isSubmitting} error={error}>
+        <Loader isLoading={isLoading || isSubmitting || bookingsLoading} error={error}>
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <span className="page__title form">Період бронювання</span>
@@ -104,6 +114,7 @@ export const BookingPeriodPage = () => {
                         name="plannedStart"
                         label="Початок*"
                         rules={getPlannedStartValidation()}
+                        disabledRanges={disabledRanges}
                     />
 
                     <DateTimeController
@@ -111,6 +122,7 @@ export const BookingPeriodPage = () => {
                         name="plannedEnd"
                         label="Завершення*"
                         rules={getPlannedEndValidation(plannedStart)}
+                        disabledRanges={disabledRanges}
                     />
 
                     <Details

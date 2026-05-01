@@ -4,26 +4,43 @@ import dayjs from "dayjs";
 
 import { DateTimePicker } from "../../libs/mui";
 
-export const FormDateTime = forwardRef(
-    ({ label, value, onChange, disabled, error, disablePast = false }, ref) => {
-        return (
-            <div className="form">
-                <span className="form__label">{label}</span>
+import { isDateInRanges } from "../../utils";
 
-                <DateTimePicker
-                    value={value || dayjs(value)}
-                    disabled={disabled}
-                    disablePast={disablePast}
-                    onChange={onChange}
-                    slotProps={{
-                        textField: {
-                            inputRef: ref,
-                            error: error,
-                            className: "form__field",
-                        },
-                    }}
-                />
-            </div>
-        );
-    }
-);
+export const FormDateTime = forwardRef((
+    {
+        label,
+        value,
+        onChange,
+        disabled,
+        error,
+        disablePast = false,
+        disabledRanges
+    },
+    ref
+) => {
+    return (
+        <div className="form">
+            <span className="form__label">{label}</span>
+
+            <DateTimePicker
+                value={value || dayjs(value)}
+                onChange={onChange}
+                disabled={disabled}
+                disablePast={disablePast}
+                shouldDisableDate={(date) =>
+                    isDateInRanges(date, disabledRanges)
+                }
+                shouldDisableTime={(value) =>
+                    isDateInRanges(value, disabledRanges)
+                }
+                slotProps={{
+                    textField: {
+                        inputRef: ref,
+                        error,
+                        className: "form__field",
+                    },
+                }}
+            />
+        </div>
+    );
+});

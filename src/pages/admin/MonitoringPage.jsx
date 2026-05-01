@@ -9,8 +9,6 @@ export const MonitoringPage = () => {
         error,
     } = useCollection("cars");
 
-    console.log(cars);
-
     return (
         <Loader isLoading={isLoading} error={error}>
             <div className="page">
