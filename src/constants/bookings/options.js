@@ -4,3 +4,8 @@ export const BOOKING_STATUS = [
     { value: "cancelled", label: "Скасовано" },
     { value: "completed", label: "Завершено" },
 ];
+
+export const ACTIVE_BOOKING_STATUS = [
+    "awaiting_payment",
+    "confirmed"
+];

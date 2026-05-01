@@ -3,6 +3,8 @@ export * from "./bookings/calculateBookingDays.js";
 export * from "./cars/getCarObject.js";
 export * from "./cars/getCarValues.js";
 
+export * from "./date/dateRange.js";
+
 export * from "./firebase/getDocumentById.js";
 
 export * from "./formatters/formatDays.js";
@@ -21,6 +23,7 @@ export * from "./images/uploadImages.js";
 export * from "./images/deleteImages.js";
 
 export * from "./map/getCarMarkerIcon.js";
+export * from "./map/getIconUrl.js";
 export * from "./map/getPickerMarkerIcon.js";
 export * from "./map/getTripLocation.js";
 

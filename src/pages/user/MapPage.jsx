@@ -24,7 +24,10 @@ export const MapPage = () => {
     const filteredCars = useAvailableCars(cars, activeCarId);
 
     return (
-        <Loader isLoading={isLoading || isLoadingBooking} error={error || errorBooking}>
+        <Loader
+            isLoading={isLoading || isLoadingBooking}
+            error={error || errorBooking}
+        >
             <div className="page">
                 <Map
                     cars={filteredCars}

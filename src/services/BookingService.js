@@ -56,10 +56,37 @@ export class BookingService {
                 throw new Error("Автомобіль не знайдено!");
             }
 
-            const car = carSnap.data();
+            const bookingsRef = collection(db, "bookings");
 
-            if (car.status === "rented") {
-                throw new Error("Автомобіль вже зайнятий!");
+            const bookingsQuery = query(
+                bookingsRef,
+                where("carId", "==", data.carId),
+                where("status", "in", ["awaiting_payment", "confirmed"])
+            );
+
+            const bookingsSnapshot = await getDocs(bookingsQuery);
+
+            const newStart = new Date(data.plannedStart);
+
+            const newEnd = new Date(data.plannedEnd);
+
+            const hasConflict = bookingsSnapshot.docs.some(docSnap => {
+                const b = docSnap.data();
+                const expiresAt = b.expiresAt?.toMillis?.() ?? 0;
+
+                const isAwaitingPaymentActive = b.status === "awaiting_payment" && expiresAt > now;
+                const isConfirmed = b.status === "confirmed";
+
+                if (!isAwaitingPaymentActive && !isConfirmed) return false;
+
+                const bStart = b.plannedStart.toDate();
+                const bEnd = b.plannedEnd.toDate();
+
+                return newStart <= bEnd && newEnd >= bStart;
+            });
+
+            if (hasConflict) {
+                throw new Error("Автомобіль вже заброньований на обраний період!");
             }
 
             const bookingRef = doc(collection(db, "bookings"));
@@ -110,15 +137,7 @@ export class BookingService {
                 throw new Error("Автомобіль не знайдено!");
             }
 
-            const car = carSnap.data();
-
-            if (car.status === "rented") {
-                transaction.update(bookingRef, { status: "cancelled" });
-                throw new Error("Автомобіль вже зайнятий!");
-            }
-
             transaction.update(bookingRef, { status: "confirmed" });
-            transaction.update(carRef, { status: "rented" });
         });
     }
 

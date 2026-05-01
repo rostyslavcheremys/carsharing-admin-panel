@@ -15,6 +15,14 @@ import { db } from "../firebase";
 
 export class TripService {
     static async start(booking) {
+        const now = new Date();
+
+        const plannedStart = booking.plannedStart?.toDate?.() ?? booking.plannedStart;
+
+        if (plannedStart && now < plannedStart) {
+            throw new Error("Поїздку можна розпочати після запланованого часу!");
+        }
+
         const tripQuery = query(
             collection(db, "trips"),
             where("bookingId", "==", booking.id),
@@ -36,8 +44,8 @@ export class TripService {
 
         const car = carSnap.data();
 
-        if (car.status !== "rented") {
-            throw new Error("Автомобіль не заброньований!");
+        if (car.status !== "available") {
+            throw new Error("Автомобіль зараз недоступний!");
         }
 
         const tripRef = await addDoc(
@@ -54,6 +62,8 @@ export class TripService {
                 startLocation: car.location || null,
             }
         );
+
+        await updateDoc(carRef, { status: "rented" });
 
         return tripRef.id;
     }

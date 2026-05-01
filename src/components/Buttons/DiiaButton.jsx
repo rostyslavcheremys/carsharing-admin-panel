@@ -1,12 +1,11 @@
-import lightLogo from "../../assets/icons/diia-light.svg";
-import darkLogo from "../../assets/icons/diia-dark.svg";
+import { diiaDark, diiaLight } from "../../assets/icons";
 
 import { useTheme } from "../../hooks";
 
 export const DiiaButton = ({ onClick, disabled = false }) => {
     const { darkMode } = useTheme();
 
-    const diiaLogo = darkMode ? lightLogo : darkLogo;
+    const diiaLogo = darkMode ? diiaLight : diiaDark;
 
     return (
         <div
