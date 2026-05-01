@@ -214,4 +214,45 @@ export class TripService {
             ...docSnap.data()
         }
     }
+
+    static async setRating(tripId, rating) {
+        await runTransaction(db, async (transaction) => {
+            const tripRef = doc(db, "trips", tripId);
+            const tripSnap = await transaction.get(tripRef);
+
+            if (!tripSnap.exists()) {
+                throw new Error("Поїздку не знайдено!");
+            }
+
+            const trip = tripSnap.data();
+
+            if (trip.rating) {
+                throw new Error("Оцінка вже виставлена!");
+            }
+
+            const carRef = doc(db, "cars", trip.carId);
+            const carSnap = await transaction.get(carRef);
+
+            if (!carSnap.exists()) {
+                throw new Error("Автомобіль не знайдено!");
+            }
+
+            const car = carSnap.data();
+
+            const currentAvg = car.averageRating || 0;
+            const currentCount = car.ratingsCount || 0;
+
+            const newCount = currentCount + 1;
+            const newAvg = Number(
+                ((currentAvg * currentCount + rating) / newCount).toFixed(1)
+            );
+
+            transaction.update(tripRef, { rating });
+
+            transaction.update(carRef, {
+                averageRating: newAvg,
+                ratingsCount: newCount
+            });
+        });
+    }
 }

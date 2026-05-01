@@ -26,7 +26,8 @@ export const CAR_USER_DETAILS = [
     { label: "Тип приводу:", key: "driveType", map: DRIVE_TYPES },
     { label: "Колір:", key: "color", map: COLORS },
     { label: "Кількість місць:", key: "seats" },
-    { label: "Рейтинг:", key: "rating" },
+    { label: "Кількість оцінок:", key: "ratingsCount" },
+    { label: "Рейтинг:", key: "averageRating", suffix: "★" },
 ];
 
 export const CAR_ADMIN_DETAILS = [
@@ -49,5 +50,6 @@ export const CAR_ADMIN_DETAILS = [
     { label: "Тип приводу:", key: "driveType", map: DRIVE_TYPES },
     { label: "Колір:", key: "color", map: COLORS },
     { label: "Кількість місць:", key: "seats" },
-    { label: "Рейтинг:", key: "rating", suffix: "★" },
+    { label: "Кількість оцінок:", key: "ratingsCount" },
+    { label: "Рейтинг:", key: "averageRating", suffix: "★" },
 ];

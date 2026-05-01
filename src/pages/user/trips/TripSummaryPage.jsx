@@ -1,22 +1,39 @@
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 import {
     Loader,
     Details,
-    AppButton
+    RatingController,
+    AppButton,
+    MessageDialog,
 } from "../../../components";
 
-import { useDocument, useAuth } from "../../../hooks";
+import {
+    useDocument,
+    useAuth,
+    useMessageDialog
+} from "../../../hooks";
+
+import { TripService } from "../../../services";
 
 import {
     getCarName,
     getFullName,
-    getTripDuration
+    getTripDuration,
+    getErrorMessage
 } from "../../../utils";
 
-import { TRIP_SUMMARY_DETAILS, USER } from "../../../constants";
+import {
+    TRIP_ACTION_MESSAGES,
+    TRIP_SUMMARY_DETAILS,
+    USER
+} from "../../../constants";
 
 export const TripSummaryPage = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const navigate = useNavigate();
 
     const { id } = useParams();
@@ -39,9 +56,45 @@ export const TripSummaryPage = () => {
         error: userError,
     } = useAuth();
 
+    const {
+        control,
+        handleSubmit,
+        reset
+    } = useForm({
+        defaultValues: { rating: 0 }
+    });
+
+    const {
+        messageOpen,
+        message,
+        showMessage,
+        handleMessageClose
+    } = useMessageDialog();
+
+    const onSubmit = async (data) => {
+        try {
+            setIsSubmitting(true);
+
+            await TripService.setRating(trip.id, data.rating);
+
+            showMessage(
+                TRIP_ACTION_MESSAGES.RATING_SUCCESS,
+                () => navigate(USER.HOME)
+            );
+
+            reset({ rating: 0 })
+        } catch (error) {
+            showMessage(getErrorMessage(error));
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
+
+    const hasRating = trip?.rating != null;
+
     return (
         <Loader
-            isLoading={tripLoading || carLoading || userLoading}
+            isLoading={isSubmitting || tripLoading || carLoading || userLoading}
             error={tripError || carError || userError}
         >
             <div className="page page__content">
@@ -57,14 +110,38 @@ export const TripSummaryPage = () => {
                     details={TRIP_SUMMARY_DETAILS}
                 />
 
-                <div className="page__button">
-                    <AppButton
-                        type="button"
-                        label="На головну"
-                        onClick={() => navigate(USER.HOME)}
-                        disabled={tripLoading || carLoading || userLoading}
-                    />
-                </div>
+                {!hasRating && (
+                    <>
+                        <RatingController
+                            control={control}
+                            name="rating"
+                            label="Оцініть поїздку"
+                        />
+
+                        <AppButton
+                            type="button"
+                            label="Оцінити"
+                            onClick={handleSubmit(onSubmit)}
+                            disabled={isSubmitting || tripLoading || carLoading || userLoading}
+                        />
+                    </>
+                )}
+
+                {hasRating && (
+                    <div className="page__button">
+                        <AppButton
+                            type="button"
+                            label="На головну"
+                            onClick={() => navigate(USER.HOME)}
+                        />
+                    </div>
+                )}
+
+                <MessageDialog
+                    open={messageOpen}
+                    onClose={handleMessageClose}
+                    message={message}
+                />
             </div>
         </Loader>
     );

@@ -23,7 +23,6 @@ export const getCarValues = (car) => {
         location: {
             lat: getNumber(car.location?._lat),
             lng: getNumber(car.location?._long)
-        },
-        rating: car.rating ?? 0
+        }
     }
 }

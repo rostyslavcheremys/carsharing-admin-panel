@@ -12,6 +12,7 @@ export {
     InputAdornment,
     Menu, MenuItem,
     Paper,
+    Rating,
     Select,
     Slider,
     Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow,
