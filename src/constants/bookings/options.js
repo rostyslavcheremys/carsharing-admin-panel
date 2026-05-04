@@ -3,6 +3,7 @@ export const BOOKING_STATUS = [
     { value: "confirmed", label: "Підтверджено" },
     { value: "cancelled", label: "Скасовано" },
     { value: "completed", label: "Завершено" },
+    { value: "expired", label: "Прострочено" }
 ];
 
 export const ACTIVE_BOOKING_STATUS = [

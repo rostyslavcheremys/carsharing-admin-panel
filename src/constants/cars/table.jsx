@@ -129,8 +129,8 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getString(car?.seats)
     },
     {
-        id: "ratingsCount", label: "Кількість оцінок",
-        render: (car) => getString(car?.ratingsCount)
+        id: "ratingCount", label: "Кількість оцінок",
+        render: (car) => getString(car?.ratingCount)
     },
     {
         id: "averageRating", label: "Рейтинг",
