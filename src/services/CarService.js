@@ -28,7 +28,7 @@ export class CarService {
         const carData = {
             ...getCarObject(data, newCarId, imageUrls),
             averageRating: 0,
-            ratingsCount: 0,
+            ratingCount: 0,
         }
 
         await setDoc(newCarRef, carData);

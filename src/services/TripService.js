@@ -4,7 +4,6 @@ import {
     query,
     where,
     getDoc,
-    addDoc,
     updateDoc,
     deleteDoc,
     getDocs,
@@ -15,34 +14,64 @@ import { db } from "../firebase";
 
 export class TripService {
     static async start(booking) {
-        const tripQuery = query(
-            collection(db, "trips"),
-            where("bookingId", "==", booking.id),
-            where("status", "==", "active")
-        );
+        const now = new Date();
 
-        const tripSnapshot = await getDocs(tripQuery);
+        const plannedStart = booking.plannedStart?.toDate?.() ?? booking.plannedStart;
+        const plannedEnd = booking.plannedEnd?.toDate?.() ?? booking.plannedEnd;
 
-        if (!tripSnapshot.empty) {
-            throw new Error("Поїздку вже розпочато!");
-        }
-
+        const bookingRef = doc(db, "bookings", booking.id);
         const carRef = doc(db, "cars", booking.carId);
-        const carSnap = await getDoc(carRef);
 
-        if (!carSnap.exists()) {
-            throw new Error("Автомобіль не знайдено!");
+        if (plannedStart && now < plannedStart) {
+            throw new Error("Поїздку можна розпочати після запланованого часу!");
         }
 
-        const car = carSnap.data();
+        if (plannedEnd && now > plannedEnd) {
+            await runTransaction(db, async (transaction) => {
+                transaction.update(bookingRef, { status: "expired" });
+            });
 
-        if (car.status !== "rented") {
-            throw new Error("Автомобіль не заброньований!");
+            throw new Error("Не вдалося розпочати поїздку — термін бронювання вже минув!");
         }
 
-        const tripRef = await addDoc(
-            collection(db, "trips"),
-            {
+        const tripId = await runTransaction(db, async (transaction) => {
+            const carSnap = await transaction.get(carRef);
+            const bookingSnap = await transaction.get(bookingRef);
+
+            if (!carSnap.exists()) {
+                throw new Error("Автомобіль не знайдено!");
+            }
+
+            if (!bookingSnap.exists()) {
+                throw new Error("Бронювання не знайдено!");
+            }
+
+            const car = carSnap.data();
+            const currentBooking = bookingSnap.data();
+
+            if (currentBooking.status !== "confirmed") {
+                throw new Error("Бронювання неактивне!");
+            }
+
+            if (car.status !== "available") {
+                throw new Error("Автомобіль зараз недоступний!");
+            }
+
+            const tripQuery = query(
+                collection(db, "trips"),
+                where("bookingId", "==", booking.id),
+                where("status", "==", "active")
+            );
+
+            const tripSnapshot = await getDocs(tripQuery);
+
+            if (!tripSnapshot.empty) {
+                throw new Error("Поїздку вже розпочато!");
+            }
+
+            const tripRef = doc(collection(db, "trips"));
+
+            transaction.set(tripRef, {
                 carId: booking.carId,
                 userId: booking.userId,
                 bookingId: booking.id,
@@ -50,13 +79,18 @@ export class TripService {
                 price: booking.price || 0,
                 additionalCharge: 0,
                 totalPrice: booking.price || 0,
-                actualStart: new Date(),
+                actualStart: now,
                 startLocation: car.location || null,
-            }
-        );
+            });
 
-        return tripRef.id;
+            transaction.update(carRef, { status: "rented" });
+
+            return tripRef.id;
+        });
+
+        return tripId;
     }
+
 
     static async end(tripId) {
         let hasAdditionalCharge = false;
@@ -240,7 +274,7 @@ export class TripService {
             const car = carSnap.data();
 
             const currentAvg = car.averageRating || 0;
-            const currentCount = car.ratingsCount || 0;
+            const currentCount = car.ratingCount || 0;
 
             const newCount = currentCount + 1;
             const newAvg = Number(
@@ -251,7 +285,7 @@ export class TripService {
 
             transaction.update(carRef, {
                 averageRating: newAvg,
-                ratingsCount: newCount
+                ratingCount: newCount
             });
         });
     }

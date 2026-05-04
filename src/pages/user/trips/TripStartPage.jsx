@@ -51,6 +51,8 @@ export const TripStartPage = () => {
         }
     }
 
+    const canStartTrip = booking && booking.status !== "expired";
+
     return (
         <Loader isLoading={isLoading || isStartingTrip} error={error}>
             <div className="page page__content">
@@ -59,11 +61,13 @@ export const TripStartPage = () => {
                 <InfoMessage message={TRIP_START_MESSAGES.INFO} />
 
                 <div className="page__buttons">
-                    <AppButton
-                        type="button"
-                        label="Почати"
-                        onClick={handleStartTrip}
-                    />
+                    {canStartTrip && (
+                        <AppButton
+                            type="button"
+                            label="Почати"
+                            onClick={handleStartTrip}
+                        />
+                    )}
 
                     <AppButton
                         type="button"

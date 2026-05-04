@@ -33,7 +33,7 @@ export const CarDetailsDialog = ({ car, activeCarId, onClose }) => {
     const images = useImages(car?.images);
 
     const isAdmin = user?.role === "admin";
-    const canBook = user?.role === "user" && car?.status === "available";
+    const canBook = user?.role === "user";
 
     const isMyCar = car?.id === activeCarId;
     const hasActiveTrip = !!trip?.id;

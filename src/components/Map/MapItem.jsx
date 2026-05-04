@@ -5,11 +5,12 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import { CarDetailsDialog } from "../../components";
 
 import {
+    useAuth,
     useAutoPanToMarker,
     useMapOptions
 } from "../../hooks";
 
-import { getPickerMarkerIcon, getCarMarkerIcon, } from "../../utils";
+import { getPickerMarkerIcon, getCarMarkerIcon } from "../../utils";
 
 export const MapItem = ({
                             locations,
@@ -27,7 +28,11 @@ export const MapItem = ({
                         }) => {
     const [markerCard, setMarkerCard] = useState(null);
 
+    const { user } = useAuth();
+
     const mapOptions = useMapOptions();
+
+    const locationIcon = selectable ? getPickerMarkerIcon() : null;
 
     const handleMapClick = useCallback((e) => {
         if (!selectable) return;
@@ -40,8 +45,6 @@ export const MapItem = ({
     const handleMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, [mapRef]);
-
-    const locationIcon = selectable ? getPickerMarkerIcon() : null;
 
     useEffect(() => {
         mapRef.current?.panTo(mapCenter);
@@ -62,6 +65,7 @@ export const MapItem = ({
             {isLoaded &&
                 locations.map((marker) => {
                     const isMine = marker.id === activeCarId;
+                    const isAdmin = user?.role === "admin";
 
                     return (
                         <Marker
@@ -70,7 +74,7 @@ export const MapItem = ({
                             icon={
                                 selectable
                                     ? locationIcon
-                                    : getCarMarkerIcon(marker.status, isMine)
+                                    : getCarMarkerIcon(marker.status, isMine, isAdmin)
                             }
                             onClick={() => mapCard && setMarkerCard(marker)}
                         />
