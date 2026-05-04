@@ -13,15 +13,15 @@ import {
     BookingPeriodPage,
     BookingPaymentPage,
     BookingConfirmationPage,
-    BookingsHistoryPage,
+    BookingHistoryPage,
     BookingHistoryDetailsPage,
     TripStartPage,
     CarAccessPage,
-    CarConditionsPage,
+    CarConditionPage,
     TripActivePage,
     TripPaymentPage,
     TripSummaryPage,
-    TripsHistoryPage,
+    TripHistoryPage,
     TripHistoryDetailsPage,
 } from "../pages";
 
@@ -77,13 +77,13 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.BOOKINGS_HISTORY} element={
+        <Route path={USER.BOOKING_HISTORY} element={
             <ProtectedRoute userOnly>
-                <BookingsHistoryPage />
+                <BookingHistoryPage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.BOOKINGS_HISTORY_DETAILS} element={
+        <Route path={USER.BOOKING_HISTORY_DETAILS} element={
             <ProtectedRoute userOnly>
                 <BookingHistoryDetailsPage />
             </ProtectedRoute>
@@ -109,13 +109,13 @@ export const UserRoutes = (
 
         <Route path={USER.TRIP_CONDITION_START} element={
             <ProtectedRoute userOnly>
-                <CarConditionsPage type="start" />
+                <CarConditionPage type="start" />
             </ProtectedRoute>
         }/>
 
         <Route path={USER.TRIP_CONDITION_END} element={
             <ProtectedRoute userOnly>
-                <CarConditionsPage type="end" />
+                <CarConditionPage type="end" />
             </ProtectedRoute>
         }/>
 
@@ -131,13 +131,13 @@ export const UserRoutes = (
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.TRIPS_HISTORY} element={
+        <Route path={USER.TRIP_HISTORY} element={
             <ProtectedRoute userOnly>
-                <TripsHistoryPage />
+                <TripHistoryPage />
             </ProtectedRoute>
         }/>
 
-        <Route path={USER.TRIPS_HISTORY_DETAILS} element={
+        <Route path={USER.TRIP_HISTORY_DETAILS} element={
             <ProtectedRoute userOnly>
                 <TripHistoryDetailsPage />
             </ProtectedRoute>

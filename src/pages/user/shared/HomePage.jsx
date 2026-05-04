@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import { Loader, AppButton } from "../../components";
+import { Loader, AppButton } from "../../../components";
 
-import { USER } from "../../constants";
+import { USER } from "../../../constants";
 
 export const HomePage = () => {
     const navigate = useNavigate();

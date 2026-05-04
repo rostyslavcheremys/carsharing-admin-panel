@@ -1,10 +1,10 @@
-import { Loader, Map } from "../../components";
+import { Loader, Map } from "../../../components";
 
 import {
     useCollection,
     useActiveBooking,
     useAvailableCars
-} from "../../hooks";
+} from "../../../hooks";
 
 export const MapPage = () => {
     const {

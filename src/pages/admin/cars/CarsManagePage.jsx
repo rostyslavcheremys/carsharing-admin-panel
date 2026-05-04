@@ -23,7 +23,7 @@ import {
     ADMIN
 } from "../../../constants";
 
-export const CarsManagementPage = () => {
+export const CarsManagePage = () => {
     const navigate = useNavigate();
 
     const {

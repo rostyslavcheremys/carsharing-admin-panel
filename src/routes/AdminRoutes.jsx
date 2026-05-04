@@ -7,17 +7,17 @@ import { ProtectedRoute } from "../guards";
 import {
     DashboardPage,
     MonitoringPage,
-    CarsManagementPage,
+    CarsManagePage,
     CarDetailsPage,
     CarCreatePage,
     CarEditPage,
     CarConditionDetailsPage,
-    UsersManagementPage,
+    UsersManagePage,
     UserDetailsPage,
-    BookingsManagementPage,
+    BookingsManagePage,
     BookingDetailsPage,
-    TripsManagementPage,
-    TripsDetailsPage,
+    TripsManagePage,
+    TripDetailsPage,
 } from "../pages";
 
 import { ADMIN } from "../constants";
@@ -38,7 +38,7 @@ export const AdminRoutes = (
 
         <Route path={ADMIN.CARS} element={
             <ProtectedRoute adminOnly>
-                <CarsManagementPage />
+                <CarsManagePage />
             </ProtectedRoute>
         }/>
 
@@ -62,7 +62,7 @@ export const AdminRoutes = (
 
         <Route path={ADMIN.USERS} element={
             <ProtectedRoute adminOnly>
-                <UsersManagementPage />
+                <UsersManagePage />
             </ProtectedRoute>
         }/>
 
@@ -74,7 +74,7 @@ export const AdminRoutes = (
 
         <Route path={ADMIN.BOOKINGS}  element={
             <ProtectedRoute adminOnly>
-                <BookingsManagementPage />
+                <BookingsManagePage />
             </ProtectedRoute>
         }/>
 
@@ -86,13 +86,13 @@ export const AdminRoutes = (
 
         <Route path={ADMIN.TRIPS} element={
             <ProtectedRoute adminOnly>
-                <TripsManagementPage />
+                <TripsManagePage />
             </ProtectedRoute>
         }/>
 
         <Route path={ADMIN.TRIP_DETAILS} element={
             <ProtectedRoute adminOnly>
-                <TripsDetailsPage />
+                <TripDetailsPage />
             </ProtectedRoute>
         }/>
 

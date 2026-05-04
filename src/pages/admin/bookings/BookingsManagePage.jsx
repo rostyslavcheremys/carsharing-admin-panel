@@ -16,7 +16,7 @@ import { BookingService } from "../../../services";
 
 import { BOOKINGS_TABLE_COLUMNS, BOOKING_ACTIONS } from "../../../constants";
 
-export const BookingsManagementPage = () => {
+export const BookingsManagePage = () => {
     const {
         data: bookings,
         isLoading,

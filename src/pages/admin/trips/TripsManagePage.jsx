@@ -16,7 +16,7 @@ import { TripService } from "../../../services";
 
 import { TRIPS_TABLE_COLUMNS, TRIPS_ACTIONS } from "../../../constants";
 
-export const TripsManagementPage = () => {
+export const TripsManagePage = () => {
     const {
         data: trips,
         isLoading,

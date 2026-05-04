@@ -17,7 +17,7 @@ import { UserService } from "../../../services";
 
 import { USERS_TABLE_COLUMNS, USER_ACTIONS } from "../../../constants";
 
-export const UsersManagementPage = () => {
+export const UsersManagePage = () => {
     const {
         data: users,
         isLoading,

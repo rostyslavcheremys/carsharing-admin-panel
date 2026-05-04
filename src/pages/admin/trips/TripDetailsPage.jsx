@@ -13,7 +13,7 @@ import { getTripLocation } from "../../../utils";
 
 import { TRIP_DETAILS } from "../../../constants";
 
-export const TripsDetailsPage = () => {
+export const TripDetailsPage = () => {
     const navigate = useNavigate();
 
     const { id } = useParams();

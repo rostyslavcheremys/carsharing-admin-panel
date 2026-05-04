@@ -29,14 +29,14 @@ export const ProfilePage = () => {
                     <AppButton
                         type="button"
                         label="Бронювання"
-                        onClick={() => navigate(USER.BOOKINGS_HISTORY)}
+                        onClick={() => navigate(USER.BOOKING_HISTORY)}
                         disabled={loading}
                     />
 
                     <AppButton
                         type="button"
                         label="Поїздки"
-                        onClick={() => navigate(USER.TRIPS_HISTORY)}
+                        onClick={() => navigate(USER.TRIP_HISTORY)}
                         disabled={loading}
                     />
 

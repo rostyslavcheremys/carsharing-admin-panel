@@ -1,4 +1,4 @@
-export const TripsHistoryPage = () => {
+export const TripHistoryPage = () => {
     return (
         <div>TripsHistoryPage</div>
     );

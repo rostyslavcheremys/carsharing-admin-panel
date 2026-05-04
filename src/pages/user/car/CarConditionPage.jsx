@@ -28,7 +28,7 @@ import {
     CAR_CONDITION_ACTION_MESSAGES,
 } from "../../../constants";
 
-export const CarConditionsPage = ({ type }) => {
+export const CarConditionPage = ({ type }) => {
     const [isSaving, setIsSaving] = useState(false);
 
     const navigate = useNavigate();
