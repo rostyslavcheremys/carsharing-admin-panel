@@ -3,12 +3,13 @@ import {
     doc,
     getDoc,
     setDoc,
-    updateDoc
+    updateDoc,
+    serverTimestamp
 } from "firebase/firestore";
 
 import { db } from "../firebase";
 
-import { uploadImages } from "../utils";
+import { uploadImages, assert } from "../utils";
 
 import { CAR_CONDITION_FIELDS } from "../constants";
 
@@ -19,33 +20,20 @@ export class CarConditionService {
         const carRef = doc(db, "cars", trip.carId);
         const carSnap = await getDoc(carRef);
 
-        if (!carSnap.exists()) {
-            throw new Error("Автомобіль не знайдено!");
-        }
+        assert(carSnap.exists(), "Автомобіль не знайдено!");
 
         const car = carSnap.data();
 
-        if (Number(data.mileage) < Number(car.mileage)) {
-            throw new Error(
-                "Вказаний пробіг не може бути меншим за поточний пробіг автомобіля!"
-            );
-        }
+        const newMileage = Number(data.mileage);
+        const currentMileage = Number(car.mileage);
 
-        let imageUrls = [];
+        assert(newMileage >= currentMileage, "Вказаний пробіг не може бути меншим!");
 
-        if (data.images?.length) {
-            const result = await uploadImages(
-                data.images,
-                "carConditions",
-                conditionRef.id
-            );
+        const imageUrls = data.images?.length
+            ? (await uploadImages(data.images, "carConditions", conditionRef.id)).urls
+            : [];
 
-            imageUrls = result.urls;
-        }
-
-        await setDoc(
-            conditionRef,
-            {
+        await setDoc(conditionRef, {
                 carId: trip.carId,
                 userId: trip.userId,
                 tripId: trip.id,
@@ -57,14 +45,13 @@ export class CarConditionService {
                     fuelPercent: data.fuelPercent,
                     batteryPercent: data.batteryPercent,
                 },
-                createdAt: new Date()
+                createdAt: serverTimestamp()
             }
         );
 
-        await updateDoc(
-            doc(db, "trips", trip.id),
-            { [CAR_CONDITION_FIELDS[type]]: conditionRef.id }
-        );
+        await updateDoc(doc(db, "trips", trip.id), {
+            [CAR_CONDITION_FIELDS[type]]: conditionRef.id
+        });
 
         return conditionRef.id;
     }
