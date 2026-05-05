@@ -1,14 +1,14 @@
 import { doc, getDoc } from "firebase/firestore";
 
-import { db } from "../../firebase";
+import { db } from "../../../firebase/index.js";
+
+import { assert } from "../../index.js";
 
 export const getDocumentById = async (collectionName, docId) => {
     const documentRef = doc(db, collectionName, docId);
     const snapshot = await getDoc(documentRef);
 
-    if (!snapshot.exists()) {
-        throw new Error("Запис не знайдено!");
-    }
+    assert(snapshot.exists(), "Запис не знайдено!");
 
     return {
         id: snapshot.id,

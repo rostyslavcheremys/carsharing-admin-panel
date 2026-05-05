@@ -1,3 +1,9 @@
 export const toDate = (value) => {
-    return value?.toDate?.() ?? value ?? null;
+    if (!value) return null;
+
+    if (value?.toDate) return value.toDate();
+
+    if (value instanceof Date) return value;
+
+    return new Date(value);
 }

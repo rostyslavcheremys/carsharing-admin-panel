@@ -6,88 +6,79 @@ import {
     query,
     where,
     updateDoc,
-    runTransaction
+    runTransaction,
+    serverTimestamp
 } from "firebase/firestore";
 
 import { db, auth } from "../firebase";
+
+import { assert } from "../utils";
 
 export class BookingService {
     static async create(data) {
         return await runTransaction(db, async (transaction) => {
             const userId = auth.currentUser?.uid;
 
-            if (!userId) {
-                throw new Error("Користувач не авторизований!");
-            }
+            assert(userId, "Користувач не авторизований!");
 
             const now = Date.now();
 
-            const userBookingsRef = collection(db, "bookings");
-
-            const userQuery = query(
-                userBookingsRef,
-                where("userId", "==", userId),
-                where("status", "in", ["awaiting_payment", "confirmed"])
+            const userSnapshot = await getDocs(
+                query(
+                    collection(db, "bookings"),
+                    where("userId", "==", userId),
+                    where("status", "in", ["awaiting_payment", "confirmed"])
+                )
             );
 
-            const userSnapshot = await getDocs(userQuery);
-
             const hasActiveBooking = userSnapshot.docs.some((docSnap) => {
-                const b = docSnap.data();
+                const booking = docSnap.data();
 
-                const expiresAt = b.expiresAt?.toMillis?.() ?? 0;
+                const expiresAt = booking.expiresAt?.toMillis?.() ?? 0;
 
-                const isAwaitingPayment =
-                    b.status === "awaiting_payment" && expiresAt > now;
+                const isActiveAwaiting = booking.status === "awaiting_payment" && expiresAt > now;
 
-                const isConfirmed = b.status === "confirmed";
+                const isConfirmed = booking.status === "confirmed";
 
-                return isAwaitingPayment || isConfirmed;
+                return isActiveAwaiting || isConfirmed;
             });
 
-            if (hasActiveBooking) {
-                throw new Error("У вас вже є активне бронювання!");
-            }
+            assert(!hasActiveBooking, "У вас вже є активне бронювання!");
 
             const carRef = doc(db, "cars", data.carId);
             const carSnap = await transaction.get(carRef);
 
-            if (!carSnap.exists()) {
-                throw new Error("Автомобіль не знайдено!");
-            }
-
-            const bookingsRef = collection(db, "bookings");
-
-            const bookingsQuery = query(
-                bookingsRef,
-                where("carId", "==", data.carId),
-                where("status", "in", ["awaiting_payment", "confirmed"])
-            );
-
-            const bookingsSnapshot = await getDocs(bookingsQuery);
+            assert(carSnap.exists(), "Автомобіль не знайдено!");
 
             const newStart = new Date(data.plannedStart);
-
             const newEnd = new Date(data.plannedEnd);
 
-            const hasConflict = bookingsSnapshot.docs.some(docSnap => {
-                const b = docSnap.data();
-                const expiresAt = b.expiresAt?.toMillis?.() ?? 0;
+            const bookingsSnapshot = await getDocs(
+                query(
+                    collection(db, "bookings"),
+                    where("carId", "==", data.carId),
+                    where("status", "in", ["awaiting_payment", "confirmed"])
+                )
+            );
 
-                const isAwaitingPaymentActive = b.status === "awaiting_payment" && expiresAt > now;
-                const isConfirmed = b.status === "confirmed";
+            const hasConflict = bookingsSnapshot.docs.some((docSnap) => {
+                const booking = docSnap.data();
 
-                if (!isAwaitingPaymentActive && !isConfirmed) return false;
+                const expiresAt = booking.expiresAt?.toMillis?.() ?? 0;
 
-                const bStart = b.plannedStart.toDate();
-                const bEnd = b.plannedEnd.toDate();
+                const isActiveAwaiting = booking.status === "awaiting_payment" && expiresAt > now;
+
+                const isConfirmed = booking.status === "confirmed";
+
+                if (!isActiveAwaiting && !isConfirmed) return false;
+
+                const bStart = new Date(booking.plannedStart);
+                const bEnd = new Date(booking.plannedEnd);
 
                 return newStart <= bEnd && newEnd >= bStart;
             });
 
-            if (hasConflict) {
-                throw new Error("Автомобіль вже заброньований на обраний період!");
-            }
+            assert(!hasConflict, "Автомобіль вже заброньований на обраний період!");
 
             const bookingRef = doc(collection(db, "bookings"));
 
@@ -95,16 +86,16 @@ export class BookingService {
                 ...data,
                 userId,
                 status: "awaiting_payment",
-                plannedStart: new Date(data.plannedStart),
-                plannedEnd: new Date(data.plannedEnd),
-                createdAt: new Date(),
+                plannedStart: newStart,
+                plannedEnd: newEnd,
+                createdAt: serverTimestamp(),
                 expiresAt: new Date(Date.now() + 3 * 60 * 1000)
             });
 
             return {
                 id: bookingRef.id,
                 ...data,
-            };
+            }
         });
     }
 
@@ -113,29 +104,23 @@ export class BookingService {
             const bookingRef = doc(db, "bookings", bookingId);
             const bookingSnap = await transaction.get(bookingRef);
 
-            if (!bookingSnap.exists()) {
-                throw new Error("Бронювання не знайдено!");
-            }
+            assert(bookingSnap.exists(), "Бронювання не знайдено!");
 
             const booking = bookingSnap.data();
 
-            if (booking.status !== "awaiting_payment") {
-                throw new Error("Бронювання вже неактивне!");
-            }
+            assert(booking.status === "awaiting_payment", "Бронювання неактивне!");
+
+            assert(booking.expiresAt, "Час оплати не вказано!");
 
             const now = Date.now();
-            const expiresAt = booking.expiresAt?.toMillis?.() ?? 0;
+            const expiresAt = booking.expiresAt.toMillis();
 
-            if (expiresAt < now) {
-                throw new Error("Час на оплату завершився!");
-            }
+            assert(now <= expiresAt, "Час на оплату завершився!");
 
             const carRef = doc(db, "cars", booking.carId);
             const carSnap = await transaction.get(carRef);
 
-            if (!carSnap.exists()) {
-                throw new Error("Автомобіль не знайдено!");
-            }
+            assert(carSnap.exists(), "Автомобіль не знайдено!");
 
             transaction.update(bookingRef, { status: "confirmed" });
         });
@@ -145,15 +130,13 @@ export class BookingService {
         const bookingRef = doc(db, "bookings", bookingId);
         const bookingSnap = await getDoc(bookingRef);
 
-        if (!bookingSnap.exists()) return;
+        assert(bookingSnap.exists(), "Бронювання не знайдено!");
 
         const booking = bookingSnap.data();
 
-        if (booking.status !== "awaiting_payment") return;
+        assert(booking.status === "awaiting_payment", "Скасування недоступне!");
 
-        await updateDoc(bookingRef, {
-            status: "cancelled",
-        });
+        await updateDoc(bookingRef, { status: "cancelled" });
     }
 
     static async delete(bookingId) {
@@ -161,18 +144,17 @@ export class BookingService {
             const bookingRef = doc(db, "bookings", bookingId);
             const bookingSnap = await transaction.get(bookingRef);
 
-            if (!bookingSnap.exists()) {
-                throw new Error("Бронювання не знайдено!");
-            }
+            assert(bookingSnap.exists(), "Бронювання не знайдено!");
 
             const booking = bookingSnap.data();
 
-            if (booking.status === "confirmed") {
+            if (booking.carId && booking.status === "confirmed") {
                 const carRef = doc(db, "cars", booking.carId);
+                const carSnap = await transaction.get(carRef);
 
-                transaction.update(carRef, {
-                    status: "available"
-                });
+                assert(carSnap.exists(), "Автомобіль не знайдено!");
+
+                transaction.update(carRef, { status: "available" });
             }
 
             transaction.delete(bookingRef);
@@ -190,11 +172,11 @@ export class BookingService {
 
         if (snapshot.empty) return null;
 
-        const doc = snapshot.docs[0];
+        const docSnap = snapshot.docs[0];
 
         return {
-            id: doc.id,
-            ...doc.data()
+            id: docSnap.id,
+            ...docSnap.data()
         }
     }
 }

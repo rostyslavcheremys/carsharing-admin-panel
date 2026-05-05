@@ -18,7 +18,6 @@ import { DRIVER_VERIFICATION_MESSAGES, USER } from "../../constants";
 
 export const DriverVerificationPage = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false);
 
     const navigate = useNavigate();
 
@@ -36,12 +35,11 @@ export const DriverVerificationPage = () => {
             return showMessage(DRIVER_VERIFICATION_MESSAGES.USER_NOT_FOUND);
         }
 
-        setIsLoading(true);
-
         try {
+            setIsLoading(true);
+
             await UserService.approve(user?.id);
 
-            setIsSuccess(true);
             showMessage(DRIVER_VERIFICATION_MESSAGES.SUCCESS);
         } catch (error) {
             showMessage(getErrorMessage(error));
@@ -53,7 +51,7 @@ export const DriverVerificationPage = () => {
     const handleClose = async () => {
         handleMessageClose();
 
-        if (!isSuccess || !user?.id) return;
+        if (!isLoading || !user?.id) return;
 
         const updatedUser = await UserService.getUserById(user?.id);
         setUser(updatedUser);

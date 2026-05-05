@@ -5,8 +5,8 @@ export * from "./cars/getCarValues.js";
 
 export * from "./date/dateRange.js";
 
-export * from "./firebase/getDocumentById.js";
 export * from "./firebase/firestore/assert.js";
+export * from "./firebase/firestore/getDocumentById.js";
 export * from "./firebase/firestore/toDate.js";
 
 export * from "./formatters/formatDays.js";
