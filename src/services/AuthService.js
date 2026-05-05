@@ -7,38 +7,42 @@ import {
     doc,
     getDoc,
     setDoc,
+    serverTimestamp
 } from "firebase/firestore";
 
 import { auth, db } from "../firebase";
 
+import { assert } from "../utils";
+
 export class AuthService {
     static async login(email, password) {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const firebaseUser = userCredential.user;
-        const uid = firebaseUser.uid;
+        const { user } = await signInWithEmailAndPassword(auth, email, password);
 
-        const userRef = doc(db, "users", uid);
+        const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
 
-        if (!userSnap.exists()) {
-            throw new Error("Користувача не знайдено!");
-        }
+        assert(userSnap.exists(), "Користувача не знайдено!");
 
         return {
-            uid,
-            email: firebaseUser.email,
+            uid: user.uid,
+            email: user.email,
             ...userSnap.data(),
-        };
+        }
     }
 
     static async register(data) {
-        const { email, password, firstName, lastName, phoneNumber, birthDate } = data;
+        const {
+            email,
+            password,
+            firstName,
+            lastName,
+            phoneNumber,
+            birthDate
+        } = data;
 
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
         await setDoc(doc(db, "users", user.uid), {
-            id: user.uid,
             email,
             firstName,
             lastName,
@@ -47,9 +51,12 @@ export class AuthService {
             isBlocked: false,
             verificationStatus: "awaiting_verification",
             birthDate: birthDate.toDate(),
-            createdAt: new Date(),
+            createdAt: serverTimestamp(),
         });
 
-        return user;
+        return {
+            uid: user.uid,
+            email: user.email
+        }
     }
 }
