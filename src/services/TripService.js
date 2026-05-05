@@ -1,85 +1,78 @@
 import {
     collection,
     doc,
-    query,
-    where,
-    getDoc,
-    updateDoc,
-    deleteDoc,
     getDocs,
+    query,
     runTransaction,
+    where,
+    serverTimestamp
 } from "firebase/firestore";
 
 import { db } from "../firebase";
 
+import { formatDateTime } from "../utils";
+
 export class TripService {
     static async start(booking) {
-        const now = new Date();
-
-        const plannedStart = booking.plannedStart?.toDate?.() ?? booking.plannedStart;
-        const plannedEnd = booking.plannedEnd?.toDate?.() ?? booking.plannedEnd;
-
         const bookingRef = doc(db, "bookings", booking.id);
         const carRef = doc(db, "cars", booking.carId);
 
-        if (plannedStart && now < plannedStart) {
-            throw new Error("Поїздку можна розпочати після запланованого часу!");
-        }
+        return await runTransaction(db, async (transaction) => {
+            const now = new Date();
 
-        if (plannedEnd && now > plannedEnd) {
-            await runTransaction(db, async (transaction) => {
-                transaction.update(bookingRef, { status: "expired" });
-            });
-
-            throw new Error("Не вдалося розпочати поїздку — термін бронювання вже минув!");
-        }
-
-        const tripId = await runTransaction(db, async (transaction) => {
-            const carSnap = await transaction.get(carRef);
             const bookingSnap = await transaction.get(bookingRef);
-
-            if (!carSnap.exists()) {
-                throw new Error("Автомобіль не знайдено!");
-            }
+            const carSnap = await transaction.get(carRef);
 
             if (!bookingSnap.exists()) {
                 throw new Error("Бронювання не знайдено!");
             }
 
-            const car = carSnap.data();
+            if (!carSnap.exists()) {
+                throw new Error("Автомобіль не знайдено!");
+            }
+
             const currentBooking = bookingSnap.data();
+            const car = carSnap.data();
+
+            if (currentBooking.tripId) {
+                throw new Error("Поїздку вже розпочато!");
+            }
+
+            const plannedStart = currentBooking.plannedStart?.toDate?.() ?? currentBooking.plannedStart;
+            const plannedEnd = currentBooking.plannedEnd?.toDate?.() ?? currentBooking.plannedEnd;
+
+            if (plannedStart && now < plannedStart) {
+                throw new Error(
+                    `Поїздку можна розпочати з ${formatDateTime(plannedStart, true)}`
+                );
+            }
+
+            if (plannedEnd && now > plannedEnd) {
+                transaction.update(bookingRef, { status: "expired" });
+                throw new Error("Термін бронювання минув!");
+            }
 
             if (currentBooking.status !== "confirmed") {
                 throw new Error("Бронювання неактивне!");
             }
 
             if (car.status !== "available") {
-                throw new Error("Автомобіль зараз недоступний!");
+                throw new Error("Автомобіль недоступний!");
             }
 
-            const tripQuery = query(
-                collection(db, "trips"),
-                where("bookingId", "==", booking.id),
-                where("status", "==", "active")
-            );
-
-            const tripSnapshot = await getDocs(tripQuery);
-
-            if (!tripSnapshot.empty) {
-                throw new Error("Поїздку вже розпочато!");
-            }
+            const basePrice = currentBooking.price || 0;
 
             const tripRef = doc(collection(db, "trips"));
 
             transaction.set(tripRef, {
-                carId: booking.carId,
-                userId: booking.userId,
+                carId: currentBooking.carId,
+                userId: currentBooking.userId,
                 bookingId: booking.id,
                 status: "active",
-                price: booking.price || 0,
+                price: basePrice,
                 additionalCharge: 0,
-                totalPrice: booking.price || 0,
-                actualStart: now,
+                totalPrice: basePrice,
+                actualStart: serverTimestamp(),
                 startLocation: car.location || null,
             });
 
@@ -87,19 +80,12 @@ export class TripService {
 
             return tripRef.id;
         });
-
-        return tripId;
     }
 
-
     static async end(tripId) {
-        let hasAdditionalCharge = false;
-        let price = 0;
-        let additionalCharge = 0;
-        let totalPrice = 0;
+        const tripRef = doc(db, "trips", tripId);
 
-        await runTransaction(db, async (transaction) => {
-            const tripRef = doc(db, "trips", tripId);
+        return await runTransaction(db, async (transaction) => {
             const tripSnap = await transaction.get(tripRef);
 
             if (!tripSnap.exists()) {
@@ -113,15 +99,11 @@ export class TripService {
             }
 
             if (!trip.conditionStartId) {
-                throw new Error(
-                    "Перед завершенням поїздки необхідно виконати початкову фотофіксацію стану автомобіля!"
-                );
+                throw new Error("Початкову фотофіксацію не виконано!");
             }
 
             if (!trip.conditionEndId) {
-                throw new Error(
-                    "Перед завершенням поїздки необхідно виконати кінцеву фотофіксацію стану автомобіля!"
-                );
+                throw new Error("Кінцеву фотофіксацію не виконано!");
             }
 
             const carRef = doc(db, "cars", trip.carId);
@@ -134,23 +116,24 @@ export class TripService {
             const car = carSnap.data();
 
             if (!car.isLocked) {
-                throw new Error(
-                    "Перед завершенням поїздки необхідно заблокувати автомобіль!"
-                );
+                throw new Error("Автомобіль має бути заблокований!");
             }
 
-            const conditionRef = doc(db, "carConditions", trip.conditionEndId);
+            const startConditionRef = doc(db, "carConditions", trip.conditionStartId);
+            const startConditionSnap = await transaction.get(startConditionRef);
 
-            const conditionSnap = await transaction.get(conditionRef);
+            if (!startConditionSnap.exists()) {
+                throw new Error("Початкову фотофіксацію не знайдено!");
+            }
 
-            if (!conditionSnap.exists()) {
+            const endConditionRef = doc(db, "carConditions", trip.conditionEndId);
+            const endConditionSnap = await transaction.get(endConditionRef);
+
+            if (!endConditionSnap.exists()) {
                 throw new Error("Кінцеву фотофіксацію не знайдено!");
             }
 
-            const condition = conditionSnap.data();
-
             const bookingRef = doc(db, "bookings", trip.bookingId);
-
             const bookingSnap = await transaction.get(bookingRef);
 
             if (!bookingSnap.exists()) {
@@ -159,75 +142,96 @@ export class TripService {
 
             const booking = bookingSnap.data();
 
-            const actualEnd = new Date();
-            const plannedEnd = booking.plannedEnd.toDate();
+            const now = Date.now();
+            const plannedEnd = booking.plannedEnd.toMillis?.() ?? booking.plannedEnd.getTime();
 
-            price = trip.basePrice || booking.price || 0;
-            totalPrice = price;
+            const basePrice = trip.basePrice || booking.price || 0;
 
-            if (actualEnd > plannedEnd) {
-                const msPerDay = 24 * 60 * 60 * 1000;
-                const overdueDays = Math.ceil((actualEnd - plannedEnd) / msPerDay);
+            let additionalCharge = 0;
 
-                additionalCharge = overdueDays * car.pricePerDay * 2;
-                totalPrice += additionalCharge;
-                hasAdditionalCharge = true;
+            if (now > plannedEnd) {
+                const msPerDay = 86400000;
+                const overdueDays = Math.ceil((now - plannedEnd) / msPerDay);
+
+                const penaltyRate = 2;
+                additionalCharge = overdueDays * car.pricePerDay * penaltyRate;
             }
 
-            transaction.update(
-                tripRef,
-                {
-                    additionalCharge,
-                    totalPrice,
-                    actualEnd,
-                    endLocation: car.location || null,
-                    status: hasAdditionalCharge ? "awaiting_payment" : "completed",
-                }
-            );
+            const totalPrice = basePrice + additionalCharge;
+
+            const hasAdditionalCharge = additionalCharge > 0;
+
+            transaction.update(tripRef, {
+                additionalCharge,
+                totalPrice,
+                actualEnd: serverTimestamp(),
+                endLocation: car.location || null,
+                status: hasAdditionalCharge ? "awaiting_payment" : "completed",
+            });
 
             transaction.update(carRef, {
                 status: "available",
                 isLocked: true,
-                mileage: Number(condition.mileage)
+                mileage: Number(startConditionSnap.data().mileage)
             });
 
-            transaction.update(bookingRef, { status: "completed" });
-        });
+            transaction.update(bookingRef, {status: "completed"});
 
-        return {
-            hasAdditionalCharge,
-            price,
-            additionalCharge,
-            totalPrice
-        }
+            return {
+                basePrice,
+                additionalCharge,
+                totalPrice,
+                hasAdditionalCharge
+            };
+        });
     }
 
     static async pay(tripId) {
         const tripRef = doc(db, "trips", tripId);
-        await updateDoc(tripRef, { status: "completed" });
+
+        await runTransaction(db, async (transaction) => {
+            const tripSnap = await transaction.get(tripRef);
+
+            if (!tripSnap.exists()) {
+                throw new Error("Поїздку не знайдено!");
+            }
+
+            const trip = tripSnap.data();
+
+            if (trip.status !== "awaiting_payment") {
+                throw new Error("Оплата недоступна!");
+            }
+
+            transaction.update(tripRef, { status: "completed" });
+        });
     }
 
     static async delete(tripId) {
         const tripRef = doc(db, "trips", tripId);
-        const tripSnap = await getDoc(tripRef);
 
-        if (!tripSnap.exists()) {
-            throw new Error("Поїздку не знайдено!");
-        }
+        await runTransaction(db, async (transaction) => {
+            const tripSnap = await transaction.get(tripRef);
 
-        const trip = tripSnap.data();
+            if (!tripSnap.exists()) {
+                throw new Error("Поїздку не знайдено!");
+            }
 
-        if (trip.status === "active") {
-            throw new Error("Неможливо видалити активну поїздку!");
-        }
+            const trip = tripSnap.data();
 
-        const carRef = doc(db, "cars", trip.carId);
+            if (trip.status === "active") {
+                throw new Error("Неможливо видалити активну поїздку!");
+            }
 
-        await updateDoc(carRef, {
-            status: "available",
+            const carRef = doc(db, "cars", trip.carId);
+            const carSnap = await transaction.get(carRef);
+
+            if (!carSnap.exists()) {
+                throw new Error("Автомобіль не знайдено!");
+            }
+
+            transaction.update(carRef, { status: "available" });
+            transaction.delete(tripRef);
         });
-
-        await deleteDoc(tripRef);
     }
 
     static async getActiveTripByUser(userId) {
@@ -250,8 +254,13 @@ export class TripService {
     }
 
     static async setRating(tripId, rating) {
+        if (rating < 1 || rating > 5) {
+            throw new Error("Некоректний рейтинг!");
+        }
+
+        const tripRef = doc(db, "trips", tripId);
+
         await runTransaction(db, async (transaction) => {
-            const tripRef = doc(db, "trips", tripId);
             const tripSnap = await transaction.get(tripRef);
 
             if (!tripSnap.exists()) {
@@ -260,8 +269,8 @@ export class TripService {
 
             const trip = tripSnap.data();
 
-            if (trip.rating) {
-                throw new Error("Оцінка вже виставлена!");
+            if (trip.rating != null) {
+                throw new Error("Оцінку вже виставлено!");
             }
 
             const carRef = doc(db, "cars", trip.carId);
@@ -277,14 +286,12 @@ export class TripService {
             const currentCount = car.ratingCount || 0;
 
             const newCount = currentCount + 1;
-            const newAvg = Number(
-                ((currentAvg * currentCount + rating) / newCount).toFixed(1)
-            );
+            const newAvg = (currentAvg * currentCount + rating) / newCount;
 
             transaction.update(tripRef, { rating });
 
             transaction.update(carRef, {
-                averageRating: newAvg,
+                averageRating: Number(newAvg.toFixed(1)),
                 ratingCount: newCount
             });
         });
