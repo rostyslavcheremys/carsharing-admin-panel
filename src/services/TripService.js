@@ -69,6 +69,8 @@ export class TripService {
                 startLocation: car.location || null,
             });
 
+            transaction.update(bookingRef, { tripId: tripRef.id });
+
             transaction.update(carRef, { status: "rented" });
 
             return tripRef.id;
