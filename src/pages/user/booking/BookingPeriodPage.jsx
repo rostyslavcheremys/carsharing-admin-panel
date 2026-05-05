@@ -107,7 +107,7 @@ export const BookingPeriodPage = () => {
         <Loader isLoading={isLoading || isSubmitting || bookingsLoading} error={error}>
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title form">Період бронювання</span>
+                    <span className="page__title page__title--form">Період бронювання</span>
 
                     <DateTimeController
                         control={control}

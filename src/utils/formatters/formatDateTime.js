@@ -13,7 +13,9 @@ export const formatDateTime = (value, withTime = false) => {
 
     if (isNaN(date)) return "—";
 
-    const datePart = date.toLocaleDateString("uk-UA");
+    const datePart = date.toLocaleDateString("uk-UA", {
+        dateStyle: "short",
+    });
 
     if (!withTime) return datePart;
 

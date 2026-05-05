@@ -99,11 +99,11 @@ export const CarConditionPage = ({ type }) => {
             error={errorTrip || error}
         >
             <div className="page page__content">
-                 <span className="page__title">
+                <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
+                    <span className="page__title page__title--form">
                         {isEnd ? "Кінцева фотофіксація" : "Початкова фотофіксація"}
                     </span>
 
-                <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
                     <FileUploadController
                         control={control}
                         name="images"

@@ -6,6 +6,10 @@ export * from "./cars/getCarValues.js";
 export * from "./date/dateRange.js";
 
 export * from "./firebase/getDocumentById.js";
+export * from "./firebase/firestore/assertNotExists.js";
+export * from "./firebase/firestore/assertStatus.js";
+export * from "./firebase/firestore/getDocSafe.js";
+export * from "./firebase/firestore/getRef.js";
 
 export * from "./formatters/formatDays.js";
 export * from "./formatters/formatTime.js";

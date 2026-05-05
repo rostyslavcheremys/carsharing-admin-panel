@@ -54,7 +54,7 @@ export const LoginPage = () => {
         <Loader isLoading={isLoading}>
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title form">Вхід</span>
+                    <span className="page__title page__title--form">Вхід</span>
 
                     <TextController
                         control={control}
