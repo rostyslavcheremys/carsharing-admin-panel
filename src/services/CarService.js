@@ -11,19 +11,23 @@ import { ref, deleteObject, listAll } from "firebase/storage";
 
 import { db, storage } from "../firebase";
 
-import { uploadImages, deleteImages, getCarObject } from "../utils";
+import {
+    uploadImages,
+    deleteImages,
+    getCarObject,
+    assert
+} from "../utils";
 
 export class CarService {
     static async create(data) {
+        assert(data, "Даних автомобіля не знайдено!");
+
         const newCarRef = doc(collection(db, "cars"));
         const newCarId = newCarRef.id;
 
-        let imageUrls = [];
-
-        if (data.images && data.images.length > 0) {
-            const uploadResult = await uploadImages(data.images, "cars", newCarId);
-            imageUrls = uploadResult.urls;
-        }
+        const imageUrls = data.images?.length
+            ? (await uploadImages(data.images, "cars", newCarId)).urls
+            : [];
 
         const carData = {
             ...getCarObject(data, newCarId, imageUrls),
@@ -33,49 +37,67 @@ export class CarService {
 
         await setDoc(newCarRef, carData);
 
-        return carData;
+        return {
+            id: newCarId,
+            ...carData
+        }
     }
 
     static async update(carId, data, originalImages = []) {
+        assert(carId, "Автомобіль не знайдено!");
+
         const currentImages = data.images || [];
-        const retainedImages = currentImages.filter(img => typeof img === 'string');
+
+        const retainedImages = currentImages.filter(img => typeof img === "string");
         const newFiles = currentImages.filter(img => img instanceof File);
+
         const removedImages = originalImages.filter(url => !retainedImages.includes(url));
 
-        if (removedImages.length > 0) await deleteImages(removedImages);
+        if (removedImages.length) await deleteImages(removedImages);
 
         let finalImages = [...retainedImages];
 
-        if (newFiles.length > 0) {
+        if (newFiles.length) {
             const uploadResult = await uploadImages(newFiles, "cars", carId);
             finalImages = [...finalImages, ...uploadResult.urls];
         }
 
         const carData = getCarObject(data, carId, finalImages);
-        Object.keys(carData).forEach(key => carData[key] === undefined && delete carData[key]);
+
+        const cleanCarData = Object.fromEntries(
+            Object.entries(carData).filter(([, v]) => v !== undefined)
+        );
 
         const carRef = doc(db, "cars", carId);
-        await updateDoc(carRef, carData);
+        await updateDoc(carRef, cleanCarData);
 
-        return carData;
+        return {
+            id: carId,
+            ...cleanCarData
+        }
     }
 
     static async delete(carId) {
+        assert(carId, "Автомобіль не знайдено!");
+
         const carDocRef = doc(db, "cars", carId);
-        await deleteDoc(carDocRef);
+        const carSnap = await getDoc(carDocRef);
+
+        assert(carSnap.exists(), "Автомобіль не знайдено!");
 
         const imagesRef = ref(storage, `cars/${carId}`);
         const fileList = await listAll(imagesRef);
-        const deletePromises = fileList.items.map(fileRef => deleteObject(fileRef));
 
-        await Promise.all(deletePromises);
+        await Promise.all(fileList.items.map(fileRef => deleteObject(fileRef)));
+
+        await deleteDoc(carDocRef);
     }
 
-    static async getById(carId) {
+    static async getCarById(carId) {
         const carRef = doc(db, "cars", carId);
         const carSnap = await getDoc(carRef);
 
-        if (!carSnap.exists()) return null;
+        assert(carSnap.exists(), "Автомобіль не знайдено!");
 
         return {
             id: carSnap.id,
@@ -84,9 +106,10 @@ export class CarService {
     }
 
     static async toggleLock(carId, isLocked) {
-        if (!carId) throw new Error("Автомобіль не знайдено!");
-
         const carRef = doc(db, "cars", carId);
+        const carSnap = await getDoc(carRef);
+
+        assert(carSnap.exists(), "Автомобіль не знайдено!");
 
         await updateDoc(carRef, { isLocked });
     }

@@ -13,7 +13,7 @@ export const useBookingCar = () => {
         entity: car,
         loading: carLoading,
         error: carError,
-    } = useEntity(booking?.carId, CarService.getById);
+    } = useEntity(booking?.carId, CarService.getCarById);
 
     return {
         entity: car,
