@@ -55,7 +55,7 @@ export const DriverVerificationPage = () => {
 
         if (!isSuccess || !user?.id) return;
 
-        const updatedUser = await UserService.get(user?.id);
+        const updatedUser = await UserService.getUserById(user?.id);
         setUser(updatedUser);
 
         navigate(USER.HOME, { replace: true });
