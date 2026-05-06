@@ -18,8 +18,8 @@ export class UserService {
         await updateDoc(userRef, { verificationStatus: "approved" });
     }
 
-    static async getUserById(id) {
-        const userRef = doc(db, "users", id);
+    static async getUserById(userId) {
+        const userRef = doc(db, "users", userId);
         const userSnap = await getDoc(userRef);
 
         assert(userSnap.exists(), "Користувача не знайдено!");

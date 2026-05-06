@@ -17,16 +17,16 @@ import {
 } from "../utils";
 
 export class TripService {
-    static async start(bookingInput) {
+    static async start(bookingData) {
         return await runTransaction(db, async (transaction) => {
-            const bookingRef = doc(db, "bookings", bookingInput.id);
+            const bookingRef = doc(db, "bookings", bookingData.id);
             const bookingSnap = await transaction.get(bookingRef);
 
             assert(bookingSnap.exists(), "Бронювання не знайдено!");
 
             const booking = bookingSnap.data();
 
-            const carRef = doc(db, "cars", bookingInput.carId);
+            const carRef = doc(db, "cars", bookingData.carId);
             const carSnap = await transaction.get(carRef);
 
             assert(carSnap.exists(), "Автомобіль не знайдено!");
@@ -60,7 +60,7 @@ export class TripService {
             transaction.set(tripRef, {
                 carId: booking.carId,
                 userId: booking.userId,
-                bookingId: bookingInput.id,
+                bookingId: bookingData.id,
                 status: "active",
                 price: basePrice,
                 additionalCharge: 0,
