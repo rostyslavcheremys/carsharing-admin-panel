@@ -107,21 +107,22 @@ erDiagram
         int64 fuelPercent "Рівень пального"
     }
 
-    CARS ||--|| ENGINE : "оснащений двигуном"
-    CARS ||--|| BATTERY : "оснащений батареєю"
-    CARS ||--|| LOCATION : "розташований у"
+    CARS ||--|| ENGINE : "містить"
+    CARS ||--|| BATTERY : "містить"
+    CARS ||--|| LOCATION : "має місцезнаходження"
 
-    CARS ||--o| BOOKINGS : "може бути заброньований"
-    CARS ||--o| TRIPS : "використовується у поїздці"
+    CARS ||--o| BOOKINGS : "пов’язаний з"
+    CARS ||--o| TRIPS : "використовується у"
 
-    USERS ||--o| BOOKINGS : "створює бронювання"
-    USERS ||--o| TRIPS : "здійснює поїздку"
+    USERS ||--o| BOOKINGS : "створює"
+    USERS ||--o| TRIPS : "виконує"
 
-    BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
+    BOOKINGS ||--|| TRIPS : "ініціює"
 
-    TRIPS ||--|| CAR_CONDITIONS : "фіксує початковий стан"
-    TRIPS ||--|| CAR_CONDITIONS : "фіксує кінцевий стан"
-    TRIPS ||--|| LOCATION : "починається в"
-    TRIPS ||--|| LOCATION : "завершується в"
+    TRIPS ||--|| CAR_CONDITIONS : "початкова фотофіксація"
+    TRIPS ||--|| CAR_CONDITIONS : "кінцева фотофіксація"
 
-    CAR_CONDITIONS ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
+    TRIPS ||--|| LOCATION : "початкове місцезнаходження"
+    TRIPS ||--|| LOCATION : "кінцеве місцезнаходження"
+
+    CAR_CONDITIONS ||--|| ENERGY_LEVEL : "містить"
