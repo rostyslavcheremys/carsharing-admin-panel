@@ -152,7 +152,7 @@ export class TripService {
                 mileage: Number(startConditionSnap.data().mileage)
             });
 
-            transaction.update(bookingRef, { status: "completed" });
+            transaction.update(bookingRef, { status: "finished" });
 
             return {
                 basePrice,
