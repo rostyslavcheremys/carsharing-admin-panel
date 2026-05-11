@@ -1,8 +1,8 @@
 import {
     useState,
-    useEffect,
+    useMemo,
     useCallback,
-    useMemo
+    useEffect
 } from "react";
 
 import {
@@ -34,24 +34,20 @@ export const useCollection = (
         if (whereClause) {
             const [field, op, value] = whereClause;
 
-            if (value === undefined || value === null) {
-                return null;
-            }
+            if (value === undefined || value === null) return null;
 
-            baseRef = query(
-                baseRef,
-                where(field, op, value)
-            );
+            baseRef = query(baseRef, where(field, op, value));
         }
 
         return baseRef;
-    }, [collectionName, JSON.stringify(whereClause)]);
+    }, [collectionName, whereClause]);
 
-    const mapSnapshot = (snapshot) =>
-        snapshot.docs.map(doc => ({
+    const mapSnapshot = useCallback((snapshot) => {
+        return snapshot.docs.map(doc => ({
             id: doc.id,
-            ...doc.data(),
+            ...doc.data()
         }));
+    }, []);
 
     const fetchData = useCallback(async () => {
         if (!ref) return;
@@ -62,12 +58,12 @@ export const useCollection = (
             const snapshot = await getDocs(ref);
 
             setData(mapSnapshot(snapshot));
-        } catch (err) {
-            setError(err);
+        } catch (error) {
+            setError(error);
         } finally {
             setIsLoading(false);
         }
-    }, [ref]);
+    }, [ref, mapSnapshot]);
 
     useEffect(() => {
         if (!ref) return;
@@ -90,7 +86,7 @@ export const useCollection = (
         );
 
         return () => unsubscribe();
-    }, [ref, live, fetchData]);
+    }, [ref, live, fetchData, mapSnapshot]);
 
     return {
         data,

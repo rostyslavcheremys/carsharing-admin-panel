@@ -52,12 +52,13 @@ export const TRIP_HISTORY_DETAILS = [
     { label: "Загальна вартість:", key: "totalPrice", suffix: "грн" },
     {
         label: "Початкова фотофіксація:", key: "conditionStartId",
-        formatter: (id) => <DetailsLink to={USER.tripConditionDetails(id)} />
+        formatter: (id, trip) => <DetailsLink to={USER.tripConditionDetails(trip?.id, id)}/>
     },
     {
         label: "Кінцева фотофіксація:", key: "conditionEndId",
-        formatter: (id) => <DetailsLink to={USER.tripConditionDetails(id)} />
+        formatter: (id, trip) => <DetailsLink to={USER.tripConditionDetails(trip?.id, id)}/>
     },
+
     {
         label: "Початок:", key: "actualStart",
         formatter: (trip) => formatDateTime(trip, true)

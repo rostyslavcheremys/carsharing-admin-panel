@@ -1,10 +1,9 @@
 import { Actions, Loader, DataTable } from "../../../components";
 
 import {
-    useAuth,
-    useCollection,
+    useUserCollection,
     useCarsMap,
-    useTableColumns
+    useTableColumns,
 } from "../../../hooks";
 
 import {
@@ -13,15 +12,11 @@ import {
 } from "../../../constants";
 
 export const BookingHistoryPage = () => {
-    const { user } = useAuth();
-
     const {
         data: bookings,
         isLoadingBookings,
-        errorBookings
-    } = useCollection("bookings", {
-        where: user?.id ? ["userId", "==", user.id] : null
-    });
+        errorBookings,
+    } = useUserCollection("bookings");
 
     const {
         carsMap,

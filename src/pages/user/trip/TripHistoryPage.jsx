@@ -1,12 +1,10 @@
 import { Actions, Loader, DataTable } from "../../../components";
 
 import {
-    useAuth,
-    useCollection,
+    useUserCollection,
     useCarsMap,
-    useTableColumns
+    useTableColumns,
 } from "../../../hooks";
-
 
 import {
     TRIP_HISTORY_ACTIONS,
@@ -14,15 +12,11 @@ import {
 } from "../../../constants";
 
 export const TripHistoryPage = () => {
-    const { user } = useAuth();
-
     const {
         data: trips,
         isLoadingTrips,
         errorTrips
-    } = useCollection("trips", {
-        where: user?.id ? ["userId", "==", user.id] : null
-    });
+    } = useUserCollection("trips");
 
     const {
         carsMap,

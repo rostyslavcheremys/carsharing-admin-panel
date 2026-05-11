@@ -16,6 +16,8 @@ export * from "./useImages.js";
 export * from "./useMessageDialog.js";
 export * from "./useTableColumns.js";
 export * from "./useTheme.js";
+export * from "./useUserCollection.js";
+export * from "./useWhereClause.js";
 
 export * from "./map/useActiveIndex.js";
 export * from "./map/useAutoPanToMarker.js";
