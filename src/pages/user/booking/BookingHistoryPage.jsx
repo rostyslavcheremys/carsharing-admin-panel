@@ -1,5 +1,56 @@
+import { Actions, Loader, DataTable } from "../../../components";
+
+import {
+    useAuth,
+    useCollection,
+    useCarsMap,
+    useTableColumns
+} from "../../../hooks";
+
+import {
+    BOOKING_HISTORY_ACTIONS,
+    BOOKING_HISTORY_TABLE_COLUMNS,
+} from "../../../constants";
+
 export const BookingHistoryPage = () => {
+    const { user } = useAuth();
+
+    const {
+        data: bookings,
+        isLoadingBookings,
+        errorBookings
+    } = useCollection("bookings", {
+        where: user?.id ? ["userId", "==", user.id] : null
+    });
+
+    const {
+        carsMap,
+        isLoading: isLoadingCars,
+        error: errorCars,
+    } = useCarsMap();
+
+    const columns = useTableColumns(BOOKING_HISTORY_TABLE_COLUMNS(carsMap), {
+        actions: (booking) => (
+            <Actions
+                id={booking?.id}
+                actions={BOOKING_HISTORY_ACTIONS}
+            />
+        ),
+    });
+
     return (
-        <div>BookingsHistoryPage</div>
+        <Loader
+            isLoading={isLoadingBookings || isLoadingCars}
+            error={errorBookings || errorCars}
+        >
+            <div className="page page__content">
+                <span className="page__title">Історія бронювань</span>
+
+                <DataTable
+                    rows={bookings}
+                    columns={columns}
+                />
+            </div>
+        </Loader>
     );
 }

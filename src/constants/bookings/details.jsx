@@ -36,6 +36,24 @@ export const BOOKING_DETAILS = [
     },
 ];
 
+export const BOOKING_HISTORY_DETAILS = [
+    { label: "Автомобіль:", key: "car" },
+    { label: "Статус:", key: "status", map: BOOKING_STATUS },
+    { label: "Вартість:", key: "price", suffix: "грн" },
+    {
+        label: "Запланований початок:", key: "plannedStart",
+        formatter: (booking) => formatDateTime(booking)
+    },
+    {
+        label: "Заплановане завершення:", key: "plannedEnd",
+        formatter: (booking) => formatDateTime(booking)
+    },
+    {
+        label: "Дата створення:", key: "createdAt",
+        formatter: (booking) => formatDateTime(booking, true)
+    },
+];
+
 export const BOOKING_PERIOD_DETAILS = [
     { label: "Кількість днів:", key: "days" },
     { label: "Вартість за добу:", key: "pricePerDay", suffix: "грн" },

@@ -3,6 +3,7 @@ export * from "./useEntity.js";
 export * from "./useActiveTrip.js";
 export * from "./useBookingCar.js";
 export * from "./useBookingPeriod.js";
+export * from "./useCarsMap.js";
 export * from "./useTripCar.js";
 export * from "./useAuth.js";
 export * from "./useAvailableCars.js";

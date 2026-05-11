@@ -128,7 +128,6 @@ export class TripService {
             if (now > plannedEnd) {
                 const msPerDay = 86400000;
                 const overdueDays = Math.ceil((now - plannedEnd) / msPerDay);
-                console.log(overdueDays);
 
                 const penaltyRate = 2;
                 additionalCharge = overdueDays * car.pricePerDay * penaltyRate;

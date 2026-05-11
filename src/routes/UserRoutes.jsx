@@ -23,6 +23,7 @@ import {
     TripSummaryPage,
     TripHistoryPage,
     TripHistoryDetailsPage,
+    TripConditionDetailsPage,
 } from "../pages";
 
 import { USER } from "../constants";
@@ -140,6 +141,12 @@ export const UserRoutes = (
         <Route path={USER.TRIP_HISTORY_DETAILS} element={
             <ProtectedRoute userOnly>
                 <TripHistoryDetailsPage />
+            </ProtectedRoute>
+        }/>
+
+        <Route path={USER.TRIP_CONDITION_DETAILS} element={
+            <ProtectedRoute userOnly>
+                <TripConditionDetailsPage />
             </ProtectedRoute>
         }/>
     </Route>
