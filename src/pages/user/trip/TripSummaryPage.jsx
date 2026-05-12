@@ -59,7 +59,6 @@ export const TripSummaryPage = () => {
     const {
         control,
         handleSubmit,
-        reset
     } = useForm({
         defaultValues: { rating: 0 }
     });
@@ -81,8 +80,6 @@ export const TripSummaryPage = () => {
                 TRIP_ACTION_MESSAGES.RATING_SUCCESS,
                 () => navigate(USER.HOME)
             );
-
-            reset({ rating: 0 })
         } catch (error) {
             showMessage(getErrorMessage(error));
         } finally {
@@ -128,13 +125,19 @@ export const TripSummaryPage = () => {
                 )}
 
                 {hasRating && (
-                    <div className="page__button">
-                        <AppButton
-                            type="button"
-                            label="На головну"
-                            onClick={() => navigate(USER.HOME)}
-                        />
-                    </div>
+                    <>
+                        <div className="page__label">
+                            {TRIP_ACTION_MESSAGES.RATING_SUCCESS}
+                        </div>
+
+                        <div className="page__button">
+                            <AppButton
+                                type="button"
+                                label="На головну"
+                                onClick={() => navigate(USER.HOME)}
+                            />
+                        </div>
+                    </>
                 )}
 
                 <MessageDialog

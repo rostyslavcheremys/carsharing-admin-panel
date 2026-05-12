@@ -65,7 +65,7 @@ export const BookingConfirmationPage = () => {
 
                     <AppButton
                         type="button"
-                        label="Карта"
+                        label="На карту"
                         onClick={() => navigate(USER.MAP)}
                         disabled={bookingLoading || carLoading || userLoading}
                     />

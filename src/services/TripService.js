@@ -219,8 +219,6 @@ export class TripService {
     }
 
     static async setRating(tripId, rating) {
-        assert(rating >= 1 && rating <= 5, "Рейтинг має бути від 1 до 5");
-
         await runTransaction(db, async (transaction) => {
             const tripRef = doc(db, "trips", tripId);
             const tripSnap = await transaction.get(tripRef);
