@@ -1,0 +1,39 @@
+.hero {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 70px;
+}
+
+.hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: var(--font-family), sans-serif;
+    text-transform: uppercase;
+    cursor: default;
+}
+
+.hero__title {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    object-fit: cover;
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hero__subtitle {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 15px 0 30px;
+}
+
+.hero__image {
+    width: 350px;
+    height: 350px;
+}

@@ -45,6 +45,8 @@ export * from "./Headers/AdminHeader.jsx";
 export * from "./Headers/AuthHeader.jsx";
 export * from "./Headers/UserHeader.jsx";
 
+export * from "./HomeHero/HomeHero.jsx";
+
 export * from "./ImageItem/ImageItem.jsx";
 
 export * from "./InfoMessage/InfoMessage.jsx";
