@@ -31,7 +31,10 @@ export const LoginPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const { control, handleSubmit } = useForm({
+    const {
+        control,
+        handleSubmit
+    } = useForm({
         defaultValues: LOGIN_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
@@ -51,7 +54,7 @@ export const LoginPage = () => {
         <Loader isLoading={isLoading}>
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title form">Вхід</span>
+                    <span className="page__title page__title--form">Вхід</span>
 
                     <TextController
                         control={control}
@@ -73,7 +76,7 @@ export const LoginPage = () => {
                         <AppButton
                             type="submit"
                             label="Увійти"
-                            disabled={isLoading || messageOpen}
+                            disabled={isLoading}
                         />
                     </div>
 

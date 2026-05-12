@@ -34,6 +34,7 @@ export const CarCreatePage = () => {
         reset
     } = useForm({
         defaultValues: CAR_FORM_DEFAULT_VALUES,
+        mode: "onChange",
     });
 
     const powertrainType = watch("powertrainType");
@@ -67,7 +68,6 @@ export const CarCreatePage = () => {
                 isSubmitting={isSubmitting}
                 submitLabel="Додати"
                 showBack
-                messageOpen={messageOpen}
                 onBack={() => navigate(-1)}
             />
 

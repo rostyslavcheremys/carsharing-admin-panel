@@ -1,7 +1,9 @@
 ---
 config:
-  theme: default
+  theme: neutral
   look: classic
+  themeVariables:
+    fontSize: 24px
 ---
 erDiagram
     CARS {
@@ -19,10 +21,12 @@ erDiagram
         int64 mileage "Пробіг"
         int64 pricePerDay "Вартість за добу"
         int64 seats "Кількість місць"
-        int64 rating "Рейтинг"
+        int64 averageRating "Рейтинг"
+        int64 ratingCount "Кількість оцінок"
         map battery "Батарея"
         map engine "Двигун"
         array images "Фотографії"
+        boolean isLocked "Доступ"
         geopoint location "Місцезнаходження"
     }
 
@@ -58,6 +62,7 @@ erDiagram
         string id "ID"
         string carId "ID автомобіля"
         string userId "ID користувача"
+        string tripId "ID поїздки"
         string status "Статус"
         int64 price "Вартість"
         timestamp plannedStart "Запланований початок"
@@ -71,18 +76,25 @@ erDiagram
         string carId "ID автомобіля"
         string userId "ID користувача"
         string bookingId "ID бронювання"
-        string beforeConditionId "ID стану до поїздки"
-        string afterConditionId "ID стану після поїздки"
+        string conditionStartId "ID Початкової фотофіксації стану"
+        string conditionEndId "ID Кінцевої фотофіксації стану"
         string status "Статус"
+        int64 price "Вартість"
+        int64 additionalCharge "Доплата"
         int64 totalPrice "Загальна вартість"
+        int64 rating "Рейтинг"
         timestamp actualStart "Фактичний початок"
         timestamp actualEnd "Фактичне завершення"
         geopoint startLocation "Початкове місцезнаходження"
         geopoint endLocation "Кінцеве місцезнаходження"
     }
 
-    CAR_CONDITION {
+    CAR_CONDITIONS {
         string id "ID"
+        string carId "ID автомобіля"
+        string userId "ID користувача"
+        string tripId "ID поїздки"
+        string conditionType "Стан"
         string description "Опис"
         int64 mileage "Пробіг"
         array images "Фотографії"
@@ -95,21 +107,22 @@ erDiagram
         int64 fuelPercent "Рівень пального"
     }
 
-    CARS ||--|| ENGINE : "оснащений двигуном"
-    CARS ||--|| BATTERY : "оснащений батареєю"
-    CARS ||--|| LOCATION : "розташований у"
+    CARS ||--|| ENGINE : "містить"
+    CARS ||--|| BATTERY : "містить"
+    CARS ||--|| LOCATION : "має місцезнаходження"
 
-    CARS ||--o| BOOKINGS : "може бути заброньований"
-    CARS ||--o| TRIPS : "використовується у поїздці"
+    CARS ||--o| BOOKINGS : "пов’язаний з"
+    CARS ||--o| TRIPS : "використовується у"
 
-    USERS ||--o| BOOKINGS : "створює бронювання"
-    USERS ||--o| TRIPS : "здійснює поїздку"
+    USERS ||--o| BOOKINGS : "створює"
+    USERS ||--o| TRIPS : "виконує"
 
-    BOOKINGS ||--|| TRIPS : "є підставою для поїздки"
+    BOOKINGS ||--|| TRIPS : "ініціює"
 
-    TRIPS ||--|| CAR_CONDITION : "фіксує стан до початку"
-    TRIPS ||--|| CAR_CONDITION : "фіксує стан після завершення"
-    TRIPS ||--|| LOCATION : "починається в"
-    TRIPS ||--|| LOCATION : "завершується в"
+    TRIPS ||--|| CAR_CONDITIONS : "початкова фотофіксація"
+    TRIPS ||--|| CAR_CONDITIONS : "кінцева фотофіксація"
 
-    CAR_CONDITION ||--|| ENERGY_LEVEL : "відображає енергетичний рівень"
+    TRIPS ||--|| LOCATION : "початкове місцезнаходження"
+    TRIPS ||--|| LOCATION : "кінцеве місцезнаходження"
+
+    CAR_CONDITIONS ||--|| ENERGY_LEVEL : "містить"

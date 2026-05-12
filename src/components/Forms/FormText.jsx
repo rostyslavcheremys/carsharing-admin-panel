@@ -8,15 +8,18 @@ import { ActionIconButton } from "../../components";
 
 export const FormText = forwardRef(
     ({
-        label,
-        type,
-        name,
-        value,
-        onChange,
-        onBlur,
-        className,
-        disabled,
-        error
+         label,
+         type,
+         name,
+         value,
+         onChange,
+         onBlur,
+         className,
+         disabled,
+         error,
+         multiline = false,
+         rows = 4,
+         maxRows
     }, ref) => {
     const [showPassword, setShowPassword] = useState(false);
     const isPassword = type === "password";
@@ -36,6 +39,9 @@ export const FormText = forwardRef(
                 type={isPassword && showPassword ? "text" : type}
                 disabled={disabled}
                 error={error}
+                multiline={multiline}
+                rows={multiline ? rows : undefined}
+                maxRows={multiline ? maxRows : undefined}
                 slotProps={{
                     input: isPassword
                         ? {

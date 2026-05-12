@@ -18,7 +18,7 @@ export const MAP_FILTERS = [
     },
     {
         type: "range",
-        key: "rating",
+        key: "averageRating",
         label: "Рейтинг",
         min: 0,
         max: 5,

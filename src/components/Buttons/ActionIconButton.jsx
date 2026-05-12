@@ -19,9 +19,11 @@ export const ActionIconButton = ({
                 },
             }}
         >
-            <IconButton onClick={onClick} className={className} {...props}>
-                <Icon className={iconClassName} />
-            </IconButton>
+            <span>
+                <IconButton onClick={onClick} className={className} {...props}>
+                    <Icon className={iconClassName} />
+                </IconButton>
+            </span>
         </Tooltip>
     );
 }

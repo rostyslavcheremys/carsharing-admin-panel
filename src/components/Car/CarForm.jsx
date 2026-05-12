@@ -1,8 +1,8 @@
 import {
     FileUploadController,
+    LocationController,
     TextController,
     SelectController,
-    LocationController,
     AppButton
 } from "../../components";
 
@@ -39,7 +39,6 @@ export const CarForm = ({
                             isSubmitting,
                             submitLabel,
                             showBack,
-                            messageOpen,
                             onBack
                         }) => {
     const isIce = powertrainType === "ice";
@@ -51,14 +50,21 @@ export const CarForm = ({
 
     return (
         <div className="page page__content">
-            <span className="page__title">{title}</span>
-
             <form className="page__form" onSubmit={onSubmit}>
+                <span className="page__title page__title--form">{title}</span>
+
                 <FileUploadController
                     control={control}
                     name="images"
                     label="Фотографії*"
                     rules={getRequiredAnyValidation("Фотографії")}
+                />
+
+                <LocationController
+                    control={control}
+                    name="location"
+                    label="Місцезнаходження*"
+                    rules={getRequiredAnyValidation("Місцезнаходження")}
                 />
 
                 <SelectController
@@ -193,18 +199,11 @@ export const CarForm = ({
                     rules={getSeatsValidation()}
                 />
 
-                <LocationController
-                    control={control}
-                    name="location"
-                    label="Місцезнаходження*"
-                    rules={getRequiredAnyValidation("Місцезнаходження")}
-                />
-
                 <div className="page__buttons page__buttons--form">
                     <AppButton
                         type="submit"
                         label={submitLabel}
-                        disabled={isSubmitting || messageOpen}
+                        disabled={isSubmitting}
                     />
 
                     {showBack && (
@@ -212,7 +211,7 @@ export const CarForm = ({
                             type="button"
                             label="Назад"
                             onClick={onBack}
-                            disabled={isSubmitting || messageOpen}
+                            disabled={isSubmitting}
                         />
                     )}
                 </div>

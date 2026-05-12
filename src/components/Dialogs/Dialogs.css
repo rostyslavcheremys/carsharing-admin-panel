@@ -1,7 +1,7 @@
 .dialog .MuiPaper-root {
     border-radius: 10px !important;
     min-width: 250px;
-    max-width: 800px;
+    max-width: 550px;
 }
 
 .dialog__title {
@@ -97,8 +97,8 @@
 
 .dialog__map {
     position: relative;
-    width: 600px;
-    height: 600px;
+    width: 550px;
+    height: 550px;
 }
 
 @media (max-width: 768px) {

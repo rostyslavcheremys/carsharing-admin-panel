@@ -14,13 +14,13 @@ export const ConfirmDialog = ({
 
             <div className="dialog__button">
                 <AppButton
-                    className="app-button--small"
+                    className="app-button--size-sm"
                     label="Так"
                     onClick={onConfirm}
                 />
 
                 <AppButton
-                    className="app-button--small"
+                    className="app-button--size-sm"
                     label="Ні"
                     onClick={onCancel}
                 />

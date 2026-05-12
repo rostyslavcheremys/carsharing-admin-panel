@@ -1,4 +1,4 @@
-import { getLabel, getString, getFormattedTimestamp } from "../../utils";
+import { getLabel, getString, formatDateTime } from "../../utils";
 
 import { ROLES, USER_STATUS, VERIFICATION_STATUS } from "./options.js";
 
@@ -38,10 +38,10 @@ export const USERS_TABLE_COLUMNS = [
     },
     {
         id: "birthDate", label: "Дата народження",
-        render: (user) => getFormattedTimestamp(user?.birthDate)
+        render: (user) => formatDateTime(user?.birthDate)
     },
     {
         id: "createdAt", label: "Дата створення",
-        render: (user) => getFormattedTimestamp(user?.createdAt, true)
+        render: (user) => formatDateTime(user?.createdAt, true)
     },
 ];

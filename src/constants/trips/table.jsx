@@ -13,7 +13,7 @@ import {
 
 import {
     getString,
-    getFormattedTimestamp,
+    formatDateTime,
     getLabel
 } from "../../utils";
 
@@ -32,8 +32,16 @@ export const TRIPS_TABLE_COLUMNS = [
         render: (trip) => getLabel(trip?.status, TRIP_STATUS)
     },
     {
+        id: "price", label: "Вартість",
+        render: (trip) => getString(trip?.price, "грн")
+    },
+    {
+        id: "additionalCharge", label: "Доплата",
+        render: (trip) => getString(trip?.additionalCharge, "грн")
+    },
+    {
         id: "totalPrice", label: "Загальна вартість",
-        render: (trip) => getString(trip?.totalPrice)
+        render: (trip) => getString(trip?.totalPrice, "грн")
     },
     {
         id: "carId", label: "Автомобіль",
@@ -66,20 +74,20 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "beforeConditionId", label: "Стан до поїздки",
+        id: "conditionStartId", label: "Початкова фотофіксація",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.beforeConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionStartId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
         )
     },
     {
-        id: "afterConditionId", label: "Стан після поїздки",
+        id: "conditionEndId", label: "Кінцева фотофіксація",
         render: (trip) => (
             <NavigateIconButton
-                to={ADMIN.carConditionDetails(trip?.afterConditionId)}
+                to={ADMIN.carConditionDetails(trip?.conditionEndId)}
                 Icon={FactCheckIcon}
                 iconClassName="icon-button"
             />
@@ -122,11 +130,15 @@ export const TRIPS_TABLE_COLUMNS = [
         )
     },
     {
-        id: "plannedStart", label: "Фактичний початок",
-        render: (trip) => getFormattedTimestamp(trip?.actualStart, true)
+        id: "plannedStart", label: "Початок",
+        render: (trip) => formatDateTime(trip?.actualStart, true)
     },
     {
-        id: "plannedEnd", label: "Фактичне завершення",
-        render: (trip) => getFormattedTimestamp(trip?.actualEnd, true)
-    }
+        id: "plannedEnd", label: "Завершення",
+        render: (trip) => formatDateTime(trip?.actualEnd, true)
+    },
+    {
+        id: "rating", label: "Рейтинг",
+        render: (car) => getString(car?.rating, "★")
+    },
 ];

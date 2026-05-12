@@ -32,13 +32,18 @@
     box-shadow: none;
 }
 
-.app-button--small {
+.app-button--size-sm {
     width: 90px !important;
     height: 40px !important;
 }
 
-.app-button--large {
+.app-button--size-md {
     width: 200px !important;
+    height: 50px !important;
+}
+
+.app-button--size-lg {
+    width: 250px !important;
     height: 50px !important;
 }
 
@@ -50,6 +55,22 @@
 
 .icon-button:hover {
     color: var(--main-color) !important;
+}
+
+.car-access-button {
+    height: 150px;
+    width: 150px;
+    background: var(--red-color) !important;
+    transition: background 0.2s ease-in-out !important;
+}
+
+.car-access-button--unlock {
+    background: var(--main-color) !important;
+}
+
+.car-access-button__icon {
+    height: 70px !important;
+    width: 70px !important
 }
 
 .diia-button {

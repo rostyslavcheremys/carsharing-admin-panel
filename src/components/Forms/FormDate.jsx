@@ -11,7 +11,7 @@ export const FormDate = forwardRef(
                 <span className="form__label">{label}</span>
 
                 <DatePicker
-                    value={value ? dayjs(value) : null}
+                    value={value || dayjs(value)}
                     disabled={disabled}
                     disablePast={disablePast}
                     onChange={onChange}

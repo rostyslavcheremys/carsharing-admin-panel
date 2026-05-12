@@ -4,7 +4,7 @@ import { NavigateIconButton } from "../../components";
 
 import {
     getString,
-    getFormattedTimestamp,
+    formatDateTime,
     getLabel
 } from "../../utils";
 
@@ -48,18 +48,18 @@ export const BOOKINGS_TABLE_COLUMNS = [
     },
     {
         id: "plannedStart", label: "Запланований початок",
-        render: (booking) => getFormattedTimestamp(booking?.plannedStart, true)
+        render: (booking) => formatDateTime(booking?.plannedStart, true)
     },
     {
         id: "plannedEnd", label: "Заплановане завершення",
-        render: (booking) => getFormattedTimestamp(booking?.plannedEnd, true)
+        render: (booking) => formatDateTime(booking?.plannedEnd, true)
     },
     {
         id: "expiresAt", label: "Дедлайн оплати",
-        render: (booking) => getFormattedTimestamp(booking?.expiresAt, true)
+        render: (booking) => formatDateTime(booking?.expiresAt, true)
     },
     {
         id: "createdAt", label: "Дата створення",
-        render: (booking) => getFormattedTimestamp(booking?.createdAt, true)
+        render: (booking) => formatDateTime(booking?.createdAt, true)
     },
 ];

@@ -9,7 +9,7 @@ export const USER_STATUS = [
 ];
 
 export const VERIFICATION_STATUS = [
-    { value: "pending", label: "Очікує перевірки" },
+    { value: "awaiting_verification", label: "Очікування перевірки" },
     { value: "approved", label: "Підтверджено" },
     { value: "rejected", label: "Відхилено" },
 ];

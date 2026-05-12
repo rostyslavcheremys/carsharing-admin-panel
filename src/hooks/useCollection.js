@@ -8,51 +8,72 @@ import {
 import {
     collection,
     getDocs,
-    onSnapshot
+    onSnapshot,
+    query,
+    where
 } from "firebase/firestore";
 
 import { db } from "../firebase";
 
-export const useCollection = (refOrName, { live = true } = {}) => {
+export const useCollection = (
+    collectionName,
+    {
+        live = true,
+        where: whereClause = null,
+    } = {}
+) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const ref = useMemo(() => {
-        return typeof refOrName === "string"
-            ? collection(db, refOrName)
-            : refOrName;
-    }, [refOrName]);
+        if (!collectionName) return null;
 
-    const mapSnapshot = (snapshot) =>
-        snapshot.docs
-            .map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }))
-            .filter(Boolean);
+        let baseRef = collection(db, collectionName);
 
-    const fetch = useCallback(async () => {
+        if (whereClause) {
+            const [field, op, value] = whereClause;
+
+            if (value === undefined || value === null) return null;
+
+            baseRef = query(baseRef, where(field, op, value));
+        }
+
+        return baseRef;
+    }, [collectionName, whereClause]);
+
+    const mapSnapshot = useCallback((snapshot) => {
+        return snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+    }, []);
+
+    const fetchData = useCallback(async () => {
+        if (!ref) return;
+
         setIsLoading(true);
+
         try {
             const snapshot = await getDocs(ref);
+
             setData(mapSnapshot(snapshot));
         } catch (error) {
             setError(error);
         } finally {
             setIsLoading(false);
         }
-    }, [ref]);
+    }, [ref, mapSnapshot]);
 
     useEffect(() => {
         if (!ref) return;
 
         if (!live) {
-            fetch();
+            fetchData();
             return;
         }
 
-        const unsub = onSnapshot(
+        const unsubscribe = onSnapshot(
             ref,
             (snapshot) => {
                 setData(mapSnapshot(snapshot));
@@ -64,8 +85,13 @@ export const useCollection = (refOrName, { live = true } = {}) => {
             }
         );
 
-        return () => unsub();
-    }, [ref, live, fetch]);
+        return () => unsubscribe();
+    }, [ref, live, fetchData, mapSnapshot]);
 
-    return { data, isLoading, error, refetch: fetch };
-};
+    return {
+        data,
+        isLoading,
+        error,
+        refetch: fetchData,
+    }
+}

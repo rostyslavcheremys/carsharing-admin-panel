@@ -1,6 +1,6 @@
 import { DetailsLink } from "../../components";
 
-import { getFormattedTimestamp } from "../../utils";
+import { formatDateTime } from "../../utils";
 
 import { ADMIN } from "../../constants";
 
@@ -20,19 +20,37 @@ export const BOOKING_DETAILS = [
     },
     {
         label: "Запланований початок:", key: "plannedStart",
-        formatter: (booking) => getFormattedTimestamp(booking)
+        formatter: (booking) => formatDateTime(booking)
     },
     {
         label: "Заплановане завершення:", key: "plannedEnd",
-        formatter: (booking) => getFormattedTimestamp(booking)
+        formatter: (booking) => formatDateTime(booking)
     },
     {
         label: "Дедлайн оплати:", key: "expiresAt",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
     },
     {
         label: "Дата створення:", key: "createdAt",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
+    },
+];
+
+export const BOOKING_HISTORY_DETAILS = [
+    { label: "Автомобіль:", key: "car" },
+    { label: "Статус:", key: "status", map: BOOKING_STATUS },
+    { label: "Вартість:", key: "price", suffix: "грн" },
+    {
+        label: "Запланований початок:", key: "plannedStart",
+        formatter: (booking) => formatDateTime(booking)
+    },
+    {
+        label: "Заплановане завершення:", key: "plannedEnd",
+        formatter: (booking) => formatDateTime(booking)
+    },
+    {
+        label: "Дата створення:", key: "createdAt",
+        formatter: (booking) => formatDateTime(booking, true)
     },
 ];
 
@@ -45,25 +63,25 @@ export const BOOKING_PERIOD_DETAILS = [
 export const BOOKING_PAYMENT_DETAILS = [
     {
         label: "Запланований початок:", key: "plannedStart",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
     },
     {
         label: "Заплановане завершення:", key: "plannedEnd",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
     },
-    { label: "Загальна вартість:", key: "price", suffix: "грн" },
+    { label: "До сплати:", key: "price", suffix: "грн" },
 ];
 
 export const BOOKING_CONFIRM_DETAILS = [
     { label: "Автомобіль:", key: "car" },
-    { label: "Орендар:", key: "fullName" },
+    { label: "Ім'я та прізвище:", key: "fullName" },
     {
         label: "Запланований початок:", key: "plannedStart",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
     },
     {
         label: "Заплановане завершення:", key: "plannedEnd",
-        formatter: (booking) => getFormattedTimestamp(booking, true)
+        formatter: (booking) => formatDateTime(booking, true)
     },
     { label: "Загальна вартість:", key: "price", suffix: "грн" },
 ];

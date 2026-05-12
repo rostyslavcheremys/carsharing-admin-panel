@@ -3,12 +3,18 @@ export * from "./auth/defaults.js";
 export * from "./bookings/actions.js";
 export * from "./bookings/defaults.js";
 export * from "./bookings/details.jsx";
+export * from "./bookings/history.js";
 export * from "./bookings/options.js";
 export * from "./bookings/table.jsx";
 
+export * from "./carCondition/defaults.js";
+export * from "./carCondition/details.jsx";
+export * from "./carCondition/fields.js";
+export * from "./carCondition/options.js";
+
 export * from "./cars/actions.js";
 export * from "./cars/defaults.js";
-export * from "./cars/details.js";
+export * from "./cars/details.jsx";
 export * from "./cars/options.js";
 export * from "./cars/table.jsx";
 
@@ -30,6 +36,7 @@ export * from "./routes/user.js";
 
 export * from "./trips/actions.js";
 export * from "./trips/details.jsx";
+export * from "./trips/history.jsx";
 export * from "./trips/options.js";
 export * from "./trips/table.jsx";
 

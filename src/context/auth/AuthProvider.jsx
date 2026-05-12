@@ -7,14 +7,17 @@ import { auth, db } from "../../firebase";
 
 import { AuthContext } from "../../context";
 
+import { assert } from "../../utils";
+
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+
         return onAuthStateChanged(auth, async (firebaseUser) => {
-            setLoading(true);
             setError(null);
 
             if (!firebaseUser) {
@@ -27,12 +30,10 @@ export const AuthProvider = ({ children }) => {
                 const userRef = doc(db, "users", firebaseUser.uid);
                 const userSnap = await getDoc(userRef);
 
-                if (!userSnap.exists()) {
-                    throw new Error("Документ користувача не знайдено.");
-                }
+                assert(userSnap.exists(), "Користувача не знайдено!");
 
                 setUser({
-                    uid: firebaseUser.uid,
+                    id: firebaseUser.uid,
                     email: firebaseUser.email,
                     ...userSnap.data(),
                 });
@@ -40,7 +41,6 @@ export const AuthProvider = ({ children }) => {
             } catch (error) {
                 setError(error);
                 setUser(null);
-
             } finally {
                 setLoading(false);
             }
@@ -49,12 +49,17 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
+            setLoading(true);
+
             await signOut(auth);
+
             setUser(null);
         } catch (error) {
             setError(error);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <AuthContext.Provider value={{ user, setUser, loading, error, logout }}>

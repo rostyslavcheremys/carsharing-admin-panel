@@ -22,6 +22,11 @@
     height: 50px;
 }
 
+.form__textarea .MuiOutlinedInput-root {
+    min-height: 120px;
+    align-items: flex-start;
+}
+
 .form__field .MuiOutlinedInput-notchedOutline,
 .form__field .MuiPickersOutlinedInput-notchedOutline {
     border-radius: 10px;
@@ -117,7 +122,7 @@
     flex-wrap: wrap;
     gap: 10px;
     max-width: 400px;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 .form__grid {
@@ -176,6 +181,22 @@
     z-index: 2;
 }
 
+.form--rating {
+    justify-content: center;
+    align-items: center;
+}
+
+.form__rating {
+    font-size: 30px !important;
+}
+
+.form__label--rating {
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0 0 5px 0;
+}
+
 @media (max-width: 768px) {
     .form__label,
     .form__field .MuiOutlinedInput-root,
@@ -184,6 +205,10 @@
     .form__badge
     {
         font-size: 14px !important;
+    }
+
+    .form__label--rating {
+        font-size: 15px !important;
     }
 
     .form__field,
@@ -202,6 +227,16 @@
 
     .form__image {
         height: 173px;
+    }
+}
+
+@media (max-width: 600px) {
+    .form__label--rating {
+        font-size: 13px !important;
+    }
+
+    .form__rating {
+        font-size: 25px !important;
     }
 }
 

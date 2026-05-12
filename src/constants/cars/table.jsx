@@ -14,6 +14,7 @@ import {
     POWERTRAIN_TYPES,
     CAR_STATUS,
     TRANSMISSION_TYPES,
+    CAR_LOCK_STATUS,
 } from "./options.js";
 
 export const CARS_TABLE_COLUMNS = [
@@ -25,6 +26,10 @@ export const CARS_TABLE_COLUMNS = [
     {
         id: "status", label: "Статус",
         render: (car) => getLabel(car?.status, CAR_STATUS)
+    },
+    {
+        id: "isLocked", label: "Доступ",
+        render: (car) => getLabel(car?.isLocked, CAR_LOCK_STATUS)
     },
     {
         id: "pricePerDay", label: "Вартість за добу",
@@ -124,7 +129,11 @@ export const CARS_TABLE_COLUMNS = [
         render: (car) => getString(car?.seats)
     },
     {
-        id: "rating", label: "Рейтинг",
-        render: (car) => getString(car?.rating, "★")
+        id: "ratingCount", label: "Кількість оцінок",
+        render: (car) => getString(car?.ratingCount)
+    },
+    {
+        id: "averageRating", label: "Рейтинг",
+        render: (car) => getString(car?.averageRating, "★")
     },
 ];

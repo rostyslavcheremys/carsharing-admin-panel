@@ -37,7 +37,10 @@ export const RegisterPage = () => {
         handleMessageClose,
     } = useMessageDialog();
 
-    const { control, watch, handleSubmit } = useForm({
+    const {
+        control,
+        watch, handleSubmit
+    } = useForm({
         defaultValues: REGISTER_FORM_DEFAULT_VALUES,
         mode: "onChange",
     });
@@ -57,7 +60,7 @@ export const RegisterPage = () => {
         <Loader isLoading={isLoading}>
             <div className="page page__content">
                 <form className="page__form" onSubmit={handleSubmit(onSubmit)}>
-                    <span className="page__title form">Реєстрація</span>
+                    <span className="page__title page__title--form">Реєстрація</span>
 
                     <TextController
                         control={control}
@@ -114,9 +117,9 @@ export const RegisterPage = () => {
                     <div className="page__button page__buttons--form">
                         <AppButton
                             type="submit"
-                            className="app-button--large"
+                            className="app-button--size-md"
                             label="Зареєструватися"
-                            disabled={isLoading || messageOpen}
+                            disabled={isLoading}
                         />
                     </div>
 

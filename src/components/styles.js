@@ -7,6 +7,7 @@ import "./Dialogs/Dialogs.css";
 import "./FormControllers/FormControllers.css";
 import "./Forms/Forms.css";
 import "./Headers/Headers.css";
+import "./HomeHero/HomeHero.css";
 import "./ImageItem/ImageItem.css";
 import "./InfoMessage/InfoMessage.css";
 import "./Loader/Loader.css";
