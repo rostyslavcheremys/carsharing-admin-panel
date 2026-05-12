@@ -12,7 +12,7 @@ export const Details = ({ data, details, className }) => {
                 if (value === undefined || value === null || value === "") return null;
 
                 const displayValue = formatter
-                    ? formatter(value)
+                    ? formatter(value, data)
                     : map
                         ? getLabel(value, map)
                         : value;

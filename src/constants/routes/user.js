@@ -27,6 +27,7 @@ export const USER = {
     TRIP_SUMMARY: "/trip/:id/summary",
     TRIP_HISTORY: "/trip/history",
     TRIP_HISTORY_DETAILS: "/trip/history/:id",
+    TRIP_CONDITION_DETAILS: "/trip/history/:id/condition/:conditionId",
     tripStart: (id) => `/trip/${id}/start`,
     tripAccess: (id) => `/trip/${id}/access`,
     tripConditionStart: (id) => `/trip/${id}/condition-start`,
@@ -35,4 +36,5 @@ export const USER = {
     tripPayment: (id) => `/trip/${id}/payment`,
     tripSummary: (id) => `/trip/${id}/summary`,
     tripHistoryDetails: (id) => `/trip/history/${id}`,
+    tripConditionDetails: (id, conditionId) => `/trip/history/${id}/condition/${conditionId}`,
 }

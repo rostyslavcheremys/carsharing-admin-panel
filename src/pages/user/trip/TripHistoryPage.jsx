@@ -1,5 +1,51 @@
+import { Actions, Loader, DataTable } from "../../../components";
+
+import {
+    useUserCollection,
+    useCarsMap,
+    useTableColumns,
+} from "../../../hooks";
+
+import {
+    TRIP_HISTORY_ACTIONS,
+    TRIP_HISTORY_TABLE_COLUMNS
+} from "../../../constants";
+
 export const TripHistoryPage = () => {
+    const {
+        data: trips,
+        isLoadingTrips,
+        errorTrips
+    } = useUserCollection("trips");
+
+    const {
+        carsMap,
+        isLoading: isLoadingCars,
+        error: errorCars,
+    } = useCarsMap();
+
+    const columns = useTableColumns(TRIP_HISTORY_TABLE_COLUMNS(carsMap), {
+        actions: (trip) => (
+            <Actions
+                id={trip?.id}
+                actions={TRIP_HISTORY_ACTIONS}
+            />
+        ),
+    });
+
     return (
-        <div>TripsHistoryPage</div>
+        <Loader
+            isLoading={isLoadingTrips || isLoadingCars}
+            error={errorTrips || errorCars}
+        >
+            <div className="page page__content">
+                <span className="page__title">Історія поїздок</span>
+
+                <DataTable
+                    rows={trips}
+                    columns={columns}
+                />
+            </div>
+        </Loader>
     );
 }

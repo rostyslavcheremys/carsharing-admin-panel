@@ -2,7 +2,7 @@ import { DetailsLink } from "../../components";
 
 import { formatDateTime } from "../../utils";
 
-import { ADMIN } from "../../constants";
+import { ADMIN, USER } from "../../constants";
 
 import { TRIP_STATUS } from "./options.js";
 
@@ -37,6 +37,32 @@ export const TRIP_DETAILS = [
         formatter: (trip) => formatDateTime(trip, true)
     },
 
+    {
+        label: "Завершення:", key: "actualEnd",
+        formatter: (trip) => formatDateTime(trip, true)
+    },
+    { label: "Рейтинг:", key: "rating", suffix: "★" },
+];
+
+export const TRIP_HISTORY_DETAILS = [
+    { label: "Автомобіль:", key: "car" },
+    { label: "Статус:", key: "status", map: TRIP_STATUS },
+    { label: "Вартість:", key: "price", suffix: "грн" },
+    { label: "Доплата:", key: "additionalCharge", suffix: "грн" },
+    { label: "Загальна вартість:", key: "totalPrice", suffix: "грн" },
+    {
+        label: "Початкова фотофіксація:", key: "conditionStartId",
+        formatter: (id, trip) => <DetailsLink to={USER.tripConditionDetails(trip?.id, id)}/>
+    },
+    {
+        label: "Кінцева фотофіксація:", key: "conditionEndId",
+        formatter: (id, trip) => <DetailsLink to={USER.tripConditionDetails(trip?.id, id)}/>
+    },
+
+    {
+        label: "Початок:", key: "actualStart",
+        formatter: (trip) => formatDateTime(trip, true)
+    },
     {
         label: "Завершення:", key: "actualEnd",
         formatter: (trip) => formatDateTime(trip, true)
