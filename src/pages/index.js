@@ -37,6 +37,7 @@ export * from "./user/shared/HomePage.jsx";
 export * from "./user/shared/MapPage.jsx";
 
 export * from "./user/trip/TripActivePage.jsx";
+export * from "./user/trip/TripConditionDetailsPage.jsx";
 export * from "./user/trip/TripHistoryDetailsPage.jsx"
 export * from "./user/trip/TripHistoryPage.jsx";
 export * from "./user/trip/TripPaymentPage.jsx";

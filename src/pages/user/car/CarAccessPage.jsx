@@ -38,8 +38,6 @@ export const CarAccessPage = () => {
 
     const isLocked = car?.isLocked;
 
-    console.log(isLocked)
-
     const handleToggle = async () => {
         try {
             setLoading(true);

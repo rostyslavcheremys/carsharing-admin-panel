@@ -30,3 +30,16 @@ export const CAR_CONDITION_DETAILS = [
         formatter: (user) => formatDateTime(user, true)
     },
 ];
+
+export const TRIP_CONDITION_DETAILS = [
+    { label: "Автомобіль:", key: "car" },
+    { label: "Стан:", key: "conditionType", map: CONDITION_TYPE },
+    { label: "Опис:", key: "description" },
+    { label: "Пробіг:", key: "mileage", suffix: "км" },
+    { label: "Рівень пального:", key: "energyLevel.fuelPercent", suffix: "%" },
+    { label: "Рівень заряду батареї:", key: "energyLevel.batteryPercent", suffix: "%" },
+    {
+        label: "Дата створення:", key: "createdAt",
+        formatter: (user) => formatDateTime(user, true)
+    },
+];

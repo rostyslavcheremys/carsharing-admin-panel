@@ -1,6 +1,6 @@
 import { DeleteIcon, Visibility } from "../../libs/mui-icons";
 
-import { ADMIN, TRIP_ACTION_MESSAGES } from "../../constants";
+import {ADMIN, TRIP_ACTION_MESSAGES, USER} from "../../constants";
 
 export const TRIPS_ACTIONS = (onDelete, showMessage) => [
     {
@@ -22,5 +22,14 @@ export const TRIPS_ACTIONS = (onDelete, showMessage) => [
         },
         confirmMessage: () =>
             TRIP_ACTION_MESSAGES.DELETE_CONFIRM
+    }
+];
+
+export const TRIP_HISTORY_ACTIONS = [
+    {
+        type: "view",
+        Icon: Visibility,
+        handler: ({ id, navigate }) =>
+            navigate(USER.tripHistoryDetails(id)),
     }
 ];

@@ -33,15 +33,15 @@ export const TRIPS_TABLE_COLUMNS = [
     },
     {
         id: "price", label: "Вартість",
-        render: (trip) => getString(trip?.price)
+        render: (trip) => getString(trip?.price, "грн")
     },
     {
         id: "additionalCharge", label: "Доплата",
-        render: (trip) => getString(trip?.additionalCharge)
+        render: (trip) => getString(trip?.additionalCharge, "грн")
     },
     {
         id: "totalPrice", label: "Загальна вартість",
-        render: (trip) => getString(trip?.totalPrice)
+        render: (trip) => getString(trip?.totalPrice, "грн")
     },
     {
         id: "carId", label: "Автомобіль",
